@@ -4,9 +4,10 @@ const createProfile = async (name, data) => {
     console.log(`Attempting to create profile with name: ${name}`)
     const query = 'INSERT INTO profiles (name, properties) VALUES(?, ?)'
     try {
-        
+        const result = pool.execute(query, [name, JSON.stringify(data)])
+        return result.affectedRows;
     } catch (error) {
-        
+        throw e
     }
     
 }

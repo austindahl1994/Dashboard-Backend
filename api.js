@@ -7,6 +7,7 @@ router.get("/test", (req, res) => {
   res.send("Connection from backend is successful");
 });
 
+//Test api call
 router.get('/user', async (req, res) => {
   const id = req.query.id;
   console.log(`get user called with id: ${id}`);

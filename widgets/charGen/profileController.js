@@ -11,46 +11,40 @@ const profileHome = async (req, res) => {
 };
 
 const createProfile = async (req, res) => {
-  const name = req.body.name
-  const properties = req.body.properties
-  if (!name || name.length === 0 || Object.keys(properties).length === 0) {
-    return res
-      .status(400)
-      .json({ message: "Need to have name and properties" });
-  }
+  const { name, properties } = req.body
   try {
-    const data = await profile.createProfile(name, properties);
-    if (data === 1) {
-      res.status(201).json({ message: "Successfully created profile" });
-    } else {
-      res.status(400).json({ message: "Error creating profile" });
+    if (!name || name.length === 0 || Object.keys(properties).length === 0) {
+      throw new Error("Need to have name and properties");
     }
+    const existing = await profile.getProfile(name)
+    if (existing) {
+      throw new Error("There exists a profile with that name already")
+    }
+    const data = await profile.createProfile(name, properties);
+    if (data.affectedRows !== 1) {
+      throw new Error("Profile was not created")
+    }
+    return res.status(201).json({ message: "Successfully created profile", id: data.insertId });
   } catch (error) {
-    console.error(`There was an error of: ${error}`);
-    throw e;
+    return res.status(500).json({ message: `Error creating profile: ${error}` });
   }
 };
 
 const getProfile = async (req, res) => {
   const { name, id } = req.params
-  
-  if (!name || name.length === 0) {
-    console.log(`Nothing passed in!`)
-    return res
-      .status(400)
-      .json({ message: "Error, name needs to have a value" });
-  }
   try {
+	  if (!name || name.length === 0) {
+	  	throw new Error("Need to submit a name");
+	  }
     const data = await profile.getProfile(name, id);
     if (data.length === 0) {
-      return res.status(404).json({ message: "Error, no profile found" });
+      throw new Error("No profile found");
     }
     return res.status(200).json(data);
   } catch (error) {
-    console.error(`Error: ${error}`);
     return res
       .status(500)
-      .json({ message: `Internal server error with database` });
+      .json({ message: `Error getting profile: ${error}` });
   }
 };
 
@@ -61,25 +55,44 @@ const getRecentProfiles = async (req, res) => {
     const data = await profile.getRecentProfiles(amount || DEFAULT_AMOUNT);
     return res.status(200).json({ data });
   } catch (error) {
-    console.error(`There was an error of: ${error}`);
-    res
-      .status(400)
-      .json({ message: "There was an error getting the profiles" });
+    return res
+      .status(500)
+      .json({ message: `Could not get recent profiles: ${error}` });
   }
 };
 
-const updateProfile = async (name, properties) => {
+//TODO: Need to change from current unique name
+const updateProfile = async (req, res) => {
+  const {name, properties} = req.params
   try {
-    const data = await profile.updateProfile(name, properties);
-    if (data.affectedRows === 1) {
-        return res.status(200).json({ message: "Successfully updated the profile" });
-    } else {
-        return res.status(400).json({message: 'Error updating profile'})
+      if (!name || name.length === 0 || Object.keys(properties).length === 0) {
+        throw new Error("Need to have name and properties");
+      }
+      const data = await profile.updateProfile(name, properties);
+      if (data !== 1) {
+        throw new Error("No profile was updated")
+      }
+    	return res.status(200).json({ message: "Successfully updated profile" });
+  } catch (error) {
+    return res.status(500).json({message: `Could not update profile: ${error}`})
+  }
+};
+
+const deleteProfile = async (req, res) => {
+  const {user_id, name} = req.params
+  try {
+    if (!name || !name.length === 0) {
+      throw new Error("Need to submit profile name")
+    } else if (!user_id) {
+      throw new Error("Need to submit user_id to delete")
+    }
+    const response = await profile.deleteProfile(user_id, name)
+    if (response !== 1) {
+      throw new Error("Profile did not exist and was not deleted")
     }
   } catch (error) {
-    console.error(`There was an error of: ${error}`);
-    return res.status(400).json({message: 'Server error updating the profile'})
+    return res.status(500).json({message: `Error deleting the profile: ${error}`})
   }
-};
+}
 
-export { profileHome, createProfile, getProfile, getRecentProfiles, updateProfile };
+export { profileHome, createProfile, getProfile, getRecentProfiles, updateProfile, deleteProfile };

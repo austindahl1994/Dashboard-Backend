@@ -34,6 +34,7 @@ const createProfile = async (req, res) => {
 const getProfile = async (req, res) => {
   console.log(`Get profile called`)
   const name = req.params.name;
+  //const id = req.params.id;
   if (!name || name.length === 0) {
     console.log(`Nothing passed in!`)
     return res

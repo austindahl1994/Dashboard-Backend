@@ -12,11 +12,11 @@ const createProfile = async (name, data) => {
     
 }
 
-const getProfile = async (name) => {
+const getProfile = async (name, id=-1) => {
     console.log(`Attempting to query profiles for name: ${name}`)
-    const query = 'SELECT * FROM profiles WHERE name=?'
+    const query = 'SELECT * FROM profiles WHERE name=? OR id=?'
     try {
-        const [rows] = await pool.execute(query, [name])
+        const [rows] = await pool.execute(query, [name, id])
         return rows[0]
     } catch (error) {
         console.log(`There was an error: ${error}`)

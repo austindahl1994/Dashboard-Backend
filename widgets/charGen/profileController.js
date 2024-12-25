@@ -34,7 +34,9 @@ const createProfile = async (req, res) => {
 const getProfile = async (req, res) => {
   console.log(`Get profile called`)
   const name = req.params.name;
-  //const id = req.params.id;
+  const initialId = req.params.id;
+  const id = initialId !== undefined ? initialId : -1;
+  
   if (!name || name.length === 0) {
     console.log(`Nothing passed in!`)
     return res
@@ -42,7 +44,7 @@ const getProfile = async (req, res) => {
       .json({ message: "Error, name needs to have a value" });
   }
   try {
-    const data = await profile.getProfile(name);
+    const data = await profile.getProfile(name, id);
     if (data.length === 0) {
       return res.status(404).json({ message: "Error, no profile found" });
     }

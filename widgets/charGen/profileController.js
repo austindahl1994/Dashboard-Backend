@@ -11,7 +11,8 @@ const profileHome = async (req, res) => {
 };
 
 const createProfile = async (req, res) => {
-  const { user_id, name, properties } = req.body
+	const { user_id } = req.params
+  const { name, properties } = req.body
   try {
     if (!name || name.length === 0 || Object.keys(properties).length === 0) {
       throw new Error("Need to have name and properties");

@@ -11,16 +11,16 @@ const profileHome = async (req, res) => {
 };
 
 const createProfile = async (req, res) => {
-  const { name, properties } = req.body
+  const { user_id, name, properties } = req.body
   try {
     if (!name || name.length === 0 || Object.keys(properties).length === 0) {
       throw new Error("Need to have name and properties");
     }
-    const existing = await profile.getProfile(name)
+    const existing = await profile.getProfile(user_id, name)
     if (existing) {
       throw new Error("There exists a profile with that name already")
     }
-    const data = await profile.createProfile(name, properties);
+    const data = await profile.createProfile(user_id, name, properties);
     if (data.affectedRows !== 1) {
       throw new Error("Profile was not created")
     }
@@ -31,12 +31,12 @@ const createProfile = async (req, res) => {
 };
 
 const getProfile = async (req, res) => {
-  const { name, id } = req.params
+  const { user_id, name, id } = req.params
   try {
-	  if (!name || name.length === 0) {
+		if (!name || name.length === 0) {
 	  	throw new Error("Need to submit a name");
 	  }
-    const data = await profile.getProfile(name, id);
+    const data = await profile.getProfile(user_id, name, id);
     if (data.length === 0) {
       throw new Error("No profile found");
     }
@@ -49,10 +49,10 @@ const getProfile = async (req, res) => {
 };
 
 const getRecentProfiles = async (req, res) => {
-  const amount = req.params.amount
+  const {user_id, amount} = req.params
   const DEFAULT_AMOUNT = 3
   try {
-    const data = await profile.getRecentProfiles(amount || DEFAULT_AMOUNT);
+    const data = await profile.getRecentProfiles(user_id, (amount || DEFAULT_AMOUNT));
     return res.status(200).json({ data });
   } catch (error) {
     return res
@@ -63,7 +63,7 @@ const getRecentProfiles = async (req, res) => {
 
 //TODO: Need to change from current unique name
 const updateProfile = async (req, res) => {
-  const {name, properties} = req.params
+  const {user_id, name, properties} = req.params
   try {
       if (!name || name.length === 0 || Object.keys(properties).length === 0) {
         throw new Error("Need to have name and properties");

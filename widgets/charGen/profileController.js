@@ -32,19 +32,19 @@ const createProfile = async (req, res) => {
 };
 
 const getProfile = async (req, res) => {
-  const { user_id, name, id } = req.params
+  const { user_id, name } = req.params
   try {
 		if (!name || name.length === 0) {
 	  	throw new Error("Need to submit a name");
 	  }
-    const data = await profile.getProfile(user_id, name, id);
+    const data = await profile.getProfile(user_id, name);
     if (data.length === 0) {
       throw new Error("No profile found");
     }
     return res.status(200).json(data);
   } catch (error) {
     return res
-      .status(500)
+      .status(404)
       .json({ message: `Error getting profile: ${error}` });
   }
 };

@@ -9,15 +9,13 @@ const createProfile = async (user_id=1, name, data) => {
     } catch (error) {
         throw e
     }
-    
 }
 
 //change user_id after initial tests are done
-const getProfile = async (user_id=1, name, id=-1) => {
-    console.log(`Attempting to query profiles for name: ${name}`)
-    const query = 'SELECT * FROM profiles WHERE name=? OR id=? AND user_id=?'
+const getProfile = async (user_id=1, name) => {
+    const query = 'SELECT * FROM profiles WHERE name=? AND user_id=?'
     try {
-        const [rows] = await pool.execute(query, [name, id, user_id])
+        const [rows] = await pool.execute(query, [name, user_id])
         return rows[0]
     } catch (error) {
         console.log(`There was an error: ${error}`)

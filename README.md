@@ -4,4 +4,4 @@ Backend for full stack dashboard app
 
 ## TODO
 
-Finish adding snippets to speed up code
+Finish auth logout to clear cookies, check with /test/check-session?

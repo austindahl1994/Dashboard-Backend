@@ -2,8 +2,8 @@ import express from 'express'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 
-import { authJwt, authUser } from './Middleware/authMiddleware.js'
-import testRoute from './testing/testAuth.js'
+import { authJwt } from './Middleware/authMiddleware.js'
+import { check } from './auth/checkSession.js'
 import profileRoutes from './widgets/charGen/profileRoutes.js'
 import authRoutes from './auth/authRoutes.js'
 
@@ -16,9 +16,10 @@ app.use(cors({
     credentials: true
 }))
 
-
+app.use('/api/check-session', check)
 app.use('/api/profile', authJwt, profileRoutes)
-app.use('/api/test', authJwt, testRoute)
 app.use('/api', authRoutes)
 
 export default app
+
+//leaving off on checking session stuff

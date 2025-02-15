@@ -8,11 +8,14 @@ import profileRoutes from './widgets/charGen/profileRoutes.js'
 import authRoutes from './auth/authRoutes.js'
 
 const app = express()
-const allowedOrigin = "http://localhost:5173";
+const allowedOrigins = [
+  "http://localhost:5173", // Local dev
+  "https://www.dahldash.com", // Production
+];
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin: allowedOrigin,
+    origin: allowedOrigins,
     credentials: true
 }))
 

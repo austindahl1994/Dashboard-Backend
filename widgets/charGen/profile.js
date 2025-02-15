@@ -13,6 +13,7 @@ const createProfile = async (user_id=1, name, data) => {
 
 //change user_id after initial tests are done
 const getProfile = async (user_id=1, name) => {
+    console.log(`Called get profile with name: ${name}`)
     const query = 'SELECT * FROM profiles WHERE name=? AND user_id=?'
     try {
         const [rows] = await pool.execute(query, [name, user_id])

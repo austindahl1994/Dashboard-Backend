@@ -1,38 +1,40 @@
 import * as am from "./auth.js";
+import jwt from "jsonwebtoken";
 import { createToken, createRefreshtoken } from "./jwtUtils.js";
-import { v4 as uuidv4 } from "uuid";
+import dotenv from 'dotenv'
+dotenv.config()
+
+const TS = process.env.TOKEN_SECRET;
 
 const login = async (req, res) => {
   const { email, password } = req.body;
   try {
     if (!email || !password) throw new Error("Need email and password");
-    const user = await am.login(email, password);
 
-    const accessToken = createToken(user.user_id, user.role);
+    const user = await am.login(email, password);
+    const accessToken = createToken(user.user_id, user.role, user.session_id);
     const refreshToken = createRefreshtoken(user.user_id);
-    const sessionId = () => uuidv4();
 
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
-      secure: false,
+      secure: process.env.NODE_ENV === "production",
       maxAge: 3600000,
     });
 
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: false,
+      secure: process.env.NODE_ENV === "production",
       maxAge: 86400000,
     });
 
-    await am.updateSession(user.user_id);
+    const userResponse = {
+      user_id: user.user_id,
+      username: user.username,
+      email: user.email,
+      role: user.role,
+    };
 
-    res.cookie("sessionId", sessionId, {
-      httpOnly: true,
-      secure: false,
-      maxAge: 3600000,
-    });
-
-    return res.status(200).json(user);
+    return res.status(200).json(userResponse);
   } catch (error) {
     console.error(`Error: ${error}`);
     return res.status(401).json({ message: `Some error: ${error}` });
@@ -40,24 +42,46 @@ const login = async (req, res) => {
 };
 
 const logout = async (req, res) => {
-  const userId = req.cookies.sessionId;
-  try {
-    const response = await am.deleteSession(userId);
-  } catch (error) {
-  } finally {
-    res.clearCookie("sessionId", { httpOnly: true, secure: false, path: "/" });
-    res.clearCookie("accessToken", {
-      httpOnly: true,
-      secure: false,
-      path: "/",
-    });
-    res.clearCookie("refreshToken", {
-      httpOnly: true,
-      secure: false,
-      path: "/",
-    });
-    res.status(200).json({ message: "Successfully logged out." });
+  //console.log("Cookies received in logout:", req.cookies);
+  const accessToken = req.cookies.accessToken;
+  if (!accessToken) {
+    console.log(`No cookies passed in for logging out`);
+    return res
+      .status(401)
+      .json({ message: "Cannot log out, no token provided" });
   }
+
+  jwt.verify(accessToken, TS, async (err, user) => {
+    if (err) {
+      console.error("Invalid token during logout:", err);
+      return res
+        .status(400)
+        .json({ message: "No valid token for logging out" });
+    }
+
+    try {
+      await am.logout(user.user_id);
+      res.cookie("accessToken", "", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        expires: new Date(0),
+        path: "/",
+      });
+      res.cookie("refreshToken", "", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        expires: new Date(0),
+        path: "/",
+      });
+
+      return res.status(200).json({ message: "Successfully logged out." });
+    } catch (error) {
+      console.error(`Error logging out user: ${error}`);
+      return res
+        .status(500)
+        .json({ message: "Server error, could not delete session ID" });
+    }
+  });
 };
 
 export { login, logout };

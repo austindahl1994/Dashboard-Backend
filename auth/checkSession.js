@@ -7,7 +7,6 @@ const TS = process.env.TOKEN_SECRET;
 
 export const check = async (req, res) => {
   const accessToken = req.cookies.accessToken;
-  const sessionId = req.cookies.sessionId;
 
   console.log(`Checking session in check-session`);
 
@@ -22,7 +21,7 @@ export const check = async (req, res) => {
     }
 
     try {
-      const response = await checkSessionId(sessionId, user.user_id);
+      const response = await checkSessionId(user.session_id, user.user_id);
       if (!response) {
         return res
           .status(401)

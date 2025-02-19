@@ -19,6 +19,9 @@ app.use(cors({
     credentials: true
 }))
 
+app.use('/', (req, res) => {
+  res.send('Server up and running!')
+})
 app.use('/api/check-session', check)
 app.use('/api/profile', authJwt, profileRoutes)
 app.use('/api', authRoutes)

@@ -24,6 +24,7 @@ const login = async (email, password) => {
     try {
       const result = await pool.execute(query2, [sessionId, rows[0].user_id]);
     } catch (error) {
+      console.error(`Error: ${error}`)
       throw new Error("Failed to set session ID");
     }
 

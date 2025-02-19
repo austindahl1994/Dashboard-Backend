@@ -22,9 +22,9 @@ app.use(cors({
 app.use('/', (req, res) => {
   res.send('Server up and running!')
 })
-app.use('/api/check-session', check)
-app.use('/api/profile', authJwt, profileRoutes)
-app.use('/api', authRoutes)
+app.use('/check-session', check)
+app.use('/profile', authJwt, profileRoutes)
+app.use('/auth', authRoutes)
 
 export default app
 

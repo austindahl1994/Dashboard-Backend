@@ -19,6 +19,13 @@ const login = async (email, password) => {
     if (!match) throw new Error(`Passwords don't match`);
 
     console.log(`Successfully logged in, passing back data`);
+    const testUserData = {
+      user_id: rows[0].user_id,
+      username: rows[0].username,
+      email: rows[0].email,
+      role: rows[0].role,
+    };
+    console.log(Object.values(testUserData));
     const sessionId = uuidv4();
     const query2 = "UPDATE users SET session_id = ? WHERE user_id = ?";
     try {

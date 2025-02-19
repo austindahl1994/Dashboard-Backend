@@ -11,15 +11,11 @@ import authRoutes from './auth/authRoutes.js'
 dotenv.config()
 const app = express()
 
-const allowedOrigins = [
-  process.env.ORIGIN
-];
-
 app.use(express.json())
 app.use(cookieParser())
 app.use(
   cors({
-    origin: allowedOrigins,
+    origin: process.env.ORIGIN,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],

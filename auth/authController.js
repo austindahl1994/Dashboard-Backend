@@ -7,6 +7,7 @@ dotenv.config()
 const TS = process.env.TOKEN_SECRET;
 
 const login = async (req, res) => {
+  console.log(`Login request made`)
   const { email, password } = req.body;
   try {
     if (!email || !password) throw new Error("Need email and password");
@@ -27,14 +28,16 @@ const login = async (req, res) => {
       maxAge: 86400000,
     });
 
-    const userResponse = {
+    const userData = {
       user_id: user.user_id,
       username: user.username,
       email: user.email,
       role: user.role,
     };
-
-    return res.status(200).json(userResponse);
+    Object.keys((v) => {
+      console.log(`${v}`)
+    })
+    return res.status(200).json(userData);
   } catch (error) {
     console.error(`Error: ${error}`);
     return res.status(401).json({ message: `Some error: ${error}` });

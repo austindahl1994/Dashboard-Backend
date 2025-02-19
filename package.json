@@ -1,8 +1,7 @@
 {
   "type": "module",
   "scripts": {
-    "server": "cross-env NODE_ENV=production nodemon server.js",
-    "devserver": "cross-env NODE_ENV=development nodemon server.js"
+    "server": "nodemon server.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

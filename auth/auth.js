@@ -8,6 +8,7 @@ dotenv.config();
 const SR = process.env.SALT_ROUNDS;
 
 const login = async (email, password) => {
+  //console.log(`Trying to login`)
   const query =
     "SELECT user_id, username, email, password, role FROM users WHERE email=?";
   try {

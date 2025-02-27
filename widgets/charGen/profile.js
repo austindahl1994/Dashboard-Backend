@@ -1,6 +1,6 @@
 import pool from '../../db/mysqlPool.js'
 
-const createProfile = async (user_id=1, name, data) => {
+const createProfile = async (user_id, name, data) => {
     console.log(`Attempting to create profile with name: ${name}`)
     const query = 'INSERT INTO profiles (name, properties) VALUES(?, ?) WHERE user_id=?'
     try {
@@ -11,8 +11,7 @@ const createProfile = async (user_id=1, name, data) => {
     }
 }
 
-//change user_id after initial tests are done
-const getProfile = async (user_id=1, name) => {
+const getProfile = async (user_id, name) => {
     console.log(`Called get profile with name: ${name}`)
     const query = 'SELECT * FROM profiles WHERE name=? AND user_id=?'
     try {
@@ -24,7 +23,7 @@ const getProfile = async (user_id=1, name) => {
     }
 }
 
-const getRecentProfiles = async (user_id=1, amount) => {
+const getRecentProfiles = async (user_id, amount) => {
     const query = 'SELECT * FROM profiles WHERE user_id=? ORDER BY time_updated DESC LIMIT ?'
     try {
         const rows = await pool.execute(query, [user_id, amount])
@@ -35,7 +34,7 @@ const getRecentProfiles = async (user_id=1, amount) => {
     }
 }
 
-const updateProfile = async (user_id=1, name, properties) => {
+const updateProfile = async (user_id, name, properties) => {
     const query = 'UPDATE profiles SET properties=? WHERE name=? AND user_id=?'
     try {
         const result = await pool.execute(query, [
@@ -50,7 +49,7 @@ const updateProfile = async (user_id=1, name, properties) => {
     }
 }
 
-const deleteProfile = async (user_id=1, name) => {
+const deleteProfile = async (user_id, name) => {
     const query = 'DELETE FROM profiles WHERE name=? AND user_id=?'
     try {
         const result = await pool.execute(profiles, [name, user_id])

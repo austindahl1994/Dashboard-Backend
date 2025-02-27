@@ -3,7 +3,7 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv'
 
-import { authJwt } from './Middleware/authMiddleware.js'
+import { authJwt, authenticateUser } from './Middleware/authMiddleware.js'
 import { check } from './auth/checkSession.js'
 import profileRoutes from './widgets/charGen/profileRoutes.js'
 import authRoutes from './auth/authRoutes.js'
@@ -23,7 +23,7 @@ app.use(
 );
 
 app.use('/check-session', check)
-app.use('/profile', authJwt, profileRoutes)
+app.use('/profile', authJwt, authenticateUser profileRoutes)
 app.use('/auth', authRoutes)
 app.use('/', (req, res) => {
   res.send('Server up and running!')

@@ -17,6 +17,7 @@ const authJwt = async (req, res, next) => {
         console.error(`Error: ${err}`);
       }
       console.log(`No error validating JWT`);
+      req.body.user_id = user.user_id
       next();
     });
   } catch (error) {

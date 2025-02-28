@@ -11,20 +11,34 @@ const profileHome = async (req, res) => {
 };
 
 const createProfile = async (req, res) => {
-	const { user_id } = req.params
-  const { name, properties } = req.body
+  const name = req.params.name
+  const { user_id, properties } = req.body;
+  console.log(`Creating profile`)
+  console.log(user_id, name, properties)
   try {
     if (!name || name.length === 0 || Object.keys(properties).length === 0) {
+      console.log(`No name, or no properties`)
       throw new Error("Need to have name and properties");
     }
     const existing = await profile.getProfile(user_id, name)
     if (existing) {
-      throw new Error("There exists a profile with that name already")
+      console.log(`There is a profile that exists with that info already`)
+      console.log(`Attempting to update profile`)
+      const data = await profile.updateProfile(user_id, name, properties)
+      if (data && data.affectedRows === 1) {
+        return res.status(201).json({message: 'Successfully updated existing profile'})
+      } else {
+        throw new Error("Could not update existing profile.")
+      }
+      //throw new Error("There exists a profile with that name already")
     }
+    console.log(`Trying to create profile now`)
     const data = await profile.createProfile(user_id, name, properties);
-    if (data.affectedRows !== 1) {
+    console.log(data)
+    if (!data || data.affectedRows !== 1) {
       throw new Error("Profile was not created")
     }
+    console.log(`Creation successful`)
     return res.status(201).json({ message: "Successfully created profile", id: data.insertId });
   } catch (error) {
     return res.status(500).json({ message: `Error creating profile: ${error}` });
@@ -32,9 +46,11 @@ const createProfile = async (req, res) => {
 };
 
 const getProfile = async (req, res) => {
-  const { user_id, name } = req.params
+  console.log(`Calling get profile`)
+  const { name } = req.params
+  const user_id = req.body.user_id
   try {
-		if (!name || name.length === 0) {
+		if (!user_id || !name || name.length === 0) {
 	  	throw new Error("Need to submit a name");
 	  }
     const data = await profile.getProfile(user_id, name);
@@ -64,13 +80,16 @@ const getRecentProfiles = async (req, res) => {
 
 //TODO: Need to change from current unique name
 const updateProfile = async (req, res) => {
-  const {user_id, name, properties} = req.params
+  const {name} = req.params
+  const {user_id, properties} = req.body.user_id
   try {
       if (!name || name.length === 0 || Object.keys(properties).length === 0) {
         throw new Error("Need to have name and properties");
+      } else if (!user_id) {
+        throw new Error("Need to include a user ID");
       }
       const data = await profile.updateProfile(name, properties);
-      if (data !== 1) {
+      if (data.affectedRows !== 1) {
         throw new Error("No profile was updated")
       }
     	return res.status(200).json({ message: "Successfully updated profile" });
@@ -80,17 +99,19 @@ const updateProfile = async (req, res) => {
 };
 
 const deleteProfile = async (req, res) => {
-  const {user_id, name} = req.params
+  const {name} = req.params
+  const user_id = req.body.user_id
   try {
-    if (!name || !name.length === 0) {
+    if (!name || !name.length === 0 || !user_id) {
       throw new Error("Need to submit profile name")
     } else if (!user_id) {
       throw new Error("Need to submit user_id to delete")
     }
     const response = await profile.deleteProfile(user_id, name)
-    if (response !== 1) {
+    if (response.affectedRows !== 1) {
       throw new Error("Profile did not exist and was not deleted")
     }
+    res.status(200).json({message: 'Successfully deleted profile'})
   } catch (error) {
     return res.status(500).json({message: `Error deleting the profile: ${error}`})
   }

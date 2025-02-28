@@ -17,9 +17,11 @@ const authJwt = async (req, res, next) => {
         console.error(`Error: ${err}`);
       }
       console.log(`No error validating JWT`);
-      req.body.user = user.user
       req.body.user_id = user.user_id
-      req.body.user_role = user.role
+      req.body.role = user.role
+      console.log(
+        `User info: id: ${user.user_id} role: ${user.role} `
+      );
       next();
     });
   } catch (error) {
@@ -30,14 +32,18 @@ const authJwt = async (req, res, next) => {
 
 //used for any post requests to check if they should have permissions
 const authenticateUser = async (req, res, next) => {
-  const user = req.user;
+  const user_id = req.body.user_id
+  const role = req.body.role
+  //console.log(`Attempting to auth user`)
   try {
-    if (!user || !user.user_id) throw new Error("No User or Id to validate");
-    const data = await getUserById(user_id); //model to get user role from db
-    if (!data) throw new Error("No user permissions found");
-    if (data.role === "guest" && req.method !== "POST") {
+    if (!user_id) throw new Error("No User or Id to validate");
+    if (!role) throw new Error("No user permissions found");
+    //console.log(`No user role`)
+    if (role === "guest" && req.method !== "POST") {
+      console.log(`Guest access`)
       return res.status(403).json({ message: "No guest access" });
     }
+    console.log(`User info checks out, continue`)
     next();
   } catch (error) {
     return res

@@ -23,7 +23,7 @@ app.use(
 );
 
 app.use('/check-session', check)
-app.use('/profile', authJwt, authenticateUser profileRoutes)
+app.use('/profile', authJwt, authenticateUser, profileRoutes)
 app.use('/auth', authRoutes)
 app.use('/', (req, res) => {
   res.send('Server up and running!')

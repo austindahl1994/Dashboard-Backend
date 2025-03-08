@@ -1,13 +1,13 @@
 import * as am from "./auth.js";
 import jwt from "jsonwebtoken";
 import { createToken, createRefreshtoken } from "./jwtUtils.js";
-import dotenv from 'dotenv'
-dotenv.config()
+import dotenv from "dotenv";
+dotenv.config();
 
 const TS = process.env.TOKEN_SECRET;
 
 const login = async (req, res) => {
-  console.log(`Login request made`)
+  //console.log(`Login request made`)
   const { email, password } = req.body;
   try {
     if (!email || !password) throw new Error("Need email and password");
@@ -34,9 +34,9 @@ const login = async (req, res) => {
       email: user.email,
       role: user.role,
     };
-    Object.keys((v) => {
-      console.log(`${v}`)
-    })
+    // Object.keys((v) => {
+    //   console.log(`${v}`)
+    // });
     return res.status(200).json(userData);
   } catch (error) {
     console.error(`Error: ${error}`);
@@ -45,10 +45,10 @@ const login = async (req, res) => {
 };
 
 const logout = async (req, res) => {
-  //console.log("Cookies received in logout:", req.cookies);
+  ////console.log("Cookies received in logout:", req.cookies);
   const accessToken = req.cookies.accessToken;
   if (!accessToken) {
-    console.log(`No cookies passed in for logging out`);
+    //console.log(`No cookies passed in for logging out`);
     return res
       .status(401)
       .json({ message: "Cannot log out, no token provided" });

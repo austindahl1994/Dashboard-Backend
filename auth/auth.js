@@ -18,20 +18,20 @@ const login = async (email, password) => {
     const match = await bcrypt.compare(password, rows[0].password);
     if (!match) throw new Error(`Passwords don't match`);
 
-    console.log(`Successfully logged in, passing back data`);
+    //(`Successfully logged in, passing back data`);
     const testUserData = {
       user_id: rows[0].user_id,
       username: rows[0].username,
       email: rows[0].email,
       role: rows[0].role,
     };
-    console.log(Object.values(testUserData));
+    //console.log(Object.values(testUserData));
     const sessionId = uuidv4();
     const query2 = "UPDATE users SET session_id = ? WHERE user_id = ?";
     try {
       const result = await pool.execute(query2, [sessionId, rows[0].user_id]);
     } catch (error) {
-      console.error(`Error: ${error}`)
+      console.error(`Error: ${error}`);
       throw new Error("Failed to set session ID");
     }
 
@@ -74,20 +74,21 @@ const logout = async (userId) => {
   const query = "UPDATE users SET session_id = NULL WHERE user_id = ?";
   try {
     const [result] = await pool.execute(query, [userId]);
-    if (result.affectedRows === 0) throw new Error("User not found or already logged out");
+    if (result.affectedRows === 0)
+      throw new Error("User not found or already logged out");
     return { success: true, message: "Logout successful" };
   } catch (error) {
     throw error;
   }
 };
 
-
 const checkSessionId = async (sessionId, userId) => {
   const query = "SELECT session_id FROM users WHERE user_id = ?";
   try {
     const [rows] = await pool.execute(query, [userId]);
     if (rows.length === 0) throw new Error("User not found");
-    if (rows[0].session_id !== sessionId) throw new Error("Session ID mismatch");
+    if (rows[0].session_id !== sessionId)
+      throw new Error("Session ID mismatch");
     return true;
   } catch (error) {
     throw error;

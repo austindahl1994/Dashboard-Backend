@@ -11,15 +11,15 @@ const pool = mysql.createPool({
   port: process.env.DB_PORT,
   waitForConnections: true,
   connectionLimit: 10,
-  queueLimit: 0
+  queueLimit: 0,
 });
 
 // Gracefully shut down the server and close the pool when the app is terminated
-process.on('SIGTERM', () => {
+process.on("SIGTERM", () => {
   console.log('SIGTERM signal received: closing MySQL pool');
   pool.end((err) => {
     if (err) {
-      console.error('Error closing MySQL pool:', err);
+      console.error("Error closing MySQL pool:", err);
     } else {
       console.log('MySQL pool closed successfully');
     }
@@ -27,17 +27,16 @@ process.on('SIGTERM', () => {
   });
 });
 
-process.on('SIGINT', () => {
+process.on("SIGINT", () => {
   console.log('SIGINT signal received: closing MySQL pool');
   pool.end((err) => {
     if (err) {
-      console.error('Error closing MySQL pool:', err);
+      console.error("Error closing MySQL pool:", err);
     } else {
       console.log('MySQL pool closed successfully');
     }
     process.exit(0);
   });
 });
-
 
 export default pool;

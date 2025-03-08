@@ -34,11 +34,11 @@ const authJwt = async (req, res, next) => {
 const authenticateUser = async (req, res, next) => {
   const user_id = req.body.user_id
   const role = req.body.role
-  //console.log(`Attempting to auth user`)
+  console.log(`Attempting to auth user`)
   try {
     if (!user_id) throw new Error("No User or Id to validate");
     if (!role) throw new Error("No user permissions found");
-    //console.log(`No user role`)
+    console.log(`User has a role: ${role}`)
     if (role === "guest" && req.method !== "POST") {
       console.log(`Guest access`)
       return res.status(403).json({ message: "No guest access" });

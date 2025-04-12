@@ -1,7 +1,7 @@
 import pool from '../../db/mysqlPool.js'
 
 export const updateSetting = async (user_id, widgetName, data) => {
-  const query = "REPLACE INTO widgets (user_id, widgetName, data) VALUES (?, ?, ?)"
+  const query = "REPLACE INTO widgets (user_id, widget, data) VALUES (?, ?, ?)"
   try {
     const response = await pool.execute(query, [user_id, widgetName, data])
     return response

@@ -27,7 +27,7 @@ const login = async (req, res) => {
       secure: process.env.NODE_ENV === "production",
       maxAge: 86400000,
     });
-
+    //UPDATE: need to get both user information as well as user settings, pass both back to frontend
     const userData = {
       user_id: user.user_id,
       username: user.username,
@@ -63,7 +63,7 @@ const logout = async (req, res) => {
     }
 
     try {
-      await am.logout(user.user_id);
+      await am.logout(user.user_id); //remove this call altogether
       res.cookie("accessToken", "", {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",

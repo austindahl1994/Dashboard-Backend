@@ -8,7 +8,7 @@ const profileHome = async (req, res) => {
       .json({ message: "Successfully called profiles home" });
   } catch (error) {
     console.error(`There was an error of: ${error}`);
-    return res.status(400).message(`Error with database: ${error}`);
+    return res.status(400).json({message: `Error with database: ${error}`});
   }
 };
 

@@ -19,13 +19,18 @@ const login = async (email, password) => {
     if (!match) throw new Error(`Passwords don't match`);
 
     //(`Successfully logged in, passing back data`);
-    const testUserData = {
+    const userData = {
       user_id: rows[0].user_id,
       username: rows[0].username,
       email: rows[0].email,
       role: rows[0].role,
     };
     //console.log(Object.values(testUserData));
+    /*
+    * !!UPDATE!! remove the sessionID, get widget settings for user after user has been verified
+    * SELECT * FROM widgets WHERE user_id=?
+    * Add the data from that query to the object being passed back to controller, UPDATE controller next
+    */
     const sessionId = uuidv4();
     const query2 = "UPDATE users SET session_id = ? WHERE user_id = ?";
     try {

@@ -6,6 +6,7 @@ import dotenv from 'dotenv'
 import { authJwt, authenticateUser } from './Middleware/authMiddleware.js'
 import { check } from './auth/checkSession.js'
 import profileRoutes from './widgets/charGen/profileRoutes.js'
+import expenseRoutes from './widgets/expensesTracker/expenseRoutes.js'
 import authRoutes from './auth/authRoutes.js'
 
 dotenv.config()
@@ -24,6 +25,7 @@ app.use(
 
 app.use('/check-session', check)
 app.use('/profile', authJwt, authenticateUser, profileRoutes)
+app.use('/expenses', authJwt, authenticateUser, profileRoutes)
 app.use('/auth', authRoutes)
 app.use('/', (req, res) => {
   res.send('Server up and running!')

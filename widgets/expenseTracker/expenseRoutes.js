@@ -1,6 +1,10 @@
-// import * as ec from './expenseController.js
-// import express from "express"
+import express from "express"
+import * as ec from './expenseController.js
 
-// const router = express.Router()
+const router = express.Router()
 
-// router.get("/getExpenses", ec.getExpenses)
+router.get("/get", ec.getExpenses)
+router.put("/update", ec.updateExpenses)
+router.delete("/delete/:year/:month", ec.deleteExpenses)
+
+export default router

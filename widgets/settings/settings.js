@@ -1,6 +1,6 @@
 import pool from '../../db/mysqlPool.js'
 
-export const updateSettings = async (user_id, widgetName, data) => {
+export const updateSetting = async (user_id, widgetName, data) => {
   const query = "REPLACE INTO widgets (user_id, widgetName, data) VALUES (?, ?, ?)"
   try {
     const response = await pool.execute(query, [user_id, widgetName, data])
@@ -10,7 +10,7 @@ export const updateSettings = async (user_id, widgetName, data) => {
   }
 }
 
-export const deleteSettings = async (user_id) => {
+export const deleteSetting = async (user_id) => {
   const query = "DELETE FROM widgets WHERE user_id=?"
   try {
     const response = await pool.execute(query, [user_id])

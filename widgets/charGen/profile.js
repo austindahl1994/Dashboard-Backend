@@ -13,9 +13,9 @@ const createProfile = async (user_id, name, data) => {
     //console.log(`Profile created successfully`)
     //console.log(`Result: ${result}`)
     return result;
-  } catch (e) {
+  } catch (error) {
     //console.log(`Error creating profile`)
-    throw e;
+    throw error;
   }
 };
 
@@ -40,7 +40,7 @@ const getRecentProfiles = async (user_id) => {
     return rows;
   } catch (error) {
     console.error(`There was an error getting the rows: ${error}`);
-    throw e;
+    throw error;
   }
 };
 
@@ -56,7 +56,7 @@ const updateProfile = async (user_id, name, properties) => {
     return result;
   } catch (error) {
     console.error(`Database error: ${error}`);
-    throw e;
+    throw error;
   }
 };
 
@@ -68,7 +68,7 @@ const deleteProfile = async (user_id, name) => {
     return result;
   } catch (error) {
     console.error(`Database error: ${error}`);
-    throw e;
+    throw error;
   }
 };
 

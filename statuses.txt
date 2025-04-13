@@ -1,0 +1,31 @@
+1xx – Informational
+100 Continue – Request headers received, continue with body
+
+2xx – Success
+200 OK – Request succeeded, response contains data
+201 Created – Resource was successfully created (e.g., after POST)
+202 Accepted – Request accepted for processing, not completed yet
+204 No Content – Success, but no response body (e.g., after DELETE)
+
+3xx – Redirection
+301 Moved Permanently – Resource permanently moved to a new URL
+302 Found – Temporary redirect (commonly used in auth flows)
+304 Not Modified – Resource not changed; use cached version
+
+4xx – Client Errors
+400 Bad Request – Client sent invalid data (e.g., malformed JSON)
+401 Unauthorized – Authentication required or failed
+403 Forbidden – Authenticated but not allowed to access resource
+404 Not Found – Resource doesn’t exist
+405 Method Not Allowed – HTTP method not allowed on this endpoint
+409 Conflict – Resource conflict (e.g., duplicate entry)
+410 Gone – Resource was permanently deleted
+422 Unprocessable Entity – Input is valid JSON but semantically incorrect
+429 Too Many Requests – Rate limit exceeded
+
+5xx – Server Errors
+500 Internal Server Error – Generic server-side error
+501 Not Implemented – Server doesn’t support requested functionality
+502 Bad Gateway – Invalid response from upstream server
+503 Service Unavailable – Server is down or overloaded
+504 Gateway Timeout – Upstream server didn’t respond in time

@@ -1,6 +1,8 @@
 import pool from "../../db/mysqlPool.js";
 
 export const getExpenses = async (user_id) => {
+  console.log(`Called get expenses`)
+  return {dbResponse: "Expenses called"}
 	const query = 'SELECT * FROM expenses WHERE user_id = ?' 
 	try {
 	  const [rows] = pool.execute(query[user_id])

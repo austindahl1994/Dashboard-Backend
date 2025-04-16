@@ -6,7 +6,7 @@ import dotenv from 'dotenv'
 import { authJwt, authenticateUser } from './Middleware/authMiddleware.js'
 import { check } from './auth/checkSession.js'
 import profileRoutes from './widgets/charGen/profileRoutes.js'
-import expenseRoutes from './widgets/expensesTracker/expenseRoutes.js'
+import expenseRoutes from './widgets/expenseTracker/expenseRoutes.js'
 import settingsRoutes from './widgets/settings/settingsRoutes.js'
 import authRoutes from './auth/authRoutes.js'
 
@@ -24,7 +24,7 @@ app.use(
   })
 );
 
-app.use('/check-session', check)
+//app.use('/check-session', check)
 app.use('/profile', authJwt, authenticateUser, profileRoutes)
 app.use('/expenses', authJwt, authenticateUser, expenseRoutes)
 app.use('/widgetSettings', authJwt, authenticateUser, settingsRoutes)

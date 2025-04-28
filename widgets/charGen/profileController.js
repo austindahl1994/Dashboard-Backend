@@ -15,8 +15,8 @@ const profileHome = async (req, res) => {
 const createProfile = async (req, res) => {
   const name = req.params.name;
   const { user_id, properties } = req.body;
-  //console.log(`Creating profile`)
-  //console.log(user_id, name, properties)
+  console.log(`Creating profile`)
+  console.log(user_id, name, properties)
   try {
     if (!name || name.length === 0 || Object.keys(properties).length === 0) {
       //console.log(`No name, or no properties`)
@@ -54,7 +54,7 @@ const createProfile = async (req, res) => {
 };
 
 const getProfile = async (req, res) => {
-  //console.log(`Calling get profile`)
+  console.log(`Calling get profile`)
   const { name } = req.params;
   const user_id = req.body.user_id;
   try {
@@ -65,6 +65,7 @@ const getProfile = async (req, res) => {
     if (data.length === 0) {
       throw new Error("No profile found");
     }
+    console.log(data)
     return res.status(200).json(data);
   } catch (error) {
     return res.status(404).json({ message: `Error getting profile: ${error}` });
@@ -78,6 +79,7 @@ const getRecentProfiles = async (req, res) => {
     const data = await profile.getRecentProfiles(
       user_id
     );
+    console.log(data)
     return res.status(200).json(data);
   } catch (error) {
     return res

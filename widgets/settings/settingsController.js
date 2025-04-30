@@ -1,10 +1,11 @@
 import * as settings from './settings.js'
 
 export const updateSettings = async (req, res) => {
+  console.log(`Updating widget settings`)
   const {user_id, data} = req.body
   const widgetName = req.params.widgetName
   try {
-    if (!user_id || !!widgetName) throw new Error("Need a valid user and widget in order to update")
+    if (!user_id || !widgetName) throw new Error("Need a valid user and widget in order to update")
     const response = await settings.updateSetting(user_id, widgetName, data)
     if (response.affectedRows === 0) throw new Error("Did not update any rows!")
     res.status(200).json({message: `Successfully updated ${response.affectedRows} rows`})
@@ -23,5 +24,27 @@ export const deleteSettings = async (req, res) => {
     res.status(200).json({message: `Successfully delete ${widgetName} settings`})
   } catch (error) {
     res.status(400).json({message: `Could not delete settings in database, error of: ${error}`})
+  }
+}
+
+export const getSettings = async (req, res) => {
+  //console.log(`Called get settings`)
+  const { user_id } = req.body;
+  const widgetName = req.params.widgetName;
+  try {
+    if (!user_id || !widgetName)
+      throw new Error("Need a valid user and widget in order to update");
+    const response = await settings.getSettings(user_id, widgetName);
+    if (response.length === 0)
+      throw new Error("Did not get rows!");
+    res
+      .status(200)
+      .json(response);
+  } catch (error) {
+    res
+      .status(400)
+      .json({
+        message: `Could not get widget settings in database, error of: ${error}`,
+      });
   }
 }

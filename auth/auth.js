@@ -27,25 +27,16 @@ const login = async (email, password) => {
     };
     //console.log(Object.values(testUserData));
     /*
-    * !!UPDATE!! remove the sessionID, get widget settings for user after user has been verified
+    * !!UPDATE!! Get widget settings for user after user has been verified
     * SELECT * FROM widgets WHERE user_id=?
     * Add the data from that query to the object being passed back to controller, UPDATE controller next
     */
-    const sessionId = uuidv4();
-    const query2 = "UPDATE users SET session_id = ? WHERE user_id = ?";
-    try {
-      const result = await pool.execute(query2, [sessionId, rows[0].user_id]);
-    } catch (error) {
-      console.error(`Error: ${error}`);
-      throw new Error("Failed to set session ID");
-    }
 
     return {
       user_id: rows[0].user_id,
       username: rows[0].username,
       email: rows[0].email,
       role: rows[0].role,
-      session_id: sessionId,
     };
   } catch (error) {
     console.error(`Database error: ${error}`);
@@ -75,29 +66,27 @@ const getUserById = async (id) => {
   }
 };
 
-const logout = async (userId) => {
-  const query = "UPDATE users SET session_id = NULL WHERE user_id = ?";
-  try {
-    const [result] = await pool.execute(query, [userId]);
-    if (result.affectedRows === 0)
-      throw new Error("User not found or already logged out");
-    return { success: true, message: "Logout successful" };
-  } catch (error) {
-    throw error;
-  }
-};
+// const logout = async (userId) => {
+//   const query = "UPDATE users SET session_id = NULL WHERE user_id = ?";
+//   try {
+//     const [result] = await pool.execute(query, [userId]);
+//     if (result.affectedRows === 0)
+//       throw new Error("User not found or already logged out");
+//     return { success: true, message: "Logout successful" };
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 
-const checkSessionId = async (sessionId, userId) => {
-  const query = "SELECT session_id FROM users WHERE user_id = ?";
-  try {
-    const [rows] = await pool.execute(query, [userId]);
-    if (rows.length === 0) throw new Error("User not found");
-    if (rows[0].session_id !== sessionId)
-      throw new Error("Session ID mismatch");
-    return true;
-  } catch (error) {
-    throw error;
-  }
-};
+// const checkSessionId = async (userId) => {
+//   const query = "SELECT session_id FROM users WHERE user_id = ?";
+//   try {
+//     const [rows] = await pool.execute(query, [userId]);
+//     if (rows.length === 0) throw new Error("User not found");
+//     return true;
+//   } catch (error) {
+//     throw error;
+//   }
+// };
 
-export { login, createUser, getUserById, logout, checkSessionId };
+export { login, createUser, getUserById, };

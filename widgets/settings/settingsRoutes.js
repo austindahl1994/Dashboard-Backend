@@ -3,8 +3,8 @@ import express from 'express'
 
 const router = express.Router()
 
-router.get('/getSettings')//Update later to instead get all widget settings upon login
-router.put('/updateSetting/:widgetName', sc.updateSettings)
-router.delete('deleteSettings/:widgetName', sc.deleteSettings)
+router.get('/get/:widgetName', sc.getSettings)
+router.put('/update/:widgetName', sc.updateSettings)
+router.delete('/delete/:widgetName', sc.deleteSettings)
 
 export default router

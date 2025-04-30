@@ -13,7 +13,7 @@ const login = async (req, res) => {
     if (!email || !password) throw new Error("Need email and password");
 
     const user = await am.login(email, password);
-    const accessToken = createToken(user.user_id, user.role, user.session_id);
+    const accessToken = createToken(user.user_id, user.role);
     const refreshToken = createRefreshtoken(user.user_id);
 
     res.cookie("accessToken", accessToken, {
@@ -34,11 +34,11 @@ const login = async (req, res) => {
       email: user.email,
       role: user.role,
     };
-    console.log(`Object data:`)
-    Object.keys(userData).map((k) => {
-      console.log(`${k}:${userData[k]}`)
-    });
-    console.log(userData.username)
+    // console.log(`Object data:`)
+    // Object.keys(userData).map((k) => {
+    //   console.log(`${k}:${userData[k]}`)
+    // });
+    // console.log(userData.username)
     return res.status(200).json(userData);
   } catch (error) {
     console.error(`Error: ${error}`);
@@ -64,8 +64,7 @@ const logout = async (req, res) => {
         .json({ message: "No valid token for logging out" });
     }
 
-    try {
-      await am.logout(user.user_id); //remove this call altogether
+    try {altogether
       res.cookie("accessToken", "", {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
@@ -84,7 +83,7 @@ const logout = async (req, res) => {
       console.error(`Error logging out user: ${error}`);
       return res
         .status(500)
-        .json({ message: "Server error, could not delete session ID" });
+        .json({ message: "Server error, could not logout" });
     }
   });
 };

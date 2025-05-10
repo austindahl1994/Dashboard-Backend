@@ -1,20 +1,21 @@
 import pool from "../../db/mysqlPool.js";
 
 const saveProfile = async (user_id, name, data) => {
-  //console.log(`Attempting to create profile with name: ${name}`);
+  // console.log(`Attempting to create profile with name: ${name}, user_id: ${user_id}`);
   const query =
-    "REPLACE INTO profiles (user_id, name, properties) VALUES(?, ?, ?)";
+    "INSERT INTO profiles (user_id, name, properties) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE properties = VALUES(properties)";
   try {
     const [result] = await pool.execute(query, [
       user_id,
       name,
       JSON.stringify(data),
     ]);
-    console.log(`Profile saved successfully`)
-    console.log(`Result: ${result.insertId}`)
+    // console.log(`Profile saved successfully`)
+    // console.log(`Result: ${result.insertId}`)
+    // console.log(`Affected Rows` + result.affectedRows)
     return result;
   } catch (error) {
-    //console.log(`Error creating profile`)
+    console.log(`Error creating profile: ${error}`)
     throw error;
   }
 };
@@ -26,7 +27,7 @@ const getProfile = async (user_id, name) => {
     const [rows] = await pool.execute(query, [name, user_id]);
     return rows[0];
   } catch (error) {
-    //console.log(`There was an error: ${error}`);
+    console.log(`There was an error: ${error}`);
     throw error;
   }
 };

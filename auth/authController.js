@@ -50,7 +50,7 @@ const logout = async (req, res) => {
   //console.log("Cookies received in logout:", req.cookies);
   const accessToken = req.cookies.accessToken;
   if (!accessToken) {
-    //console.log(`No cookies passed in for logging out`);
+    console.log(`No cookies passed in for logging out`);
     return res
       .status(401)
       .json({ message: "Cannot log out, no token provided" });
@@ -64,7 +64,7 @@ const logout = async (req, res) => {
         .json({ message: "No valid token for logging out" });
     }
 
-    try {altogether
+    try {
       res.cookie("accessToken", "", {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",

@@ -15,20 +15,20 @@ const profileHome = async (req, res) => {
 const saveProfile = async (req, res) => {
   const name = req.params.name;
   const { user_id, properties } = req.body;
-  console.log(`Creating profile`);
-  console.log(user_id, name, properties);
+  // console.log(`Creating profile`);
+  // console.log(user_id, name, properties);
   try {
     if (!name || name.length === 0 || Object.keys(properties).length === 0) {
-      //console.log(`No name, or no properties`)
+      // console.log(`No name, or no properties`)
       throw new Error("Need to have name and properties");
     }
-    //console.log(`Trying to create profile now`)
+    // console.log(`Trying to create profile now`)
     const data = await profile.saveProfile(user_id, name, properties);
-    //console.log(data)
+    // console.log(data)
     if (!data || data.affectedRows !== 1) {
       throw new Error("Profile was not created");
     }
-    //console.log(`Creation successful`)
+    // console.log(`Creation successful`)
     return res
       .status(201)
       .json({ message: "Successfully saved profile", id: data.insertId });
@@ -40,7 +40,7 @@ const saveProfile = async (req, res) => {
 };
 
 const getProfile = async (req, res) => {
-  console.log(`Calling get profile`)
+  // console.log(`Calling get profile`)
   const { name } = req.params;
   const user_id = req.body.user_id;
   try {
@@ -59,13 +59,13 @@ const getProfile = async (req, res) => {
 };
 
 const getRecentProfiles = async (req, res) => {
-  console.log(`Calling get recent profiles`)
+  // console.log(`Calling get recent profiles`)
   const user_id = req.body.user_id
   try {
     const data = await profile.getRecentProfiles(
       user_id
     );
-    console.log(data)
+    // console.log(data)
     return res.status(200).json(data);
   } catch (error) {
     return res

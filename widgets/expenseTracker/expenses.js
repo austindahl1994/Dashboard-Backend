@@ -13,7 +13,7 @@ export const getExpenses = async (user_id) => {
 }
 
 export const updateExpense = async (user_id, month, year, data) => {
-  const query = 'REPLACE INTO expenses (user_id, month, year, data) VALUES (?, ?, ?, ?)'
+  const query = 'INSERT INTO expenses (user_id, month, year, data) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE data = VALUES(data)'
   try {
     const response = await pool.execute(query, [user_id, month, year, data])
     return response

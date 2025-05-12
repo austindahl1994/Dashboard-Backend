@@ -2,6 +2,7 @@ import * as expenses from "./expenses.js";
 
 export const getExpenses = async (req, res) => {
   const { user_id } = req.body;
+  console.log(`Expenses called`)
   try {
     if (!user_id) throw new Error("No user ID passed in");
     const data = await expenses.getExpenses(user_id);

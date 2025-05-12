@@ -17,6 +17,6 @@ export const check = async (req, res) => {
       return res.status(400).json({ message: "No valid token" });
     }
 
-    return res.status(200).json({ message: "Authenticated", user });
+    return res.status(200).json({ user });
   });
 };

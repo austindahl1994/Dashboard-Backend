@@ -13,11 +13,13 @@ export const getExpenses = async (user_id) => {
 }
 
 export const updateExpense = async (user_id, month, year, data) => {
+  //console.log(user_id, year, month, data)
   const query = 'INSERT INTO expenses (user_id, month, year, data) VALUES (?, ?, ?, ?) ON DUPLICATE KEY UPDATE data = VALUES(data)'
   try {
-    const response = await pool.execute(query, [user_id, month, year, data])
+    const [response] = await pool.execute(query, [user_id, month, year, data])
     return response
   } catch (error) {
+    console.error(`Error from db: ${error}`)
     throw new Error("Could not update expense data in database")
   }
 }

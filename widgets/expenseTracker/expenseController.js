@@ -7,6 +7,7 @@ export const getExpenses = async (req, res) => {
     if (!user_id) throw new Error("No user ID passed in");
     const data = await expenses.getExpenses(user_id);
     if (data.length === 0) throw new Error("No data found for user");
+    console.log(`Found expenses for user, returning`)
     return res.status(200).json(data);
   } catch (error) {
     return res

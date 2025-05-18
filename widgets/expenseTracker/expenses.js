@@ -2,12 +2,13 @@ import pool from "../../db/mysqlPool.js";
 
 export const getExpenses = async (user_id) => {
   console.log(`Called get expenses`)
-  return {dbResponse: "Expenses called"}
-	const query = 'SELECT * FROM expenses WHERE user_id = ?' 
+	const query = 'SELECT month, year, data FROM expenses WHERE user_id = ?' 
 	try {
-	  const [rows] = pool.execute(query[user_id])
+	  const [rows] = await pool.execute(query, [user_id])
+    //console.log(rows)
 	  return rows
   } catch (error) {
+    console.log(`There was an error getting the data`)
 	  throw error
   }
 }

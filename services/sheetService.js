@@ -67,7 +67,7 @@ export const writeBatchToSheet = async (updates) => {
     spreadsheetId: process.env.SHEET_ID,
     requestBody: {
       valueInputOption: "USER_ENTERED",
-      data: updates, // Array of { range, values }
+      data: updates,
     },
   });
 };

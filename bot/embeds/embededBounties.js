@@ -1,47 +1,40 @@
 import { EmbedBuilder } from "discord.js";
 import { cachedBounties } from "../../videogames/osrs/cachedData.js";
-const embed1 = new EmbedBuilder()
-  .setColor(0x229954)
-  .setTitle("Image 1")
-  .setThumbnail("https://oldschool.runescape.wiki/images/General_Graardor.png");
 
-const embed2 = new EmbedBuilder()
-  .setColor(0xf4d03f)
-  .setTitle("Image 2")
-  .setDescription("Some description here")
-  .setThumbnail(
-    "https://oldschool.runescape.wiki/images/General_Graardor.png?4dd90"
-  )
-  .addFields({
-    name: "Inline field title",
-    value: "Some value here",
-    inline: true,
+const getColor = (index) => {
+  switch (index) {
+    case 0:
+      return 0x229954;
+    case 1:
+      return 0xf4d03f;
+    default:
+      return 0xc0392b;
+  }
+};
+
+export const getEmbeds = () => {
+  let finalArr = cachedBounties.map((data, index) => {
+    console.log(`Passed in ${data.Source} for tier: ${index}`);
+    const embed = new EmbedBuilder()
+      .setColor(getColor(index))
+      .setTitle(data.Title || "No title attached")
+      .setURL(data.Wiki_URL || "https://oldschool.runescape.wiki/")
+      .setThumbnail(data.Wiki_Image || "https://oldschool.runescape.wiki/");
+
+    if (data.Description) {
+      embed.setDescription(data.Description);
+    } else {
+      embed.setDescription("No description made for this bounty");
+    }
+
+    if (data.Bounty) {
+      console.log(`Bounty passed in of ${data.Bounty}`);
+      embed.addFields({ name: "Bounty", value: data.Bounty });
+    } else {
+      console.log(`No bounty was passed in for tier ${index}`);
+    }
+    return embed;
   });
 
-const embed3 = new EmbedBuilder()
-  .setColor(0xa93226)
-  .setTitle("Image 3")
-  .setThumbnail(
-    "https://cabbage-bounty.s3.us-east-2.amazonaws.com/test-discord.png"
-  );
-
-// const embeds = cachedBounties.map((data) => {
-//   const embed = new EmbedBuilder()
-//     .setColor(data.color)
-//     .setTitle(data.title)
-//     .setThumbnail(data.thumbnail);
-
-//   if (data.description) {
-//     embed.setDescription(data.description);
-//   }
-
-//   if (data.fields) {
-//     embed.addFields(data.fields);
-//   }
-
-//   return embed;
-// });
-
-// export default embeds;
-
-export default [embed1, embed2, embed3];
+  return finalArr;
+};

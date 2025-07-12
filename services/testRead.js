@@ -4,9 +4,9 @@ dotenv.config();
 import { readFromMultipleSheets } from "./sheetService.js";
 import { checkSheets } from "../videogames/osrs/bountyUtilities.js";
 
-const testRead = async () => {
+export const testRead = async () => {
   const sheetsToRead = ["tier1", "tier2", "tier3"];
-  const range = "A1:K50"; //can be more specific when knowing exact range
+  const range = "A1:L50"; //can be more specific when knowing exact range
   const allRanges = sheetsToRead.map((sheet) => `${sheet}!${range}`);
 
   try {
@@ -27,12 +27,11 @@ const testRead = async () => {
     // });
 
     checkSheets(allSheetData);
+    return true;
   } catch (error) {
     console.error("Error reading from sheets:", error);
   }
 };
-
-testRead();
 
 // import { readFromSheet } from "./sheetService.js";
 

@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, MessageFlags } from "discord.js";
-import embededBounties from "../embeds/embededBounties.js";
+import { getEmbeds } from "../embeds/embededBounties.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -19,10 +19,22 @@ export default {
       });
     }
 
+    const embeds = getEmbeds();
+    // console.log("Total embeds generated:", embeds.length);
+    // embeds.forEach((embed, i) => {
+    //   console.log(`Embed #${i + 1}:`, embed.data);
+    // });
+    if (!embeds || embeds.length === 0) {
+      return interaction.reply({
+        content: `There are no current bounties, try using /refresh to update them`,
+        flags: MessageFlags.Ephemeral,
+      });
+    }
+
     // await interaction.reply(
     //   "This is where bounties will appear along with wiki image, total GP value, etc"
     // );
 
-    await interaction.reply({ embeds: embededBounties });
+    await interaction.reply({ embeds: embeds });
   },
 };

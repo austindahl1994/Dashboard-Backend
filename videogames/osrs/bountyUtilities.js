@@ -1,6 +1,7 @@
 import { writeBatchToSheet } from "../../services/sheetService.js";
 import { cachedBounties, cachedSheets } from "./cachedData.js";
 
+const WIKI_URL = "https://oldschool.runescape.wiki/";
 const MAX_TIERS = 3;
 
 const checkSheets = (allSheetData) => {
@@ -88,10 +89,22 @@ const checkBounties = async () => {
   console.log(cachedBounties);
 };
 
+const getImageUrl = (wikiURL) => {
+  return wikiURL.replace("/w/", "/images/") + ".png";
+};
+
 const updateBounty = (newObj, tier, index) => {
   console.log(`Update bounty called for tier ${tier}`);
+  let bounty = parseFloat(newObj.Bounty);
+  if (bounty >= 1) {
+    bounty = bounty.toString() + "M";
+  } else {
+    bounty = (bounty * 1000).toString() + "K";
+  }
+  newObj.Bounty = bounty;
   newObj.Sheet_Index = index;
-  newObj.Number_Slain = 0;
+  newObj.Quantity = 0;
+  newObj.Wiki_Image = getImageUrl(newObj.Wiki_URL);
   cachedBounties[tier] = newObj;
 };
 

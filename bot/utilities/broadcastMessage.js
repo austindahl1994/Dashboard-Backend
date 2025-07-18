@@ -1,6 +1,6 @@
-import { client } from "../../bot/mainBot.js";
+import { client } from "../mainBot.js";
 
-async function broadcastMessage(channelId, message) {
+const broadcastMessage = async (channelId, message) => {
   if (!client.isReady()) {
     console.log("Client not ready yet!");
     return;
@@ -14,6 +14,6 @@ async function broadcastMessage(channelId, message) {
   } catch (err) {
     console.error("Error sending message:", err);
   }
-}
+};
 
 export { broadcastMessage };

@@ -1,5 +1,5 @@
 import express from "express";
-import { broadcastMessage } from "./broadcastMessage.js";
+import { broadcastMessage } from "../../bot/utilities/broadcastMessage.js";
 import { uploadScreenshot } from "../../s3Test.js";
 import dotenv from "dotenv";
 
@@ -19,8 +19,15 @@ const channelID = process.env.DISCORD_CHANNEL_ID;
 
 export const osrsTest = async (req, res) => {
   const file = req.file;
+  let image;
+  let mimetype;
   if (!file) {
     console.log(`No image sent/attached/able to be read`);
+  } else {
+    image = file.buffer;
+    //console.log(`File received with size: ${image.length} bytes`);
+    mimetype = file.mimetype;
+    //console.log(`Mimetype of file is: ${mimetype}`);
   }
   console.log(`Successfully called osrsTest with data: `);
   const data = req.body.payload_json;
@@ -29,26 +36,37 @@ export const osrsTest = async (req, res) => {
       //console.log(data);
       const parsedData = JSON.parse(data);
       //console.log(parsedData.discordUser.name);
-      //console.log(parsedData);
+      console.log(parsedData);
+      if (parsedData) {
+        console.log(`Items were: `);
+        parsedData.extra.items.forEach((item) => {
+          console.log(
+            `${item.quantity} x ${item.name} (${item.priceEach} each)`
+          );
+        });
+      }
       //const newMessage = "This is a test";
-      //sendMessage(channelID, newMessage);
+      //broadcastMessage(channelID, newMessage);
       //const image = parsedData.embeds[0].image.url;
       if (file) {
-        //key (in this case test-ss-image.png) can specify folder ("/t1/filename.png")
-        const imageURL = await uploadScreenshot(
-          "/t1/happyTest.png",
-          file.buffer,
-          file.mimetype
-        );
-        if (imageURL) {
-          sendMessage(channelID, imageURL);
-        }
+        //key (in this case image.png) can specify folder ("bounties/easy/filename.png")
+        // const imageURL = await uploadScreenshot(
+        //   "bounties/easy/vinnyTest.png", //difficulty/tier from cachedData
+        //   image,
+        //   mimetype
+        // );
+        // if (imageURL) {
+        //   broadcastMessage(channelID, imageURL);
+        // }
+        console.log(`File image sent with!`);
       } else {
         console.log(`No image sent/attached/able to be read`);
       }
     } catch (error) {
       console.error(`There was an error: ${error}`);
     }
+  } else {
+    console.log(`No data was able to be parsed`);
   }
 };
 /*

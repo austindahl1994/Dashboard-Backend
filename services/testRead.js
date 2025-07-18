@@ -5,12 +5,12 @@ import { readFromMultipleSheets } from "./sheetService.js";
 import { checkSheets } from "../videogames/osrs/bountyUtilities.js";
 
 export const testRead = async () => {
-  const sheetsToRead = ["tier1", "tier2", "tier3"];
+  const sheetsToRead = ["easy", "medium", "hard", "elite", "master"];
   const range = "A1:L50"; //can be more specific when knowing exact range
   const allRanges = sheetsToRead.map((sheet) => `${sheet}!${range}`);
 
   try {
-    // Return as array of arrays [[sheet1Arrays], [sheet2Arrays], [sheet3Arrays]]
+    // Return as array of arrays [[sheet1Arrays], [sheet2Arrays], ...]
     const allSheetData = await readFromMultipleSheets(allRanges);
 
     console.log("Batch data pulled successfully:");

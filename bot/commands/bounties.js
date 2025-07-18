@@ -20,7 +20,7 @@ export default {
     }
 
     const embeds = getEmbeds();
-    // console.log("Total embeds generated:", embeds.length);
+    console.log("Total embeds generated:", embeds.length);
     // embeds.forEach((embed, i) => {
     //   console.log(`Embed #${i + 1}:`, embed.data);
     // });
@@ -31,10 +31,6 @@ export default {
       });
     }
 
-    // await interaction.reply(
-    //   "This is where bounties will appear along with wiki image, total GP value, etc"
-    // );
-
-    await interaction.reply({ embeds: embeds });
+    await interaction.reply({ embeds: embeds, flags: MessageFlags.Ephemeral });
   },
 };

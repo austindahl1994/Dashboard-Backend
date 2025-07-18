@@ -18,9 +18,9 @@ export const cachedBounties = [
   },
   {
     Title: "",
-    Item: "t2 item",
+    Item: "medium item",
     Source: "General Graardor",
-    Description: "",
+    Description: "No desc yet",
     Type: "LOOT",
     Bounty: "500K",
     Wiki_URL: "https://oldschool.runescape.wiki/w/General_Graardor",
@@ -34,7 +34,7 @@ export const cachedBounties = [
   },
   {
     Title: "",
-    Item: "t3 item",
+    Item: "hard item",
     Source: "Something else",
     Description: "Test Desc",
     Type: "CLUE",
@@ -48,11 +48,47 @@ export const cachedBounties = [
     Sheet_Index: 2,
     Wiki_Image: "https://oldschool.runescape.wiki/images/Cadantine.png",
   },
+  {
+    Title: "",
+    Item: "elite item",
+    Source: "General Graardor",
+    Description: "Test Desc",
+    Type: "LOOT",
+    Bounty: "500K",
+    Wiki_URL: "https://oldschool.runescape.wiki/w/Great_Olm",
+    Status: "Active",
+    Other: "",
+    Player_Name: "",
+    S3_URL: "",
+    Quantity: 0,
+    Sheet_Index: 1,
+    Wiki_Image: "https://oldschool.runescape.wiki/images/Great_Olm.png",
+  },
+  {
+    Title: "",
+    Item: "master item",
+    Source: "General Graardor",
+    Description: "Test Desc",
+    Type: "LOOT",
+    Bounty: "500K",
+    Wiki_URL: "https://oldschool.runescape.wiki/w/Lil%27_zik#",
+    Status: "Active",
+    Other: "",
+    Player_Name: "",
+    S3_URL: "",
+    Quantity: 0,
+    Sheet_Index: 2,
+    Wiki_Image: "https://oldschool.runescape.wiki/images/Lil%27_zik.png",
+  },
 ];
 // export const cachedBounties = [];
 //Faster way to check if a part of the bounties
 //Maybe objects {type: "LOOT", targets: []}
-export const simpleBounties = [];
+export const simpleTypes = [];
+
+export const simpleSources = [];
+
+export const simpleItems = [];
 
 //holds all sheet objects
 export const cachedSheets = [];

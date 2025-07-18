@@ -6,5 +6,7 @@ export class Bounty {
     this.source = source;
     this.wiki_url = wiki_url;
     this.bounty = bounty;
+    this.completed = false;
+    this.tier_completed = false;
   }
 }

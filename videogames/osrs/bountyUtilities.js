@@ -2,35 +2,36 @@ import { writeBatchToSheet } from "../../services/sheetService.js";
 import { cachedBounties, cachedSheets } from "./cachedData.js";
 
 const WIKI_URL = "https://oldschool.runescape.wiki/";
-const MAX_TIERS = 3;
+const MAX_TIERS = 5;
+
+//LEAVING OFF: cached vs google sheets data, how the objects are checked and updated via other code (completion of bounty, etc)
 
 const checkSheets = (allSheetData) => {
-  console.log(`Checking if sheets are cached`);
-
-  // Only cache if not already done
   if (cachedSheets.length !== MAX_TIERS) {
     console.log(`Sheets are not cached, updating from new sheet data`);
+  } else {
+    console.log(`Sheets are cached but making sure to update to new data`);
+  }
 
-    allSheetData.forEach((sheet, sheetIndex) => {
-      const [headers, ...rows] = sheet;
-      const sheetObjects = [];
+  allSheetData.forEach((sheet, sheetIndex) => {
+    const [headers, ...rows] = sheet;
+    const sheetObjects = [];
 
-      rows.forEach((row) => {
-        if (row.length !== headers.length) {
-          row.push(...Array(headers.length - row.length).fill(""));
-        }
+    rows.forEach((row) => {
+      if (row.length !== headers.length) {
+        row.push(...Array(headers.length - row.length).fill(""));
+      }
 
-        const rowObj = {};
-        headers.forEach((header, colIndex) => {
-          rowObj[header] = row[colIndex];
-        });
-
-        sheetObjects.push(rowObj);
+      const rowObj = {};
+      headers.forEach((header, colIndex) => {
+        rowObj[header] = row[colIndex];
       });
 
-      cachedSheets[sheetIndex] = sheetObjects;
+      sheetObjects.push(rowObj);
     });
-  }
+
+    cachedSheets[sheetIndex] = sheetObjects;
+  });
 
   console.log(`Finished caching sheets, data:`);
   console.log(cachedSheets);
@@ -40,61 +41,54 @@ const checkSheets = (allSheetData) => {
 const checkBounties = async () => {
   console.log(`Now checking bounties`);
   if (cachedBounties.length !== MAX_TIERS) {
-    if (!cachedSheets || cachedSheets.length === 0) {
-      console.log(`There was no cached sheet! returning`);
-      return;
-    }
-    const newWrites = [];
-    cachedSheets.forEach((sheet, tier) => {
-      //finds the row where status is active, meaning its the current bounty of that tier
-      const activeIndex = sheet.findIndex((obj) => obj.Status === "Active");
-      if (activeIndex !== -1) {
-        // console.log(
-        //   `Found Active bounty for tier ${tier + 1} at index: ${activeIndex}`
-        // );
-        updateBounty(sheet[activeIndex], tier, activeIndex + 1);
-      } else {
-        //console.log(`No active bounty was found, need to find next open`);
-        const openIndex = sheet.findIndex((obj) => obj.Status === "Open");
-        if (openIndex !== -1) {
-          // console.log(
-          //   `Found Open bounty for tier ${tier + 1} at index: ${openIndex}`
-          // );
-          // console.log(
-          //   `Need to add functionality for updating sheet after updating cachedBounties`
-          // );
-          sheet[openIndex].Status = "Active";
-          //UPDATE STATUS CHANGE TO ACTIVE IN GOOGLE SHEET AS WELL AT `tier${tier}!G${openIndex}`
-          const writeObj = {
-            range: `tier${tier + 1}!G${openIndex + 2}`,
-            values: [["Active"]],
-          };
-          newWrites.push(writeObj);
-          updateBounty(sheet[openIndex], tier, openIndex + 2);
-        } else {
-          console.log(
-            `Could not find an open index! All might be claimed, need to add functionality`
-          );
-        }
-      }
-    });
-
-    if (newWrites.length > 0) {
-      console.log(`Need to write the new actives to the sheet`);
-      await writeBatchToSheet(newWrites);
-    }
+    console.log(`Bounties are not cached, updating from cached sheets`);
   }
 
-  console.log(`Finished checking cached bounties, cachedBounties are: `);
-  console.log(cachedBounties);
+  if (!cachedSheets || cachedSheets.length === 0) {
+    console.log(`There was no cached sheet! returning`);
+    return;
+  }
+
+  await setNewActiveBounty();
+  // console.log(`Finished checking cached bounties, cachedBounties are: `);
+  // console.log(cachedBounties);
 };
 
-const getImageUrl = (wikiURL) => {
-  return wikiURL.replace("/w/", "/images/") + ".png";
+//separate cachedSheets and new sheets functionality? Still have it iterative over their array of objects
+const setNewActiveBounty = async () => {
+  const newWrites = [];
+
+  cachedSheets.forEach((sheet, tier) => {
+    const activeIndex = sheet.findIndex((obj) => obj.Status === "Active");
+    if (activeIndex !== -1) {
+      updateBounty(sheet[activeIndex], tier, activeIndex + 1);
+    } else {
+      const openIndex = sheet.findIndex((obj) => obj.Status === "Open");
+      if (openIndex !== -1) {
+        sheet[openIndex].Status = "Active";
+        const writeObj = {
+          range: `${getTier(openIndex)}!H${openIndex + 2}`,
+          values: [["Active"]],
+        };
+        newWrites.push(writeObj);
+        updateBounty(sheet[openIndex], tier, openIndex + 2);
+      } else {
+        console.log(
+          `Could not find an open index! All might be claimed, need to add functionality`
+        );
+        cachedBounties[tier].tier_completed = true;
+      }
+    }
+  });
+
+  if (newWrites.length > 0) {
+    console.log(`Need to write the new actives to the sheet`);
+    await writeBatchToSheet(newWrites);
+  }
 };
 
-const updateBounty = (newObj, tier, index) => {
-  console.log(`Update bounty called for tier ${tier}`);
+const updateBounty = (newObj, tier, openIndex) => {
+  console.log(`Update bounty called for difficulty ${getTier(tier)}`);
   let bounty = parseFloat(newObj.Bounty);
   if (bounty >= 1) {
     bounty = bounty.toString() + "M";
@@ -102,19 +96,39 @@ const updateBounty = (newObj, tier, index) => {
     bounty = (bounty * 1000).toString() + "K";
   }
   newObj.Bounty = bounty;
-  newObj.Sheet_Index = index;
+  newObj.Sheet_Index = openIndex;
   newObj.Quantity = 0;
   newObj.Wiki_Image = getImageUrl(newObj.Wiki_URL);
+  newObj.tier_completed = false;
   cachedBounties[tier] = newObj;
 };
 
+const checkType = (type) => {};
+
 const completeBounty = (tier) => {};
 
-const getBounties = () => {
-  return cachedBounties;
+const getImageUrl = (wikiURL) => {
+  return wikiURL.replace("#", "").replace("/w/", "/images/") + ".png";
 };
 
-export { checkSheets, updateBounty, getBounties };
+const getTier = (index) => {
+  switch (index) {
+    case 0:
+      return "easy";
+    case 1:
+      return "medium";
+    case 2:
+      return "hard";
+    case 3:
+      return "elite";
+    case 4:
+      return "master";
+    default:
+      return "Unknown Tier";
+  }
+};
+
+export { checkSheets, updateBounty };
 
 /*TASKS
 Need to do the following:

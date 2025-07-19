@@ -20,7 +20,8 @@ export default {
       console.error(error);
 
       const reply = {
-        content: "There was an error while executing this command!",
+        content:
+          "Well, guess Dubz sucks at coding... The command could not be completed.",
         ephemeral: true,
       };
 

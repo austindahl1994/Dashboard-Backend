@@ -1,5 +1,14 @@
 import { EmbedBuilder } from "discord.js";
 import { cachedBounties } from "../../videogames/osrs/cachedData.js";
+import { clue } from "./types/clue.js";
+import { loot } from "./types/loot.js";
+import { level } from "./types/level.js";
+import { achievement } from "./types/achievement.js";
+import { death } from "./types/death.js";
+import { pet } from "./types/pet.js";
+import { speedrun } from "./types/speedrun.js";
+import { ba } from "./types/ba.js";
+import { pk } from "./types/pk.js";
 
 const getColor = (index) => {
   switch (index) {
@@ -53,12 +62,16 @@ const getScrollImage = (index) => {
 };
 
 export const getEmbeds = () => {
+  // console.log(`Called getEmbeds with cachedBounties:`);
+  // cachedBounties.forEach((bounty, index) => {
+  //   console.table(bounty);
+  // });
   let finalArr = cachedBounties.map((data, index) => {
     if (
       !data ||
       (typeof data === "string" && data.trim() === "") ||
       (typeof data === "object" && Object.keys(data).length === 0) ||
-      data.tier_completed === true
+      data.Tier_completed === true
     ) {
       const embed = new EmbedBuilder()
         .setAuthor({
@@ -66,7 +79,6 @@ export const getEmbeds = () => {
           iconURL: getScrollImage(index),
         })
         .setColor(getColor(index))
-        .setTitle(`${index}`)
         .addFields({
           name: "No Bounties left in this difficulty!",
           value: "\u200B",
@@ -75,30 +87,38 @@ export const getEmbeds = () => {
     }
     const scrollImage = getScrollImage(index);
     const tier = getTier(index);
-    console.log(`Passed in ${data.Source} for difficulty: ${index}`);
-    const embed = new EmbedBuilder()
-      .setColor(getColor(index))
-      .setTitle(data.Title || "No title attached")
-      .setURL(data.Wiki_URL || "https://oldschool.runescape.wiki/")
-      .setThumbnail(data.Wiki_Image || "https://oldschool.runescape.wiki/")
-      .setAuthor({
-        name: tier,
-        iconURL: scrollImage,
-      });
+    const color = getColor(index);
 
-    if (data.Description) {
-      embed.setDescription(data.Description);
-    } else {
-      embed.setDescription("No description made for this bounty");
+    switch (data.Type) {
+      case "LOOT":
+        return loot(data, tier, scrollImage, color);
+      case "CLUE":
+        return clue(data, tier, scrollImage, color);
+      case "LEVEL":
+        return level(data, tier, scrollImage, color);
+      case "COMBAT_ACHIEVEMENT":
+        return achievement(data, tier, scrollImage, color);
+      case "DEATH":
+        return death(data, tier, scrollImage, color);
+      case "PET":
+        return pet(data, tier, scrollImage, color);
+      case "SPEEDRUN":
+        return speedrun(data, tier, scrollImage, color);
+      case "BARBARIAN_ASSAULT_GAMBLE":
+        return ba(data, tier, scrollImage, color);
+      case "PLAYER_KILL":
+        return pk(data, tier, scrollImage, color);
+      default:
+        return loot(data, tier, scrollImage, color);
     }
-
-    if (data.Bounty) {
-      console.log(`Bounty passed in of ${data.Bounty}`);
-      embed.addFields({ name: "Bounty", value: data.Bounty });
+    // Use different embed builders based on type
+    if (data.Type === "LOOT") {
+      return loot(data, index, tier, scrollImage);
+    } else if (data.Type === "CLUE") {
+      return clue(data, index, tier, scrollImage);
     } else {
-      console.log(`No bounty was passed in for difficulty ${tier}`);
+      return lootEmbed(data, index, tier, scrollImage);
     }
-    return embed;
   });
 
   return finalArr;

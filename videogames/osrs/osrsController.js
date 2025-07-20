@@ -38,12 +38,14 @@ export const osrsTest = async (req, res) => {
       //console.log(parsedData.discordUser.name);
       console.log(parsedData);
       if (parsedData) {
-        console.log(`Items were: `);
-        parsedData.extra.items.forEach((item) => {
-          console.log(
-            `${item.quantity} x ${item.name} (${item.priceEach} each)`
-          );
-        });
+        if (parsedData.type === "LOOT") {
+          console.log(`Items were: `);
+          parsedData?.extra?.items.forEach((item) => {
+            console.log(
+              `${item.quantity} x ${item.name} (${item.priceEach} each)`
+            );
+          });
+        }
       }
       //const newMessage = "This is a test";
       //broadcastMessage(channelID, newMessage);
@@ -175,4 +177,40 @@ From: %SOURCE%
       }
    ]
 }
+
+DEATH:
+{
+  type: 'DEATH',
+  playerName: 'ItzDubz',
+  accountType: 'NORMAL',
+  dinkAccountHash: '1554434bf24603e8cd680dc34f23301c6da2ad600e15a1a6875afb7e',
+  clanName: 'Hail Cabbage',
+  seasonalWorld: false,
+  world: 486,
+  regionId: 12342,
+  extra: {
+    valueLost: 0,
+    isPvp: false,
+    keptItems: [ [Object], [Object], [Object] ],
+    lostItems: [],
+    location: { regionId: 12342, plane: 0, instanced: false }
+  },
+  discordUser: {
+    id: '196090993433378816',
+    name: 'itzdubz',
+    avatarHash: 'f2aa33e687d6a8167620ab30ef2581a1'
+  },
+  embeds: [
+    {
+      title: 'Player Death',
+      description: 'ItzDubz has died...',
+      author: [Object],
+      color: 15990936,
+      image: [Object],
+      thumbnail: [Object],
+      fields: []
+    }
+  ]
+}
+
 */

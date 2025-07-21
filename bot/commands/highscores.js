@@ -12,12 +12,12 @@ export default {
     .setName("highscores")
     .setDescription("Gets current highscores"),
   async execute(interaction) {
-    if (!interaction.member.roles.cache.has(modId)) {
-      return interaction.reply({
-        content: "Only moderators can use this command.",
-        flags: MessageFlags.Ephemeral,
-      });
-    }
+    // if (!interaction.member.roles.cache.has(modId)) {
+    //   return interaction.reply({
+    //     content: "Only moderators can use this command.",
+    //     flags: MessageFlags.Ephemeral,
+    //   });
+    // }
     // if (interaction.channelId !== channelId) {
     //   return interaction.reply({
     //     content: "You must be in the proper channel to make use this command",

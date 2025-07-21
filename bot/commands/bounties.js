@@ -6,6 +6,7 @@ dotenv.config();
 
 const channelId = process.env.DISCORD_CHANNEL_ID;
 const modId = process.env.MOD_ID;
+const allowedUserId = process.env.TEMP_USER_ID;
 
 export default {
   cooldown: 5,
@@ -13,6 +14,12 @@ export default {
     .setName("bounties")
     .setDescription("Gets current listed bounties"),
   async execute(interaction) {
+    if (interaction.user.id !== allowedUserId) {
+      return interaction.reply({
+        content: "Yo fuckoff, you don't need to be here right now.",
+        ephemeral: true,
+      });
+    }
     // if (!interaction.member.roles.cache.has(modId)) {
     //   return interaction.reply({
     //     content: "Only moderators can use this command.",

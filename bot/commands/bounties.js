@@ -17,7 +17,7 @@ export default {
     if (interaction.user.id !== allowedUserId) {
       return interaction.reply({
         content: "Yo fuckoff, you don't need to be here right now.",
-        ephemeral: true,
+        flags: MessageFlags.Ephemeral,
       });
     }
     // if (!interaction.member.roles.cache.has(modId)) {

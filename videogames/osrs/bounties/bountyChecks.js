@@ -1,75 +1,32 @@
-import { updateSimpleSources } from "./bountyUpdates";
+import { updateSimpleSources } from "./bountyUpdates.js";
+import * as compare from "./compareData.js"
 
-const checkType = (type) => {
-  if (simpleTypes.length === 0) {
+//TODO: Figure out when we should check simple cached data, whenever bounties are updated I think would be best
+
+const checkBounties = (data) => {
+  if (simpleTypes.length === 0) { //change to update on bounty update instead
     updateSimpleTypes();
   }
-  if (!type || type.trim() === "") {
-    return false;
+  if (!data.type || data.type.trim() === "") {
+    throw new Error("No type was passed into ")
   } else {
-    if (simpleTypes.includes(type.trim())) {
-      switch (type.trim()) {
-        case "LOOT":
-          console.log(`Need to implement LOOT check`);
-          break;
-        case "CLUE":
-          console.log(`Need to implement CLUE check`);
-          break;
-        case "COMBAT_ACHIEVEMENT":
-          console.log(`Need to implement COMBAT_ACHIEVEMENT check`);
-          break;
-        case "LEVEL":
-          console.log(`Need to implement LEVEL check`);
-          break;
-        case "DEATH":
-          console.log(`Need to implement DEATH check`);
-          break;
-        case "PET":
-          console.log(`Need to implement PET check`);
-          break;
-        case "SPEEDRUN":
-          console.log(`Need to implement SPEEDRUN check`);
-          break;
-        case "BARBARIAN_ASSAULT_GAMBLE":
-          console.log(`Need to implement BARBARIAN_ASSAULT_GAMBLE check`);
-          break;
-        case "PLAYER_KILL":
-          console.log(`Need to implement PLAYER_KILL check`);
-          break;
-        default:
-          console.log(
-            `Type ${type} is recognized but has no specific check implemented.`
-          );
-          return false;
-      }
-    } else {
-      return false;
-    }
-  }
-};
+    const handlers = {
+      LOOT: compare.loot,
+      CLUE: compare.clue,
+      DEATH: compare.death,
+      PET: compare.pet,
+      SPEEDRUN: compare.speedrun,
+      BARBARIAN_ASSAULT_GAMBLE: compare.ba,
+      PLAYER_KILL: compare.pk
+  };
 
-const checkSource = (source) => {
-  if (simpleSources.length === 0) {
-    updateSimpleSources();
-  }
-  if (!source || source.trim() === "") {
-    return false;
-  } else {
-    if (simpleSources.includes(source.trim())) {
-      return true;
-    }
-  }
-};
+  const trimmedType = type.trim(); 
+  const handler = handlers[trimmedType];
 
-const checkItem = (item) => {
-  if (simpleItems.length === 0) {
-    updateSimpleItems();
-  }
-  if (!item || item.trim() === "") {
-    return false;
+  if (handler) {
+    return handler(data); 
   } else {
-    if (simpleItems.includes(item.trim())) {
-      return true;
-    }
+    throw new Error(`Type ${type} is recognized but has no specific check implemented.`);
+  }
   }
 };

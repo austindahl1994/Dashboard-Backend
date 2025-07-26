@@ -1,16 +1,45 @@
 import {
-  cachedBounties,
-  simpleSources,
-  simpleItems,
-  simpleTypes,
+  cachedBounties
 } from "../cachedData.js";
 
 //If data doesn't match bounties, throw an error to immediately clear file data/image
 //If after the await compareData(parsedData) no error thrown, then it matches a current Bounty
+//Send the indices of which bounties should be completed
+
+/*
+const bountyMatchers = {
+  LOOT: (bounty, data) => {
+    const dataItems = new Set(data.items);
+    return bounty.Source === data.source &&
+           bounty.Item.every(item => dataItems.has(item));
+  },
+
+  CLUE: (bounty, data) => {
+    return bounty.Source === data.source &&
+           data.clueLevel >= bounty.requiredLevel;
+  },
+
+  DEATH: (bounty, data) => {
+    return data.killedPlayer === bounty.Source;
+  },
+
+  Add other handlers
+
+  const completedBounties = cachedBounties.filter(bounty => {
+  const match = bountyMatchers[bounty.Type];
+  if (!match) {
+    console.warn(`No matching logic for bounty type: ${bounty.Type}`);
+    return false;
+  }
+
+  return match(bounty, data);
+});
+
+};*/
 
 //Custom error thrown
 const ce = (input) => {
-  throw new Error(`Data ${input ? input : " "}did not match current bounties`);
+  throw new Error(`Data ${input ? input : ""} did not match current bounties`);
 };
 
 const compareTypes = (type) => {
@@ -37,11 +66,7 @@ const compareSources = (source) => {
   if (!simpleSources.includes("*") && !simpleSources.includes(source)) {
     ce("Source");
   } else if (simpleSources.includes(source)) {
-    cachedBounties.forEach((bounty) => {
-      if (bounty.Source === source) {
-        bounty.Quantity += 1;
-      }
-    });
+    increaseQuantity("Source", source)
   }
 };
 
@@ -57,20 +82,35 @@ const compareRegions = (region, type) => {
   }
 };
 
+const increaseQuantity = (key, comparison) => {
+  cachedBounties.forEach((bounty) => {
+      if (bounty[key] === comparison) {
+        bounty.Quantity += 1;
+      }
+    });
+}
+
 //Do a check beforehand for extra.npc === false for guaranteed not pvp?
-const loot = async (data) => {
+export const loot = async (data) => {
+  if (data.extra.category !== "NPC") {
+    ce("NOT NPC LOOT")
+  }
+  const completedBounties = cachedBounties.filter((bounty) => {
+    // compare against bounty.Type, bounty.Source, bounty.Item (array of strings)
+  })
   compareSources(data.extra.source);
   compareTypes(data.type);
   compareItems(data.extra.items);
+  
 };
 
-const ba = async (data) => {
+export const ba = async (data) => {
   compareTypes(data.type);
   compareItems(data.extra.items);
 };
 
 //Three types, pvp, pvm, and non-combat
-const death = async (data) => {
+export const death = async (data) => {
   compareTypes(data.type);
   if (data.extra.isPvp === true) {
     //PVP death, do we care about this?
@@ -82,7 +122,7 @@ const death = async (data) => {
 };
 
 //Specific item OR all items priceEach sum being < or > some value OR single item priceEach < or > some value
-const clue = async (data) => {
+export const clue = async (data) => {
   compareTypes(data.type);
   // Since type came back positive, iterate through all Bounty objects to check the "Other" field for:
   // item, valueLess, valuegGreater, sumLess, sumGreater
@@ -135,12 +175,12 @@ const clue = async (data) => {
   });
 };
 
-const pet = async (data) => {
+export const pet = async (data) => {
   //call get pet list, either increment count + 1 if exists under same discord/playername or create new + 1
 };
 
 // Time listed under Item[0], questName under Source
-const speedrun = async (data) => {
+export const speedrun = async (data) => {
   compareTypes(data.type);
   //check to see if quest is correct speedrun quest? Listed under Source
   for (let bounty of cachedBounties) {
@@ -154,4 +194,4 @@ const speedrun = async (data) => {
   }
 };
 
-const pk = async (data) => {};
+export const pk = async (data) => {};

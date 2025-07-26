@@ -21,56 +21,60 @@ export const osrsTest = async (req, res) => {
   const file = req.file;
   let image;
   let mimetype;
-  if (!file) {
-    console.log(`No image sent/attached/able to be read`);
-  } else {
-    image = file.buffer;
-    //console.log(`File received with size: ${image.length} bytes`);
-    mimetype = file.mimetype;
-    //console.log(`Mimetype of file is: ${mimetype}`);
-  }
-  console.log(`Successfully called osrsTest with data: `);
-  const data = req.body.payload_json;
-  if (data) {
-    try {
-      //console.log(data);
-      const parsedData = JSON.parse(data);
-      //console.log(parsedData.discordUser.name);
-      console.log(parsedData);
-      if (parsedData) {
-        if (parsedData.type === "LOOT") {
-          console.log(`Items were: `);
-          parsedData?.extra?.items.forEach((item) => {
-            console.log(
-              `${item.quantity} x ${item.name} (${item.priceEach} each)`
-            );
-          });
-        }
-      }
-      //const newMessage = "This is a test";
-      //broadcastMessage(channelID, newMessage);
-      //const image = parsedData.embeds[0].image.url;
-      if (file) {
-        //key (in this case image.png) can specify folder ("bounties/easy/filename.png")
-        // const imageURL = await uploadScreenshot(
-        //   "bounties/easy/vinnyTest.png", //difficulty/tier from cachedData
-        //   image,
-        //   mimetype
-        // );
-        // if (imageURL) {
-        //   broadcastMessage(channelID, imageURL);
-        // }
-        console.log(`File image sent with!`);
-      } else {
-        console.log(`No image sent/attached/able to be read`);
-      }
-    } catch (error) {
-      console.error(`There was an error: ${error}`);
+  try {
+    if (!file) {
+      throw new Error(`No file sent with`)
+    } else {
+      image = file.buffer;
+      mimetype = file.mimetype;
     }
-  } else {
-    console.log(`No data was able to be parsed`);
+    const data = req.body.payload_json;
+    if (data) {
+      //console.log(data);
+        const parsedData = JSON.parse(data);
+        if (parsedData) {
+          //logic for keeping trcak of users that sent data
+          //logic for comparing task data/tracking count of actions
+          //logic will return cachedBounties indexes that need to be updated after all comparisons are true
+        }
+        if (file) {
+          //file logic
+        } else {
+          throw new Error(`No file attached`)
+        }
+    } else {
+      throw new Error(`No data was able to be parsed`)
+    }
+  } catch (error) {
+    console.log(`Deleting file because of the error: ${error}`)
+    delete req.file
   }
 };
+      // console.log(parsedData);
+      // console.log(`Successfully called osrsTest with data: `);
+      // console.log(parsedData.discordUser.name);
+      // console.log(`File received with size: ${image.length} bytes`);
+      // console.log(`Mimetype of file is: ${mimetype}`);
+      // if (parsedData.type === "LOOT") {
+      //   console.log(`Items were: `);
+      //   parsedData?.extra?.items.forEach((item) => {
+      //     console.log(
+      //       `${item.quantity} x ${item.name} (${item.priceEach} each)`
+      //     );
+      //   });
+      // }
+      // const newMessage = "This is a test";
+      // broadcastMessage(channelID, newMessage);
+      // const image = parsedData.embeds[0].image.url;
+      // key (in this case image.png) can specify folder ("bounties/easy/filename.png")
+      // const imageURL = await uploadScreenshot(
+      //   "bounties/easy/vinnyTest.png", //difficulty/tier from cachedData
+      //   image,
+      //   mimetype
+      // );
+      // if (imageURL) {
+      //   broadcastMessage(channelID, imageURL);
+      // }
 /*
 
 %USERNAME% has looted: 

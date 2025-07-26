@@ -4,6 +4,6 @@ import * as osrs from "./osrsController.js";
 
 const router = express.Router();
 
-router.post("/test", upload.single("file"), osrs.osrsTest);
+router.post("/CabbageBounty", upload.single("file"), osrs.osrsController);
 
 export default router;

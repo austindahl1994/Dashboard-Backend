@@ -1,6 +1,6 @@
 import { cachedSheets, highscores } from "../cachedData.js";
 
-//update this so that players get points * tier
+// This should only be called once when a task is completed
 export function updateHighscores() {
   if (highscores.length !== 0) {
     const previousHighscores = structuredClone(highscores);
@@ -14,7 +14,13 @@ export function updateHighscores() {
 
   cachedSheets.forEach((sheet, tier) => {
     sheet.forEach((bounty) => {
-      const player = bounty.Player_Name?.trim();
+      let player;
+      if (bounty.Discord) {
+        player = bounty.Discord.trim();
+      } else if (bounty.RSN) {
+        player = "RSN: " +  bounty.RSN.trim();
+      }
+
       if (!player || bounty.Status !== "Complete") return;
 
       // Parse bounty amount (always a float)

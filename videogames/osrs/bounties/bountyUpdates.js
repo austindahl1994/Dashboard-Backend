@@ -6,12 +6,8 @@ import {
 } from "../cachedData.js";
 
 const completeBounty = () => {
-  // Logic for completing a bounty
   // Update cachedCounties immediately "Completed": true
-  // Save image to S3 and get new S3_URL, null the image locally
-  // Create new data object with: Player_Name, S3_URL, Quantity, then save to cachedSheets based on Sheet_Index
-  // Update cachedSheets for a new task based on previous Sheet_Index and tier, if none then set Tier_completed to true
-  // Update Google sheet with data object and setting the next "Open" bounty to "Active" to match cachedSheets
+  // return array indices of the cachedBounties array that will be modified
 };
 
 const updateAllSimpleData = () => {

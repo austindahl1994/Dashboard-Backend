@@ -9,7 +9,8 @@ export class Bounty {
     Wiki_URL = "https://oldschool.runescape.wiki/w/Cabbage",
     Status = "",
     Other = "",
-    Player_Name = "",
+    RSN="",
+    Discord="",
     S3_URL = "",
     Quantity = 0,
     Sheet_Index,
@@ -25,7 +26,8 @@ export class Bounty {
     this.Wiki_URL = Wiki_URL;
     this.Status = Status;
     this.Other = Other;
-    this.Player_Name = Player_Name;
+    this.RSN = RSN;
+    this.Discord = Discord;
     this.S3_URL = S3_URL;
     this.Quantity = Quantity;
     this.Sheet_Index = Sheet_Index;

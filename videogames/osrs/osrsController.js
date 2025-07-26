@@ -27,7 +27,11 @@ export const osrsController = async (req, res) => {
           //logic will return cachedBounties indexes that need to be updated after all comparisons are true
         }
         if (file) {
-          //file logic
+          //file logic for every array passed over
+          // Save image to S3 and get new S3_URL, null the image locally
+          // Create new data object with: Discord AND/OR RSN, S3_URL, Quantity, then get next task with Sheet_Index
+          // Update Google sheet with data object, set COMPLETE, set next "Open"  to "Active"
+          // Get a new task based on previous Sheet_Index and tier, if none then set Tier_completed to true
         } else {
           throw new Error(`No file attached`)
         }

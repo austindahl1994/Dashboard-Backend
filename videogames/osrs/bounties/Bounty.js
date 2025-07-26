@@ -1,5 +1,7 @@
 export class Bounty {
   constructor({
+    Id,
+    Difficulty,
     Title = "",
     Item = [""],
     Source = "",
@@ -16,7 +18,10 @@ export class Bounty {
     Sheet_Index,
     Wiki_Image = "https://oldschool.runescape.wiki/images/Cabbage_detail.png",
     Tier_completed = false,
+    Completed = false
   } = {}) {
+    this.Id = Id;
+    this.Difficulty = Difficulty;
     this.Title = Title;
     this.Item = Item;
     this.Source = Source;
@@ -33,6 +38,6 @@ export class Bounty {
     this.Sheet_Index = Sheet_Index;
     this.Wiki_Image = Wiki_Image;
     this.Tier_completed = Tier_completed;
-    this.Completed = false;
+    this.Completed = Completed;
   }
 }

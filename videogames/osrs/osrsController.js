@@ -6,18 +6,7 @@ import dotenv from "dotenv";
 dotenv.config();
 const channelID = process.env.DISCORD_CHANNEL_ID;
 
-//TODO: Left off on google sheets, works if cached sheets/bounties are empty, NEED TO CALL ON SERVER START WHEN IN PROD, rather than checks, have it be a create since shouldnt exist
-//NEXT: Get discord embeds to work properly with temp data saved in cached
-// get highscores working
-// get ways to complete tasks working
-// check from dink
-// On bounty completion, immediately mark as completed then rest of info can just be a write
-// get s3 image save working depending on tier, then add to the cachedBounty (or just a batchWrite)
-// Count for cachedSource +1 on completion
-// Broadcast for bounty completion
-// When an entire tier of the board is completed, some error check for it or replace it with a higher tier bounty if there are still some available
-
-export const osrsTest = async (req, res) => {
+export const osrsController = async (req, res) => {
   const file = req.file;
   let image;
   let mimetype;
@@ -75,6 +64,17 @@ export const osrsTest = async (req, res) => {
       // if (imageURL) {
       //   broadcastMessage(channelID, imageURL);
       // }
+
+//TODO: Left off on google sheets, works if cached sheets/bounties are empty, NEED TO CALL ON SERVER START WHEN IN PROD, rather than checks, have it be a create since shouldnt exist
+//NEXT: Get discord embeds to work properly with temp data saved in cached
+// get highscores working
+// get ways to complete tasks working
+// check from dink
+// On bounty completion, immediately mark as completed then rest of info can just be a write
+// get s3 image save working depending on tier, then add to the cachedBounty (or just a batchWrite)
+// Count for cachedSource +1 on completion
+// Broadcast for bounty completion
+// When an entire tier of the board is completed, some error check for it or replace it with a higher tier bounty if there are still some available
 /*
 
 %USERNAME% has looted: 

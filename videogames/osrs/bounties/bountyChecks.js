@@ -1,11 +1,5 @@
-import { updateSimpleSources } from "./bountyUpdates.js";
 import * as compare from "./compareData.js"
 
-//TODO: Figure out when we should check simple cached data, whenever bounties are updated I think would be best
-// change to update on bounty update instead
-// if (simpleTypes.length === 0) {
-//     updateSimpleTypes();
-//   }
 const handlers = {
   LOOT: compare.loot,
   CLUE: compare.clue,
@@ -20,11 +14,19 @@ const checkBounties = (data) => {
   if (!data.type || data.type.trim() === "") {
     throw new Error("No type was passed in")
   } else {
-    const trimmedType = type.trim(); 
+    const trimmedType = data.type.trim(); 
+    console.log(trimmedType)
     const handler = handlers[trimmedType];
   
     if (handler) {
-      return handler(data); 
+      const completedBounties = cachedBounties.filter((bounty) => {
+        handler(data, bounty)
+      })
+      if (completedBounties.length > 0) {
+        return completedBounties
+      } else {
+        throw new Error(`Data did not match any current bounties`)
+      }
     } else {
       throw new Error(`Type ${type} is recognized but has no specific check implemented.`);
     }

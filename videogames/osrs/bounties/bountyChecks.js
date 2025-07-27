@@ -10,7 +10,7 @@ const handlers = {
   PLAYER_KILL: compare.pk
 };
 
-const checkBounties = (data) => {
+const checkBounties = async (data) => {
   if (!data.type || data.type.trim() === "") {
     throw new Error("No type was passed in")
   } else {
@@ -20,7 +20,9 @@ const checkBounties = (data) => {
   
     if (handler) {
       const completedBounties = cachedBounties.filter((bounty) => {
-        handler(data, bounty)
+        if (!bounty.Completed && !bounty.Tier_completed) {
+          handler(data, bounty)
+        } 
       })
       if (completedBounties.length > 0) {
         return completedBounties
@@ -32,3 +34,10 @@ const checkBounties = (data) => {
     }
   }
 };
+
+//Move this to the controller, that way we can delete the image immediately after URL is created
+const completeBounty = async (bounty, img) => {
+  //mark bounty as complete
+  bounty.Completed = true
+  //save the img to 
+}

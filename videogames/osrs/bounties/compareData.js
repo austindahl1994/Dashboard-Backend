@@ -2,184 +2,121 @@ import {
   cachedBounties
 } from "../cachedData.js";
 
-//If data doesn't match bounties, throw an error to immediately clear file data/image
-//If after the await compareData(parsedData) no error thrown, then it matches a current Bounty
-//Send the indices of which bounties should be completed
-
-/*
-const bountyMatchers = {
-  LOOT: (bounty, data) => {
-    const dataItems = new Set(data.items);
-    return bounty.Source === data.source &&
-           bounty.Item.every(item => dataItems.has(item));
-  },
-
-  CLUE: (bounty, data) => {
-    return bounty.Source === data.source &&
-           data.clueLevel >= bounty.requiredLevel;
-  },
-
-  DEATH: (bounty, data) => {
-    return data.killedPlayer === bounty.Source;
-  },
-
-  Add other handlers
-
-  const completedBounties = cachedBounties.filter(bounty => {
-  const match = bountyMatchers[bounty.Type];
-  if (!match) {
-    console.warn(`No matching logic for bounty type: ${bounty.Type}`);
-    return false;
-  }
-
-  return match(bounty, data);
-});
-
-};*/
-
-//Custom error thrown
-const ce = (input) => {
-  throw new Error(`Data ${input ? input : ""} did not match current bounties`);
-};
-
-const compareTypes = (type) => {
-  if (!simpleTypes.includes(type)) {
-    ce("Type");
-  }
-};
-
-const compareItems = (itemsArr) => {
-  let itemsMatch = false;
-  for (let item of itemsArr) {
-    if (simpleSources.includes(item)) {
-      itemsMatch = true;
-      return;
+const compareItems = (data, bounty) => {
+  for (let item of data.extra.items) {
+    if (bounty.Item.includes(item)) {
+      return true
     }
   }
-
-  if (!itemsMatch) {
-    ce("Items");
-  }
+  return false
 };
 
-const compareSources = (source) => {
-  if (!simpleSources.includes("*") && !simpleSources.includes(source)) {
-    ce("Source");
-  } else if (simpleSources.includes(source)) {
-    increaseQuantity("Source", source)
-  }
+// bounty.Source === '*' || Any time we would use wild card? add functionality later if needed
+const compareSources = (data, bounty) => { 
+  if (bounty.Source === data.extra.source) {
+    return true
+  } 
+  return false
 };
 
-const compareRegions = (region, type) => {
-  let regionsMatch = false;
-  for (const bounty of cachedBounties) {
-    if (bounty.Source === region) {
-      regionsMatch = true;
-    }
+const compareRegions = (data, bounty) => {
+  if (data.regionId && data.regionId === bounty.Region) {
+    return true
   }
-  if (!regionsMatch) {
-    ce("Region");
-  }
+  return false
 };
 
-const increaseQuantity = (key, comparison) => {
-  cachedBounties.forEach((bounty) => {
-      if (bounty[key] === comparison) {
-        bounty.Quantity += 1;
-      }
-    });
+const increaseQuantity = (bounty) => {
+  bounty.Quantity += 1
 }
 
 //Do a check beforehand for extra.npc === false for guaranteed not pvp?
-export const loot = async (data) => {
+export const loot = async (data, bounty) => {
   if (data.extra.category !== "NPC") {
-    ce("NOT NPC LOOT")
+    console.log("NOT NPC LOOT when checking against bounties")
   }
-  const completedBounties = cachedBounties.filter((bounty) => {
-    // compare against bounty.Type, bounty.Source, bounty.Item (array of strings)
-  })
-  compareSources(data.extra.source);
-  compareTypes(data.type);
-  compareItems(data.extra.items);
-  
+  if (compareSource(data, bounty)) {
+    increaseQantity(bounty)
+    if (compareItems(data, bounty)) {
+      return true
+    }
+  }
+  return false
 };
 
-export const ba = async (data) => {
-  compareTypes(data.type);
-  compareItems(data.extra.items);
+export const ba = async (data, bounty) => {
+  increaseQuantity(bounty)
+  return compareItems(data, bounty)
 };
 
 //Three types, pvp, pvm, and non-combat
-export const death = async (data) => {
-  compareTypes(data.type);
+export const death = async (data, bounty) => {
+    //Death against player
   if (data.extra.isPvp === true) {
-    //PVP death, do we care about this?
-  } else if (data.content.killerNpcID) {
+    return false
     //Death against NPC
-  } else {
+  } else if (data.content.killerName && bounty.Other === "npc") {
+    increaseQantity(bounty)
+    return (compareSources(data, bounty))
     //Death against non-combat, do we only care about this field?
+  } else if (!data.extra.killerName && bounty.Other === "seek") {
+    increaseQantity(bounty)
+    return (compareRegions(data, bounty))
+  } else {
+    return false
   }
 };
 
 //Specific item OR all items priceEach sum being < or > some value OR single item priceEach < or > some value
-export const clue = async (data) => {
-  compareTypes(data.type);
-  // Since type came back positive, iterate through all Bounty objects to check the "Other" field for:
-  // item, valueLess, valuegGreater, sumLess, sumGreater
-  cachedBounties.forEach((bounty) => {
-    if (bounty.Type === "CLUE") {
-      let sum;
-      switch (bounty.Other) {
-        case "item":
-          compareItems(data.extra.items);
-          break;
-        case "valueLess": // If lowest amount is not less than the wanted valueLess, send error
-          const lowestAmount = data.extra.items.reduce((acc, item) => {
-            return item.priceEach < acc ? item.priceEach : acc;
-          }, Infinity);
-          if (lowestAmount > parseFloat(bounty.Item[0]) * 1000000) {
-            ce("Clue - valueLess");
-          }
-          break;
-        case "valueGreater":
-          const greatestAmount = data.extra.items.reduce((acc, item) => {
-            return item.priceEach > acc ? item.priceEach : acc;
-          }, -Infinity);
-          if (geatestAmount < parseFloat(bounty.Item[0]) * 1000000) {
-            ce("Clue - valueGreater");
-          }
-          break;
-        case "sumLess":
-          sum = data.extra.items.reduce((item, acc) => {
-            return parseFloat(item.priceEach) + acc;
-          }, 0);
-          if (sunLess > parseFloat(bounty.Item[0]) * 1000000) {
-            ce("Clue - sumLess");
-          }
-          break;
-        case "sumGreater":
-          sum = data.extra.items.reduce((item, acc) => {
-            return parseFloat(item.priceEach) + acc;
-          }, 0);
-          if (sum < parseFloat(bounty.Item[0]) * 1000000) {
-            ce("Clue - sumGreater");
-          }
-          break;
-        default:
-          throw new Error(
-            `Invalid clue type in cachedBounties ${bounty.Other}`
-          );
-          break;
-      }
-    }
-  });
+export const clue = async (data, bounty) => {
+  if (data.extra.clueType.toLowerCase() === bounty.Source.toLowerCase()) {
+    increaseQuantity(bounty)
+  } else {
+    return false
+  }
+  let sum = 0;
+  switch (bounty.Other) {
+    case "item":
+      return compareItems(data);
+      break;
+    case "valueLess": // If lowest amount is not less than the wanted valueLess
+      const lowestAmount = data.extra.items.reduce((acc, item) => {
+        return item.priceEach < acc ? item.priceEach : acc;
+      }, Infinity);
+      return lowestAmount < parseFloat(bounty.Item[0])
+      break;
+    case "valueGreater":
+      const greatestAmount = data.extra.items.reduce((acc, item) => {
+        return item.priceEach > acc ? item.priceEach : acc;
+      }, -Infinity);
+      return geatestAmount > parseFloat(bounty.Item[0])
+      break;
+    case "sumLess":
+      sum = data.extra.items.reduce((acc, item) => {
+        return parseFloat(item.priceEach) + acc;
+      }, 0);
+      return sumLess < parseFloat(bounty.Item[0])
+      break;
+    case "sumGreater":
+      sum = data.extra.items.reduce((acc, item) => {
+        return parseFloat(item.priceEach) + acc;
+      }, 0);
+      return sum > parseFloat(bounty.Item[0]) 
+      break;
+    default:
+      console.error(`Invalid clue type in cachedBounties ${bounty.Other}`);
+      return false
+      break;
+  }
 };
 
 export const pet = async (data) => {
   //call get pet list, either increment count + 1 if exists under same discord/playername or create new + 1
 };
 
+//NEED TO UPDATE TO RETURN TRUE/FALSE
 // Time listed under Item[0], questName under Source
+// text.split(":") for both, array of 3 strings, parse and compare for each of them?
 export const speedrun = async (data) => {
   compareTypes(data.type);
   //check to see if quest is correct speedrun quest? Listed under Source

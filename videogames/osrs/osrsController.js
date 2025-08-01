@@ -1,6 +1,7 @@
 import express from "express";
 import { broadcastMessage } from "../../bot/utilities/broadcastMessage.js";
 import { uploadScreenshot } from "../../s3Test.js";
+import { checkBounties } from "./bountyCheck.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -24,7 +25,13 @@ export const osrsController = async (req, res) => {
         if (parsedData) {
           //logic for keeping trcak of users that sent data
           //logic for comparing task data/tracking count of actions
-          //logic will return cachedBounties indexes that need to be updated after all comparisons are true
+          //logic will return array of cachedBounties objects if drop is true
+          const completedBounties = await checkBounties(parsedData)
+          if (completedBounties.length > 0) {
+            //Update code for if bounties match
+          } else {
+            throw new Error("No bounties, should not see this?")
+          }
         }
         if (file) {
           //file logic for every array passed over

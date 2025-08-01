@@ -27,10 +27,22 @@ export const osrsController = async (req, res) => {
           //logic for comparing task data/tracking count of actions
           //logic will return array of cachedBounties objects if drop is true
           const completedBounties = await checkBounties(parsedData)
-          if (completedBounties.length > 0) {
+          if (completedBounties) {
             //Update code for if bounties match
+            completedBounties.forEach((bounty) => {
+              bounty.S3_URL = await uploadScreenshot(
+                `bounties/${bounty.Difficulty}/${bounty.Title}`,
+                image,
+                mimetype
+              )
+            })
+            if (req.file) {
+              delete req.file
+              image = null
+            }
+            // NEED TO ADD MORE LOGIC WHEN FREE
           } else {
-            throw new Error("No bounties, should not see this?")
+            throw new Error("No bounties completed, this should not be shown as a previous error should have been thrown.")
           }
         }
         if (file) {
@@ -47,7 +59,9 @@ export const osrsController = async (req, res) => {
     }
   } catch (error) {
     console.log(`Deleting file because of the error: ${error}`)
-    delete req.file
+    if (req.) {
+      
+    }
   }
 };
       // console.log(parsedData);

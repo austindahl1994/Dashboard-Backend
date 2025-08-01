@@ -10,7 +10,7 @@ const handlers = {
   PLAYER_KILL: compare.pk
 };
 
-const checkBounties = async (data) => {
+export const checkBounties = async (data) => {
   if (!data.type || data.type.trim() === "") {
     throw new Error("No type was passed in")
   } else {

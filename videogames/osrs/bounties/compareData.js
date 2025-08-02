@@ -34,6 +34,7 @@ const increaseQuantity = (bounty) => {
 export const loot = async (data, bounty) => {
   if (data.extra.category !== "NPC") {
     console.log("NOT NPC LOOT when checking against bounties")
+    return false
   }
   if (compareSource(data, bounty)) {
     increaseQantity(bounty)

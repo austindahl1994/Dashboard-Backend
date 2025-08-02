@@ -162,7 +162,24 @@ const getTier = (index) => {
   }
 };
 
-export { checkSheets, getTier, formatBounty };
+const difficultyToTier = (tier) => {
+  switch (tier) {
+    case "easy":
+      return 0;
+    case "medium":
+      return 1;
+    case "hard":
+      return 2;
+    case "elite":
+      return 3;
+    case "master":
+      return 4;
+    default:
+      return 0;
+  }
+}
+
+export { checkSheets, getTier, formatBounty, difficultyToTier };
 
 /*TASKS
 Need to do the following:

@@ -141,8 +141,11 @@ export const speedrun = async (data, bounty) => {
 export const pk = async (data, bounty) => {
   console.log("Called compareData for PK")
   increaseQuantity(bounty)
-  let pkSum = data.extra.victimEquipment.reduce((acc, item) => {
-    return acc + parseInt(item.priceEach)
+  let playerItems = data.extra.victimEquipment
+  console.log(JSON.stringify(playerItems))
+  let pkSum = Object.keys(playerItems).reduce((acc, item) => {
+    return acc + parseInt(playerItems[item].priceEach)
   }, 0)
+  console.log(`Item sum came out to ${pkSum}`)
   return pkSum > parseInt(bounty.Other)
 };

@@ -20,8 +20,8 @@ export const checkBounties = async (data) => {
   
     if (handler) {
       const completedBounties = cachedBounties.filter((bounty) => {
-        if (!bounty.Completed && !bounty.Tier_completed) {
-          handler(data, bounty)
+        if (!bounty.Completed && !bounty.Tier_completed && bounty.Type === data.Type) {
+          return handler(data, bounty)
         } 
       })
       if (completedBounties.length > 0) {

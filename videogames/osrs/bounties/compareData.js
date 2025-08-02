@@ -32,6 +32,7 @@ const increaseQuantity = (bounty) => {
 
 //Do a check beforehand for extra.npc === false for guaranteed not pvp?
 export const loot = async (data, bounty) => {
+  console.log("Called compareData for LOOT")
   if (data.extra.category !== "NPC") {
     console.log("NOT NPC LOOT when checking against bounties")
     return false
@@ -46,12 +47,14 @@ export const loot = async (data, bounty) => {
 };
 
 export const ba = async (data, bounty) => {
+  console.log("Called compareData for BARB ASSAULT")
   increaseQuantity(bounty)
   return compareItems(data, bounty)
 };
 
 //Three types, pvp, pvm, and non-combat
 export const death = async (data, bounty) => {
+  console.log("Called compareData for DEATH")
     //Death against player
   if (data.extra.isPvp === true) {
     return false
@@ -70,6 +73,7 @@ export const death = async (data, bounty) => {
 
 //Specific item OR all items priceEach sum being < or > some value OR single item priceEach < or > some value
 export const clue = async (data, bounty) => {
+  console.log("Called compareData for CLUE")
   if (data.extra.clueType.toLowerCase() === bounty.Source.toLowerCase()) {
     increaseQuantity(bounty)
   } else {
@@ -112,28 +116,33 @@ export const clue = async (data, bounty) => {
 };
 
 export const pet = async (data) => {
+  console.log("Called compareData for PET")
   //call get pet list, either increment count + 1 if exists under same discord/playername or create new + 1
 };
 
-//NEED TO UPDATE TO RETURN TRUE/FALSE
 // text.split(":") for both, array of 3 strings, parse and compare for each substr
-export const speedrun = async (data) => {
+export const speedrun = async (data, bounty) => {
+  console.log("Called compareData for SPEEDRUN")
   const currentTime = data.extra.currentTime.split(":")
-  const completedBounties = cachedBounties.filter((bounty) => {
-    let faster = false
-    if (bounty.Type !== "SPEEDRUN" || bounty.Source !== "data.extra.questName") {
-      return false
-    } else {
-      const timeToBeat = cachedBounty.Other.split(":")
-      currentTime.forEach((segment, index) => {
-        if (parseInt(segment) < parseInt(timeToBeat[index])) {
-          faster = true
-        }
-      })
-      return faster
-    }
-  })
-  return completedBounties
+  let faster = false
+  if (bounty.Type !== "SPEEDRUN" || bounty.Source !== "data.extra.questName") {
+    return false
+  } else {
+    const timeToBeat = bounty.Other.split(":")
+    currentTime.forEach((segment, index) => {
+      if (parseInt(segment) < parseInt(timeToBeat[index])) {
+         faster = true
+      }
+    })
+  }
+  return faster
 };
 
-export const pk = async (data) => {};
+export const pk = async (data, bounty) => {
+  console.log("Called compareData for PK")
+  increaseQuantity(bounty)
+  let pkSum = data.extra.victimEquipment.reduce((acc, item) => {
+    return acc + parseInt(item.priceEach)
+  }, 0)
+  return pkSum > parseInt(bounty.Other)
+};

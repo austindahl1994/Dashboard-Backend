@@ -2,6 +2,7 @@ import express from "express";
 import { broadcastMessage } from "../../bot/utilities/broadcastMessage.js";
 import { uploadScreenshot } from "../../s3Test.js";
 import { checkBounties } from "./bountyCheck.js";
+import { addToHighscores } from "./highscores/highscoresUtilities.js"
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -35,12 +36,25 @@ export const osrsController = async (req, res) => {
                 image,
                 mimetype
               )
+              // NEED TO ADD MORE LOGIC HERE
+              //Update highscores and post to correct discord channel
+              addToHighscores(data, bounty)
+              //Update sheets data after fully updating the object
+              const dataToUpDate = {
+                //Add logic for the exact row data that will be updated, discordName, playerName, status completed etc
+              }
+              await updateBountyRow(bounty.Sheet_Index, bounty.Difficulty, dataToUpdate)
+              //Get a new bounty 
+              const newBounty = await getBountyRow(bounty.Sheet_Index, bounty.Difficulty)
+              //After getting google data, based on difficulty manually set the data based on index against difficulty
+              //Import the new difficultyToTier() function in utilities
             })
             if (req.file) {
               delete req.file
               image = null
             }
-            // NEED TO ADD MORE LOGIC WHEN FREE
+            //Broadcast to completed bounties discord channel
+            await broadcastHighscores(highscores)
           } else {
             throw new Error("No bounties completed, this should not be shown as a previous error should have been thrown.")
           }
@@ -59,8 +73,9 @@ export const osrsController = async (req, res) => {
     }
   } catch (error) {
     console.log(`Deleting file because of the error: ${error}`)
-    if (req.) {
-      
+    if (req.file) {
+      delete req.file
+      image = null
     }
   }
 };

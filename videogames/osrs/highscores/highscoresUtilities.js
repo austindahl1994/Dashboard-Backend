@@ -1,7 +1,30 @@
 import { cachedSheets, highscores } from "../cachedData.js";
+import { getTier } from "../bounties/bountyUtilities.js"
 
-// This should only be called once when a task is completed
-export function updateHighscores() {
+export function updateHighscores(newHighscores) {
+  // Update the cached highscores array in place
+  let topTenLength = newHighscores.length > 10 ? 10 : newHighscores.length
+  highscores.length = topTenLength;
+  for (let i = 0; i < topTenLength; i++) {
+    highscores[i] = newHighscores[i];
+  }
+
+  console.log(`Finished updating highscores:`);
+  console.table(highscores);
+}
+
+//expects array of player objects with Player_Name, Score, TotalBounty
+const sortHighscores = (hs) => {
+  return hs.sort((a, b) => {
+    if (a.Score !== b.Score) {
+      return b.Score - a.Score
+    } else {
+      return b.TotalBounty - a.Total_Bounty
+    }
+  })
+}
+
+export const createCachedHighscores = (sheetData) => {
   if (highscores.length !== 0) {
     const previousHighscores = structuredClone(highscores);
     console.log(`Previous highscores:`);
@@ -12,13 +35,13 @@ export function updateHighscores() {
 
   const playerStats = {};
 
-  cachedSheets.forEach((sheet, tier) => {
+  sheetData.forEach((sheet, tier) => {
     sheet.forEach((bounty) => {
       let player;
       if (bounty.Discord) {
         player = bounty.Discord.trim();
       } else if (bounty.RSN) {
-        player = "RSN: " +  bounty.RSN.trim();
+        player = bounty.RSN.trim();
       }
 
       if (!player || bounty.Status !== "Complete") return;
@@ -35,17 +58,36 @@ export function updateHighscores() {
   });
 
   // Convert to array and sort
-  const newHighscores = Object.values(playerStats).sort((a, b) => {
-    if (b.Score !== a.Score) return b.Score - a.Score;
-    return b.TotalBounty - a.TotalBounty;
-  });
+  const newHighscores = sortHighscores(Object.values(playerStats))
+  updateHighscores(newHighscores)
+}
 
-  // Update the cached highscores array in place
-  highscores.length = newHighscores.length;
-  for (let i = 0; i < newHighscores.length; i++) {
-    highscores[i] = newHighscores[i];
+const increaseHS = (name, tier, gp) => {
+  const existingIndex = highscores.indexOf((playerObj) => {
+    return playerObj.Player_Name === name
+  })
+  if (existingIndex) {
+    highscores[existingIndex].Score += difficultyToTier(tier)
+    highscores[existingIndex].TotalBounty += parseInt(gp)
+  } else {
+    const newPlayer = {
+      Player_Name: name,
+      Score: 1 + difficultyToTier(tier),
+      TotalBounty: gp
+    }
+    highscores.push(newPlayer)
   }
+}
 
-  console.log(`Finished updating highscores:`);
-  console.table(highscores);
+export const addToHighscores = (data, bountyTier, bountyValue) => {
+  const discordName = data?.discordUser?.name
+  const rsn = data?.playerName
+  if (discordName) {
+    increaseHS(discordName, bountyTier, bountyValue)
+  } else if (rsn) {
+    increaseHS("RSN: ", bountyTier, bountyValue)
+  } else {
+    throw new Error("Could not add player info, no valid discord or player name")
+  }
+  updateHighscores(highscores)
 }

@@ -116,20 +116,24 @@ export const pet = async (data) => {
 };
 
 //NEED TO UPDATE TO RETURN TRUE/FALSE
-// Time listed under Item[0], questName under Source
-// text.split(":") for both, array of 3 strings, parse and compare for each of them?
+// text.split(":") for both, array of 3 strings, parse and compare for each substr
 export const speedrun = async (data) => {
-  compareTypes(data.type);
-  //check to see if quest is correct speedrun quest? Listed under Source
-  for (let bounty of cachedBounties) {
-    if (bounty.Source === data.extra.questName) {
-      //Need to figure out how to quantify the actual time, use .split based on char ":" and index?
-      compareTimes(data.extra.currentTime, bounty.Item[0]); // will throw error if slower
+  const currentTime = data.extra.currentTime.split(":")
+  const completedBounties = cachedBounties.filter((bounty) => {
+    let faster = false
+    if (bounty.Type !== "SPEEDRUN" || bounty.Source !== "data.extra.questName") {
+      return false
     } else {
-      //Name did match
-      ce("Speedrun questName");
+      const timeToBeat = cachedBounty.Other.split(":")
+      currentTime.forEach((segment, index) => {
+        if (parseInt(segment) < parseInt(timeToBeat[index])) {
+          faster = true
+        }
+      })
+      return faster
     }
-  }
+  })
+  return completedBounties
 };
 
 export const pk = async (data) => {};

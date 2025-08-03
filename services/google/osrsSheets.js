@@ -1,45 +1,58 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import { readFromMultipleSheets } from "./sheets.js";
-import { checkSheets } from "../../videogames/osrs/bounties/bountyUtilities.js";
-//TODO: Leaving off on updating one row, along with the next row to be set as active
-// Get all sheets 
+import * as sheets from "./sheets.js";
+import { checkSheets } from "../../videogames/osrs/bounties/updateFromSheets.js";
+
 export const getAllSheetBounties = async () => {
   const sheetsToRead = ["easy", "medium", "hard", "elite", "master"];
-  const range = "A1:M50";
+  const range = "A2:M50";
   const allRanges = sheetsToRead.map((sheet) => `${sheet}!${range}`);
 
   try {
-    const allSheetData = await readFromMultipleSheets(allRanges);
-
+    const allSheetData = await sheets.readFromMultipleSheets(allRanges);
     console.log("Batch data pulled successfully:");
-
-    checkSheets(allSheetData);
+    modifySheetData(allSheetData);
   } catch (error) {
     console.error("Error reading from sheets:", error);
   }
 };
 
-// Called when bounty completed, update current row, along with next row single cell for status
-export const updateBountyRow = async (row, sheet, data) => {
+// Called when bounty completed, update current row with Status, RSN, Discord, S3_URL, Quantity
+export const completeBounty = async (sheet, row, data) => {
   try {
-    let dataArr = []
-    const range = `${sheet}!H${row}:M${row}`
-    
+    const range = `${sheet}!I${row}:M${row}`
+    await writeSingleSheet(range, data)
   } catch (error) {
-    
+    console.log(`Could not update bounty row: ${row}, sheet: ${sheet}`)
+    console.error(error)
   }
 }
 
-export const getBountyRow = async (row, sheet) => {
+export const getNewBounty = async (sheet, row) => {
   try {
     const range = `${sheet}!A${row}:M${row}`
-    const rowData = await readSingleSheet()
-    console.log(`Successfully pulled bounty row data`)
-    return rowData
+    const rowData = await readSingleSheet(range)
+    console.log(`Successfully pulled bounty row data:`)
+    console.log(rowData)
+    const newBountyObj = createBountyObject(rowData)
+    createBounty(newBounty, sheet, row)
   } catch (error) {
-    
+    console.log(`Could not get bounty row: ${row}, sheet: ${sheet}`)
+    console.error(error)
+  }
+}
+
+//Needs Status, RSN, Discord, S3_URL, Quantity, Manually Verified
+//Data is a 2D array [[]] where each index is a col, needs 6 values
+export const markManuallyCompleted = (discordUsername, discordImgURL, sheet, row) => {
+  try {
+    const finalArr = [["MANUALLY COMPLETED", "", discordUsername, discordImgURL, "69420", "YES"]]
+    const range = `${sheet}!I${row}:N${row}`
+    await writeSingleSheet(range, finalArr)
+  } catch (error) {
+    console.log(`Could not update bounty row: ${row}, sheet: ${sheet}`)
+    console.error(error)
   }
 }
 

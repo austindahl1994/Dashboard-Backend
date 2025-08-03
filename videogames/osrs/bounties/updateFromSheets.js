@@ -1,6 +1,6 @@
 import { cachedBounties } from '../cachedData.js'
 import { Bounty } from './Bounty.js'
-import { createCachedHighscores } from '../highscoresUtilities.js'
+import { createCachedHighscores } from '../highscores.js'
 import { getTier, getURLImage } from './bountyUtilities.js'
 
 // receives all sheet data as an array of arrays, each array is a sheet

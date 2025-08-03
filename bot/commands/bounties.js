@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, MessageFlags } from "discord.js";
-import { getEmbeds } from "../embeds/embededBounties.js";
+import { getAllBountyEmbeds } from "../embeds/embededBounties.js";
 import dotenv from "dotenv";
 
 dotenv.config();

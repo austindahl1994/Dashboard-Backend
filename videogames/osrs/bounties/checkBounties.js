@@ -34,10 +34,3 @@ export const checkBounties = async (data) => {
     }
   }
 };
-
-//Move this to the controller, that way we can delete the image immediately after URL is created
-const completeBounty = async (bounty, img) => {
-  //mark bounty as complete
-  bounty.Completed = true
-  //save the img to 
-}

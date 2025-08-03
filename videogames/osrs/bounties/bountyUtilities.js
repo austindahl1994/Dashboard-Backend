@@ -47,7 +47,9 @@ const difficultyToTier = (tier) => {
   }
 }
 
-export { getURLImage, formatBounty, getTier, difficultyToTier };
+const bountyHeaders = ["Title", "Item", "Source", "Description", "Type", "Bounty", "Wiki_URL", "Other", "Status", "RSN", "Discord", "S3_URL", "Quantity"]
+
+export { getURLImage, formatBounty, getTier, difficultyToTier, bountyHeaders };
 
 /*TASKS
 Need to do the following:

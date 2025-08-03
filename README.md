@@ -1,7 +1,3 @@
 # Dashboard-Backend
 
-Backend for full stack dashboard app
-
-## TODO
-
-Finish auth logout to clear cookies, check with /test/check-session?
+Backend environment for full stack dashboard application, as well as other small projects using server hosted on AWS EC2 Instance

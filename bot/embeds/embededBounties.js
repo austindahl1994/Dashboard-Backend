@@ -19,7 +19,7 @@ const handlers = {
   PLAYER_KILL: pk,
 };
 
-export const getEmbeds = () => {
+export const getAllBountyEmbeds = () => {
   let finalArr = cachedBounties.map((data, index) => {
     if (
       !data ||

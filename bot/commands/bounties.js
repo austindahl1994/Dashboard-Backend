@@ -20,6 +20,20 @@ export default {
         flags: MessageFlags.Ephemeral,
       });
     }
+
+    const embeds = getEmbeds();
+
+    if (!embeds || embeds.length === 0) {
+      return interaction.reply({
+        content: `There are no current bounties, try using /refresh to update them`,
+        flags: MessageFlags.Ephemeral,
+      });
+    }
+
+    await interaction.reply({ embeds: embeds, flags: MessageFlags.Ephemeral });
+  },
+};
+
     // if (!interaction.member.roles.cache.has(modId)) {
     //   return interaction.reply({
     //     content: "Only moderators can use this command.",
@@ -32,19 +46,7 @@ export default {
     //     flags: MessageFlags.Ephemeral,
     //   });
     // }
-
-    const embeds = getEmbeds();
     // console.log("Total embeds generated:", embeds.length);
     // embeds.forEach((embed, i) => {
     //   console.log(`Embed #${i + 1}:`, embed.data);
     // });
-    if (!embeds || embeds.length === 0) {
-      return interaction.reply({
-        content: `There are no current bounties, try using /refresh to update them`,
-        flags: MessageFlags.Ephemeral,
-      });
-    }
-
-    await interaction.reply({ embeds: embeds, flags: MessageFlags.Ephemeral });
-  },
-};

@@ -21,7 +21,7 @@ export default {
       });
     }
 
-    const embeds = getEmbeds();
+    const embeds = getAllBountyEmbeds();
 
     if (!embeds || embeds.length === 0) {
       return interaction.reply({

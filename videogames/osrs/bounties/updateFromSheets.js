@@ -34,7 +34,7 @@ const sheetsToBounties = async (sheetsArr) => {
     // Checks for the current Status of "Active" in the sheet, if found updates cachedBounties with that object
     // If not found, finds the first "Open" status, updates that to "Active by updating cachedBounties with that object, and adds a write to newWrites to update the sheet
     if (activeIndex !== -1) {
-      createBounty(sheet[activeIndex], tier, activeIndex + 1);
+      createBounty(sheet[activeIndex], tier, activeIndex + 2);
     } else {
       const openIndex = sheet.findIndex((obj) => obj.Status === "Open");
       if (openIndex !== -1) {

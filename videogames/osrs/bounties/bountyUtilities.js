@@ -2,7 +2,6 @@ import { writeBatchToSheet } from "../../../services/sheetService.js";
 import { Bounty } from "./Bounty.js";
 import { cachedBounties, cachedSheets } from "../cachedData.js";
 import { updateHighscores } from "../highscores/highscoresUtilities.js";
-import { updateAllSimpleData } from "./bountyUpdates.js";
 
 const MAX_TIERS = 5;
 
@@ -114,7 +113,7 @@ const updateBounty = (newObj, tier, openIndex) => {
   cachedBounties[tier] = bountyObj;
 };
 
-const getImageUrl = (wikiURL) => {
+const getURLImage = (wikiURL) => {
   return wikiURL.replace("#", "").replace("/w/", "/images/") + ".png";
 };
 
@@ -163,7 +162,7 @@ const difficultyToTier = (tier) => {
   }
 }
 
-export { checkSheets, getTier, formatBounty, difficultyToTier };
+export { checkSheets, getTier, formatBounty, difficultyToTier, getURLImage };
 
 /*TASKS
 Need to do the following:

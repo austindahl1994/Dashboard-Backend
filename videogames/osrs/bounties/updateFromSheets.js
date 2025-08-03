@@ -24,26 +24,27 @@ const modifySheetData = (allSheetData) => {
 const sheetsToBounties = async (sheetsArr) => {
   //We add +2 for indexes since sheets start at index 1 AND skipping header row 
   sheetsArr.forEach((sheet, tier) => {
+    const difficulty = getTier(tier)
     const activeIndex = sheet.findIndex((obj) => obj.Status === "Active");
     // Checks for the current Status of "Active" in the sheet, if found updates cachedBounties with that object
     // If not found, finds the first "Open" status, updates that to "Active by updating cachedBounties with that object, and adds a write to newWrites to update the sheet
     if (activeIndex !== -1) {
-      createBounty(sheet[activeIndex], tier, activeIndex + 2);
+      createBounty(sheet[activeIndex], difficulty, activeIndex + 2);
     } else {
       const openIndex = sheet.findIndex((obj) => obj.Status === "Open");
       if (openIndex !== -1) {
-        console.log(`Open index: ${openIndex + 2} for tier ${getTier(tier)}`);
+        console.log(`Open index: ${openIndex + 2} for tier ${difficulty}`);
         sheet[openIndex].Status = "Active";
         // Adds write object to newWrites array for it to be written in batch later
-        console.log(`Adding writeObj for tier ${getTier(tier)}`);
+        console.log(`Adding writeObj for tier ${difficulty}`);
         const writeObj = {
-          range: `${getTier(tier)}!H${openIndex + 2}`,
+          range: `${difficulty}!H${openIndex + 2}`,
           values: [["Active"]],
         };
         newWrites.push(writeObj);
-        createBounty(sheet[openIndex], tier, openIndex + 2);
+        createBounty(sheet[openIndex], difficulty, openIndex + 2);
       } else {
-        console.log(`No open index for: ${getTier(tier)}`
+        console.log(`No open index for: ${difficulty}`
         );
         const newBounty = new Bounty();
         newBounty.Tier_completed = true;
@@ -70,8 +71,7 @@ const createBountyObject = (bountyRow) => {
   return rowObj
 }
 
-const createBounty = (bountyData, tier, sheetIndex) => {
-  const difficulty = getTier(tier)
+const createBounty = (bountyData, difficulty, sheetIndex) => {
   console.log(`Create bounty called for difficulty ${difficulty}`);
   // Ensure Item is always an array of strings
   let items = [];

@@ -10,7 +10,7 @@ const MAX_TIERS = 5;
 // each sheet has first row as headers, rest as data
 // converts each sheet to an array of objects, stores in cachedSheets
 // then calls checkBounties to update cachedBounties if needed
-const checkSheets = (allSheetData) => {
+const checkSheets = async (allSheetData) => {
   allSheetData.forEach((sheet, sheetIndex) => {
     const [headers, ...rows] = sheet;
     const sheetObjects = [];
@@ -33,23 +33,7 @@ const checkSheets = (allSheetData) => {
 
   console.log(`Finished caching sheets, data:`);
   console.log(cachedSheets);
-  checkBounties();
-};
-
-const checkBounties = async () => {
-  console.log(`Now checking bounties`);
-  if (cachedBounties.length !== MAX_TIERS) {
-    console.log(`Bounties are not cached, updating from cached sheets`);
-  }
-
-  if (!cachedSheets || cachedSheets.length === 0) {
-    console.log(`There was no cached sheet! returning`);
-    return;
-  }
-
   await setNewActiveBounty();
-  // console.log(`Finished checking cached bounties, cachedBounties are: `);
-  // console.log(cachedBounties);
 };
 
 //separate cachedSheets and new sheets functionality? Still have it iterative over their array of objects

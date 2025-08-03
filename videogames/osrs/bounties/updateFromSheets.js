@@ -29,6 +29,7 @@ export const modifySheetData = (allSheetData) => {
 }
 
 const sheetsToBounties = async (sheetsArr) => {
+  //We add +2 for indexes since sheets start at index 1 AND skipping header row 
   sheetsArr.forEach((sheet, tier) => {
     const activeIndex = sheet.findIndex((obj) => obj.Status === "Active");
     // Checks for the current Status of "Active" in the sheet, if found updates cachedBounties with that object

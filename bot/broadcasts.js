@@ -1,19 +1,23 @@
+import { getAllBountyEmbeds } from "../embeds/embededBounties.js";
+import { getHighscoresEmbeds } from "../embeds/embededHighscores.js";
+
 import dotenv from "dotenv";
 dotenv.config();
 
-const highscoresChannel = process.env.HIGHSCORES_CHANNEL_ID
-const bountiesChannel = process.env.BOUNTIES_CHANNEL_ID
 // Used to update broadcasted messages that have already been created, if they haven't then create a new one and just
 // clg the savedMessageId for both highscores and bounties to be saved
 // Need to save the two different broadcasted IDs after first post
-export updateBroadcast = async (embed, savedMessageId, broadcastType) => {
+export updateBroadcast = async (savedMessageId, broadcastType) => {
   // If savedMessageID is not null, edit it, otherwise will create and post what the message Id is
   try {
     let channelId;
+    let embeds;
     if (broadcastType === "highscores") {
       channelId = process.env.HIGHSCORES_CHANNEL_ID
+      embeds = getAllBountyEmbeds()
     } else if (broadcastType === "bounties") {
       channelId = process.env.BOUNTIES_CHANNEL_ID
+      embeds = getHighscoresEmbeds()
     } else {
       throw new Error(`No correct broadcast type was passed in, passed in: ${broadcastType}`)
     }

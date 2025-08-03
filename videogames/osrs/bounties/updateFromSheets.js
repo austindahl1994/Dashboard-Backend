@@ -1,28 +1,21 @@
 import { cachedBounties } from '../cachedData.js'
 import { Bounty } from './Bounty.js'
 import { createCachedHighscores } from '../highscores.js'
-import { getTier, getURLImage } from './bountyUtilities.js'
+import { getTier, getURLImage, bountyHeaders as headers } from './bountyUtilities.js'
 
 // receives all sheet data as an array of arrays, each array is a sheet
 // each sheet has first row as headers, rest as data
 // converts each sheet to an array of objects, stores in cachedSheets
 // then calls checkBounties to update cachedBounties if needed
-export const modifySheetData = (allSheetData) => {
+const modifySheetData = (allSheetData) => {
   const sheetsArr = [];
-  allSheetData.forEach((sheet, sheetIndex) => {
-    const [headers, ...rows] = sheet;
-
+  allSheetData.forEach((rows, sheetIndex) => {
     rows.forEach((row) => {
       if (row.length !== headers.length) {
         row.push(...Array(headers.length - row.length).fill(""));
       }
-
-      const rowObj = {};
-      headers.forEach((header, colIndex) => {
-        rowObj[header] = row[colIndex];
-      });
-
-      sheetsArr.push(rowObj);
+      const bountyObject = createBountyObject(row)
+      sheetsArr.push(bountyObject);
     });
   });
   sheetsToBounties(sheetsArr)
@@ -68,6 +61,15 @@ const sheetsToBounties = async (sheetsArr) => {
   createCachedHighscores(sheetsArr)
 }
 
+//Passed in single array of rows to be made into an object
+const createBountyObject = (bountyRow) => {
+  const rowObj = {};
+  headers.forEach((header, colIndex) => {
+    rowObj[header] = bountyRow[colIndex];
+  });
+  return rowObj
+}
+
 const createBounty = (bountyData, tier, sheetIndex) => {
   const difficulty = getTier(tier)
   console.log(`Create bounty called for difficulty ${difficulty}`);
@@ -106,3 +108,5 @@ const updateSheetActives = async (newWrites) => {
     }
   }
 }
+
+export { createBountyObject, createBounty, modifySheetData }

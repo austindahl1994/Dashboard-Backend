@@ -1,4 +1,4 @@
-import * as compare from "./compareData.js"
+import * as compare from "./compareData.js";
 
 const handlers = {
   LOOT: compare.loot,
@@ -7,30 +7,36 @@ const handlers = {
   PET: compare.pet,
   SPEEDRUN: compare.speedrun,
   BARBARIAN_ASSAULT_GAMBLE: compare.ba,
-  PLAYER_KILL: compare.pk
+  PLAYER_KILL: compare.pk,
 };
 
 export const checkBounties = async (data) => {
   if (!data.type || data.type.trim() === "") {
-    throw new Error("No type was passed in")
+    throw new Error("No type was passed in");
   } else {
-    const trimmedType = data.type.trim(); 
-    console.log(trimmedType)
+    const trimmedType = data.type.trim();
+    console.log(trimmedType);
     const handler = handlers[trimmedType];
-  
+
     if (handler) {
       const completedBounties = cachedBounties.filter((bounty) => {
-        if (!bounty.Completed && !bounty.Tier_completed && bounty.Type === data.Type) {
-          return handler(data, bounty)
-        } 
-      })
+        if (
+          !bounty.Completed &&
+          !bounty.Tier_completed &&
+          bounty.Type === data.Type
+        ) {
+          return handler(data, bounty);
+        }
+      });
       if (completedBounties.length > 0) {
-        return completedBounties
+        return completedBounties;
       } else {
-        throw new Error(`Data did not match any current bounties`)
+        throw new Error(`Data did not match any current bounties`);
       }
     } else {
-      throw new Error(`Type ${type} is recognized but has no specific check implemented.`);
+      throw new Error(
+        `Type ${type} is recognized but has no specific check implemented.`
+      );
     }
   }
 };

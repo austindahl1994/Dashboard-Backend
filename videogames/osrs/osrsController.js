@@ -1,8 +1,7 @@
 import express from "express";
-import { broadcastMessage } from "../../bot/utilities/broadcastMessage.js";
-import { uploadScreenshot } from "../../s3Test.js";
-import { checkBounties } from "./bountyCheck.js";
-import { addToHighscores } from "./highscores/highscoresUtilities.js"
+import { uploadScreenshot } from "../../services/aws/s3.js";
+import { checkBounties } from "./bounties/checkBounties.js";
+import { addToHighscores } from "./highscores/highscores.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -14,7 +13,7 @@ export const osrsController = async (req, res) => {
   let mimetype;
   try {
     if (!file) {
-      throw new Error(`No file sent with`)
+      throw new Error(`No file sent with`);
     } else {
       image = file.buffer;
       mimetype = file.mimetype;
@@ -22,88 +21,101 @@ export const osrsController = async (req, res) => {
     const data = req.body.payload_json;
     if (data) {
       //console.log(data);
-        const parsedData = JSON.parse(data);
-        if (parsedData) {
-          //logic for keeping trcak of users that sent data
-          //logic for comparing task data/tracking count of actions
-          //logic will return array of cachedBounties objects if drop is true
-          const completedBounties = await checkBounties(parsedData)
-          if (completedBounties) {
-            //Update code for if bounties match
-            completedBounties.forEach((bounty) => {
-              bounty.S3_URL = await uploadScreenshot(
-                `bounties/${bounty.Difficulty}/${bounty.Title}`,
-                image,
-                mimetype
-              )
-              // NEED TO ADD MORE LOGIC HERE
-              //Update highscores and post to correct discord channel
-              addToHighscores(data, bounty)
-              //Update sheets data after fully updating the object
-              const dataToUpDate = {
-                //Add logic for the exact row data that will be updated, discordName, playerName, status completed etc
-              }
-              await updateBountyRow(bounty.Sheet_Index, bounty.Difficulty, dataToUpdate)
-              //Get a new bounty 
-              const newBounty = await getBountyRow(bounty.Sheet_Index, bounty.Difficulty)
-              //After getting google data, based on difficulty manually set the data based on index against difficulty
-              //Import the new difficultyToTier() function in utilities
-            })
-            if (req.file) {
-              delete req.file
-              image = null
-            }
-            //Broadcast to completed bounties discord channel
-            await broadcastHighscores(highscores)
-          } else {
-            throw new Error("No bounties completed, this should not be shown as a previous error should have been thrown.")
+      const parsedData = JSON.parse(data);
+      if (parsedData) {
+        //logic for keeping trcak of users that sent data
+        //logic for comparing task data/tracking count of actions
+        //logic will return array of cachedBounties objects if drop is true
+        const completedBounties = await checkBounties(parsedData);
+        if (completedBounties) {
+          //Update code for if bounties match
+          completedBounties.forEach(async (bounty) => {
+            bounty.S3_URL = await uploadScreenshot(
+              `bounties/${bounty.Difficulty}/${bounty.Title}`,
+              image,
+              mimetype
+            );
+            // NEED TO ADD MORE LOGIC HERE
+            //Update highscores and post to correct discord channel
+            addToHighscores(data, bounty);
+            //Update sheets data after fully updating the object
+            const dataToUpdate = {
+              status: "COMPLETED",
+              discord: bounty.Discord_Name,
+              rsn: bounty.RSN,
+              s3_url: bounty.S3_URL,
+              quantity: bounty.Quantity,
+            };
+            await updateBountyRow(
+              bounty.Sheet_Index,
+              bounty.Difficulty,
+              dataToUpdate
+            );
+            //Get a new bounty
+            const newBounty = await getBountyRow(
+              bounty.Sheet_Index,
+              bounty.Difficulty
+            );
+            //After getting google data, based on difficulty manually set the data based on index against difficulty
+            //Import the new difficultyToTier() function in utilities
+          });
+          if (req.file) {
+            delete req.file;
+            image = null;
           }
-        }
-        if (file) {
-          //file logic for every array passed over
-          // Save image to S3 and get new S3_URL, null the image locally
-          // Create new data object with: Discord AND/OR RSN, S3_URL, Quantity, then get next task with Sheet_Index
-          // Update Google sheet with data object, set COMPLETE, set next "Open"  to "Active"
-          // Get a new task based on previous Sheet_Index and tier, if none then set Tier_completed to true
+          //Broadcast to completed bounties discord channel
+          await broadcastHighscores(highscores);
         } else {
-          throw new Error(`No file attached`)
+          throw new Error(
+            "No bounties completed, this should not be shown as a previous error should have been thrown."
+          );
         }
+      }
+      if (file) {
+        //file logic for every array passed over
+        // Save image to S3 and get new S3_URL, null the image locally
+        // Create new data object with: Discord AND/OR RSN, S3_URL, Quantity, then get next task with Sheet_Index
+        // Update Google sheet with data object, set COMPLETE, set next "Open"  to "Active"
+        // Get a new task based on previous Sheet_Index and tier, if none then set Tier_completed to true
+      } else {
+        throw new Error(`No file attached`);
+      }
     } else {
-      throw new Error(`No data was able to be parsed`)
+      throw new Error(`No data was able to be parsed`);
     }
   } catch (error) {
-    console.log(`Deleting file because of the error: ${error}`)
+    console.log(`Deleting file because of the error: ${error}`);
     if (req.file) {
-      delete req.file
-      image = null
+      delete req.file;
+      image = null;
     }
   }
 };
-      // console.log(parsedData);
-      // console.log(`Successfully called osrsTest with data: `);
-      // console.log(parsedData.discordUser.name);
-      // console.log(`File received with size: ${image.length} bytes`);
-      // console.log(`Mimetype of file is: ${mimetype}`);
-      // if (parsedData.type === "LOOT") {
-      //   console.log(`Items were: `);
-      //   parsedData?.extra?.items.forEach((item) => {
-      //     console.log(
-      //       `${item.quantity} x ${item.name} (${item.priceEach} each)`
-      //     );
-      //   });
-      // }
-      // const newMessage = "This is a test";
-      // broadcastMessage(channelID, newMessage);
-      // const image = parsedData.embeds[0].image.url;
-      // key (in this case image.png) can specify folder ("bounties/easy/filename.png")
-      // const imageURL = await uploadScreenshot(
-      //   "bounties/easy/vinnyTest.png", //difficulty/tier from cachedData
-      //   image,
-      //   mimetype
-      // );
-      // if (imageURL) {
-      //   broadcastMessage(channelID, imageURL);
-      // }
+// console.log(parsedData);
+// console.log(`Successfully called osrsTest with data: `);
+// console.log(parsedData.discordUser.name);
+// console.log(`File received with size: ${image.length} bytes`);
+// console.log(`Mimetype of file is: ${mimetype}`);
+// if (parsedData.type === "LOOT") {
+//   console.log(`Items were: `);
+//   parsedData?.extra?.items.forEach((item) => {
+//     console.log(
+//       `${item.quantity} x ${item.name} (${item.priceEach} each)`
+//     );
+//   });
+// }
+// const newMessage = "This is a test";
+// broadcastMessage(channelID, newMessage);
+// const image = parsedData.embeds[0].image.url;
+// key (in this case image.png) can specify folder ("bounties/easy/filename.png")
+// const imageURL = await uploadScreenshot(
+//   "bounties/easy/vinnyTest.png", //difficulty/tier from cachedData
+//   image,
+//   mimetype
+// );
+// if (imageURL) {
+//   broadcastMessage(channelID, imageURL);
+// }
 
 //TODO: Left off on google sheets, works if cached sheets/bounties are empty, NEED TO CALL ON SERVER START WHEN IN PROD, rather than checks, have it be a create since shouldnt exist
 //NEXT: Get discord embeds to work properly with temp data saved in cached

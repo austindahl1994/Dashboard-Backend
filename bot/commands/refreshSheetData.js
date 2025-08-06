@@ -1,5 +1,5 @@
 import { MessageFlags, SlashCommandBuilder } from "discord.js";
-import { testRead } from "../../services/testRead.js";
+import { getAllSheetBounties } from "../../services/google/osrsSheets.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -18,7 +18,7 @@ export default {
         flags: MessageFlags.Ephemeral,
       });
     }
-    const successful = await testRead();
+    const successful = await getAllSheetBounties();
     await interaction.reply({
       content: `Sheets ${
         successful

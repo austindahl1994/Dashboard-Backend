@@ -1,7 +1,11 @@
-import { cachedBounties } from '../cachedData.js'
-import { Bounty } from './Bounty.js'
-import { createCachedHighscores } from '../highscores.js'
-import { getTier, getURLImage, bountyHeaders as headers } from './bountyUtilities.js'
+import { cachedBounties } from "../cachedData.js";
+import { Bounty } from "./Bounty.js";
+import { createCachedHighscores } from "../highscores/highscores.js";
+import {
+  getTier,
+  getURLImage,
+  bountyHeaders as headers,
+} from "./bountyUtilities.js";
 
 // receives all sheet data as an array of arrays, each array is a sheet
 // each sheet has first row as headers, rest as data
@@ -14,17 +18,17 @@ const modifySheetData = (allSheetData) => {
       if (row.length !== headers.length) {
         row.push(...Array(headers.length - row.length).fill(""));
       }
-      const bountyObject = createBountyObject(row)
+      const bountyObject = createBountyObject(row);
       sheetsArr.push(bountyObject);
     });
   });
-  sheetsToBounties(sheetsArr)
-}
+  sheetsToBounties(sheetsArr);
+};
 
 const sheetsToBounties = async (sheetsArr) => {
-  //We add +2 for indexes since sheets start at index 1 AND skipping header row 
+  //We add +2 for indexes since sheets start at index 1 AND skipping header row
   sheetsArr.forEach((sheet, tier) => {
-    const difficulty = getTier(tier)
+    const difficulty = getTier(tier);
     const activeIndex = sheet.findIndex((obj) => obj.Status === "Active");
     // Checks for the current Status of "Active" in the sheet, if found updates cachedBounties with that object
     // If not found, finds the first "Open" status, updates that to "Active by updating cachedBounties with that object, and adds a write to newWrites to update the sheet
@@ -44,23 +48,21 @@ const sheetsToBounties = async (sheetsArr) => {
         newWrites.push(writeObj);
         createBounty(sheet[openIndex], difficulty, openIndex + 2);
       } else {
-        console.log(`No open index for: ${difficulty}`
-        );
+        console.log(`No open index for: ${difficulty}`);
         const newBounty = new Bounty();
         newBounty.Tier_completed = true;
         cachedBounties[tier] = newBounty;
       }
     }
   });
-  
-  updateSheetActives(newWrites)
-  
+
+  updateSheetActives(newWrites);
+
   console.log(`Final cached bounties:`);
   console.log(cachedBounties);
-  })
 
-  createCachedHighscores(sheetsArr)
-}
+  createCachedHighscores(sheetsArr);
+};
 
 //Passed in single array of rows to be made into an object
 const createBountyObject = (bountyRow) => {
@@ -68,8 +70,8 @@ const createBountyObject = (bountyRow) => {
   headers.forEach((header, colIndex) => {
     rowObj[header] = bountyRow[colIndex];
   });
-  return rowObj
-}
+  return rowObj;
+};
 
 const createBounty = (bountyData, difficulty, sheetIndex) => {
   console.log(`Create bounty called for difficulty ${difficulty}`);
@@ -77,13 +79,15 @@ const createBounty = (bountyData, difficulty, sheetIndex) => {
   let items = [];
   if (Array.isArray(bountyData.Item)) {
     items = bountyData.Item.map((i) => i.trim()).filter((i) => i.length > 0);
-  } else if (typeof bountyData.Item === "string" && bountyData.Item.trim() !== "") {
+  } else if (
+    typeof bountyData.Item === "string" &&
+    bountyData.Item.trim() !== ""
+  ) {
     // Split by comma if multiple items in a string
     items = bountyData.Item.split(",")
       .map((i) => i.trim())
       .filter((i) => i.length > 0);
   }
-
 
   const newBounty = new Bounty({
     ...bountyData,
@@ -92,11 +96,11 @@ const createBounty = (bountyData, difficulty, sheetIndex) => {
     Item: items,
     Bounty: bountyData.Bounty,
     Sheet_Index: sheetIndex,
-    Wiki_Image: getURLImage(bountyData.Wiki_URL)
-  })
+    Wiki_Image: getURLImage(bountyData.Wiki_URL),
+  });
 
-  cachedBounties[tier] = newBounty
-}
+  cachedBounties[tier] = newBounty;
+};
 
 const updateSheetActives = async (newWrites) => {
   if (newWrites.length > 0) {
@@ -104,9 +108,9 @@ const updateSheetActives = async (newWrites) => {
     try {
       await writeBatchToSheet(newWrites);
     } catch (error) {
-      console.error(`Error batching to sheet: ${error}`)
+      console.error(`Error batching to sheet: ${error}`);
     }
   }
-}
+};
 
-export { createBountyObject, createBounty, modifySheetData }
+export { createBountyObject, createBounty, modifySheetData };

@@ -7,19 +7,21 @@ dotenv.config();
 // Used to update broadcasted messages that have already been created, if they haven't then create a new one and just
 // clg the savedMessageId for both highscores and bounties to be saved
 // Need to save the two different broadcasted IDs after first post
-export updateBroadcast = async (savedMessageId, broadcastType) => {
+export const updateBroadcast = async (savedMessageId, broadcastType) => {
   // If savedMessageID is not null, edit it, otherwise will create and post what the message Id is
   try {
     let channelId;
     let embeds;
     if (broadcastType === "highscores") {
-      channelId = process.env.HIGHSCORES_CHANNEL_ID
-      embeds = getAllBountyEmbeds()
+      channelId = process.env.HIGHSCORES_CHANNEL_ID;
+      embeds = getAllBountyEmbeds();
     } else if (broadcastType === "bounties") {
-      channelId = process.env.BOUNTIES_CHANNEL_ID
-      embeds = getHighscoresEmbeds()
+      channelId = process.env.BOUNTIES_CHANNEL_ID;
+      embeds = getHighscoresEmbeds();
     } else {
-      throw new Error(`No correct broadcast type was passed in, passed in: ${broadcastType}`)
+      throw new Error(
+        `No correct broadcast type was passed in, passed in: ${broadcastType}`
+      );
     }
     const channel = await client.channels.fetch(channelId);
     // content is the embed
@@ -47,14 +49,14 @@ export updateBroadcast = async (savedMessageId, broadcastType) => {
   } catch (err) {
     console.error("Error broadcasting message:", err);
   }
-}
+};
 
 export const completedBounty = async (bounty) => {
-  const embed = completedBountyEmbed(bounty)
+  const embed = completedBountyEmbed(bounty);
   try {
     const channel = await client.channels.fetch(channelId);
-    await channel.send({embeds: [embed]})
+    await channel.send({ embeds: [embed] });
   } catch (error) {
-    console.error(`Error broadcasting completed bounty: ${error}`)
+    console.error(`Error broadcasting completed bounty: ${error}`);
   }
-}
+};

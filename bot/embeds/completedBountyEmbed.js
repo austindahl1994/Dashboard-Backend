@@ -1,13 +1,32 @@
 import { EmbedBuilder } from "discord.js";
+import { formatBounty } from "./embedUtilities.js";
 
-// Some sort of list for the description for different players?
+// Pass in bounty with Title, Difficulty, Discord, RSN, S3_URL, Quantity, Bounty
 export const completedBountyEmbed = (bounty) => {
+  const player =
+    typeof bounty.Discord === "string" && bounty.Discord.trim()
+      ? bounty.Discord
+      : bounty.RSN || "Unknown Player";
+
+  const playerName =
+    player.length > 0
+      ? player[0].toUpperCase() + player.slice(1)
+      : "Unknown Player";
+
+  const gp = formatBounty(bounty.Bounty);
   const embed = new EmbedBuilder()
-    .setTitle(`${bounty.Difficulty} has been claimed by ${bounty.RSN}`)
+    .setTitle(`**${bounty.Title}** Completed!`)
     // code for comparing either RSN or Discord
     .setImage(bounty.S3_URL)
-    .setDescription("Some completion description here, can be specific based on RSN || some default message");
-    // finish embed with ';' symbol
-    // can add footer or something as well based on RSN
-  return embed
-}
+    .setDescription(
+      `${playerName} has completed the ${bounty.Difficulty} tier bounty, claiming a cool ${gp}!`
+    );
+  if (bounty.Quantity && bounty.Quantity !== "Unknown Amount") {
+    embed.setFooter({
+      text: `Attempts for completion: ${bounty.Quantity}`,
+    });
+  }
+  // finish embed with ';' symbol
+  // can add footer or something as well based on RSN
+  return embed;
+};

@@ -1,33 +1,35 @@
-import { cachedBounties } from "../cachedData.js";
+import { cachedBounties, numberOfBounties } from "../cachedData.js";
 import { Bounty } from "./Bounty.js";
 import { createCachedHighscores } from "../highscores/highscores.js";
 import {
+  difficultyToTier,
   getTier,
   getURLImage,
   bountyHeaders as headers,
 } from "./bountyUtilities.js";
+import { writeBatchToSheet } from "../../../services/google/sheets.js";
 
 // receives all sheet data as an array of arrays, each array is a sheet
 // each sheet has first row as headers, rest as data
 // converts each sheet to an array of objects, stores in cachedSheets
 // then calls checkBounties to update cachedBounties if needed
 const modifySheetData = (allSheetData) => {
-  const sheetsArr = [];
-  allSheetData.forEach((rows, sheetIndex) => {
+  const finalSheetData = allSheetData.map((rows) => {
+    const sheetsArr = [];
     rows.forEach((row) => {
-      if (row.length !== headers.length) {
-        row.push(...Array(headers.length - row.length).fill(""));
-      }
       const bountyObject = createBountyObject(row);
       sheetsArr.push(bountyObject);
     });
+    return sheetsArr;
   });
-  sheetsToBounties(sheetsArr);
+  sheetsToBounties(finalSheetData);
 };
 
 const sheetsToBounties = async (sheetsArr) => {
+  const newWrites = [];
   //We add +2 for indexes since sheets start at index 1 AND skipping header row
   sheetsArr.forEach((sheet, tier) => {
+    numberOfBounties[tier] = sheet.length;
     const difficulty = getTier(tier);
     const activeIndex = sheet.findIndex((obj) => obj.Status === "Active");
     // Checks for the current Status of "Active" in the sheet, if found updates cachedBounties with that object
@@ -37,21 +39,21 @@ const sheetsToBounties = async (sheetsArr) => {
     } else {
       const openIndex = sheet.findIndex((obj) => obj.Status === "Open");
       if (openIndex !== -1) {
-        console.log(`Open index: ${openIndex + 2} for tier ${difficulty}`);
+        // console.log(`Open index: ${openIndex + 2} for tier ${difficulty}`);
         sheet[openIndex].Status = "Active";
         // Adds write object to newWrites array for it to be written in batch later
-        console.log(`Adding writeObj for tier ${difficulty}`);
+        // console.log(`Adding writeObj for tier ${difficulty}`);
         const writeObj = {
-          range: `${difficulty}!H${openIndex + 2}`,
+          range: `${difficulty}!I${openIndex + 2}`,
           values: [["Active"]],
         };
         newWrites.push(writeObj);
         createBounty(sheet[openIndex], difficulty, openIndex + 2);
       } else {
-        console.log(`No open index for: ${difficulty}`);
+        // console.log(`No open index for: ${difficulty}`);
         const newBounty = new Bounty();
         newBounty.Tier_completed = true;
-        cachedBounties[tier] = newBounty;
+        cachedBounties[getTier(difficulty)] = newBounty;
       }
     }
   });
@@ -60,12 +62,18 @@ const sheetsToBounties = async (sheetsArr) => {
 
   console.log(`Final cached bounties:`);
   console.log(cachedBounties);
-
+  // console.log(`Number of bounties per tier:`);
+  // numberOfBounties.forEach((count, index) => {
+  //   console.log(`Tier ${getTier(index)}: ${count}`);
+  // });
   createCachedHighscores(sheetsArr);
 };
 
 //Passed in single array of rows to be made into an object
 const createBountyObject = (bountyRow) => {
+  if (bountyRow.length !== headers.length) {
+    bountyRow.push(...Array(headers.length - bountyRow.length).fill(""));
+  }
   const rowObj = {};
   headers.forEach((header, colIndex) => {
     rowObj[header] = bountyRow[colIndex];
@@ -74,7 +82,9 @@ const createBountyObject = (bountyRow) => {
 };
 
 const createBounty = (bountyData, difficulty, sheetIndex) => {
-  console.log(`Create bounty called for difficulty ${difficulty}`);
+  // console.log(`Create bounty called for difficulty ${difficulty}`);
+  const tier = difficultyToTier(difficulty);
+  // console.log(`Creating bounty for tier: ${tier}, sheetIndex: ${sheetIndex}`);
   // Ensure Item is always an array of strings
   let items = [];
   if (Array.isArray(bountyData.Item)) {
@@ -91,7 +101,7 @@ const createBounty = (bountyData, difficulty, sheetIndex) => {
 
   const newBounty = new Bounty({
     ...bountyData,
-    ID: `${difficulty}` + ":" + `${sheetIndex - 2}`,
+    Id: sheetIndex - 1,
     Difficulty: `${difficulty}`,
     Item: items,
     Bounty: bountyData.Bounty,

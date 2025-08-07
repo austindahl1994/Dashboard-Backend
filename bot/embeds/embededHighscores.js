@@ -22,9 +22,9 @@ const highscoreEmbed = () => {
         : `#${index + 1} - `;
     embed.addFields({
       name: `__${medal} ${player.Player_Name}__`,
-      value: `**Points:** ${player.Score} ${
-        player.Player_Name === "Happy" ? "...Holy fuck Happy, you go man" : ""
-      }\n**GP made:** ${formatBounty(player.TotalBounty)}`,
+      value: `**Points:** ${player.Score} \n**GP made:** ${formatBounty(
+        player.TotalBounty
+      )}`,
       inline: false, // set to true for side-by-side
     });
   });
@@ -43,7 +43,6 @@ export const getHighscoresEmbeds = () => {
       .setDescription("No highscores available at the moment.")
       .setColor(0xe74c3c); // Red color for no data
     embeds.push(noDataEmbed);
-    return embeds;
   } else {
     embeds.push(highscoreEmbed());
   }

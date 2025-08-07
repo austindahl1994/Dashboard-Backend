@@ -1,11 +1,8 @@
-import express from "express";
-import { uploadScreenshot } from "../../services/aws/s3.js";
 import { checkBounties } from "./bounties/checkBounties.js";
-import { addToHighscores } from "./highscores/highscores.js";
-import dotenv from "dotenv";
+import { completeBounty } from "./bounties/completeBounty.js";
 
+import dotenv from "dotenv";
 dotenv.config();
-const channelID = process.env.DISCORD_CHANNEL_ID;
 
 export const osrsController = async (req, res) => {
   const file = req.file;
@@ -23,41 +20,11 @@ export const osrsController = async (req, res) => {
       //console.log(data);
       const parsedData = JSON.parse(data);
       if (parsedData) {
-        //logic for keeping trcak of users that sent data
-        //logic for comparing task data/tracking count of actions
-        //logic will return array of cachedBounties objects if drop is true
         const completedBounties = await checkBounties(parsedData);
         if (completedBounties) {
           //Update code for if bounties match
           completedBounties.forEach(async (bounty) => {
-            bounty.S3_URL = await uploadScreenshot(
-              `bounties/${bounty.Difficulty}/${bounty.Title}`,
-              image,
-              mimetype
-            );
-            // NEED TO ADD MORE LOGIC HERE
-            //Update highscores and post to correct discord channel
-            addToHighscores(data, bounty);
-            //Update sheets data after fully updating the object
-            const dataToUpdate = {
-              status: "COMPLETED",
-              discord: bounty.Discord_Name,
-              rsn: bounty.RSN,
-              s3_url: bounty.S3_URL,
-              quantity: bounty.Quantity,
-            };
-            await updateBountyRow(
-              bounty.Sheet_Index,
-              bounty.Difficulty,
-              dataToUpdate
-            );
-            //Get a new bounty
-            const newBounty = await getBountyRow(
-              bounty.Sheet_Index,
-              bounty.Difficulty
-            );
-            //After getting google data, based on difficulty manually set the data based on index against difficulty
-            //Import the new difficultyToTier() function in utilities
+            await completeBounty(bounty);
           });
           if (req.file) {
             delete req.file;

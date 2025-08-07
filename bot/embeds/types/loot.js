@@ -1,4 +1,5 @@
 import { EmbedBuilder } from "discord.js";
+import { formatBounty } from "../embedUtilities.js";
 
 export const loot = (data, tier, scrollImage, color) => {
   const embed = new EmbedBuilder()
@@ -9,6 +10,9 @@ export const loot = (data, tier, scrollImage, color) => {
     .setAuthor({
       name: tier,
       iconURL: scrollImage,
+    })
+    .setFooter({
+      text: `Task ID: ${data.Id}`,
     });
 
   embed.setDescription(
@@ -16,9 +20,10 @@ export const loot = (data, tier, scrollImage, color) => {
   );
 
   if (data.Bounty) {
+    const bounty = formatBounty(data.Bounty);
     embed.addFields({
       name: "__Bounty__",
-      value: `**${data.Bounty}**`,
+      value: `**${bounty}**`,
       inline: true,
     });
   }

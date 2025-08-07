@@ -8,6 +8,9 @@ export const pk = (data, tier, scrollImage, color) => {
     .setAuthor({
       name: tier,
       iconURL: scrollImage,
+    })
+    .setFooter({
+      text: `Task ID: ${data.Id}`,
     });
   return embed;
 };

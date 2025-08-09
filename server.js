@@ -13,3 +13,14 @@ app.listen(PORT, () => {
 startBot().catch((err) => {
   console.error("Failed to start bot:", err);
 });
+
+function gracefulShutdown() {
+  console.log("Shutting down server...");
+  server.close(() => {
+    console.log("Server closed.");
+    process.exit(0);
+  });
+}
+
+process.on("SIGINT", gracefulShutdown);
+process.on("SIGTERM", gracefulShutdown);

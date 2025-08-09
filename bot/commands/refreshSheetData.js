@@ -1,11 +1,14 @@
 import { MessageFlags, SlashCommandBuilder } from "discord.js";
 import { getAllSheetBounties } from "../../services/google/osrsSheets.js";
-import dotenv from "dotenv";
+import { updateBroadcast } from "../broadcasts.js";
 
+import dotenv from "dotenv";
 dotenv.config();
+
 const allowedChannel = process.env.EVENT_CHANNEL_ID;
 
-const allowedUserId = process.env.TEMP_USER_ID;
+// const allowedUserId = process.env.TEMP_USER_ID;
+
 export default {
   cooldown: 5,
   data: new SlashCommandBuilder()
@@ -25,6 +28,7 @@ export default {
       });
     }
     const successful = await getAllSheetBounties();
+    await updateBroadcast("bounties");
     await interaction.reply({
       content: `Sheets ${
         successful

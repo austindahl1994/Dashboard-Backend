@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import { updateBroadcast } from "../broadcasts.js";
 
 dotenv.config();
-
+const allowedChannel = process.env.EVENT_CHANNEL_ID;
 const allowedUserId = process.env.TEMP_USER_ID;
 
 export default {
@@ -13,12 +13,18 @@ export default {
     .setName("bounties")
     .setDescription("Gets current listed bounties"),
   async execute(interaction) {
-    if (interaction.user.id !== allowedUserId) {
+    if (interaction.channel.id !== allowedChannel) {
       return interaction.reply({
-        content: "Yo fuckoff, you don't need to be here right now.",
+        content: "You must be in the correct channel to use this command.",
         flags: MessageFlags.Ephemeral,
       });
     }
+    // if (interaction.user.id !== allowedUserId) {
+    //   return interaction.reply({
+    //     content: "Yo fuckoff, you don't need to be here right now.",
+    //     flags: MessageFlags.Ephemeral,
+    //   });
+    // }
 
     // const embeds = getAllBountyEmbeds();
 

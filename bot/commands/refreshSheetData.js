@@ -3,8 +3,8 @@ import { getAllSheetBounties } from "../../services/google/osrsSheets.js";
 import dotenv from "dotenv";
 
 dotenv.config();
+const allowedChannel = process.env.EVENT_CHANNEL_ID;
 
-const allowedChannelID = process.env.DISCORD_CHANNEL_ID;
 const allowedUserId = process.env.TEMP_USER_ID;
 export default {
   cooldown: 5,
@@ -12,9 +12,15 @@ export default {
     .setName("refresh")
     .setDescription("Refresh the sheets data if bounties are not populated"),
   async execute(interaction) {
-    if (interaction.user.id !== allowedUserId) {
+    // if (interaction.user.id !== allowedUserId) {
+    //   return interaction.reply({
+    //     content: "Yo fuckoff, you don't need to be here right now.",
+    //     flags: MessageFlags.Ephemeral,
+    //   });
+    // }
+    if (interaction.channel.id !== allowedChannel) {
       return interaction.reply({
-        content: "Yo fuckoff, you don't need to be here right now.",
+        content: "You must be in the correct channel to use this command.",
         flags: MessageFlags.Ephemeral,
       });
     }

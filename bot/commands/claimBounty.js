@@ -27,12 +27,12 @@ export default {
     ),
   async execute(interaction) {
     //REMOVE FOR EVENT
-    if (interaction.user.id !== allowedUserId) {
-      return interaction.reply({
-        content: "Yo fuckoff, you don't need to be here right now.",
-        flags: MessageFlags.Ephemeral,
-      });
-    }
+    // if (interaction.user.id !== allowedUserId) {
+    //   return interaction.reply({
+    //     content: "Yo fuckoff, you don't need to be here right now.",
+    //     flags: MessageFlags.Ephemeral,
+    //   });
+    // }
     if (interaction.channel.id !== allowedChannel) {
       return interaction.reply({
         content: "You must be in the correct channel to use this command.",

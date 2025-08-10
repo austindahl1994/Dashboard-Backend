@@ -28,9 +28,12 @@ export const osrsController = async (req, res) => {
           completedBounties.forEach(async (bounty) => {
             bounty.Completed = true;
             let imageUrl = await uploadScreenshot(
-              `bounties/${bounty.Difficulty}/${encodeURIComponent(
-                bounty.Title
-              )}-${encodeURIComponent(parsedData.playerName)}.png`,
+              `bounties/${bounty.Difficulty}/${bounty.Title.replace(
+                /\s+/g,
+                "_"
+              ).replace(/[^\w.-]/g, "")}-${parsedData.playerName
+                .replace(/\s+/g, "_")
+                .replace(/[^\w.-]/g, "")}.png`,
               image,
               mimetype
             );
@@ -41,16 +44,14 @@ export const osrsController = async (req, res) => {
             image = null;
           }
         } else {
-          throw new Error(
-            "No bounties completed, this should not be shown as a previous error should have been thrown."
-          );
+          throw new Error("No bounties completed.");
         }
       }
     } else {
       throw new Error(`No data was able to be parsed`);
     }
   } catch (error) {
-    console.log(`Deleting file because of the error: ${error}`);
+    console.log(`Deleting file because: ${error}`);
     if (req.file) {
       delete req.file;
       image = null;

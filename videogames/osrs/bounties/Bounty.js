@@ -14,7 +14,6 @@ export class Bounty {
     RSN = "",
     Discord = "",
     S3_URL = "",
-    Quantity = 0,
     Sheet_Index,
     Wiki_Image = "https://oldschool.runescape.wiki/images/Cabbage_detail.png",
     Tier_completed = false,
@@ -34,7 +33,6 @@ export class Bounty {
     this.RSN = RSN;
     this.Discord = Discord;
     this.S3_URL = S3_URL;
-    this.Quantity = Quantity;
     this.Sheet_Index = Sheet_Index;
     this.Wiki_Image = Wiki_Image;
     this.Tier_completed = Tier_completed;

@@ -6,13 +6,8 @@ import * as osrsSheets from "../../../services/google/osrsSheets.js";
 import { cachedBounties } from "../cachedData.js";
 import { addToHighscores } from "../highscores/highscores.js";
 
-export const completeBounty = async (bounty) => {
+export const completeBounty = async (data, bounty, imageUrl) => {
   try {
-    bounty.S3_URL = await uploadScreenshot(
-      `bounties/${bounty.Difficulty}/${bounty.Title}`,
-      image,
-      mimetype
-    );
     //Update highscores and post to correct discord channel
     addToHighscores(
       data.discordUser,
@@ -21,25 +16,18 @@ export const completeBounty = async (bounty) => {
       bounty.Bounty
     );
     //Update sheets data after fully updating the object
-    const dataToUpdate = [
-      "COMPLETED",
-      bounty.RSN,
-      bounty.Discord,
-      bounty.S3_URL,
-      bounty.Quantity || "Unknown Amount",
-    ];
     const completedBounty = {
       Title: bounty.Title,
       Difficulty: bounty.Difficulty,
-      Discord: bounty.Discord || null,
-      RSN: bounty.RSN,
-      S3_URL: bounty.S3_URL,
-      Quantity: bounty.Quantity || "Unknown Amount",
+      Discord: data.discordUser || null,
+      RSN: data.playerName,
+      S3_URL: imageUrl,
       Bounty: bounty.Bounty,
     };
+    const dataToUpdate = ["COMPLETED", bounty.RSN, bounty.Discord, imageUrl];
     await osrsSheets.completeBounty(
-      bounty.Sheet_Index,
       bounty.Difficulty,
+      bounty.Sheet_Index,
       dataToUpdate
     );
     //After getting google data, based on difficulty manually set the data based on index against difficulty
@@ -73,9 +61,9 @@ export const manuallyCompleteBounty = async (
 
     // Find the bounty in cachedBounties based on id and difficulty
     const idIndex = cachedBounties.findIndex((bounty) => {
-      console.log(
-        `Checking bounty with ID: ${bounty.Id} and difficulty: ${bounty.Difficulty}`
-      );
+      // console.log(
+      //   `Checking bounty with ID: ${bounty.Id} and difficulty: ${bounty.Difficulty}`
+      // );
       return (
         parseInt(bounty.Id) === parseInt(id) &&
         bounty.Difficulty.trim() === difficulty.trim()
@@ -93,7 +81,6 @@ export const manuallyCompleteBounty = async (
       Discord: discord,
       RSN: null,
       S3_URL: imageUrl,
-      Quantity: cachedBounties[idIndex].Quantity || "Unknown Amount",
       Bounty: cachedBounties[idIndex].Bounty,
     };
     await osrsSheets.markManuallyCompleted(
@@ -119,5 +106,4 @@ export const manuallyCompleteBounty = async (
 //   discord: bounty.Discord_Name || "",
 //   rsn: bounty.RSN,
 //   s3_url: bounty.S3_URL,
-//   quantity: bounty.Quantity || "Unknown Amount",
 // };

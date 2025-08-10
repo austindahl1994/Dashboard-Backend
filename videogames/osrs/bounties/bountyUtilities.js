@@ -45,9 +45,22 @@ const difficultyToTier = (tier) => {
     default:
       return 0;
   }
-}
+};
 
-const bountyHeaders = ["Title", "Item", "Source", "Description", "Type", "Bounty", "Wiki_URL", "Other", "Status", "RSN", "Discord", "S3_URL", "Quantity"]
+const bountyHeaders = [
+  "Title",
+  "Item",
+  "Source",
+  "Description",
+  "Type",
+  "Bounty",
+  "Wiki_URL",
+  "Other",
+  "Status",
+  "RSN",
+  "Discord",
+  "S3_URL",
+];
 
 export { getURLImage, formatBounty, getTier, difficultyToTier, bountyHeaders };
 

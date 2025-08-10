@@ -1,42 +1,38 @@
 import * as compare from "./compareData.js";
+import { cachedBounties } from "../cachedData.js";
 
-const handlers = {
-  LOOT: compare.loot,
-  CLUE: compare.clue,
-  DEATH: compare.death,
-  PET: compare.pet,
-  SPEEDRUN: compare.speedrun,
-  BARBARIAN_ASSAULT_GAMBLE: compare.ba,
-  PLAYER_KILL: compare.pk,
-};
-
-export const checkBounties = async (data) => {
+export const checkBounties = (data) => {
   if (!data.type || data.type.trim() === "") {
     throw new Error("No type was passed in");
-  } else {
-    const trimmedType = data.type.trim();
-    console.log(trimmedType);
-    const handler = handlers[trimmedType];
-
-    if (handler) {
-      const completedBounties = cachedBounties.filter((bounty) => {
-        if (
-          !bounty.Completed &&
-          !bounty.Tier_completed &&
-          bounty.Type === data.Type
-        ) {
-          return handler(data, bounty);
-        }
-      });
-      if (completedBounties.length > 0) {
-        return completedBounties;
-      } else {
-        throw new Error(`Data did not match any current bounties`);
-      }
-    } else {
-      throw new Error(
-        `Type ${type} is recognized but has no specific check implemented.`
-      );
-    }
   }
+  const trimmedType = data.type.trim().toLowerCase();
+  // console.log(trimmedType);
+  const completedBounties = cachedBounties.filter((bounty) => {
+    if (
+      !bounty.Completed &&
+      !bounty.Tier_completed &&
+      bounty.Type.toLowerCase() === trimmedType
+    ) {
+      switch (trimmedType) {
+        case "loot":
+          return compare.loot(data, bounty);
+        case "clue":
+          return compare.clue(data, bounty);
+        case "death":
+          return compare.death(data, bounty);
+        case "speedrun":
+          return compare.speedrun(data, bounty);
+        case "barbarian_assault_gamble":
+          return compare.ba(data, bounty);
+        case "player_kill":
+          return compare.pk(data, bounty);
+        default:
+          return false;
+      }
+    }
+    // console.log(`Types didnt match`);
+    return false;
+  });
+
+  return completedBounties;
 };

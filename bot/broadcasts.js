@@ -19,7 +19,7 @@ export const updateBroadcast = async (broadcastType) => {
     let channelId;
     let embed;
     let savedMessageId;
-    console.log(`Received type: ${broadcastType}`);
+    // console.log(`Received type: ${broadcastType}`);
     if (broadcastType === "highscores") {
       channelId = highscoresChannel;
       embed = getHighscoresEmbeds();
@@ -44,7 +44,7 @@ export const updateBroadcast = async (broadcastType) => {
       try {
         const message = await channel.messages.fetch(savedMessageId);
         await message.edit({ embeds: embed });
-        console.log(`Edited message ID: ${savedMessageId}`);
+        //console.log(`Edited message ID: ${savedMessageId}`);
       } catch (err) {
         console.log("Failed to fetch/edit existing message, sending new one.");
         const sent = await channel.send({ embeds: embed });

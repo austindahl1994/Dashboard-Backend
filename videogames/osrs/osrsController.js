@@ -1,5 +1,6 @@
 import { checkBounties } from "./bounties/checkBounties.js";
 import { completeBounty } from "./bounties/completeBounty.js";
+import { uploadScreenshot } from "../../services/aws/s3.js";
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -20,32 +21,28 @@ export const osrsController = async (req, res) => {
       //console.log(data);
       const parsedData = JSON.parse(data);
       if (parsedData) {
-        const completedBounties = await checkBounties(parsedData);
-        if (completedBounties) {
+        console.log(`Received data from ${parsedData.playerName}`);
+        const completedBounties = checkBounties(parsedData);
+        if (completedBounties.length > 0) {
           //Update code for if bounties match
           completedBounties.forEach(async (bounty) => {
-            await completeBounty(bounty);
+            bounty.Completed = true;
+            let imageUrl = await uploadScreenshot(
+              `bounties/${bounty.Difficulty}/ID:${bounty.Id}-${parsedData.playerName}.png`,
+              image,
+              mimetype
+            );
+            await completeBounty(parsedData, bounty, imageUrl);
           });
           if (req.file) {
             delete req.file;
             image = null;
           }
-          //Broadcast to completed bounties discord channel
-          await broadcastHighscores(highscores);
         } else {
           throw new Error(
             "No bounties completed, this should not be shown as a previous error should have been thrown."
           );
         }
-      }
-      if (file) {
-        //file logic for every array passed over
-        // Save image to S3 and get new S3_URL, null the image locally
-        // Create new data object with: Discord AND/OR RSN, S3_URL, Quantity, then get next task with Sheet_Index
-        // Update Google sheet with data object, set COMPLETE, set next "Open"  to "Active"
-        // Get a new task based on previous Sheet_Index and tier, if none then set Tier_completed to true
-      } else {
-        throw new Error(`No file attached`);
       }
     } else {
       throw new Error(`No data was able to be parsed`);

@@ -16,7 +16,7 @@ dotenv.config();
 
 export const getAllSheetBounties = async () => {
   const sheetsToRead = ["easy", "medium", "hard", "elite", "master"];
-  const range = "A2:M50";
+  const range = "A2:L50";
   const allRanges = sheetsToRead.map((sheet) => `${sheet}!${range}`);
 
   try {
@@ -31,7 +31,7 @@ export const getAllSheetBounties = async () => {
 
 export const getNewBounty = async (sheet, row) => {
   try {
-    const range = `${sheet}!A${row}:M${row}`;
+    const range = `${sheet}!A${row}:L${row}`;
     const rowData = await sheets.readSingleSheet(range);
     console.log(`Successfully pulled bounty row data:`);
     console.log(rowData);
@@ -73,10 +73,10 @@ const updateBountyAndCheckNext = async (dataObj, sheet, row) => {
   }
 };
 
-// Called when bounty completed, update current row with Status, RSN, Discord, S3_URL, Quantity
+// Called when bounty completed, update current row with Status, RSN, Discord, S3_URL
 export const completeBounty = async (sheet, row, data) => {
   try {
-    const range = `${sheet}!I${row}:M${row}`;
+    const range = `${sheet}!I${row}:L${row}`;
     await updateBountyAndCheckNext(
       { range: range, values: [data] },
       sheet,
@@ -88,7 +88,7 @@ export const completeBounty = async (sheet, row, data) => {
   }
 };
 
-//Needs Status, RSN, Discord, S3_URL, Quantity, Manually Verified
+//Needs Status, RSN, Discord, S3_URL, Manually Verified
 //Data is a 2D array [[]] where each index is a col, needs 6 values
 export const markManuallyCompleted = async (
   sheet,
@@ -98,16 +98,9 @@ export const markManuallyCompleted = async (
 ) => {
   try {
     const finalArr = [
-      [
-        "MANUALLY COMPLETED",
-        "",
-        discord,
-        discordImgURL,
-        "Unknown Amount",
-        "YES",
-      ],
+      ["MANUALLY COMPLETED", "", discord, discordImgURL, "YES"],
     ];
-    const range = `${sheet}!I${row}:N${row}`;
+    const range = `${sheet}!I${row}:M${row}`;
     updateBountyAndCheckNext({ range: range, values: finalArr }, sheet, row);
   } catch (error) {
     console.log(`Could not update bounty row: ${row}, sheet: ${sheet}`);

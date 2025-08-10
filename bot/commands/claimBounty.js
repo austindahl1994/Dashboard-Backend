@@ -50,10 +50,17 @@ export default {
       content: `Received level: ${difficulty}\nID: ${id}\nImage: ${image.url}\nAttempting to claim bounty...`,
       flags: MessageFlags.Ephemeral,
     });
-    await manuallyCompleteBounty(difficulty, id, discordUser, image.url);
-    await interaction.editReply({
-      content: `Successfully claimed bounty with ID ${id} on ${difficulty} difficulty.`,
-      flags: MessageFlags.Ephemeral,
-    });
+    try {
+      await manuallyCompleteBounty(difficulty, id, discordUser, image.url);
+      await interaction.editReply({
+        content: `Successfully claimed bounty with ID ${id} on ${difficulty} difficulty.`,
+        flags: MessageFlags.Ephemeral,
+      });
+    } catch (error) {
+      await interaction.editReply({
+        content: `Could not claim bounty, error of: ${error}`,
+        flags: MessageFlags.Ephemeral,
+      });
+    }
   },
 };

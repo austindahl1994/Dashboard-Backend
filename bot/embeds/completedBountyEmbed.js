@@ -1,7 +1,7 @@
 import { EmbedBuilder } from "discord.js";
 import { formatBounty } from "./embedUtilities.js";
 
-// Pass in bounty with Title, Difficulty, Discord, RSN, S3_URL, Quantity, Bounty
+// Pass in bounty with Title, Difficulty, Discord, RSN, S3_URL, Bounty
 export const completedBountyEmbed = (bounty) => {
   const player =
     typeof bounty.Discord === "string" && bounty.Discord.trim()
@@ -21,11 +21,6 @@ export const completedBountyEmbed = (bounty) => {
     .setDescription(
       `${playerName} has completed the ${bounty.Difficulty} tier bounty, claiming a cool ${gp}!`
     );
-  if (bounty.Quantity && bounty.Quantity !== "Unknown Amount") {
-    embed.setFooter({
-      text: `Attempts for completion: ${bounty.Quantity}`,
-    });
-  }
   // finish embed with ';' symbol
   // can add footer or something as well based on RSN
   return embed;

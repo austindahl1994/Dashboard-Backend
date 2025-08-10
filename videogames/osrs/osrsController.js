@@ -28,7 +28,9 @@ export const osrsController = async (req, res) => {
           completedBounties.forEach(async (bounty) => {
             bounty.Completed = true;
             let imageUrl = await uploadScreenshot(
-              `bounties/${bounty.Difficulty}/ID:${bounty.Id}-${parsedData.playerName}.png`,
+              `bounties/${bounty.Difficulty}/${encodeURIComponent(
+                bounty.Title
+              )}-${encodeURIComponent(parsedData.playerName)}.png`,
               image,
               mimetype
             );

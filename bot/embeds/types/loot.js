@@ -40,19 +40,19 @@ export const loot = (data, tier, scrollImage, color) => {
     inline: true,
   });
 
-  if (
-    data.Other &&
-    ((Array.isArray(data.Other) && data.Other.length > 0) ||
-      (typeof data.Other === "string" && data.Other.trim() !== ""))
-  ) {
-    let otherInfo = Array.isArray(data.Other)
-      ? data.Other.join("\n")
-      : data.Other;
-    embed.addFields({
-      name: "__Other Info__",
-      value: otherInfo,
-      inline: true,
-    });
-  }
+  // if (
+  //   data.Other &&
+  //   ((Array.isArray(data.Other) && data.Other.length > 0) ||
+  //     (typeof data.Other === "string" && data.Other.trim() !== ""))
+  // ) {
+  //   let otherInfo = Array.isArray(data.Other)
+  //     ? data.Other.join("\n")
+  //     : data.Other;
+  //   embed.addFields({
+  //     name: "__Other Info__",
+  //     value: otherInfo,
+  //     inline: true,
+  //   });
+  // }
   return embed;
 };

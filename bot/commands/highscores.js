@@ -14,23 +14,33 @@ export default {
     .setName("highscores")
     .setDescription("Gets current highscores"),
   async execute(interaction) {
-    if (interaction.user.id !== allowedUserId) {
-      return interaction.reply({
-        content: "Yo fuckoff, you don't need to be here right now.",
+    try {
+      if (interaction.user.id !== allowedUserId) {
+        return interaction.reply({
+          content: "Yo fuckoff, you don't need to be here right now.",
+          flags: MessageFlags.Ephemeral,
+        });
+      }
+
+      const embeds = getHighscoresEmbeds();
+
+      if (!embeds || embeds.length === 0) {
+        return interaction.reply({
+          content: `There are no current highscores available.`,
+          flags: MessageFlags.Ephemeral,
+        });
+      }
+
+      await interaction.reply({
+        embeds: embeds,
+        flags: MessageFlags.Ephemeral,
+      });
+    } catch (error) {
+      await interaction.reply({
+        content: `Error calling highscores: ${error}`,
         flags: MessageFlags.Ephemeral,
       });
     }
-
-    const embeds = getHighscoresEmbeds();
-
-    if (!embeds || embeds.length === 0) {
-      return interaction.reply({
-        content: `There are no current highscores available.`,
-        flags: MessageFlags.Ephemeral,
-      });
-    }
-
-    await interaction.reply({ embeds: embeds, flags: MessageFlags.Ephemeral });
   },
 };
 // if (!interaction.member.roles.cache.has(modId)) {

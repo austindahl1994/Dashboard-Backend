@@ -2,7 +2,8 @@ export const cachedBounties = [];
 
 export const highscores = [];
 
-export const numberOfBounties = [3, 3, 3, 3, 3]; // Number of bounties per tier, 3 is temporary
+// Number of bounties per tier, 3 is temporary, updates on sheet call
+export const numberOfBounties = [3, 3, 3, 3, 3];
 
 //holds current highscores created by parsing sheets data
 // export const highscores = [

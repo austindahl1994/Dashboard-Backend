@@ -50,26 +50,32 @@ const tasksLeft = (id, sheet) => {
 };
 
 const updateBountyAndCheckNext = async (dataObj, sheet, row) => {
-  let updates = [];
-  updates.push(dataObj);
-  const tasksRemaining = tasksLeft(row);
-  if (tasksRemaining) {
-    const range = `${sheet}!I${row + 1}`;
-    const data = [["Active"]];
-    updates.push({ range: range, values: data });
-  }
-  await sheets.writeBatchToSheet(updates);
-  if (tasksRemaining) {
-    console.log(`Bounty row ${row} updated successfully, moving to next task.`);
-    await getNewBounty(sheet, row + 1);
-  } else {
-    console.log(
-      `Bounty row ${row} updated successfully, no more tasks left in this tier.`
-    );
-    const emptyBounty = new Bounty({
-      Tier_completed: true,
-    });
-    cachedBounties[difficultyToTier(sheet)] = emptyBounty;
+  try {
+    let updates = [];
+    updates.push(dataObj);
+    const tasksRemaining = tasksLeft(row);
+    if (tasksRemaining) {
+      const range = `${sheet}!I${row + 1}`;
+      const data = [["Active"]];
+      updates.push({ range: range, values: data });
+    }
+    await sheets.writeBatchToSheet(updates);
+    if (tasksRemaining) {
+      console.log(
+        `Bounty row ${row} updated successfully, moving to next task.`
+      );
+      await getNewBounty(sheet, row + 1);
+    } else {
+      console.log(
+        `Bounty row ${row} updated successfully, no more tasks left in this tier.`
+      );
+      const emptyBounty = new Bounty({
+        Tier_completed: true,
+      });
+      cachedBounties[difficultyToTier(sheet)] = emptyBounty;
+    }
+  } catch (error) {
+    console.log(error);
   }
 };
 

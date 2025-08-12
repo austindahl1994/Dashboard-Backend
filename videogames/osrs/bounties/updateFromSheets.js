@@ -14,102 +14,121 @@ import { writeBatchToSheet } from "../../../services/google/sheets.js";
 // converts each sheet to an array of objects, stores in cachedSheets
 // then calls checkBounties to update cachedBounties if needed
 const modifySheetData = (allSheetData) => {
-  const finalSheetData = allSheetData.map((rows) => {
-    const sheetsArr = [];
-    rows.forEach((row) => {
-      const bountyObject = createBountyObject(row);
-      sheetsArr.push(bountyObject);
+  try {
+    const finalSheetData = allSheetData.map((rows) => {
+      const sheetsArr = [];
+      rows.forEach((row) => {
+        const bountyObject = createBountyObject(row);
+        sheetsArr.push(bountyObject);
+      });
+      return sheetsArr;
     });
-    return sheetsArr;
-  });
-  sheetsToBounties(finalSheetData);
+    sheetsToBounties(finalSheetData);
+  } catch (error) {
+    console.log(errorconsole.log(error));
+  }
 };
 
 const sheetsToBounties = async (sheetsArr) => {
-  const newWrites = [];
-  //We add +2 for indexes since sheets start at index 1 AND skipping header row
-  sheetsArr.forEach((sheet, tier) => {
-    numberOfBounties[tier] = sheet.length;
-    const difficulty = getTier(tier);
-    const activeIndex = sheet.findIndex((obj) => obj.Status === "Active");
-    // Checks for the current Status of "Active" in the sheet, if found updates cachedBounties with that object
-    // If not found, finds the first "Open" status, updates that to "Active by updating cachedBounties with that object, and adds a write to newWrites to update the sheet
-    if (activeIndex !== -1) {
-      createBounty(sheet[activeIndex], difficulty, activeIndex + 2);
-    } else {
-      const openIndex = sheet.findIndex((obj) => obj.Status === "Open");
-      if (openIndex !== -1) {
-        // console.log(`Open index: ${openIndex + 2} for tier ${difficulty}`);
-        sheet[openIndex].Status = "Active";
-        // Adds write object to newWrites array for it to be written in batch later
-        // console.log(`Adding writeObj for tier ${difficulty}`);
-        const writeObj = {
-          range: `${difficulty}!I${openIndex + 2}`,
-          values: [["Active"]],
-        };
-        newWrites.push(writeObj);
-        createBounty(sheet[openIndex], difficulty, openIndex + 2);
+  try {
+    const newWrites = [];
+    //We add +2 for indexes since sheets start at index 1 AND skipping header row
+    sheetsArr.forEach((sheet, tier) => {
+      numberOfBounties[tier] = sheet.length;
+      const difficulty = getTier(tier);
+      const activeIndex = sheet.findIndex((obj) => obj.Status === "Active");
+      // Checks for the current Status of "Active" in the sheet, if found updates cachedBounties with that object
+      // If not found, finds the first "Open" status, updates that to "Active by updating cachedBounties with that object, and adds a write to newWrites to update the sheet
+      if (activeIndex !== -1) {
+        createBounty(sheet[activeIndex], difficulty, activeIndex + 2);
       } else {
-        // console.log(`No open index for: ${difficulty}`);
-        const newBounty = new Bounty();
-        newBounty.Tier_completed = true;
-        cachedBounties[getTier(difficulty)] = newBounty;
+        const openIndex = sheet.findIndex((obj) => obj.Status === "Open");
+        if (openIndex !== -1) {
+          // console.log(`Open index: ${openIndex + 2} for tier ${difficulty}`);
+          sheet[openIndex].Status = "Active";
+          // Adds write object to newWrites array for it to be written in batch later
+          // console.log(`Adding writeObj for tier ${difficulty}`);
+          const writeObj = {
+            range: `${difficulty}!I${openIndex + 2}`,
+            values: [["Active"]],
+          };
+          newWrites.push(writeObj);
+          createBounty(sheet[openIndex], difficulty, openIndex + 2);
+        } else {
+          // console.log(`No open index for: ${difficulty}`);
+          const newBounty = new Bounty();
+          newBounty.Tier_completed = true;
+          cachedBounties[getTier(difficulty)] = newBounty;
+        }
       }
-    }
-  });
+    });
 
-  updateSheetActives(newWrites);
+    updateSheetActives(newWrites);
 
-  // console.log(`Final cached bounties:`);
-  // console.log(cachedBounties);
-  // console.log(`Number of bounties per tier:`);
-  // numberOfBounties.forEach((count, index) => {
-  //   console.log(`Tier ${getTier(index)}: ${count}`);
-  // });
-  createCachedHighscores(sheetsArr);
+    // console.log(`Final cached bounties:`);
+    // console.log(cachedBounties);
+    // console.log(`Number of bounties per tier:`);
+    // numberOfBounties.forEach((count, index) => {
+    //   console.log(`Tier ${getTier(index)}: ${count}`);
+    // });
+    createCachedHighscores(sheetsArr);
+  } catch (error) {
+    console.log(errorconsole.log(error));
+  }
 };
 
 //Passed in single array of rows to be made into an object
 const createBountyObject = (bountyRow) => {
-  if (bountyRow.length !== headers.length) {
-    bountyRow.push(...Array(headers.length - bountyRow.length).fill(""));
+  try {
+    if (bountyRow.length !== headers.length) {
+      bountyRow.push(...Array(headers.length - bountyRow.length).fill(""));
+    }
+    const rowObj = {};
+    headers.forEach((header, colIndex) => {
+      rowObj[header] = bountyRow[colIndex];
+    });
+    return rowObj;
+  } catch (error) {
+    console.log(errorconsole.log(error));
   }
-  const rowObj = {};
-  headers.forEach((header, colIndex) => {
-    rowObj[header] = bountyRow[colIndex];
-  });
-  return rowObj;
 };
 
 const createBounty = (bountyData, difficulty, sheetIndex) => {
-  // console.log(`Create bounty called for difficulty ${difficulty}`);
-  const tier = difficultyToTier(difficulty);
-  // console.log(`Creating bounty for tier: ${tier}, sheetIndex: ${sheetIndex}`);
-  // Ensure Item is always an array of strings
-  let items = [];
-  if (Array.isArray(bountyData.Item)) {
-    items = bountyData.Item.map((i) => i.trim()).filter((i) => i.length > 0);
-  } else if (
-    typeof bountyData.Item === "string" &&
-    bountyData.Item.trim() !== ""
-  ) {
-    // Split by comma if multiple items in a string
-    items = bountyData.Item.split(",")
-      .map((i) => i.trim())
-      .filter((i) => i.length > 0);
+  try {
+    // console.log(`Create bounty called for difficulty ${difficulty}`);
+    const tier = difficultyToTier(difficulty);
+    // console.log(`Creating bounty for tier: ${tier}, sheetIndex: ${sheetIndex}`);
+    // Ensure Item is always an array of strings
+    let items = [];
+    if (Array.isArray(bountyData.Item)) {
+      items = bountyData.Item.map((i) => i.trim()).filter((i) => i.length > 0);
+    } else if (
+      typeof bountyData.Item === "string" &&
+      bountyData.Item.trim() !== ""
+    ) {
+      // Split by comma if multiple items in a string
+      items = bountyData.Item.split(",")
+        .map((i) => i.trim())
+        .filter((i) => i.length > 0);
+    }
+
+    const newBounty = new Bounty({
+      ...bountyData,
+      Id: sheetIndex - 1,
+      Difficulty: `${difficulty}`,
+      Item: items,
+      Bounty: bountyData.Bounty,
+      Sheet_Index: sheetIndex,
+      Wiki_Image:
+        bountyData.Type.toLowerCase() === "death"
+          ? bountyData.Wiki_URL
+          : getURLImage(bountyData.Wiki_URL),
+    });
+
+    cachedBounties[tier] = newBounty;
+  } catch (error) {
+    console.log(errorconsole.log(error));
   }
-
-  const newBounty = new Bounty({
-    ...bountyData,
-    Id: sheetIndex - 1,
-    Difficulty: `${difficulty}`,
-    Item: items,
-    Bounty: bountyData.Bounty,
-    Sheet_Index: sheetIndex,
-    Wiki_Image: getURLImage(bountyData.Wiki_URL),
-  });
-
-  cachedBounties[tier] = newBounty;
 };
 
 const updateSheetActives = async (newWrites) => {

@@ -11,7 +11,8 @@ export const osrsController = async (req, res) => {
   let mimetype;
   try {
     if (!file) {
-      throw new Error(`No file sent with`);
+      console.log(`No file sent with`);
+      // throw new Error(`No file sent with`);
     } else {
       image = file.buffer;
       mimetype = file.mimetype;
@@ -22,7 +23,9 @@ export const osrsController = async (req, res) => {
       const parsedData = JSON.parse(data);
       if (parsedData) {
         console.log(`Received data from ${parsedData.playerName}`);
+        console.log(JSON.stringify(parsedData));
         const completedBounties = checkBounties(parsedData);
+        return;
         if (completedBounties.length > 0) {
           //Update code for if bounties match
           completedBounties.forEach(async (bounty) => {

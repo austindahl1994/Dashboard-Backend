@@ -15,27 +15,30 @@ export default {
     .setName("refresh")
     .setDescription("Refresh the sheets data if bounties are not populated"),
   async execute(interaction) {
-    // if (interaction.user.id !== allowedUserId) {
-    //   return interaction.reply({
-    //     content: "Yo fuckoff, you don't need to be here right now.",
-    //     flags: MessageFlags.Ephemeral,
-    //   });
-    // }
-    if (interaction.channel.id !== allowedChannel) {
-      return interaction.reply({
-        content: "You must be in the correct channel to use this command.",
+    try {
+      // if (interaction.user.id !== allowedUserId) {
+      //   return interaction.reply({
+      //     content: "Yo fuckoff, you don't need to be here right now.",
+      //     flags: MessageFlags.Ephemeral,
+      //   });
+      // }
+      if (interaction.channel.id !== allowedChannel) {
+        return interaction.reply({
+          content: "You must be in the correct channel to use this command.",
+          flags: MessageFlags.Ephemeral,
+        });
+      }
+      const successful = await getAllSheetBounties();
+      await updateBroadcast("bounties");
+      await interaction.reply({
+        content: `Sheets refreshed successfully.`,
+        flags: MessageFlags.Ephemeral,
+      });
+    } catch (error) {
+      await interaction.reply({
+        content: `Sheets did not refresh properly: ${error}`,
         flags: MessageFlags.Ephemeral,
       });
     }
-    const successful = await getAllSheetBounties();
-    await updateBroadcast("bounties");
-    await interaction.reply({
-      content: `Sheets ${
-        successful
-          ? "refreshed successfully."
-          : "did not refresh due to some error."
-      }`,
-      flags: MessageFlags.Ephemeral,
-    });
   },
 };

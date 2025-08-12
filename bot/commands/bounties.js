@@ -13,34 +13,41 @@ export default {
     .setName("bounties")
     .setDescription("Gets current listed bounties"),
   async execute(interaction) {
-    if (interaction.channel.id !== allowedChannel) {
-      return interaction.reply({
-        content: "You must be in the correct channel to use this command.",
+    try {
+      if (interaction.channel.id !== allowedChannel) {
+        return interaction.reply({
+          content: "You must be in the correct channel to use this command.",
+          flags: MessageFlags.Ephemeral,
+        });
+      }
+      // if (interaction.user.id !== allowedUserId) {
+      //   return interaction.reply({
+      //     content: "Yo fuckoff, you don't need to be here right now.",
+      //     flags: MessageFlags.Ephemeral,
+      //   });
+      // }
+
+      // const embeds = getAllBountyEmbeds();
+
+      // if (!embeds || embeds.length === 0) {
+      //   return interaction.reply({
+      //     content: `There are no current bounties, try using /refresh to update them`,
+      //     flags: MessageFlags.Ephemeral,
+      //   });
+      // }
+
+      // await interaction.reply({ embeds: embeds, flags: MessageFlags.Ephemeral });
+      await updateBroadcast("bounties");
+      await interaction.reply({
+        content: "Called bounty board broadcast",
+        flags: MessageFlags.Ephemeral,
+      });
+    } catch (error) {
+      await interaction.reply({
+        content: `There was an error calling bounties: ${error}`,
         flags: MessageFlags.Ephemeral,
       });
     }
-    // if (interaction.user.id !== allowedUserId) {
-    //   return interaction.reply({
-    //     content: "Yo fuckoff, you don't need to be here right now.",
-    //     flags: MessageFlags.Ephemeral,
-    //   });
-    // }
-
-    // const embeds = getAllBountyEmbeds();
-
-    // if (!embeds || embeds.length === 0) {
-    //   return interaction.reply({
-    //     content: `There are no current bounties, try using /refresh to update them`,
-    //     flags: MessageFlags.Ephemeral,
-    //   });
-    // }
-
-    // await interaction.reply({ embeds: embeds, flags: MessageFlags.Ephemeral });
-    await updateBroadcast("bounties");
-    await interaction.reply({
-      content: "Called bounty board broadcast",
-      flags: MessageFlags.Ephemeral,
-    });
   },
 };
 

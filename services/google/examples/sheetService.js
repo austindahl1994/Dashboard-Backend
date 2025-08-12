@@ -31,43 +31,59 @@ const getSheetsClient = async () => {
 };
 
 export const writeToSheet = async (range, values) => {
-  const sheets = await getSheetsClient();
-  await sheets.spreadsheets.values.update({
-    spreadsheetId: process.env.SHEET_ID,
-    range,
-    valueInputOption: "USER_ENTERED",
-    requestBody: { values },
-  });
+  try {
+    const sheets = await getSheetsClient();
+    await sheets.spreadsheets.values.update({
+      spreadsheetId: process.env.SHEET_ID,
+      range,
+      valueInputOption: "USER_ENTERED",
+      requestBody: { values },
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const readFromSheet = async (range) => {
-  const sheets = await getSheetsClient();
-  const response = await sheets.spreadsheets.values.get({
-    spreadsheetId: process.env.SHEET_ID,
-    range,
-  });
-  return response.data.values;
+  try {
+    const sheets = await getSheetsClient();
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId: process.env.SHEET_ID,
+      range,
+    });
+    return response.data.values;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 //batch all sheet requests
 export const readFromMultipleSheets = async (ranges) => {
-  const sheets = await getSheetsClient();
-  const response = await sheets.spreadsheets.values.batchGet({
-    spreadsheetId: process.env.SHEET_ID,
-    ranges,
-  });
+  try {
+    const sheets = await getSheetsClient();
+    const response = await sheets.spreadsheets.values.batchGet({
+      spreadsheetId: process.env.SHEET_ID,
+      ranges,
+    });
 
-  return response.data.valueRanges.map((rangeData) => rangeData.values);
+    return response.data.valueRanges.map((rangeData) => rangeData.values);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const writeBatchToSheet = async (updates) => {
-  const sheets = await getSheetsClient();
+  try {
+    const sheets = await getSheetsClient();
 
-  await sheets.spreadsheets.values.batchUpdate({
-    spreadsheetId: process.env.SHEET_ID,
-    requestBody: {
-      valueInputOption: "USER_ENTERED",
-      data: updates,
-    },
-  });
+    await sheets.spreadsheets.values.batchUpdate({
+      spreadsheetId: process.env.SHEET_ID,
+      requestBody: {
+        valueInputOption: "USER_ENTERED",
+        data: updates,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };

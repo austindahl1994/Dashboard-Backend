@@ -11,53 +11,57 @@ import { empty } from "./types/empty.js";
 import { noCachedBounties } from "./types/noCachedBounties.js";
 
 export const getAllBountyEmbeds = () => {
-  let finalArr = cachedBounties.map((data, index) => {
-    if (
-      !data ||
-      (typeof data === "string" && data.trim() === "") ||
-      (typeof data === "object" && Object.keys(data).length === 0) ||
-      data.Tier_completed === true
-    ) {
-      const embed = new EmbedBuilder()
-        .setAuthor({
-          name: getTier(index),
-          iconURL: getScrollImage(index),
-        })
-        .setColor(getColor(index))
-        .addFields({
-          name: "No Bounties left in this difficulty!",
-          value: "\u200B",
-        });
-      return embed;
-    }
-    const scrollImage = getScrollImage(index);
-    const tier = getTier(index);
-    const color = getColor(index);
+  try {
+    let finalArr = cachedBounties.map((data, index) => {
+      if (
+        !data ||
+        (typeof data === "string" && data.trim() === "") ||
+        (typeof data === "object" && Object.keys(data).length === 0) ||
+        data.Tier_completed === true
+      ) {
+        const embed = new EmbedBuilder()
+          .setAuthor({
+            name: getTier(index),
+            iconURL: getScrollImage(index),
+          })
+          .setColor(getColor(index))
+          .addFields({
+            name: "No Bounties left in this difficulty!",
+            value: "\u200B",
+          });
+        return embed;
+      }
+      const scrollImage = getScrollImage(index);
+      const tier = getTier(index);
+      const color = getColor(index);
 
-    switch (data.Type.toLowerCase()) {
-      case "loot":
-        return loot(data, tier, scrollImage, color);
-      case "clue":
-        return clue(data, tier, scrollImage, color);
-      case "level":
-        return level(data, tier, scrollImage, color);
-      case "death":
-        return death(data, tier, scrollImage, color);
-      case "speedrun":
-        return speedrun(data, tier, scrollImage, color);
-      case "barbarian_assault_gamble":
-        return ba(data, tier, scrollImage, color);
-      case "player_kill":
-        return pk(data, tier, scrollImage, color);
-      default:
-        return empty();
-    }
-  });
+      switch (data.Type.toLowerCase()) {
+        case "loot":
+          return loot(data, tier, scrollImage, color);
+        case "clue":
+          return clue(data, tier, scrollImage, color);
+        case "level":
+          return level(data, tier, scrollImage, color);
+        case "death":
+          return death(data, tier, scrollImage, color);
+        case "speedrun":
+          return speedrun(data, tier, scrollImage, color);
+        case "barbarian_assault_gamble":
+          return ba(data, tier, scrollImage, color);
+        case "player_kill":
+          return pk(data, tier, scrollImage, color);
+        default:
+          return empty();
+      }
+    });
 
-  if (finalArr.length > 0) {
-    return finalArr;
-  } else {
-    return [noCachedBounties()];
+    if (finalArr.length > 0) {
+      return finalArr;
+    } else {
+      return [noCachedBounties()];
+    }
+  } catch (error) {
+    console.log(`There was an error with embedded bounties: ${error}`);
   }
 };
 

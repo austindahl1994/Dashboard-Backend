@@ -13,10 +13,11 @@ const compareItems = (data, bounty) => {
 
 // bounty.Source === '*' || Any time we would use wild card? add functionality later if needed
 const compareSources = (source, bounty) => {
+  if (bounty.Source === "*") {
+    return true;
+  }
   if (bounty.Source.toLowerCase() === source.toLowerCase()) {
     console.log(`Sources match! returning true`);
-    return true;
-  } else if (bounty.Source === "*") {
     return true;
   }
   console.log(`Sources did not match, returning false`);
@@ -28,11 +29,22 @@ const compareRegions = (dataRegion, bounty) => {
   return parseInt(dataRegion) === parseInt(bounty.Source);
 };
 
+const compareCategories = (data, bounty) => {
+  return data.extra.category.toLowerCase() === bounty.Other.toLowerCase();
+};
+
 //Do a check beforehand for extra.npc === false for guaranteed not pvp?
 export const loot = (data, bounty) => {
   if (data.extra.category !== "NPC") {
     console.log("NOT NPC LOOT when checking against bounties");
     return false;
+  }
+  if (bounty.Other && bounty.Other.length > 0) {
+    return (
+      compareCategories(data, bounty) &&
+      compareItems(data, bounty) &&
+      compareSources(data.extra.source, bounty)
+    );
   }
   return (
     compareItems(data, bounty) && compareSources(data.extra.source, bounty)
@@ -54,21 +66,7 @@ export const ba = (data, bounty) => {
 
 //Three types, pvp, pvm, and non-combat
 export const death = (data, bounty) => {
-  console.log("Called compareData for DEATH");
-  //Death against player
-  if (data.extra.isPvp === true) {
-    console.log(`pvp death, returning false`);
-    return false;
-    //Death against NPC
-  } else if (data.extra.killerName && bounty.Other === "npc") {
-    console.log(`NPC death`);
-    return compareSources(data.extra.killerName, bounty);
-    //Death against non-combat, do we only care about this field?
-  } else if (bounty.Other === "seek") {
-    console.log(`Non-combat death`);
-    return compareRegions(data.extra.location.regionId, bounty);
-  }
-  return false;
+  return compareRegions(data.extra.location.regionId, bounty);
 };
 
 //Specific item OR all items priceEach sum being < or > some value OR single item priceEach < or > some value
@@ -83,7 +81,7 @@ export const clue = (data, bounty) => {
   let sum = 0;
   switch (bounty.Other) {
     case "item":
-      return compareItems(data);
+      return compareItems(data, bounty);
     case "valueLess": // If lowest amount is not less than the wanted valueLess
       const lowestAmount = data.extra.items.reduce((acc, item) => {
         return item.priceEach < acc ? item.priceEach : acc;

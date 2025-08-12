@@ -9,8 +9,8 @@ import { addToHighscores } from "../highscores/highscores.js";
 export const completeBounty = async (data, bounty, imageUrl) => {
   try {
     //Update highscores and post to correct discord channel
-    addToHighscores(
-      data.discordUser,
+    await addToHighscores(
+      data.discordUser.name,
       data.playerName,
       bounty.Difficulty,
       bounty.Bounty
@@ -19,12 +19,17 @@ export const completeBounty = async (data, bounty, imageUrl) => {
     const completedBounty = {
       Title: bounty.Title,
       Difficulty: bounty.Difficulty,
-      Discord: data.discordUser || null,
+      Discord: data.discordUser.name || null,
       RSN: data.playerName,
       S3_URL: imageUrl,
       Bounty: bounty.Bounty,
     };
-    const dataToUpdate = ["COMPLETED", bounty.RSN, bounty.Discord, imageUrl];
+    const dataToUpdate = [
+      "COMPLETED",
+      bounty.RSN,
+      data.discordUser.name,
+      imageUrl,
+    ];
     await osrsSheets.completeBounty(
       bounty.Difficulty,
       bounty.Sheet_Index,
@@ -33,8 +38,6 @@ export const completeBounty = async (data, bounty, imageUrl) => {
     //After getting google data, based on difficulty manually set the data based on index against difficulty
     //Import the new difficultyToTier() function in utilities
     await broadcastBountyCompletion(completedBounty);
-    await updateBroadcast("highscores");
-    await updateBroadcast("bounties");
   } catch (error) {
     throw new Error(
       `Error completing ${bounty.Difficulty} ${bounty.id}: ${error.message}`
@@ -92,7 +95,12 @@ export const manuallyCompleteBounty = async (
     console.log(
       `Successfully marked bounty with ID ${id} on ${difficulty} difficulty as manually completed.`
     );
-    addToHighscores(discord, null, difficulty, cachedBounties[idIndex].Bounty);
+    await addToHighscores(
+      discord,
+      null,
+      difficulty,
+      cachedBounties[idIndex].Bounty
+    );
     await broadcastBountyCompletion(completedBounty);
     await updateBroadcast("highscores");
     await updateBroadcast("bounties");

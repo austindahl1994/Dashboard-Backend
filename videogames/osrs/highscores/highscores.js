@@ -1,8 +1,10 @@
 import { highscores } from "../cachedData.js";
-import { difficultyToTier, getTier } from "../bounties/bountyUtilities.js";
+import { difficultyToTier } from "../bounties/bountyUtilities.js";
 import { updateBroadcast } from "../../../bot/broadcasts.js";
 
-export function updateHighscores(newHighscores) {
+export const updateHighscores = async (newHighscores) => {
+  console.log(`Updating highscores based on data: `);
+  console.log(newHighscores);
   try {
     // Update the cached highscores array in place
     let topTenLength = newHighscores.length > 10 ? 10 : newHighscores.length;
@@ -13,12 +15,10 @@ export function updateHighscores(newHighscores) {
 
     console.log(`Finished updating highscores:`);
     console.table(highscores);
-    // update the highscores broadcast
-    updateBroadcast("highscores");
   } catch (error) {
     console.log(errorconsole.log(error));
   }
-}
+};
 
 //expects array of player objects with Player_Name, Score, TotalBounty
 const sortHighscores = (hs) => {
@@ -35,7 +35,7 @@ const sortHighscores = (hs) => {
   }
 };
 
-export const createCachedHighscores = (sheetData) => {
+export const createCachedHighscores = async (sheetData) => {
   try {
     if (highscores.length !== 0) {
       const previousHighscores = structuredClone(highscores);
@@ -52,30 +52,49 @@ export const createCachedHighscores = (sheetData) => {
         let player;
         if (bounty.Discord) {
           player = bounty.Discord.trim();
+          // console.log(`Player discord existed: ${player}`);
         } else if (bounty.RSN) {
-          player = bounty.RSN.trim();
+          player = "RSN: " + bounty.RSN.trim();
+          // console.log(`Player discord did not exist so player is: ${player}`);
+        } else {
+          // console.log(`No player data for this row`);
+          return;
         }
-
-        if (!player || bounty.Status !== "Complete") return;
+        const status = bounty.Status.trim().toLowerCase();
+        console.log(`Player: ${player}`);
+        console.log(`Status is: ${status}`);
+        if (!player || status === "open" || status === "skipped") {
+          // console.log(`No player or status is open/skipped`);
+          return;
+        }
 
         // Parse bounty amount (always a float)
         const bountyAmount = parseFloat(bounty.Bounty) || 0;
 
         if (!playerStats[player]) {
+          console.log(
+            `${player} was not a part of the highscores, adding them in`
+          );
           playerStats[player] = {
             Player_Name: player,
             Score: 0,
             TotalBounty: 0,
           };
         }
-        playerStats[player].Score = playerStats[player].Score + 1 * (tier + 1);
-        playerStats[player].TotalBounty += bountyAmount;
+        playerStats[player].Score =
+          parseInt(playerStats[player].Score) + 1 * (tier + 1);
+        playerStats[player].TotalBounty =
+          parseFloat(playerStats[player].TotalBounty) +
+          parseFloat(bountyAmount);
       });
     });
 
     // Convert to array and sort
+    console.log(`playerStats before sort:`);
+    console.log(Object.values(playerStats));
     const newHighscores = sortHighscores(Object.values(playerStats));
-    updateHighscores(newHighscores);
+    await updateHighscores(newHighscores);
+    await updateBroadcast("highscores");
   } catch (error) {
     console.log(errorconsole.log(error));
   }
@@ -89,13 +108,15 @@ const increaseHS = (name, difficulty, gp) => {
     const addition = 1 + difficultyToTier(difficulty);
     console.log(`Attempting to add to hs, existing index: ${existingIndex}`);
     if (existingIndex !== -1) {
-      highscores[existingIndex].Score += addition;
-      highscores[existingIndex].TotalBounty += parseInt(gp);
+      highscores[existingIndex].Score =
+        parseInt(highscores[existingIndex].Score) + addition;
+      highscores[existingIndex].TotalBounty =
+        parseFloat(highscores[existingIndex].TotalBounty) + parseFloat(gp);
     } else {
       const newPlayer = {
         Player_Name: name,
         Score: addition,
-        TotalBounty: gp,
+        TotalBounty: parseFloat(gp),
       };
       highscores.push(newPlayer);
     }
@@ -104,7 +125,12 @@ const increaseHS = (name, difficulty, gp) => {
   }
 };
 
-export const addToHighscores = (discord, rsn, difficulty, bountyValue) => {
+export const addToHighscores = async (
+  discord,
+  rsn,
+  difficulty,
+  bountyValue
+) => {
   try {
     const discordName = discord || null;
     if (discordName) {
@@ -116,7 +142,7 @@ export const addToHighscores = (discord, rsn, difficulty, bountyValue) => {
         "Could not add player info, no valid discord or player name"
       );
     }
-    updateHighscores(highscores);
+    await updateHighscores(highscores);
   } catch (error) {
     console.log(errorconsole.log(error));
   }

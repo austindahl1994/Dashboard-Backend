@@ -1,6 +1,6 @@
 import { EmbedBuilder } from "discord.js";
 
-export const ba = (data, tier, scrollImage, color) => {
+export const ba = (data, scrollImage, color, author) => {
   const embed = new EmbedBuilder()
     .setColor(color)
     .setTitle(data.Title || "BA Bounty")
@@ -8,7 +8,7 @@ export const ba = (data, tier, scrollImage, color) => {
       "https://oldschool.runescape.wiki/images/Barbarian_Assault_logo.jpg"
     )
     .setAuthor({
-      name: tier,
+      name: author,
       iconURL: scrollImage,
     })
     .setFooter({

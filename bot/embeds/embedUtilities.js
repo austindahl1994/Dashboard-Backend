@@ -50,12 +50,17 @@ export const getScrollImage = (index) => {
 };
 
 export const formatBounty = (bounty) => {
-  let newBounty = parseFloat(bounty);
-  let newStr = "";
-  if (bounty >= 1) {
-    newStr = newBounty.toString() + "M";
-  } else {
-    newStr = (newBounty * 1000).toString() + "K";
+  // console.log(`Passed in bounty: ${bounty}`);
+  try {
+    let newBounty = parseFloat(bounty);
+    let newStr = "";
+    if (bounty >= 1) {
+      newStr = newBounty.toString() + "M";
+    } else {
+      newStr = (newBounty * 1000).toString() + "K";
+    }
+    return newStr;
+  } catch (error) {
+    console.log(`Error formatting bounty: ${error}`);
   }
-  return newStr;
 };

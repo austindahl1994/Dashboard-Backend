@@ -31,25 +31,26 @@ export const getAllBountyEmbeds = () => {
           });
         return embed;
       }
+
       const scrollImage = getScrollImage(index);
       const tier = getTier(index);
       const color = getColor(index);
 
+      let author = `${tier || "No difficulty"} - ${data.Id || "Unknown ID"}`;
+
       switch (data.Type.toLowerCase()) {
         case "loot":
-          return loot(data, tier, scrollImage, color);
+          return loot(data, scrollImage, color, author);
         case "clue":
-          return clue(data, tier, scrollImage, color);
-        case "level":
-          return level(data, tier, scrollImage, color);
+          return clue(data, tier, scrollImage, color, author);
         case "death":
-          return death(data, tier, scrollImage, color);
+          return death(data, scrollImage, color, author);
         case "speedrun":
-          return speedrun(data, tier, scrollImage, color);
+          return speedrun(data, scrollImage, color, author);
         case "barbarian_assault_gamble":
-          return ba(data, tier, scrollImage, color);
+          return ba(data, scrollImage, color, author);
         case "player_kill":
-          return pk(data, tier, scrollImage, color);
+          return pk(data, scrollImage, color, author);
         default:
           return empty();
       }

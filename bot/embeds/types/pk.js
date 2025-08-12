@@ -1,12 +1,12 @@
 import { EmbedBuilder } from "discord.js";
 
-export const pk = (data, tier, scrollImage, color) => {
+export const pk = (data, scrollImage, color, author) => {
   const embed = new EmbedBuilder()
     .setColor(color)
     .setTitle(data.Title || "PK Bounty")
     .setThumbnail("https://oldschool.runescape.wiki/images/Skull.png")
     .setAuthor({
-      name: tier,
+      name: author,
       iconURL: scrollImage,
     })
     .setFooter({

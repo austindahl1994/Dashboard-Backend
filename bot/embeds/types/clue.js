@@ -15,7 +15,7 @@ const getScrollTier = (tier) => {
   }
 };
 
-export const clue = (data, tier, scrollImage, color) => {
+export const clue = (data, tier, scrollImage, color, author) => {
   // console.log(`Generating clue embed for tier: ${tier}`);
   const scrollBoxImage = getScrollTier(tier);
   const embed = new EmbedBuilder()
@@ -23,7 +23,7 @@ export const clue = (data, tier, scrollImage, color) => {
     .setTitle(data.Title || "Clue Scroll Bounty")
     .setThumbnail(scrollBoxImage)
     .setAuthor({
-      name: tier,
+      name: author,
       iconURL: scrollImage,
     })
     .setFooter({

@@ -1,12 +1,12 @@
 import { EmbedBuilder } from "discord.js";
 
-export const death = (data, tier, scrollImage, color) => {
+export const death = (data, scrollImage, color, author) => {
   const embed = new EmbedBuilder()
     .setColor(color)
     .setTitle(data.Title || "Death Bounty")
     .setThumbnail("https://oldschool.runescape.wiki/images/Bones_detail.png")
     .setAuthor({
-      name: tier,
+      name: author,
       iconURL: scrollImage,
     })
     .setFooter({

@@ -1,19 +1,21 @@
 import { EmbedBuilder } from "discord.js";
 import { formatBounty } from "../embedUtilities.js";
 
-export const loot = (data, tier, scrollImage, color) => {
+export const loot = (data, scrollImage, color, author) => {
+  let title = data.Title || "Loot Bounty";
+
   const embed = new EmbedBuilder()
     .setColor(color)
-    .setTitle(data.Title || "Loot Bounty")
+    .setTitle(title)
     .setURL(data.Wiki_URL || "https://oldschool.runescape.wiki/")
     .setThumbnail(data.Wiki_Image || "https://oldschool.runescape.wiki/")
     .setAuthor({
-      name: tier,
+      name: author,
       iconURL: scrollImage,
-    })
-    .setFooter({
-      text: `Task ID: ${data.Id}`,
     });
+  // .setFooter({
+  //   text: `Task ID: ${data.Id}`,
+  // });
 
   embed.setDescription(
     data.Description || "No description made for this bounty"
@@ -39,7 +41,20 @@ export const loot = (data, tier, scrollImage, color) => {
     value: itemsField,
     inline: true,
   });
-
+  if (data.Source) {
+    embed.addFields({
+      name: "__Source__",
+      value: data.Source === "*" ? "Anything" : `${data.Source}`,
+      inline: true,
+    });
+  }
+  // if (data.Id) {
+  //   embed.addFields({
+  //     name: "__ID__",
+  //     value: data.Id,
+  //     inline: true,
+  //   });
+  // }
   // if (
   //   data.Other &&
   //   ((Array.isArray(data.Other) && data.Other.length > 0) ||

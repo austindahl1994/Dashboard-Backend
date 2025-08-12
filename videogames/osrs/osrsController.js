@@ -1,8 +1,10 @@
 import { checkBounties } from "./bounties/checkBounties.js";
 import { completeBounty } from "./bounties/completeBounty.js";
 import { uploadScreenshot } from "../../services/aws/s3.js";
+import { updateBroadcast } from "../../bot/broadcasts.js";
 
 import dotenv from "dotenv";
+import { highscores } from "./cachedData.js";
 dotenv.config();
 
 export const osrsController = async (req, res) => {
@@ -25,29 +27,31 @@ export const osrsController = async (req, res) => {
         console.log(`Received data from ${parsedData.playerName}`);
         console.log(JSON.stringify(parsedData));
         const completedBounties = checkBounties(parsedData);
-        return;
         if (completedBounties.length > 0) {
-          //Update code for if bounties match
-          completedBounties.forEach(async (bounty) => {
+          for (const bounty of completedBounties) {
             bounty.Completed = true;
             let imageUrl = await uploadScreenshot(
-              `bounties/${bounty.Difficulty}/${bounty.Title.replace(
-                /\s+/g,
-                "_"
-              ).replace(/[^\w.-]/g, "")}-${parsedData.playerName
+              `bounties/${bounty.Difficulty}/${
+                bounty.Id
+              }:${bounty.Title.replace(/\s+/g, "_").replace(
+                /[^\w.-]/g,
+                ""
+              )}-${parsedData.playerName
                 .replace(/\s+/g, "_")
                 .replace(/[^\w.-]/g, "")}.png`,
               image,
               mimetype
             );
             await completeBounty(parsedData, bounty, imageUrl);
-          });
+          }
+          await updateBroadcast("highscores");
+          await updateBroadcast("bounties");
           if (req.file) {
             delete req.file;
             image = null;
           }
         } else {
-          throw new Error("No bounties completed.");
+          throw new Error("There are no current bounties.");
         }
       }
     } else {

@@ -35,7 +35,7 @@ const compareCategories = (data, bounty) => {
 
 //Do a check beforehand for extra.npc === false for guaranteed not pvp?
 export const loot = (data, bounty) => {
-  if (data.extra.category !== "NPC") {
+  if (data.extra.category === "PLAYER") {
     console.log("NOT NPC LOOT when checking against bounties");
     return false;
   }
@@ -118,12 +118,21 @@ export const speedrun = (data, bounty) => {
   if (bounty.Source.toLowerCase() !== data.extra.questName.toLowerCase()) {
     return false;
   } else {
-    const currentTime = data.extra.currentTime.split(":");
+    const currentTime = durationToArray(data.extra.currentTime);
+    console.log(`Current: ${currentTime}`);
     const timeToBeat = bounty.Other.split(":");
+    if (timeToBeat.length === 2) {
+      timeToBeat.unshift("00");
+    }
+    console.log(`Time to beat: ${timeToBeat}`);
     const combinedCurrent =
-      parseInt(currentTime[0]) * 60 + parseFloat(currentTime[1]);
+      parseInt(currentTime[0]) * 3600 +
+      parseInt(currentTime[1]) * 60 +
+      parseFloat(currentTime[2]);
     const combinedToBeat =
-      parseInt(timeToBeat[0]) * 60 + parseFloat(timeToBeat[1]);
+      parseInt(timeToBeat[0]) * 3600 +
+      parseInt(timeToBeat[1]) * 60 +
+      parseFloat(timeToBeat[2]);
     console.log("current: " + combinedCurrent);
     console.log("beat:" + combinedToBeat);
     return combinedCurrent < combinedToBeat;
@@ -139,3 +148,18 @@ export const pk = (data, bounty) => {
   console.log(`Item sum came out to ${pkSum}`);
   return pkSum > parseInt(bounty.Other);
 };
+
+function durationToArray(duration) {
+  const str = duration.replace(/^PT/, "");
+  const match = str.match(/(?:(\d+)H)?(?:(\d+)M)?(?:(\d+(?:\.\d+)?)S)?/);
+
+  const hours = match[1] ? parseInt(match[1], 10) : 0;
+  const minutes = match[2] ? parseInt(match[2], 10) : 0;
+  const seconds = match[3] ? parseFloat(match[3]) : 0;
+
+  const hh = String(hours).padStart(2, "0");
+  const mm = String(minutes).padStart(2, "0");
+  const ss = seconds.toFixed(1).padStart(4, "0");
+
+  return [hh, mm, ss];
+}

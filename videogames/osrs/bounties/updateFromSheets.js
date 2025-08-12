@@ -143,3 +143,7 @@ const updateSheetActives = async (newWrites) => {
 };
 
 export { createBountyObject, createBounty, modifySheetData };
+
+// if (bountyData.Type.toLowerCase() === "death") {
+//   console.log(`Death type, should not use modified image url`);
+// }

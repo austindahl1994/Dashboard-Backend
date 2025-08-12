@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import dotenv from "dotenv";
+import rateLimit from "express-rate-limit";
 
 import { authJwt, authenticateUser } from "./middleware/authMiddleware.js";
 import { check } from "./auth/checkSession.js";
@@ -9,14 +9,23 @@ import profileRoutes from "./widgets/charGen/profileRoutes.js";
 import expenseRoutes from "./widgets/expenseTracker/expenseRoutes.js";
 import settingsRoutes from "./widgets/settings/settingsRoutes.js";
 import authRoutes from "./auth/authRoutes.js";
-
 import osrsRoutes from "./videogames/osrs/osrsRoutes.js";
 
+import dotenv from "dotenv";
 dotenv.config();
+
+//15 minutes, 100 requests per window
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  message: "Too many requests from this IP, please try again later.",
+});
+
 const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
+app.use(limiter);
 app.use(
   cors({
     origin: process.env.ORIGIN,

@@ -15,7 +15,7 @@ export const completedBountyEmbed = (bounty) => {
 
   const gp = formatBounty(bounty.Bounty);
   const embed = new EmbedBuilder()
-    .setTitle(`**${bounty.Title}** Completed!`)
+    .setTitle(`**${bounty.Title || bounty.Difficulty + " Task"}** Completed!`)
     // code for comparing either RSN or Discord
     .setImage(bounty.S3_URL)
     .setDescription(

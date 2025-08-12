@@ -116,7 +116,7 @@ export const numberOfBounties = [3, 3, 3, 3, 3];
 //     Bounty: "0.5",
 //     Wiki_URL: "https://oldschool.runescape.wiki/w/Verzik_Vitur",
 //     Status: "Active",
-//     Other: "01:15:00",
+//     Other: "01:15:00.6",
 //     RSN: "",
 //     Discord: "",
 //     S3_URL: "",

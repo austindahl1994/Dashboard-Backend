@@ -66,8 +66,6 @@ export const broadcastBountyCompletion = async (bounty) => {
     const embed = completedBountyEmbed(bounty);
     const channel = await client.channels.fetch(completedBountiesChannel);
     await channel.send({
-      content:
-        "@everyone A bounty was just claimed, make sure to check for new tasks at the bounty board!",
       embeds: [embed],
     });
   } catch (error) {

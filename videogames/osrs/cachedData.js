@@ -5,6 +5,8 @@ export const highscores = [];
 // Number of bounties per tier, 3 is temporary, updates on sheet call
 export const numberOfBounties = [3, 3, 3, 3, 3];
 
+export let playerRequests = [];
+
 //holds current highscores created by parsing sheets data
 // export const highscores = [
 //   { Player_Name: "Happy", Score: 69, TotalBounty: 420.69 },

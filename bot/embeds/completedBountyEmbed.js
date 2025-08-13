@@ -19,7 +19,7 @@ export const completedBountyEmbed = (bounty) => {
     // code for comparing either RSN or Discord
     .setImage(bounty.S3_URL)
     .setDescription(
-      `${playerName} has completed the ${bounty.Difficulty} tier bounty, claiming a cool ${gp}!`
+      `${playerName} has completed the ${bounty.Difficulty} bounty, claiming a cool ${gp}!`
     );
   // finish embed with ';' symbol
   // can add footer or something as well based on RSN

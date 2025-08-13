@@ -1,7 +1,7 @@
 const compareItems = (data, bounty) => {
   for (const dItem of data.extra.items) {
     for (const bItem of bounty.Item) {
-      if (dItem.name.toLowerCase() === bItem.toLowerCase()) {
+      if (dItem.name.trim().toLowerCase() === bItem.trim().toLowerCase()) {
         console.log(`Items match! ${bItem} vs ${dItem.name}`);
         return true;
       }
@@ -13,10 +13,11 @@ const compareItems = (data, bounty) => {
 
 // bounty.Source === '*' || Any time we would use wild card? add functionality later if needed
 const compareSources = (source, bounty) => {
-  if (bounty.Source === "*") {
+  if (bounty.Source.trim() === "*") {
+    console.log(`Source was anything!`);
     return true;
   }
-  if (bounty.Source.toLowerCase() === source.toLowerCase()) {
+  if (bounty.Source.trim().toLowerCase() === source.trim().toLowerCase()) {
     console.log(`Sources match! returning true`);
     return true;
   }
@@ -25,12 +26,17 @@ const compareSources = (source, bounty) => {
 };
 
 const compareRegions = (dataRegion, bounty) => {
-  console.log(`${parseInt(dataRegion)} vs ${parseInt(bounty.Source)}`);
+  console.log(
+    `${parseInt(dataRegion.trim())} vs ${parseInt(bounty.Source.trim())}`
+  );
   return parseInt(dataRegion) === parseInt(bounty.Source);
 };
 
 const compareCategories = (data, bounty) => {
-  return data.extra.category.toLowerCase() === bounty.Other.toLowerCase();
+  return (
+    data.extra.category.trim().toLowerCase() ===
+    bounty.Other.trim().toLowerCase()
+  );
 };
 
 //Do a check beforehand for extra.npc === false for guaranteed not pvp?

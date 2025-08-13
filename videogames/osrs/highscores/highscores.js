@@ -63,7 +63,7 @@ export const createCachedHighscores = async (sheetData) => {
         const status = bounty.Status.trim().toLowerCase();
         console.log(`Player: ${player}`);
         console.log(`Status is: ${status}`);
-        if (!player || status === "open" || status === "skipped") {
+        if (!player || !status || status === "open" || status === "skipped") {
           // console.log(`No player or status is open/skipped`);
           return;
         }

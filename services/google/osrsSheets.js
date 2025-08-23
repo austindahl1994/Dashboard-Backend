@@ -90,7 +90,7 @@ export const completeBounty = async (sheet, row, data) => {
     );
   } catch (error) {
     console.log(`Could not update bounty row: ${row}, sheet: ${sheet}`);
-    console.error(error);
+    console.log(error);
   }
 };
 
@@ -113,6 +113,30 @@ export const markManuallyCompleted = async (
     console.error(error);
   }
 };
+
+//Take in final tasklist, add in every item, see how many times they appear, see how many tasks are for each tier
+const getFinalTasks = async () => {
+  try {
+    const range = `final!A1:E252`
+    const data = await sheets.readSingleSheet(range)
+    console.log(`Successfully pulled final tasks: `)
+    console.table(data[0])
+    return data[0]
+  } catch (error) {
+    console.log(`Error getting final tasks: `)
+    console.log(error)
+  }
+}
+
+//Move all final tasklist into the other sheets based on difficulty
+const migrateTasks = async () => {
+  
+}
+
+//Take buy-ins/donations, get donation list, parse it, if user already paid or donated, add to donation amount, "/money" command
+const money = async () => {
+  
+}
 
 // allSheetData.map((values, index) => {
 //   console.log(`Data for sheet ${index + 1}:`);

@@ -16,7 +16,7 @@ dotenv.config();
 
 export const getAllSheetBounties = async () => {
   const sheetsToRead = ["easy", "medium", "hard", "elite", "master"];
-  const range = "A2:L50";
+  const range = "A2:L50"; //Start from A2 since the first row is header row, we just add this in later
   const allRanges = sheetsToRead.map((sheet) => `${sheet}!${range}`);
 
   try {

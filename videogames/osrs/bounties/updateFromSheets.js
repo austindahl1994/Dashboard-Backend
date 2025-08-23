@@ -15,9 +15,9 @@ import { writeBatchToSheet } from "../../../services/google/sheets.js";
 // then calls checkBounties to update cachedBounties if needed
 const modifySheetData = (allSheetData) => {
   try {
-    const finalSheetData = allSheetData.map((rows) => {
+    const finalSheetData = allSheetData.map((sheet) => {
       const sheetsArr = [];
-      rows.forEach((row) => {
+      sheet.forEach((row) => {
         const bountyObject = createBountyObject(row);
         sheetsArr.push(bountyObject);
       });
@@ -114,13 +114,14 @@ const createBounty = (bountyData, difficulty, sheetIndex) => {
 
     const newBounty = new Bounty({
       ...bountyData,
-      Id: sheetIndex - 1,
+      Type: bountyData?.Type?.trim() || "loot",
+      Id: sheetIndex - 1, //Since index starts at 1 for sheets, not 0
       Difficulty: `${difficulty}`,
       Item: items,
       Bounty: bountyData.Bounty,
       Sheet_Index: sheetIndex,
       Wiki_Image:
-        bountyData.Type.toLowerCase() === "death"
+        bountyData.Type.trim().toLowerCase() === "death"
           ? bountyData.Wiki_URL
           : getURLImage(bountyData.Wiki_URL),
     });

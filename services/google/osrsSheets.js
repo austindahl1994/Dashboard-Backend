@@ -117,7 +117,7 @@ export const markManuallyCompleted = async (
 //Take in final tasklist, add in every item, see how many times they appear, see how many tasks are for each tier
 const getFinalTasks = async () => {
   try {
-    const range = `final!A1:E252`
+    const range = `final!B:B, F:F` //Only need items and difficulty
     const data = await sheets.readSingleSheet(range)
     console.log(`Successfully pulled final tasks: `)
     console.table(data)

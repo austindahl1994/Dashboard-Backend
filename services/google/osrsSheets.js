@@ -120,8 +120,8 @@ const getFinalTasks = async () => {
     const range = `final!A1:E252`
     const data = await sheets.readSingleSheet(range)
     console.log(`Successfully pulled final tasks: `)
-    console.table(data[0])
-    return data[0]
+    console.table(data)
+    return data
   } catch (error) {
     console.log(`Error getting final tasks: `)
     console.log(error)

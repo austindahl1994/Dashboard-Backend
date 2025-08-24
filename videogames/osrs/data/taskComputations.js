@@ -1,69 +1,99 @@
-import { getFinalTasks } from "../../../services/google/osrsSheets.js"
-import { getTier } from "../bounties/bountyUtilities.js"
+import { getFinalTasks } from "../../../services/google/osrsSheets.js";
+import { getTier } from "../bounties/bountyUtilities.js";
 //TODO: Add the "*" for anything if source is empty
+// Second word being capital makes it not the same?
 
 //Take in final tasklist, need following:
 // How many times the items appear
 // How many tasks are in each tier
-const finalTasks = async () => {
+export const finalTasks = async () => {
   try {
-    const allTasks = await getFinalTasks() //returned as array of arrays, headers are first row
-    const difficultyCount = new Map() 
-    const itemCounts = {}
-    allTasks.forEach((col, index) => { // [[col0:items],[col1:difficulty]]
-      // Ignore the header row
-      if (index !== 0) {
-        // col[0] and col[1]: Items and Difficulty
-        // Split each item in col[0] (items) by ',' if is more than one item
-        if (col[0]?.trim() !== "") {
-          const items = col[0].split(",")
-          items.forEach((item) => {
-            if (itemCounts[item]) {
-              itemCounts[item] += 1
-            } else {
-              itemCounts[item] = 1
-            }
-          })
-        }
-        // Check if difficulty exists, if not add it
-        if (col[1]?.trim()) {
-          if (difficultyCount.has(col[1])) {
-            difficultyCount.set(col[1], difficultyCount.get(col[1]) + 1)
-          } else {
-            difficultyCount.set(col[1], 1)
+    const allTasks = await getFinalTasks(); //returned as array of arrays, headers are first row
+    // console.log(`All final tasks: `);
+    // console.log(allTasks); //[[[item1], [item2], [item3]],[[difficulty1],[difficulty2]]]
+    const difficultyCount = new Map();
+    const itemCounts = {};
+    allTasks.forEach((col, index) => {
+      if (index === 0) {
+        col.forEach((item) => {
+          if (!item || !item[0] || item[0].trim() === "") {
+            return;
           }
-        }
+          const itemString = item[0];
+          if (itemString?.trim() !== "") {
+            const items = itemString.split(",");
+            items.forEach((i) => {
+              let trimmedItem = i.trim().toLowerCase();
+              if (itemCounts[trimmedItem]) {
+                itemCounts[trimmedItem] += 1;
+              } else {
+                itemCounts[trimmedItem] = 1;
+              }
+            });
+          }
+        });
       }
-    })
+      if (index === 1) {
+        col.forEach((difficulty) => {
+          if (
+            !difficulty ||
+            !difficulty[0] ||
+            difficulty[0].trim() === "" ||
+            difficulty[0] === "0"
+          ) {
+            return;
+          }
+          // console.log(`Difficulty: ${difficulty} type: ${typeof difficulty}`);
+          // console.log(
+          //   `Difficulty[0]: ${difficulty[0]} type: ${typeof difficulty[0]}`
+          // );
+          if (difficulty[0]?.trim()) {
+            if (difficultyCount.has(difficulty[0])) {
+              difficultyCount.set(
+                difficulty[0],
+                difficultyCount.get(difficulty[0]) + 1
+              );
+            } else {
+              difficultyCount.set(difficulty[0], 1);
+            }
+          }
+        });
+      }
+    });
 
-    const itemsArr = Object.entries(itemCounts).map(([item, count]) => {
+    const itemsArr = Object.entries(itemCounts)
+      .map(([item, count]) => {
         return {
           Item: item,
-          Count: count
-        }
-      }).sort((itemA, itemB) => {
-        return itemA.Count - itemB.Count
+          Count: count,
+        };
       })
-
-    const difficultyArr = [...difficultyCount].map(([difficulty, count]) => {
+      .sort((itemA, itemB) => {
+        return itemA.Count - itemB.Count;
+      });
+    // console.log(`Entire difficultyCount map: `);
+    // console.log(difficultyCount);
+    const difficultyArr = [...difficultyCount]
+      .map(([difficulty, count]) => {
         return {
-          Difficulty: getTier(difficulty),
-          Count: count
-        }
-      }).sort((arrObjA, arrObjB) => {
-        return arrObjA.Count - arrObjB.Count
+          Difficulty: getTier(difficulty - 1),
+          Count: count,
+        };
       })
-    console.log("Item totals: ")
-    console.table(itemsArr)
-    console.log("Number of tasks in tier: ")
-    console.table(difficultyArr)
+      .sort((arrObjA, arrObjB) => {
+        return arrObjA.Count - arrObjB.Count;
+      });
+    console.log("Item totals: ");
+    console.table(itemsArr);
+    console.log("Number of tasks in tier: ");
+    console.table(difficultyArr);
   } catch (error) {
-    console.log(`Error calling finalTasks: `)
-    console.log(error)
+    console.log(`Error calling finalTasks: `);
+    console.log(error);
   }
-}
+};
 
-finalTasks()
+// finalTasks();
 // export { getFinalTasks }
 
 // Example returned data

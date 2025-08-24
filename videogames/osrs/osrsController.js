@@ -21,7 +21,6 @@ export const osrsController = async (req, res) => {
     }
     const data = req.body.payload_json;
     if (data) {
-      console.log(data);
       const parsedData = JSON.parse(data);
       if (parsedData) {
         console.log(`Received data from ${parsedData.playerName}`);

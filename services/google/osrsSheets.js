@@ -127,10 +127,39 @@ export const getFinalTasks = async () => {
 };
 
 //Move all final tasklist into the other sheets based on difficulty
-const migrateTasks = async () => {};
+export const migrateTasks = async () => {};
 
 //Take buy-ins/donations, get donation list, parse it, if user already paid or donated, add to donation amount, "/money" command
-const money = async () => {};
+export const buyin = async () => {};
+
+export const getAllMembers = async () => {
+  try {
+    const allMembers = await sheets.readSingleSheet("members!A2:D1000");
+    console.log(`All members:`);
+    console.log(allMembers);
+    return allMembers;
+  } catch (error) {
+    console.log(`Error getting all members: `);
+    console.log(error);
+  }
+};
+
+//Add all discord members to google sheet from discord
+export const addMembers = async (memberData) => {
+  try {
+    await sheets.writeSingleSheet(
+      `members!A2:D${memberData.length + 1}`,
+      memberData
+    );
+    console.log(`Successfully added members to sheet`);
+  } catch (error) {
+    console.log(`Error adding members to sheet: `);
+    console.log(error);
+  }
+};
+
+//Compares users who wanted to join but haven't paid
+export const missing = async () => {};
 
 // allSheetData.map((values, index) => {
 //   console.log(`Data for sheet ${index + 1}:`);

@@ -3,7 +3,7 @@ import { EmbedBuilder } from "discord.js";
 export const death = (data, scrollImage, color, author) => {
   const embed = new EmbedBuilder()
     .setColor(color)
-    .setTitle(data.Title || "Death Bounty")
+    .setTitle(data.Title || "Seeking Death")
     .setThumbnail(
       data.Wiki_URL ||
         "https://oldschool.runescape.wiki/images/Bones_detail.png"
@@ -16,7 +16,7 @@ export const death = (data, scrollImage, color, author) => {
       text: `Task ID: ${data.Id}`,
     });
   embed.setDescription(
-    data.Description || "No description made for this bounty"
+    data.Description || "Die at the following location to complete the task"
   );
   return embed;
 };

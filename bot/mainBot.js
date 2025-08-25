@@ -14,7 +14,9 @@ const __dirname = path.dirname(__filename);
 export const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers],
 });
+
 client.commands = new Collection();
+client.cooldowns = new Collection();
 
 export async function startBot() {
   // Load commands

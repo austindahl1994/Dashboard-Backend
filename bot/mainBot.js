@@ -11,7 +11,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Create the client ONCE and export it
-export const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+export const client = new Client({
+  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers],
+});
 client.commands = new Collection();
 
 export async function startBot() {

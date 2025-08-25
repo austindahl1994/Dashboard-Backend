@@ -9,7 +9,6 @@ import { getTier } from "../bounties/bountyUtilities.js";
 export const finalTasks = async () => {
   try {
     const allTasks = await getFinalTasks(); //returned as array of arrays, headers are first row
-    // console.log(`All final tasks: `);
     // console.log(allTasks); //[[[item1], [item2], [item3]],[[difficulty1],[difficulty2]]]
     const difficultyCount = new Map();
     const itemCounts = {};
@@ -23,7 +22,7 @@ export const finalTasks = async () => {
           if (itemString?.trim() !== "") {
             const items = itemString.split(",");
             items.forEach((i) => {
-              let trimmedItem = i.trim().toLowerCase();
+              let trimmedItem = i.trim().toLowerCase().replace(/[’‘]/g, "'");
               if (itemCounts[trimmedItem]) {
                 itemCounts[trimmedItem] += 1;
               } else {
@@ -43,10 +42,6 @@ export const finalTasks = async () => {
           ) {
             return;
           }
-          // console.log(`Difficulty: ${difficulty} type: ${typeof difficulty}`);
-          // console.log(
-          //   `Difficulty[0]: ${difficulty[0]} type: ${typeof difficulty[0]}`
-          // );
           if (difficulty[0]?.trim()) {
             if (difficultyCount.has(difficulty[0])) {
               difficultyCount.set(
@@ -71,8 +66,6 @@ export const finalTasks = async () => {
       .sort((itemA, itemB) => {
         return itemA.Count - itemB.Count;
       });
-    // console.log(`Entire difficultyCount map: `);
-    // console.log(difficultyCount);
     const difficultyArr = [...difficultyCount]
       .map(([difficulty, count]) => {
         return {
@@ -92,23 +85,3 @@ export const finalTasks = async () => {
     console.log(error);
   }
 };
-
-// finalTasks();
-// export { getFinalTasks }
-
-// Example returned data
-// {
-//   "range": "Sheet1!A1:C3",
-//   "majorDimension": "ROWS",
-//   "values": [
-//     ["Name", "Age", "City"],
-//     ["Alice", "25", "New York"],
-//     ["Bob", "30", "London, New York"]
-//   ]
-// }
-// For two cols example:
-// [
-//   ["Apple", "100"],
-//   ["Banana", "200"],
-//   ["Cherry", ""]
-// ]

@@ -134,7 +134,7 @@ export const buyin = async () => {};
 
 export const getAllMembers = async () => {
   try {
-    const allMembers = await sheets.readSingleSheet("members!A2:D1000");
+    const allMembers = await sheets.readSingleSheet("members!A2:D500");
     console.log(`All members:`);
     console.log(allMembers);
     return allMembers;

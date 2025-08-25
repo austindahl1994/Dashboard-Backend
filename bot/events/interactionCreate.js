@@ -1,8 +1,16 @@
 import { Events, Collection, MessageFlags } from "discord.js";
-
+import { allowedUserIds } from "../utilities/discordUtils.js";
+//TODO add user id functionality
 export default {
   name: Events.InteractionCreate,
   async execute(interaction) {
+    if (!allowedUserIds.includes(interaction.user.id)) {
+      return interaction.reply({
+        content: "⛔ You are not allowed to use this command.",
+        flags: MessageFlags.Ephemeral,
+      });
+    }
+
     // 🔹 Handle autocomplete interactions
     if (interaction.isAutocomplete()) {
       const command = interaction.client.commands.get(interaction.commandName);

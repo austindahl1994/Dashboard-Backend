@@ -1,5 +1,6 @@
 import { SlashCommandBuilder, MessageFlags } from "discord.js";
 import { finalTasks } from "../../videogames/osrs/data/taskComputations.js";
+import { allowedUserIds } from "../utilities/discordUtils.js";
 
 export default {
   cooldown: 5,
@@ -8,6 +9,12 @@ export default {
     .setDescription("Display data"),
   async execute(interaction) {
     try {
+      if (!allowedUserIds.includes(interaction.user.id)) {
+        return interaction.reply({
+          content: "⛔ You are not allowed to use this command.",
+          flags: MessageFlags.Ephemeral,
+        });
+      }
       await finalTasks();
       await interaction.reply({
         content: `Successfully got data!`,

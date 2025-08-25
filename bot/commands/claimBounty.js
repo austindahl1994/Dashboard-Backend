@@ -1,7 +1,7 @@
 import { SlashCommandBuilder, MessageFlags } from "discord.js";
 import { manuallyCompleteBounty } from "../../videogames/osrs/bounties/completeBounty.js";
-const allowedUserId = process.env.TEMP_USER_ID;
-const allowedChannel = process.env.EVENT_CHANNEL_ID;
+import { allowedUserIds } from "../utilities/discordUtils.js";
+
 export default {
   cooldown: 5,
   data: new SlashCommandBuilder()
@@ -26,16 +26,9 @@ export default {
         .setRequired(true)
     ),
   async execute(interaction) {
-    //REMOVE FOR EVENT
-    // if (interaction.user.id !== allowedUserId) {
-    //   return interaction.reply({
-    //     content: "Yo fuckoff, you don't need to be here right now.",
-    //     flags: MessageFlags.Ephemeral,
-    //   });
-    // }
-    if (interaction.channel.id !== allowedChannel) {
+    if (!allowedUserIds.includes(interaction.user.id)) {
       return interaction.reply({
-        content: "You must be in the correct channel to use this command.",
+        content: "⛔ You are not allowed to use this command.",
         flags: MessageFlags.Ephemeral,
       });
     }

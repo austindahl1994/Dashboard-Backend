@@ -1,4 +1,5 @@
 import { SlashCommandBuilder, MessageFlags } from "discord.js";
+import { allowedUserIds } from "../utilities/discordUtils.js";
 
 export default {
   cooldown: 5,
@@ -20,6 +21,12 @@ export default {
     ),
 
   async autocomplete(interaction) {
+    if (!allowedUserIds.includes(interaction.user.id)) {
+      return interaction.reply({
+        content: "⛔ You are not allowed to use this command.",
+        flags: MessageFlags.Ephemeral,
+      });
+    }
     // inside your autocomplete handler
     const focusedValue = interaction.options.getFocused();
     const members = await interaction.guild.members.fetch();

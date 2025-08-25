@@ -1,4 +1,5 @@
 import { SlashCommandBuilder, MessageFlags } from "discord.js";
+import { allowedUserIds } from "../utilities/discordUtils.js";
 
 export default {
   cooldown: 5,
@@ -7,9 +8,9 @@ export default {
     .setDescription("Skip a bounty manually"),
   async execute(interaction) {
     try {
-      if (interaction.user.id !== allowedUserId) {
+      if (!allowedUserIds.includes(interaction.user.id)) {
         return interaction.reply({
-          content: "Yo fuckoff, you don't need to be here right now.",
+          content: "⛔ You are not allowed to use this command.",
           flags: MessageFlags.Ephemeral,
         });
       }

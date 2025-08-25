@@ -1,12 +1,9 @@
 import { SlashCommandBuilder, MessageFlags } from "discord.js";
 import dotenv from "dotenv";
 import { getHighscoresEmbeds } from "../embeds/embededHighscores.js";
+import { allowedUserIds } from "../utilities/discordUtils.js";
 
 dotenv.config();
-
-const channelId = process.env.DISCORD_CHANNEL_ID;
-
-const allowedUserId = process.env.TEMP_USER_ID;
 
 export default {
   cooldown: 5,
@@ -15,9 +12,9 @@ export default {
     .setDescription("Gets current highscores"),
   async execute(interaction) {
     try {
-      if (interaction.user.id !== allowedUserId) {
+      if (!allowedUserIds.includes(interaction.user.id)) {
         return interaction.reply({
-          content: "Yo fuckoff, you don't need to be here right now.",
+          content: "⛔ You are not allowed to use this command.",
           flags: MessageFlags.Ephemeral,
         });
       }

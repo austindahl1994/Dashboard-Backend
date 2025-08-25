@@ -130,13 +130,22 @@ export const getFinalTasks = async () => {
 export const migrateTasks = async () => {};
 
 //Take buy-ins/donations, get donation list, parse it, if user already paid or donated, add to donation amount, "/money" command
-export const buyin = async () => {};
+export const buyin = async (data) => {
+  try {
+    const { sheetData, sheetRange } = data;
+    // console.log(`Saving buyin to sheets: ${sheetRange} with data:`);
+    // console.log(sheetData);
+    await sheets.writeSingleSheet(sheetRange, [sheetData]);
+  } catch (error) {
+    throw new Error(`Error saving buyin to sheets: ${error}`);
+  }
+};
 
 export const getAllMembers = async () => {
   try {
     const allMembers = await sheets.readSingleSheet("members!A2:D500");
-    console.log(`All members:`);
-    console.log(allMembers);
+    // console.log(`All members:`);
+    // console.log(allMembers);
     return allMembers;
   } catch (error) {
     console.log(`Error getting all members: `);

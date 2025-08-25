@@ -1,5 +1,6 @@
 import { SlashCommandBuilder, MessageFlags } from "discord.js";
 import { allowedUserIds } from "../utilities/discordUtils.js";
+import { memberMoney } from "../../videogames/osrs/data/discordMembers.js";
 
 export default {
   cooldown: 5,
@@ -35,7 +36,7 @@ export default {
       const nickname = m.nickname ?? m.user.username;
       return {
         name: `${nickname} (${m.user.username})`,
-        value: m.user.id, // or username, whatever you want your command to receive
+        value: m.user.id,
       };
     });
 
@@ -50,17 +51,20 @@ export default {
   },
 
   async execute(interaction) {
-    const userId = interaction.options.getString("user");
-    const donation = interaction.options.getNumber("donation") ?? 0;
-
     try {
+      const userId = interaction.options.getString("user");
+      const member = await interaction.guild.members.fetch(userId);
+      const username = member.user.username;
+      const nickname = member.nickname || username;
+      const donation = interaction.options.getNumber("donation") ?? 0;
+      await memberMoney({ nickname, username, donation });
       await interaction.reply({
         content: `Buy-in recorded for <@${userId}> with donation: ${donation}`,
         flags: MessageFlags.Ephemeral,
       });
     } catch (error) {
       await interaction.reply({
-        content: `There was an error getting data: ${error}`,
+        content: `There was an error saving buy in: ${error}`,
         flags: MessageFlags.Ephemeral,
       });
     }

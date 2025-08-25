@@ -14,8 +14,6 @@ export default {
           flags: MessageFlags.Ephemeral,
         });
       }
-      // locic to manually skip a bounty, based on array of allowed discord_ids since can't use mod ID?
-      // or if we can use based on their permissions: member.permissions.has('SomePermission')
       await interaction.reply("Need skip logic");
     } catch (error) {
       await interaction.reply({

@@ -2,6 +2,7 @@ import { SlashCommandBuilder, MessageFlags } from "discord.js";
 import { finalTasks } from "../../videogames/osrs/data/taskComputations.js";
 import { allowedUserIds } from "../utilities/discordUtils.js";
 
+// Command to display final tasks data
 export default {
   cooldown: 5,
   data: new SlashCommandBuilder()

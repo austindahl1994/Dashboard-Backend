@@ -11,9 +11,6 @@ export const death = (data, scrollImage, color, author) => {
     .setAuthor({
       name: author,
       iconURL: scrollImage,
-    })
-    .setFooter({
-      text: `Task ID: ${data.Id}`,
     });
   embed.setDescription(
     data.Description || "Die at the following location to complete the task"

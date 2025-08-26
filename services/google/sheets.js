@@ -86,3 +86,86 @@ export const writeBatchToSheet = async (updates) => {
     console.log(error);
   }
 };
+
+// Can read from selected Col ranges, e.g. A2:A50
+// Can read from multiple Col ranges with array ["final!B2:B400", "final!F2:F400"]
+// 1. Write to a single sheet
+// await writeSingleSheet("Sheet1!A1:B2", [
+//   ["Name", "Score"],
+//   ["Alice", 100],
+// ]);
+//
+// Result in Sheet1:
+// | Name  | Score |
+// |-------|-------|
+// | Alice | 100   |
+//
+//
+// 2. Read from a single sheet
+// ---------------------------
+// const data = await readSingleSheet("Sheet1!A1:B3");
+//
+// If the sheet looks like:
+// | Name  | Score |
+// |-------|-------|
+// | Alice | 100   |
+// | Bob   | 90    |
+//
+// Returned data:
+// [
+//   ["Name", "Score"],
+//   ["Alice", "100"],
+//   ["Bob", "90"]
+// ]
+//
+//
+// 3. Read from multiple sheets
+// ----------------------------
+// const ranges = ["Sheet1!A1:B2", "Sheet2!A1:C2"];
+// const data = await readMultipleSheets(ranges);
+//
+// If Sheet1 looks like:
+// | Name  | Score |
+// |-------|-------|
+// | Alice | 100   |
+//
+// And Sheet2 looks like:
+// | Item  | Price | Qty |
+// |-------|-------|-----|
+// | Pen   | 1     | 5   |
+//
+// Returned data:
+// [ all data
+//   [ specific sheet
+//     ["Name", "Score"], ["Alice", "100"] specific row
+//   ],
+//   [
+//     ["Item", "Price", "Qty"], ["Pen", "1", "5"]
+//   ]
+//  ]
+//
+//
+// 4. Write batch to multiple sheets
+// ---------------------------------
+// await writeBatchToSheet([
+//   {
+//     range: "Sheet1!A1:B2",
+//     values: [
+//       ["Name", "Score"],
+//       ["Charlie", 85],
+//     ],
+//   },
+//   {
+//     range: "Sheet2!A1:C2",
+//     values: [
+//       ["Item", "Price", "Qty"],
+//       ["Notebook", 3, 10],
+//     ],
+//   },
+// ]);
+//
+// Effect:
+// - Updates Sheet1 A1:B2 with "Name, Score" and Charlie's row
+// - Updates Sheet2 A1:C2 with "Item, Price, Qty" and Notebook row
+//
+// =============================

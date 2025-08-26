@@ -25,9 +25,6 @@ export const clue = (data, tier, scrollImage, color, author) => {
     .setAuthor({
       name: author,
       iconURL: scrollImage,
-    })
-    .setFooter({
-      text: `Task ID: ${data.Id}`,
     });
   // ...add clue-specific fields here...
   return embed;

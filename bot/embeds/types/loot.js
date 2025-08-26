@@ -2,13 +2,14 @@ import { EmbedBuilder } from "discord.js";
 import { formatBounty } from "../embedUtilities.js";
 
 export const loot = (data, scrollImage, color, author) => {
-  let title = data.Title || "Loot Bounty";
-
   const embed = new EmbedBuilder()
     .setColor(color)
-    .setTitle(title)
+    .setTitle(data.Title || "Loot Bounty")
     .setURL(data.Wiki_URL || "https://oldschool.runescape.wiki/")
-    .setThumbnail(data.Wiki_Image || "https://oldschool.runescape.wiki/")
+    .setThumbnail(
+      data.Wiki_Image ||
+        "https://oldschool.runescape.wiki/images/Cabbage_detail.png"
+    )
     .setAuthor({
       name: author,
       iconURL: scrollImage,
@@ -18,7 +19,7 @@ export const loot = (data, scrollImage, color, author) => {
   // });
 
   embed.setDescription(
-    data.Description || "No description made for this bounty"
+    data.Description || "Kill monster, get drop, should be simple enough"
   );
 
   if (data.Bounty) {

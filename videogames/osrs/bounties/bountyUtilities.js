@@ -1,3 +1,20 @@
+import { numberOfBounties } from "../cachedData.js";
+
+const bountyHeaders = [
+  "Title",
+  "Item",
+  "Source",
+  "Description",
+  "Type",
+  "Bounty",
+  "Wiki_URL",
+  "Other",
+  "Status",
+  "RSN",
+  "Discord",
+  "S3_URL",
+];
+
 const getURLImage = (wikiURL) => {
   return wikiURL.replace("#", "").replace("/w/", "/images/") + ".png";
 };
@@ -43,26 +60,27 @@ const difficultyToTier = (tier) => {
     case "master":
       return 4;
     default:
-      return 0;
+      return 5;
   }
 };
 
-const bountyHeaders = [
-  "Title",
-  "Item",
-  "Source",
-  "Description",
-  "Type",
-  "Bounty",
-  "Wiki_URL",
-  "Other",
-  "Status",
-  "RSN",
-  "Discord",
-  "S3_URL",
-];
+// Passed in bounty index and difficulty as sheet
+const tasksLeft = (sheetIndex, sheet) => {
+  const numberIndex = difficultyToTier(sheet.toLowerCase().trim());
+  const returnedValue =
+    parseInt(sheetIndex) - 1 < numberOfBounties[numberIndex];
+  // console.log(`Are there any more tasks remaining?? ${returnedValue}`);
+  return returnedValue;
+};
 
-export { getURLImage, formatBounty, getTier, difficultyToTier, bountyHeaders };
+export {
+  getURLImage,
+  formatBounty,
+  getTier,
+  difficultyToTier,
+  bountyHeaders,
+  tasksLeft,
+};
 
 /*TASKS
 Need to do the following:

@@ -25,7 +25,7 @@ const modifySheetData = (allSheetData) => {
     });
     sheetsToBounties(finalSheetData);
   } catch (error) {
-    console.log(errorconsole.log(error));
+    console.log(error);
   }
 };
 
@@ -68,12 +68,14 @@ const sheetsToBounties = async (sheetsArr) => {
     // console.log(`Final cached bounties:`);
     // console.log(cachedBounties);
     // console.log(`Number of bounties per tier:`);
+    // console.table(numberOfBounties);
+    // console.log(`Number of bounties per tier:`);
     // numberOfBounties.forEach((count, index) => {
     //   console.log(`Tier ${getTier(index)}: ${count}`);
     // });
     createCachedHighscores(sheetsArr);
   } catch (error) {
-    console.log(errorconsole.log(error));
+    console.log(error);
   }
 };
 
@@ -89,7 +91,7 @@ const createBountyObject = (bountyRow) => {
     });
     return rowObj;
   } catch (error) {
-    console.log(errorconsole.log(error));
+    console.log(error);
   }
 };
 
@@ -128,7 +130,7 @@ const createBounty = (bountyData, difficulty, sheetIndex) => {
 
     cachedBounties[tier] = newBounty;
   } catch (error) {
-    console.log(errorconsole.log(error));
+    console.log(error);
   }
 };
 

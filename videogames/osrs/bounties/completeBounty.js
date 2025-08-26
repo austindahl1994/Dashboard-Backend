@@ -52,7 +52,6 @@ export const manuallyCompleteBounty = async (
   imageUrl
 ) => {
   try {
-    // If no data for one passed in, throw error
     if (!difficulty || !id || !discord || !imageUrl) {
       throw new Error(
         "Missing required parameters to manually complete bounty."
@@ -62,11 +61,7 @@ export const manuallyCompleteBounty = async (
       `Manually completing bounty with ID: ${id} on ${difficulty} difficulty.`
     );
 
-    // Find the bounty in cachedBounties based on id and difficulty
     const idIndex = cachedBounties.findIndex((bounty) => {
-      // console.log(
-      //   `Checking bounty with ID: ${bounty.Id} and difficulty: ${bounty.Difficulty}`
-      // );
       return (
         parseInt(bounty.Id) === parseInt(id) &&
         bounty.Difficulty.trim() === difficulty.trim()
@@ -86,9 +81,10 @@ export const manuallyCompleteBounty = async (
       S3_URL: imageUrl,
       Bounty: cachedBounties[idIndex].Bounty,
     };
+    const sheetIndex = cachedBounties[idIndex].Sheet_Index;
     await osrsSheets.markManuallyCompleted(
       difficulty,
-      id + 1,
+      sheetIndex,
       discord,
       imageUrl
     );

@@ -5,8 +5,6 @@ import { updateBroadcast } from "../broadcasts.js";
 import { allowedUserIds } from "../utilities/discordUtils.js";
 
 dotenv.config();
-const allowedChannel = process.env.EVENT_CHANNEL_ID;
-const allowedUserId = process.env.TEMP_USER_ID;
 
 export default {
   cooldown: 5,

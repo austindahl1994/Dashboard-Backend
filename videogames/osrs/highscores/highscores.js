@@ -16,7 +16,7 @@ export const updateHighscores = async (newHighscores) => {
     console.log(`Finished updating highscores:`);
     console.table(highscores);
   } catch (error) {
-    console.log(errorconsole.log(error));
+    console.log(error);
   }
 };
 
@@ -31,7 +31,7 @@ const sortHighscores = (hs) => {
       }
     });
   } catch (error) {
-    console.log(errorconsole.log(error));
+    console.log(error);
   }
 };
 
@@ -63,7 +63,12 @@ export const createCachedHighscores = async (sheetData) => {
         const status = bounty.Status.trim().toLowerCase();
         console.log(`Player: ${player}`);
         console.log(`Status is: ${status}`);
-        if (!player || !status || status === "open" || status === "skipped") {
+        if (
+          !player ||
+          !status ||
+          status.toLowerCase() === "open" ||
+          status.toLowerCase() === "skipped"
+        ) {
           // console.log(`No player or status is open/skipped`);
           return;
         }
@@ -96,7 +101,7 @@ export const createCachedHighscores = async (sheetData) => {
     await updateHighscores(newHighscores);
     await updateBroadcast("highscores");
   } catch (error) {
-    console.log(errorconsole.log(error));
+    console.log(error);
   }
 };
 
@@ -121,7 +126,7 @@ const increaseHS = (name, difficulty, gp) => {
       highscores.push(newPlayer);
     }
   } catch (error) {
-    console.log(errorconsole.log(error));
+    console.log(error);
   }
 };
 
@@ -144,6 +149,6 @@ export const addToHighscores = async (
     }
     await updateHighscores(highscores);
   } catch (error) {
-    console.log(errorconsole.log(error));
+    console.log(error);
   }
 };

@@ -1,16 +1,15 @@
 import { SlashCommandBuilder, MessageFlags } from "discord.js";
-import { allowedUserIds } from "../utilities/discordUtils.js";
-import { skipTask } from "../../videogames/osrs/bounties/modifyBounties.js";
+import { resetAllTasks } from "../../videogames/osrs/bounties/modifyBounties.js";
 
 export default {
   cooldown: 5,
   data: new SlashCommandBuilder()
-    .setName("skip")
-    .setDescription("Skip a bounty manually")
+    .setName("reset")
+    .setDescription("Reset the bounties to the first task")
     .addStringOption((option) =>
       option
-        .setName("difficulty")
-        .setDescription("Select the difficulty of the bounty to skip")
+        .setName("resettier")
+        .setDescription("What bounty tier to reset?")
         .setRequired(true)
         .addChoices(
           { name: "Easy", value: "easy" },
@@ -23,17 +22,18 @@ export default {
     ),
   async execute(interaction) {
     try {
-      if (!allowedUserIds.includes(interaction.user.id)) {
+      if (interaction.user.id !== process.env.DUBZ_DISCORD_ID) {
         return interaction.reply({
-          content: "⛔ You are not allowed to use this command.",
+          content:
+            "⛔ You are not allowed to use this command (Only Dubz can).",
           flags: MessageFlags.Ephemeral,
         });
       }
       const choice = interaction.options
-        .getString("difficulty")
+        .getString("resettier")
         .trim()
         .toLowerCase();
-      await skipTask(choice);
+      await resetAllTasks(choice);
       await interaction.reply({
         content: `Skipping bounty...`,
         flags: MessageFlags.Ephemeral,

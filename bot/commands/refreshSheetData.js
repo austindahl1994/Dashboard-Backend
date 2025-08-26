@@ -6,10 +6,6 @@ import { allowedUserIds } from "../utilities/discordUtils.js";
 import dotenv from "dotenv";
 dotenv.config();
 
-const allowedChannel = process.env.EVENT_CHANNEL_ID;
-
-// const allowedUserId = process.env.TEMP_USER_ID;
-
 export default {
   cooldown: 5,
   data: new SlashCommandBuilder()

@@ -1,6 +1,8 @@
 import { SlashCommandBuilder, MessageFlags } from "discord.js";
 import { manuallyCompleteBounty } from "../../videogames/osrs/bounties/completeBounty.js";
 import { allowedUserIds } from "../utilities/discordUtils.js";
+import { difficultyToTier } from "../../videogames/osrs/bounties/bountyUtilities.js";
+import { cachedBounties } from "../../videogames/osrs/cachedData.js";
 
 export default {
   cooldown: 5,
@@ -10,14 +12,15 @@ export default {
     .addStringOption((option) =>
       option
         .setName("difficulty")
-        .setDescription("The difficulty of the bounty to claim")
+        .setDescription("Select the difficulty of the bounty to claim")
         .setRequired(true)
-    )
-    .addIntegerOption((option) =>
-      option
-        .setName("id")
-        .setDescription("The id of the bounty to claim")
-        .setRequired(true)
+        .addChoices(
+          { name: "Easy", value: "easy" },
+          { name: "Medium", value: "medium" },
+          { name: "Hard", value: "hard" },
+          { name: "Elite", value: "elite" },
+          { name: "Master", value: "master" }
+        )
     )
     .addAttachmentOption((option) =>
       option
@@ -35,10 +38,9 @@ export default {
     const difficulty = interaction.options
       .getString("difficulty")
       .toLowerCase();
-    const id = interaction.options.getInteger("id");
+    const id = cachedBounties[difficultyToTier(difficulty)]?.Id;
     const discordUser = interaction.user.username;
     const image = interaction.options.getAttachment("image");
-
     await interaction.reply({
       content: `Received level: ${difficulty}\nID: ${id}\nImage: ${image.url}\nAttempting to claim bounty...`,
       flags: MessageFlags.Ephemeral,
@@ -46,7 +48,7 @@ export default {
     try {
       await manuallyCompleteBounty(difficulty, id, discordUser, image.url);
       await interaction.editReply({
-        content: `Successfully claimed bounty with ID ${id} on ${difficulty} difficulty.`,
+        content: `Successfully claimed ${difficulty} bounty.`,
         flags: MessageFlags.Ephemeral,
       });
     } catch (error) {

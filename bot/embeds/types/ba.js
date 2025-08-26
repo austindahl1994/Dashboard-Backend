@@ -10,9 +10,6 @@ export const ba = (data, scrollImage, color, author) => {
     .setAuthor({
       name: author,
       iconURL: scrollImage,
-    })
-    .setFooter({
-      text: `Task ID: ${data.Id}`,
     });
   return embed;
 };

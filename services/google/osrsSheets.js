@@ -3,20 +3,22 @@ import {
   modifySheetData,
   createBounty,
 } from "../../videogames/osrs/bounties/updateFromSheets.js";
-import { difficultyToTier } from "../../videogames/osrs/bounties/bountyUtilities.js";
-import * as sheets from "./sheets.js";
 import {
-  cachedBounties,
-  numberOfBounties,
-} from "../../videogames/osrs/cachedData.js";
+  difficultyToTier,
+  tasksLeft,
+} from "../../videogames/osrs/bounties/bountyUtilities.js";
+import * as sheets from "./sheets.js";
+import { cachedBounties } from "../../videogames/osrs/cachedData.js";
+import { updateBroadcast } from "../../bot/broadcasts.js";
+import { Bounty } from "../../videogames/osrs/bounties/Bounty.js";
 
 import dotenv from "dotenv";
-import { Bounty } from "../../videogames/osrs/bounties/Bounty.js";
 dotenv.config();
 
+// Called with "/refresh" command, reads all sheets, updates cached bounties
 export const getAllSheetBounties = async () => {
   const sheetsToRead = ["easy", "medium", "hard", "elite", "master"];
-  const range = "A2:L50"; //Start from A2 since the first row is header row, we just add this in later
+  const range = "A2:L75"; //Start from A2 since the first row is header row, we just add this in later
   const allRanges = sheetsToRead.map((sheet) => `${sheet}!${range}`);
 
   try {
@@ -29,31 +31,46 @@ export const getAllSheetBounties = async () => {
   }
 };
 
+// Get a new bounty from the sheet and row specified
+// Sheet: difficulty, row: Sheet_Index
 export const getNewBounty = async (sheet, row) => {
   try {
     const range = `${sheet}!A${row}:L${row}`;
     const rowData = await sheets.readSingleSheet(range);
     console.log(`Successfully pulled bounty row data:`);
     console.log(rowData);
-    const newBountyObj = createBountyObject(rowData[0]);
-    createBounty(newBountyObj, sheet, row);
-    console.log(`New bounty created:`);
-    console.log(cachedBounties[difficultyToTier(sheet)]);
+    // const newBountyObj = createBountyObject(rowData[0]);
+    // createBounty(newBountyObj, sheet, row);
+    // console.log(`New bounty created:`);
+    // console.log(cachedBounties[difficultyToTier(sheet)]);
+    createNewBounty(sheet, rowData[0], row);
   } catch (error) {
     console.log(`Could not get bounty row: ${row}, sheet: ${sheet}`);
     console.error(error);
   }
 };
 
-const tasksLeft = (id, sheet) => {
-  return id - 1 < numberOfBounties[difficultyToTier(sheet)];
+const createNewBounty = (difficulty, rowData, row) => {
+  try {
+    const newBountyObj = createBountyObject(rowData);
+    createBounty(newBountyObj, difficulty, row);
+    console.log(`New bounty created:`);
+    console.log(cachedBounties[difficultyToTier(difficulty)]);
+  } catch (error) {
+    console.log(
+      `Could not create new bounty for row: ${row}, sheet: ${difficulty}`
+    );
+  }
 };
 
+// After updating bounty row, check if there are more tasks in this tier, if so, activate next one
+// dataObj is {range: "sheet!A1:B1", values: [[]]}
+// Only works for one bounty?
 const updateBountyAndCheckNext = async (dataObj, sheet, row) => {
   try {
     let updates = [];
-    updates.push(dataObj);
-    const tasksRemaining = tasksLeft(row);
+    updates.push(dataObj); //Old task initially, with new task added to be set to active
+    const tasksRemaining = tasksLeft(row, sheet);
     if (tasksRemaining) {
       const range = `${sheet}!I${row + 1}`;
       const data = [["Active"]];
@@ -104,13 +121,38 @@ export const markManuallyCompleted = async (
 ) => {
   try {
     const finalArr = [
-      ["MANUALLY COMPLETED", "", discord, discordImgURL, "YES"],
+      ["MANUALLY CLAIMED", "", discord, discordImgURL, "CLAIMED"],
     ];
     const range = `${sheet}!I${row}:M${row}`;
     updateBountyAndCheckNext({ range: range, values: finalArr }, sheet, row);
   } catch (error) {
     console.log(`Could not update bounty row: ${row}, sheet: ${sheet}`);
     console.error(error);
+  }
+};
+
+// DataObj is {range: ["sheet!A1:B1"], values: [[]]}
+export const skipBounty = async (
+  dataToWrite,
+  dataToRead,
+  difficultiesAdded,
+  rowIndex
+) => {
+  try {
+    await sheets.writeBatchToSheet(dataToWrite);
+    console.log(`Bounty skipped successfully.`);
+    const allData = await sheets.readMultipleSheets(dataToRead);
+    console.log("New bounty data: ");
+    console.log(allData);
+    allData.forEach((sheetData, index) => {
+      createNewBounty(difficultiesAdded[index], sheetData[0], rowIndex[index]);
+    });
+    // NEED TO ADD WHAT ROW IS BEING UPDATED
+    // UPDATE BOUNTY BOARD AFTER TASK SKIPPED
+    // MIGHT NEED TO ADD HIGHSCORE LOGIC FOR NONE
+    await updateBroadcast("bounties");
+  } catch (error) {
+    throw error;
   }
 };
 
@@ -169,20 +211,3 @@ export const addMembers = async (memberData) => {
 
 //Compares users who wanted to join but haven't paid
 export const missing = async () => {};
-
-// allSheetData.map((values, index) => {
-//   console.log(`Data for sheet ${index + 1}:`);
-//   console.log(values);
-// });
-// All Read comments
-// Return as array of arrays [[sheet1Arrays], [sheet2Arrays], ...]
-// allSheetData.forEach(({ range, values }, index) => {
-//   console.log(`Data from range: ${range}`);
-//   console.table(values);
-//   console.log(values);
-// });
-
-// allSheetData.map((values, index) => {
-//   console.log(`Data for sheet ${index + 1}:`);
-//   console.log(values);
-// });

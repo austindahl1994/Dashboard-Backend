@@ -36,9 +36,7 @@ export const getAllBountyEmbeds = () => {
       const tier = getTier(index);
       const color = getColor(index);
 
-      let author = `${tier || "No difficulty"} Bounty - (ID: ${
-        data.Id || "Unknown ID"
-      })`;
+      let author = `${tier || "Error getting difficulty"} `;
 
       switch (data.Type.toLowerCase()) {
         case "loot":

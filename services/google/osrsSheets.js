@@ -23,7 +23,7 @@ export const getAllSheetBounties = async () => {
 
   try {
     const allSheetData = await sheets.readMultipleSheets(allRanges);
-    console.log("Batch data pulled successfully:");
+    // console.log("Batch data pulled successfully:");
     modifySheetData(allSheetData);
     return true;
   } catch (error) {

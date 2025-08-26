@@ -3,8 +3,8 @@ import { difficultyToTier } from "../bounties/bountyUtilities.js";
 import { updateBroadcast } from "../../../bot/broadcasts.js";
 
 export const updateHighscores = async (newHighscores) => {
-  console.log(`Updating highscores based on data: `);
-  console.log(newHighscores);
+  // console.log(`Updating highscores based on data: `);
+  // console.log(newHighscores);
   try {
     // Update the cached highscores array in place
     let topTenLength = newHighscores.length > 10 ? 10 : newHighscores.length;
@@ -13,8 +13,8 @@ export const updateHighscores = async (newHighscores) => {
       highscores[i] = newHighscores[i];
     }
 
-    console.log(`Finished updating highscores:`);
-    console.table(highscores);
+    // console.log(`Finished updating highscores:`);
+    // console.table(highscores);
   } catch (error) {
     console.log(error);
   }
@@ -43,7 +43,7 @@ export const createCachedHighscores = async (sheetData) => {
       console.table(previousHighscores);
       highscores.length = 0;
     }
-    console.log(`Creating highscores from cached sheets`);
+    // console.log(`Creating highscores from cached sheets`);
 
     const playerStats = {};
 
@@ -95,8 +95,8 @@ export const createCachedHighscores = async (sheetData) => {
     });
 
     // Convert to array and sort
-    console.log(`playerStats before sort:`);
-    console.log(Object.values(playerStats));
+    // console.log(`playerStats before sort:`);
+    // console.log(Object.values(playerStats));
     const newHighscores = sortHighscores(Object.values(playerStats));
     await updateHighscores(newHighscores);
     await updateBroadcast("highscores");

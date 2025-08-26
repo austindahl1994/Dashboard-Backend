@@ -45,7 +45,7 @@ export const loot = (data, scrollImage, color, author) => {
   if (data.Source) {
     embed.addFields({
       name: "__Source__",
-      value: data.Source === "*" ? "Anything" : `${data.Source}`,
+      value: data.Source === "*" ? "Any" : `${data.Source}`,
       inline: true,
     });
   }

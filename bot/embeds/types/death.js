@@ -13,7 +13,7 @@ export const death = (data, scrollImage, color, author) => {
       iconURL: scrollImage,
     });
   embed.setDescription(
-    data.Description || "Die at the following location to complete the task"
+    data.Description || "Find and die at this location to complete the bounty"
   );
   return embed;
 };

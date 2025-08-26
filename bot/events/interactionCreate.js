@@ -1,6 +1,5 @@
 import { Events, Collection, MessageFlags } from "discord.js";
-import { allowedUserIds } from "../utilities/discordUtils.js";
-//TODO add user id functionality
+
 export default {
   name: Events.InteractionCreate,
   async execute(interaction) {

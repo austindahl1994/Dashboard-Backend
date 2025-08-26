@@ -75,5 +75,3 @@ const setSheetSkipData = (bounty) => {
   }
   return [skippedObj];
 };
-
-export const resetAllTasks = async () => {};

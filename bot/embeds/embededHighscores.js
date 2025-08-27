@@ -44,7 +44,7 @@ export const getHighscoresEmbeds = () => {
 
   if (highscores.length === 0) {
     const noDataEmbed = new EmbedBuilder()
-      .setDescription("No highscores available at the moment.")
+      .setTitle("No highscores available at the moment")
       .setColor(0xe74c3c); // Red color for no data
     embeds.push(noDataEmbed);
   } else {

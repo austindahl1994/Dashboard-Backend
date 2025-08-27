@@ -4,7 +4,7 @@ import { formatBounty } from "../embedUtilities.js";
 export const speedrun = (data, scrollImage, color, author) => {
   const embed = new EmbedBuilder()
     .setColor(color)
-    .setTitle(data.Title || "Speedrun Bounty")
+    .setTitle(data.Title || "Quest Speedrun Bounty")
     .setThumbnail("https://oldschool.runescape.wiki/images/Quests.png")
     .setAuthor({
       name: author,

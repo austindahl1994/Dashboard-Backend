@@ -152,7 +152,7 @@ export const pk = (data, bounty) => {
     return acc + parseInt(playerItems[item].priceEach);
   }, 0);
   console.log(`Item sum came out to ${pkSum}`);
-  return pkSum > parseInt(bounty.Other);
+  return pkSum > parseInt(bounty.Item[0]);
 };
 
 function durationToArray(duration) {

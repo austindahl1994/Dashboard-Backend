@@ -1,5 +1,8 @@
 import { EmbedBuilder } from "discord.js";
-import { cachedBounties } from "../../videogames/osrs/cachedData.js";
+import {
+  cachedBounties,
+  EVENT_STARTED,
+} from "../../videogames/osrs/cachedData.js";
 import { clue } from "./types/clue.js";
 import { loot } from "./types/loot.js";
 import { death } from "./types/death.js";
@@ -8,10 +11,16 @@ import { ba } from "./types/ba.js";
 import { pk } from "./types/pk.js";
 import { getColor, getTier, getScrollImage } from "./embedUtilities.js";
 import { empty } from "./types/empty.js";
-import { noCachedBounties } from "./types/noCachedBounties.js";
+import {
+  eventNotStartedEmbed,
+  noCachedBounties,
+} from "./types/noCachedBounties.js";
 
 export const getAllBountyEmbeds = () => {
   try {
+    if (!EVENT_STARTED) {
+      return [eventNotStartedEmbed()];
+    }
     let finalArr = cachedBounties.map((data, index) => {
       if (
         !data ||

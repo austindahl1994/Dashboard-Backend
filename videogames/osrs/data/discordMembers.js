@@ -6,6 +6,7 @@ import {
 
 export const updateUsers = async (discordMembers, sheetsMembers) => {
   try {
+    const sheetsMembers = await getAllMembers();
     if (!sheetsMembers || sheetsMembers.length === 0) {
       console.log(`No sheets members found`);
       console.log(`Add all members from discord to sheets`);
@@ -74,3 +75,24 @@ export const memberMoney = async (memberObj) => {
     throw error;
   }
 };
+
+export const createGroups = async () => {
+  try {
+    const sheetsMembers = await getAllMembers();
+    if (!sheetsMembers || sheetsMembers.length === 0) {
+      throw new Error('No members currently in sheets document')
+    }
+    const teams = {}
+    sheetMembers.forEach((member) => {
+      // There aren't 6 cols for that member row, meaning they haven't paid buy in/joined team yet
+      if (member.length !== 6) {
+        return
+      } else {
+        
+      }
+    })
+  } catch (error) {
+    console.log(`Error creating group: ${error} `)
+    throw error
+  }
+}

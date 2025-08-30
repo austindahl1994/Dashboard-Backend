@@ -56,8 +56,9 @@ export default {
       const member = await interaction.guild.members.fetch(userId);
       const username = member.user.username;
       const nickname = member.nickname || username;
+      const id = member.id
       const donation = interaction.options.getNumber("donation") ?? 0;
-      await memberMoney({ nickname, username, donation });
+      await memberMoney({ nickname, username, id, donation });
       await interaction.reply({
         content: `Buy-in recorded for <@${userId}> with donation: ${donation}`,
         flags: MessageFlags.Ephemeral,

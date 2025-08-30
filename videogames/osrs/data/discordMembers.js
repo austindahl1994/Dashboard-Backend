@@ -11,7 +11,7 @@ export const updateUsers = async (discordMembers, sheetsMembers) => {
       console.log(`Add all members from discord to sheets`);
       const membersToAdd = discordMembers.map((member) => {
         const nickname = member.nickname ?? member.user.username;
-        return [nickname, member?.user?.username || "No username", "NO", 0];
+        return [nickname, member?.user?.username || "No username", member.id, "NO", 0];
       });
       console.table(membersToAdd);
       await addMembers(membersToAdd);
@@ -28,7 +28,7 @@ export const updateUsers = async (discordMembers, sheetsMembers) => {
           console.log(
             `Member ${guildNickname} with username ${guildUsername} not found in sheets, adding them`
           );
-          missingMembers.push([guildNickname, guildUsername, "NO", 0]);
+          missingMembers.push([guildNickname, guildUsername, guildMember.id, "NO", 0]);
         }
       });
       if (missingMembers.length > 0) {
@@ -53,7 +53,7 @@ export const updateUsers = async (discordMembers, sheetsMembers) => {
 
 export const memberMoney = async (memberObj) => {
   try {
-    const { nickname, username, donation } = memberObj;
+    const { nickname, username, id, donation } = memberObj;
     const sheetsMembers = await getAllMembers();
     const sheetsMembersObj = {};
     sheetsMembers.forEach((rowMember, index) => {
@@ -64,7 +64,7 @@ export const memberMoney = async (memberObj) => {
     });
     if (sheetsMembersObj[username]) {
       const index = sheetsMembersObj[username].index;
-      const sheetData = [nickname, username, "YES", donation];
+      const sheetData = [nickname, username, id, "YES", donation];
       const sheetRange = `members!A${index}:D${index}`;
       await buyin({ sheetData, sheetRange });
     } else {

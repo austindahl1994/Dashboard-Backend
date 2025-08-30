@@ -185,7 +185,7 @@ export const buyin = async (data) => {
 
 export const getAllMembers = async () => {
   try {
-    const allMembers = await sheets.readSingleSheet("members!A2:G500");
+    const allMembers = await sheets.readSingleSheet("members!A2:H500");
     // console.log(`All members:`);
     // console.log(allMembers);
     return allMembers;
@@ -199,7 +199,7 @@ export const getAllMembers = async () => {
 export const addMembers = async (memberData) => {
   try {
     await sheets.writeSingleSheet(
-      `members!A2:D${memberData.length + 1}`,
+      `members!A2:E${memberData.length + 1}`,
       memberData
     );
     console.log(`Successfully added members to sheet`);

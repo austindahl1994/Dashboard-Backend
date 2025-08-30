@@ -1,5 +1,4 @@
 import { SlashCommandBuilder, MessageFlags } from "discord.js";
-import { getAllMembers } from "../../services/google/osrsSheets.js";
 import { updateUsers } from "../../videogames/osrs/data/discordMembers.js";
 import { allowedUserIds } from "../utilities/discordUtils.js";
 
@@ -18,8 +17,7 @@ export default {
       }
       const discordMembers = await interaction.guild.members.fetch();
       console.log(`Fetched ${discordMembers.size} guild members from Discord`);
-      const sheetsMembers = await getAllMembers();
-      await updateUsers(discordMembers, sheetsMembers);
+      await updateUsers(discordMembers);
       await interaction.reply({
         content: `Successfully added members to sheets`,
         flags: MessageFlags.Ephemeral,

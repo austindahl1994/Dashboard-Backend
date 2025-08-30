@@ -132,3 +132,14 @@ export const EVENT_STARTED = false;
 //     Completed: false,
 //   },
 // ];
+
+// ------------------
+// LEAVING OFF TODOS
+// ------------------
+// Add rules/settings to announcements
+
+// Add cronjob for keeping track of number of requests to server based on player and/or discord
+
+// Have different types of completion messages depending on type - Bounty completion specific to the task
+
+// Add variety of tasks - hide n seek

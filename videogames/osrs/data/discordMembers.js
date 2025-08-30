@@ -4,7 +4,24 @@ import {
   getAllMembers,
 } from "../../../services/google/osrsSheets.js";
 
-export const updateUsers = async (discordMembers, sheetsMembers) => {
+const headers = ["nickname", "username", "id", "paid", "donation", "playtime", "rsn", "team"]
+
+// Based on google sheets data, will create object with kv pairs of username: {memberData}
+const createMemberObjects = (data) => {
+  const memberObj = {}
+  data.forEach((member, sheetIndex) => {
+    const username = member[1]
+    const noUsername = headers.filter((key) => key !== "username")
+    const discordObj = Object.fromEntries(noUsername.map((key, index) => {
+      return [key, member[index]]
+    })) //want a 2D array of kv pairs
+    discordObj.sheetIndex = sheetIndex + 2
+    memberObj[username] = discordObj
+  })
+  return memberObj
+}
+
+export const updateUsers = async (discordMembers) => {
   try {
     const sheetsMembers = await getAllMembers();
     if (!sheetsMembers || sheetsMembers.length === 0) {
@@ -96,3 +113,76 @@ export const createGroups = async () => {
     throw error
   }
 }
+
+//Cronjob will call this once every 24 hours
+export const submitPlaytime = async (arrOfPlayerObj) => {
+  try {
+    const members = await getAllMembers();
+    
+  } catch (error) {
+    
+  }
+} 
+// Balancing groups, sort each member by playtime, then add members in one at a time to each group
+// Discord group channel creations
+/*
+const { PermissionFlagsBits, ChannelType } = require('discord.js');
+
+// Your data
+const events = ['match-1', 'match-2', 'match-3', 'match-4', 'match-5'];
+const EVENT_MOD_IDS = ['123456789012345678', '234567890123456789']; // Mod user or role IDs
+
+// Map of usernames per event
+const USERNAMES_BY_EVENT = {
+  'match-1': ['PlayerOne#1111', 'PlayerTwo#2222'],
+  'match-2': ['PlayerThree#3333', 'PlayerFour#4444'],
+  'match-3': ['PlayerFive#5555'],
+  'match-4': ['PlayerSix#6666'],
+  'match-5': ['PlayerSeven#7777'],
+};
+
+// Inside an async function or event handler
+for (const eventName of events) {
+  const allowedUsernames = USERNAMES_BY_EVENT[eventName] || [];
+  const userIds = [];
+
+  // Fetch and resolve usernames to IDs
+  for (const tag of allowedUsernames) {
+    const member = await guild.members.fetch({ query: tag.split('#')[0], limit: 10 });
+
+    // Match full tag
+    const user = member.find(m => m.user.tag === tag);
+    if (user) userIds.push(user.id);
+    else console.warn(`User not found: ${tag}`);
+  }
+
+  // Build permission overwrites
+  const overwrites = [
+    {
+      id: guild.roles.everyone,
+      deny: [PermissionFlagsBits.ViewChannel],
+    },
+    ...EVENT_MOD_IDS.map(id => ({
+      id,
+      allow: [PermissionFlagsBits.ViewChannel, PermissionFlagsBits.SendMessages],
+    })),
+    ...userIds.map(id => ({
+      id,
+      allow: [PermissionFlagsBits.ViewChannel, PermissionFlagsBits.SendMessages],
+    })),
+    {
+      id: client.user.id,
+      allow: [PermissionFlagsBits.ViewChannel, PermissionFlagsBits.SendMessages, PermissionFlagsBits.ManageChannels],
+    },
+  ];
+
+  // Create the private channel
+  await guild.channels.create({
+    name: eventName,
+    type: ChannelType.GuildText, //https://discord-api-types.dev/api/discord-api-types-v10/enum/ChannelType
+    permissionOverwrites: overwrites,
+  });
+
+  console.log(`Created channel: ${eventName}`);
+}
+*/

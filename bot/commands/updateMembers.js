@@ -15,10 +15,14 @@ export default {
           flags: MessageFlags.Ephemeral,
         });
       }
+      await interaction.deferReply({ 
+        content: "Attempting to update members",
+        flags: MessageFlags.Ephemeral 
+      });
       const discordMembers = await interaction.guild.members.fetch();
       console.log(`Fetched ${discordMembers.size} guild members from Discord`);
       await updateUsers(discordMembers);
-      await interaction.reply({
+      await interaction.editReply({
         content: `Successfully added members to sheets`,
         flags: MessageFlags.Ephemeral,
       });

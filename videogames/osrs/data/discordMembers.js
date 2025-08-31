@@ -12,7 +12,7 @@ const createMemberObjects = (data) => {
   data.forEach((member, sheetIndex) => {
     const username = member[0]
     const discordObj = Object.fromEntries(headers.slice(1).map((key, index) => {
-      return [key, member[index + 1]]
+      return [key, member[index + 1] ?? null]
     })) //want a 2D array of kv pairs
     discordObj.index = sheetIndex + 2
     memberObj[username] = discordObj
@@ -137,9 +137,28 @@ const teamsToSheets = async (teams) => {
     throw error
   }
 }
+
+export const updateTeamName = async (prevTeamName, newTeamName) => {
+  try {
+    const data = await getSpecificMemberData(["members!H2:H400"]) 
+    const teamIndices = data[0].map((teamName, sheetIndex) => {
+      return teamName?.toLowerCase().trim() === prevTeamName?.toLowerCase().trim() ? sheetIndex + 2 : null
+    })
+    const dataToWrite = teamIndices.map((n) => {
+      return {
+        range: `members!H${n}`,
+        value: [[newTeamName]]
+      }
+    })
+    console.log(dataToWrite)
+  } catch (error) {
+    throw error
+  }
+}
+
 // Balancing groups, sort each member by playtime, then add members in one at a time to each group
 // Discord group channel creations
-  
+
 /*
 const { PermissionFlagsBits, ChannelType } = require('discord.js');
 

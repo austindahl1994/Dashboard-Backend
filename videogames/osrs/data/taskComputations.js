@@ -3,6 +3,7 @@ import { getTier } from "../bounties/bountyUtilities.js";
 
 const FINAL_TASKS_LENGTH = 180
 const MAX_TASKS_IN_TIER = 100
+
 //Take in final tasklist, need following:
 // How many times the items appear
 // How many tasks are in each tier
@@ -91,7 +92,6 @@ export const finalTasks = async () => {
   }
 };
 
-//TODO: Add actual logic to migrateTasks
 //TODO: Add PK tasks based on what adam said
 //TODO: Add seaking death tasks
 //TODO: Remove anything from source unless it has a specific source!

@@ -192,6 +192,16 @@ export const getAllMembers = async () => {
   }
 };
 
+// Takes in a range of data to get, Ex. ["member!B2:B400", "member!F2:F400"]
+export const getSpecificMemberData = async (ranges) => {
+  try {
+    const data = await sheets.readMultipleSheets(ranges)
+    return data
+  } catch (error) {
+    throw error
+  }
+}
+
 //Add all discord members to google sheet from discord
 export const addMembers = async (memberData) => {
   try {

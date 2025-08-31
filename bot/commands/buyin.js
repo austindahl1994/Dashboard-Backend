@@ -19,8 +19,20 @@ export default {
         .setDescription("Select a guild member")
         .setRequired(true)
         .setAutocomplete(true)
+    )
+    .addNumberOption((option) =>
+      option
+        .setName("time")
+        .setDescription("Intended daily playtime")
+        .setRequired(true)
+    )
+    .addStringOption((option) =>
+      option
+        .setName("rsn")
+        .setDescription("Player RuneScape name")
+        .setRequired(true)
+        .setAutocomplete(true)
     ),
-
   async autocomplete(interaction) {
     if (!allowedUserIds.includes(interaction.user.id)) {
       return interaction.reply({
@@ -58,6 +70,8 @@ export default {
       const nickname = member.nickname || username;
       const id = member.id
       const donation = interaction.options.getNumber("donation") ?? 0;
+      const intendedHours = interaction.options.getNumber("time")
+      const rsn = interaction.options.getString("rsn");
       await memberMoney({ nickname, username, id, donation });
       await interaction.reply({
         content: `Buy-in recorded for <@${userId}> with donation: ${donation}`,

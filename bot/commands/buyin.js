@@ -72,7 +72,7 @@ export default {
       const donation = interaction.options.getNumber("donation") ?? 0;
       const intendedHours = interaction.options.getNumber("time")
       const rsn = interaction.options.getString("rsn");
-      await memberMoney({ nickname, username, id, donation });
+      await memberMoney({ nickname, username, id, donation, intendedHours, rsn });
       await interaction.reply({
         content: `Buy-in recorded for <@${userId}> with donation: ${donation}`,
         flags: MessageFlags.Ephemeral,

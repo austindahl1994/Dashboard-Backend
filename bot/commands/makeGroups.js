@@ -1,7 +1,8 @@
 import { SlashCommandBuilder, MessageFlags } from "discord.js";
 import { allowedUserIds } from "../utilities/discordUtils.js";
 import { createGroups } from "../../videogames/osrs/data/discordMembers.js";
-import { groupEmbed } from "./embeds/groupEmbed.js"
+import { groupEmbed } from "../embeds/groupsEmbed.js";
+
 export default {
   cooldown: 5,
   data: new SlashCommandBuilder()
@@ -17,12 +18,12 @@ export default {
       }
       await interaction.deferReply({
         content: "Attempting to generate teams",
-        flags: MessageFlags.Ephemeral
-      })
-      const teams = await createGroups()
-      const embed = groupEmbed(teams)
+        flags: MessageFlags.Ephemeral,
+      });
+      const teams = await createGroups();
+      const embed = groupEmbed(teams);
       await interaction.editReply({
-        embeds: embed
+        embeds: embed,
         flags: MessageFlags.Ephemeral,
       });
     } catch (error) {

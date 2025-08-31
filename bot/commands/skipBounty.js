@@ -29,13 +29,17 @@ export default {
           flags: MessageFlags.Ephemeral,
         });
       }
+      await interaction.deferReply({ 
+        content: "Attempting to update members",
+        flags: MessageFlags.Ephemeral 
+      });
       const choice = interaction.options
         .getString("difficulty")
         .trim()
         .toLowerCase();
       await skipTask(choice);
-      await interaction.reply({
-        content: `Skipping bounty...`,
+      await interaction.editReply({
+        content: `Skipped Bounty`,
         flags: MessageFlags.Ephemeral,
       });
     } catch (error) {

@@ -1,6 +1,6 @@
 import { EmbedBuilder } from "discord.js";
 
-export const teams = (teams) => {
+export const groupEmbed = (teams) => {
   const embed = new EmbedBuilder().setTitle(`Bounty Board Teams`);
   teams.forEach((members, index) => {
     embed.addFields({

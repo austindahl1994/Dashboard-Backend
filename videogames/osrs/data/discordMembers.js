@@ -3,6 +3,7 @@ import {
   buyin,
   getAllMembers,
 } from "../../../services/google/osrsSheets.js";
+import { teamNames } from "../cachedData.js"
 
 const headers = ["username", "nickname", "id", "paid", "donation", "time", "rsn", "team"]
 
@@ -92,6 +93,9 @@ export const memberMoney = async (memberObj) => {
   }
 };
 
+//TODO: add logic if there are already team names?
+//TODO: after team names decided, add channels to discord based on team name, add mods to it, add players on those teams to them
+//Should only call this once after testing, will add team names to players based on play time
 export const createGroups = async () => {
   try {
     const sheetsMembers = await getAllMembers();
@@ -115,6 +119,13 @@ export const createGroups = async () => {
       teams[index % amountOfTeams].push(member)
     })
     //await teamsToSheets(teams)
+    if (teamNames.length === 0) {
+      teamNames = teams.map((teamArr, index) => {
+        return `Team ${index + 1}`
+      })
+      console.log("There were no team names, added them in, current team names: ")
+      console.log(teamNames)
+    }
     return teams
   } catch (error) {
     console.log(`Error creating group: ${error} `)
@@ -140,9 +151,14 @@ const teamsToSheets = async (teams) => {
 
 export const updateTeamName = async (prevTeamName, newTeamName) => {
   try {
+    const teamIndex = teamNames.indexOf(prevTeamName)
+    if (teamIndex === -1) {
+      throw new Error('No team for specified name')
+    }
+    teamNames[teamIndex] = newTeamName
     const data = await getSpecificMemberData(["members!H2:H400"]) 
     const teamIndices = data[0].map((teamName, sheetIndex) => {
-      return teamName?.toLowerCase().trim() === prevTeamName?.toLowerCase().trim() ? sheetIndex + 2 : null
+      return teamName?.trim() === prevTeamName?.trim() ? sheetIndex + 2 : null
     })
     const dataToWrite = teamIndices.map((n) => {
       return {
@@ -158,7 +174,6 @@ export const updateTeamName = async (prevTeamName, newTeamName) => {
 
 // Balancing groups, sort each member by playtime, then add members in one at a time to each group
 // Discord group channel creations
-
 /*
 const { PermissionFlagsBits, ChannelType } = require('discord.js');
 

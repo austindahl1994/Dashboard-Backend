@@ -9,6 +9,8 @@ export let playerRequests = [];
 
 export const EVENT_STARTED = false;
 
+export let teamNames = []
+
 //holds current highscores created by parsing sheets data
 // export const highscores = [
 //   { Player_Name: "Happy", Score: 69, TotalBounty: 420.69 },

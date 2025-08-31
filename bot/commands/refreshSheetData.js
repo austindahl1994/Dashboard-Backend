@@ -19,9 +19,13 @@ export default {
           flags: MessageFlags.Ephemeral,
         });
       }
+      await interaction.deferReply({ 
+        content: "Attempting to refresh sheets.",
+        flags: MessageFlags.Ephemeral 
+      });
       await getAllSheetBounties();
       await updateBroadcast("bounties");
-      await interaction.reply({
+      await interaction.editReply({
         content: `Sheets refreshed successfully.`,
         flags: MessageFlags.Ephemeral,
       });

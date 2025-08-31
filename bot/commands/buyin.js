@@ -34,13 +34,7 @@ export default {
         .setAutocomplete(true)
     ),
   async autocomplete(interaction) {
-    if (!allowedUserIds.includes(interaction.user.id)) {
-      return interaction.reply({
-        content: "⛔ You are not allowed to use this command.",
-        flags: MessageFlags.Ephemeral,
-      });
-    }
-    // inside your autocomplete handler
+    
     const focusedValue = interaction.options.getFocused();
     const members = await interaction.guild.members.fetch();
 
@@ -64,6 +58,12 @@ export default {
 
   async execute(interaction) {
     try {
+      if (!allowedUserIds.includes(interaction.user.id)) {
+        return interaction.reply({
+          content: "⛔ You are not allowed to use this command.",
+          flags: MessageFlags.Ephemeral,
+        });
+      }
       const userId = interaction.options.getString("user");
       const member = await interaction.guild.members.fetch(userId);
       const username = member.user.username;

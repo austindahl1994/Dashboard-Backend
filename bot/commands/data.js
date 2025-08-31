@@ -16,8 +16,12 @@ export default {
           flags: MessageFlags.Ephemeral,
         });
       }
+      await interaction.deferReply({ 
+        content: "Attempting to get final task data.",
+        flags: MessageFlags.Ephemeral 
+      });
       await finalTasks();
-      await interaction.reply({
+      await interaction.editReply({
         content: `Successfully got data!`,
         flags: MessageFlags.Ephemeral,
       });

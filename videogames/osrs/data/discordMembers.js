@@ -70,7 +70,7 @@ export const updateUsers = async (discordMembers) => {
 
 export const memberMoney = async (memberObj) => {
   try {
-    const { nickname, username, id, donation } = memberObj;
+    const { nickname, username, id, donation, intendedHours, rsn } = memberObj;
     const sheetsMembers = await getAllMembers();
     const sheetsMembersObj = {};
     sheetsMembers.forEach((rowMember, index) => {
@@ -81,8 +81,8 @@ export const memberMoney = async (memberObj) => {
     });
     if (sheetsMembersObj[username]) {
       const index = sheetsMembersObj[username].index;
-      const sheetData = [username, nickname, id, "YES", donation];
-      const sheetRange = `members!A${index}:E${index}`;
+      const sheetData = [username, nickname, id, "YES", donation, intendedHours, rsn];
+      const sheetRange = `members!A${index}:G${index}`;
       await buyin({ sheetData, sheetRange });
     } else {
       throw new Error(`User ${username} not found in sheets`);

@@ -157,9 +157,8 @@ export const skipBounty = async (
 };
 
 //Take in final tasklist, add in every item, see how many times they appear, see how many tasks are for each tier
-export const getFinalTasks = async () => {
+export const getFinalTasks = async (range) => {
   try {
-    const range = ["final!B2:B400", "final!F2:F400"]; //Only need items and difficulty currently
     const data = await sheets.readMultipleSheets(range);
     return data;
   } catch (error) {

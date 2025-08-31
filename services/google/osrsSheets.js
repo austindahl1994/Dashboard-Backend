@@ -168,9 +168,6 @@ export const getFinalTasks = async () => {
   }
 };
 
-//Move all final tasklist into the other sheets based on difficulty
-export const migrateTasks = async () => {};
-
 //Take buy-ins/donations, get donation list, parse it, if user already paid or donated, add to donation amount, "/money" command
 export const buyin = async (data) => {
   try {
@@ -209,5 +206,17 @@ export const addMembers = async (memberData) => {
   }
 };
 
+const writeSheetsGroups = async (data) => {
+  try {
+    await sheets.writeBatchToSheet(data)
+  } catch (error) {
+    console.log(`Error writing groups to sheets: ${error}`)
+    throw error
+  }
+}
+
 //Compares users who wanted to join but haven't paid
 export const missing = async () => {};
+
+//Move all final tasklist into the other sheets based on difficulty
+export const migrateTasks = async () => {};

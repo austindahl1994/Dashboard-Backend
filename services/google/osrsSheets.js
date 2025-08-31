@@ -224,8 +224,12 @@ const writeSheetsGroups = async (data) => {
   }
 }
 
-//Compares users who wanted to join but haven't paid
-export const missing = async () => {};
-
 //Move all final tasklist into the other sheets based on difficulty
-export const migrateTasks = async () => {};
+export const migrateTasks = async (data) => {
+  try {
+    await sheets.writeBatchToSheet(data)
+  } catch (error) {
+    console.log(`Error writing groups to sheets: ${error}`)
+    throw error
+  }
+};

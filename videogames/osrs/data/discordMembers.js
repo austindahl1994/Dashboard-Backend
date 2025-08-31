@@ -4,17 +4,17 @@ import {
   getAllMembers,
 } from "../../../services/google/osrsSheets.js";
 
-const headers = ["username", "nickname", "id", "paid", "donation", "playtime", "rsn", "team"]
+const headers = ["username", "nickname", "id", "paid", "donation", "time", "rsn", "team"]
 
 // Based on google sheets data, will create object with kv pairs of username: {memberData}
 const createMemberObjects = (data) => {
   const memberObj = {}
   data.forEach((member, sheetIndex) => {
     const username = member[0]
-    const discordObj = Object.fromEntries(member.slice(1).map((key, index) => {
-      return [key, member[index]]
+    const discordObj = Object.fromEntries(headers.slice(1).map((key, index) => {
+      return [key, member[index + 1]]
     })) //want a 2D array of kv pairs
-    discordObj.sheetIndex = sheetIndex + 2
+    discordObj.index = sheetIndex + 2
     memberObj[username] = discordObj
   })
   return memberObj
@@ -98,32 +98,48 @@ export const createGroups = async () => {
     if (!sheetsMembers || sheetsMembers.length === 0) {
       throw new Error('No members currently in sheets document')
     }
-    const teams = {}
-    sheetMembers.forEach((member) => {
-      // There aren't 6 cols for that member row, meaning they haven't paid buy in/joined team yet
-      if (member.length !== 6) {
-        return
-      } else {
-        
-      }
+    const members = createMemberObjects(sheetsMembers)
+    const paidMembers = Object.keys(members)
+      .filter((key) => members[key].paid !== "YES")
+      .sort((a, b) => {
+        const timeA = members[a]
+        const timeB = members[b]
+        return timeA - timeB
     })
+    if (!paidMembers || paidMembers.length === 0) {
+      throw new Error('No members have paid yet, cannot create any groups!')
+    }
+    const amountOfTeams = Math.ceil(paidMembers.length / 5)
+    const teams = Array.from({ length: amountOfTeams}).map(() => [])
+    paidMembers.forEach((member, index) => {
+      teams[index % amountOfTeams].push(member)
+    })
+    //await teamsToSheets(teams)
+    return teams
   } catch (error) {
     console.log(`Error creating group: ${error} `)
     throw error
   }
 }
 
-//Cronjob will call this once every 24 hours
-export const submitPlaytime = async (arrOfPlayerObj) => {
+const teamsToSheets = async (teams) => {
   try {
-    const members = await getAllMembers();
-    
+    const dataToWrite = teams.flatMap((teamArr, teamIndex) => {
+      return teamArr.map((username) => {
+        return {
+          range: `members!H${members[username].index}`,
+          values: [[`Team ${teamIndex + 1}`]]
+        }
+      })
+    })
+    await writeSheetsGroups(dataToWrite)
   } catch (error) {
-    
+    throw error
   }
-} 
+}
 // Balancing groups, sort each member by playtime, then add members in one at a time to each group
 // Discord group channel creations
+  
 /*
 const { PermissionFlagsBits, ChannelType } = require('discord.js');
 

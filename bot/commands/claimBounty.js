@@ -29,23 +29,23 @@ export default {
         .setRequired(true)
     ),
   async execute(interaction) {
-    if (!allowedUserIds.includes(interaction.user.id)) {
-      return interaction.reply({
-        content: "⛔ You are not allowed to use this command.",
-        flags: MessageFlags.Ephemeral,
-      });
-    }
-    const difficulty = interaction.options
-      .getString("difficulty")
-      .toLowerCase();
-    const id = cachedBounties[difficultyToTier(difficulty)]?.Id;
-    const discordUser = interaction.user.username;
-    const image = interaction.options.getAttachment("image");
-    await interaction.reply({
-      content: `Received level: ${difficulty}\nID: ${id}\nImage: ${image.url}\nAttempting to claim bounty...`,
-      flags: MessageFlags.Ephemeral,
-    });
     try {
+      if (!allowedUserIds.includes(interaction.user.id)) {
+        return interaction.reply({
+          content: "⛔ You are not allowed to use this command (At this time).",
+          flags: MessageFlags.Ephemeral,
+        });
+      }
+      await interaction.deferReply({ 
+          content: "Attempting to claim bounty",
+          flags: MessageFlags.Ephemeral 
+        });
+      const difficulty = interaction.options
+        .getString("difficulty")
+        .toLowerCase();
+      const id = cachedBounties[difficultyToTier(difficulty)]?.Id;
+      const discordUser = interaction.user.username;
+      const image = interaction.options.getAttachment("image");
       await manuallyCompleteBounty(difficulty, id, discordUser, image.url);
       await interaction.editReply({
         content: `Successfully claimed ${difficulty} bounty.`,

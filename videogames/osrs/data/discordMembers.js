@@ -4,15 +4,14 @@ import {
   getAllMembers,
 } from "../../../services/google/osrsSheets.js";
 
-const headers = ["nickname", "username", "id", "paid", "donation", "playtime", "rsn", "team"]
+const headers = ["username", "nickname", "id", "paid", "donation", "playtime", "rsn", "team"]
 
 // Based on google sheets data, will create object with kv pairs of username: {memberData}
 const createMemberObjects = (data) => {
   const memberObj = {}
   data.forEach((member, sheetIndex) => {
-    const username = member[1]
-    const noUsername = headers.filter((key) => key !== "username")
-    const discordObj = Object.fromEntries(noUsername.map((key, index) => {
+    const username = member[0]
+    const discordObj = Object.fromEntries(member.slice(1).map((key, index) => {
       return [key, member[index]]
     })) //want a 2D array of kv pairs
     discordObj.sheetIndex = sheetIndex + 2
@@ -37,7 +36,7 @@ export const updateUsers = async (discordMembers) => {
       const sheetsMembersObj = {};
       const missingMembers = [];
       sheetsMembers.forEach((rowMember) => {
-        sheetsMembersObj[rowMember[1]] = rowMember[0]; //Username: Nickname
+        sheetsMembersObj[rowMember[0]] = rowMember[1]; //Username: Nickname
       });
       discordMembers.forEach((guildMember) => {
         const guildUsername = guildMember?.user?.username || "No username";
@@ -75,15 +74,15 @@ export const memberMoney = async (memberObj) => {
     const sheetsMembers = await getAllMembers();
     const sheetsMembersObj = {};
     sheetsMembers.forEach((rowMember, index) => {
-      sheetsMembersObj[rowMember[1]] = {
-        nickname: rowMember[0],
+      sheetsMembersObj[rowMember[0]] = {
+        nickname: rowMember[1],
         index: index + 2,
       };
     });
     if (sheetsMembersObj[username]) {
       const index = sheetsMembersObj[username].index;
-      const sheetData = [nickname, username, id, "YES", donation];
-      const sheetRange = `members!A${index}:D${index}`;
+      const sheetData = [username, nickname, id, "YES", donation];
+      const sheetRange = `members!A${index}:E${index}`;
       await buyin({ sheetData, sheetRange });
     } else {
       throw new Error(`User ${username} not found in sheets`);

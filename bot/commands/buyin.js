@@ -31,7 +31,6 @@ export default {
         .setName("rsn")
         .setDescription("Player RuneScape name")
         .setRequired(true)
-        .setAutocomplete(true)
     ),
   async autocomplete(interaction) {
     

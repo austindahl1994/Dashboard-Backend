@@ -158,7 +158,12 @@ const teamsToSheets = async (teams) => {
     throw error
   }
 }
-
+/* Example for copying object data from one key to new one
+if (peopleData[oldName]) {
+  peopleData[newName] = peopleData[oldName];
+  delete peopleData[oldName];
+}
+*/
 // TODO: Update this based on teams being an object
 export const updateTeamName = async (prevTeamName, newTeamName) => {
   try {

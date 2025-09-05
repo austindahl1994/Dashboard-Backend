@@ -9,17 +9,27 @@ const headers = ["username", "nickname", "id", "paid", "donation", "time", "rsn"
 
 // Based on google sheets data, will create object with kv pairs of username: {memberData}
 const createMemberObjects = (data) => {
-  const memberObj = {}
   data.forEach((member, sheetIndex) => {
+    const teamName = member[7] || null
+    //if player has a team name but isnt a part of the cached team members list, add them to it
+    if (teamName && teams[teamName] && !teams[teamName].includes(member[0])) {
+      teams[teamName].push(member[0])
+    //if player has a teamName but the teamName doesn't exist in cached teams 
+    } else if (teamName && !teams[teamName]) {
+      teams[teamName] = [member[0]]
+    }
+    //if no team, just move on
     const discordObj = Object.fromEntries(headers.map((key, index) => {
       return [key, member[index] ?? null]
     })) //want a 2D array of kv pairs
     discordObj.index = sheetIndex + 2
-    memberObj[username] = discordObj
+    players[username] = discordObj
   })
-  return memberObj
+  // return memberObj
 }
 
+//TODO: Update to check if cached members keys length is zero, if so to pull and update cached members
+// Then after caching members, if any missing members, add them to both cached data as well as google sheets
 export const updateUsers = async (discordMembers) => {
   try {
     const sheetsMembers = await getAllMembers();
@@ -68,6 +78,7 @@ export const updateUsers = async (discordMembers) => {
   }
 };
 
+//TODO: Update using cached users data, updates cached data and user in google sheets
 export const memberMoney = async (memberObj) => {
   try {
     const { nickname, username, id, donation, intendedHours, rsn } = memberObj;
@@ -148,6 +159,7 @@ const teamsToSheets = async (teams) => {
   }
 }
 
+// TODO: Update this based on teams being an object
 export const updateTeamName = async (prevTeamName, newTeamName) => {
   try {
     const teamIndex = teamNames.indexOf(prevTeamName)
@@ -175,7 +187,7 @@ export const updateTeamName = async (prevTeamName, newTeamName) => {
 //Array of arrays, each array is a row
 const updateCachedMembers = (data) => {
   try {
-    
+    createMemberObjects(data)
   } catch (e) {
     throw e
   }

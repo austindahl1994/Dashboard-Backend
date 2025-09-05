@@ -15,6 +15,16 @@ import { Bounty } from "../../videogames/osrs/bounties/Bounty.js";
 import dotenv from "dotenv";
 dotenv.config();
 
+export const getAllSheetData = async (data) => {
+  try {
+    const response = await sheets.readMultipleSheets(data)
+    return response
+  } catch (e) {
+    console.log("Error getting sheets data: ")
+    console.log(e)
+  }
+}
+
 // Called with "/refresh" command, reads all sheets, updates cached bounties
 export const getAllSheetBounties = async () => {
   const sheetsToRead = ["easy", "medium", "hard", "elite", "master"];

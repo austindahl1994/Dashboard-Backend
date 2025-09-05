@@ -3,7 +3,7 @@ import {
   buyin,
   getAllMembers,
 } from "../../../services/google/osrsSheets.js";
-import { teamNames } from "../cachedData.js"
+import { players, teams } from "../cachedData.js"
 
 const headers = ["username", "nickname", "id", "paid", "donation", "time", "rsn", "team"]
 
@@ -113,19 +113,19 @@ export const createGroups = async () => {
       throw new Error('No members have paid yet, cannot create any groups!')
     }
     const amountOfTeams = Math.ceil(paidMembers.length / 5)
-    const teams = Array.from({ length: amountOfTeams}).map(() => [])
+    const allTeams = Array.from({ length: amountOfTeams}).map(() => [])
     paidMembers.forEach((member, index) => {
-      teams[index % amountOfTeams].push(member)
+      allTeams[index % amountOfTeams].push(member)
     })
     //await teamsToSheets(teams)
     if (teamNames.length === 0) {
-      teamNames = teams.map((teamArr, index) => {
+      teamNames = allTeams.map((teamArr, index) => {
         return `Team ${index + 1}`
       })
       console.log("There were no team names, added them in, current team names: ")
       console.log(teamNames)
     }
-    return teams
+    return allTeams
   } catch (error) {
     console.log(`Error creating group: ${error} `)
     throw error
@@ -171,6 +171,15 @@ export const updateTeamName = async (prevTeamName, newTeamName) => {
   }
 }
 
+// TODO look at the above code, see what is necessary still after having the member data cached
+//Array of arrays, each array is a row
+const updateCachedMembers = (data) => {
+  try {
+    
+  } catch (e) {
+    throw e
+  }
+}
 // Balancing groups, sort each member by playtime, then add members in one at a time to each group
 // Discord group channel creations
 /*

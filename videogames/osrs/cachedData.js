@@ -1,3 +1,5 @@
+export const EVENT_STARTED = false;
+
 export const cachedBounties = [];
 
 export const highscores = [];
@@ -7,9 +9,7 @@ export const numberOfBounties = [3, 3, 3, 3, 3];
 
 export let playerRequests = [];
 
-export const EVENT_STARTED = false;
-
-export let teamNames = []
+export const players = {}
 
 //holds current highscores created by parsing sheets data
 // export const highscores = [

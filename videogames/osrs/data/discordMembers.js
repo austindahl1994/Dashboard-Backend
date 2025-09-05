@@ -11,9 +11,8 @@ const headers = ["username", "nickname", "id", "paid", "donation", "time", "rsn"
 const createMemberObjects = (data) => {
   const memberObj = {}
   data.forEach((member, sheetIndex) => {
-    const username = member[0]
-    const discordObj = Object.fromEntries(headers.slice(1).map((key, index) => {
-      return [key, member[index + 1] ?? null]
+    const discordObj = Object.fromEntries(headers.map((key, index) => {
+      return [key, member[index] ?? null]
     })) //want a 2D array of kv pairs
     discordObj.index = sheetIndex + 2
     memberObj[username] = discordObj

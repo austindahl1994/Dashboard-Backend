@@ -86,8 +86,8 @@ export default {
           flags: MessageFlags.Ephemeral,
         });
       } else {
-        console.log(`Found player for id ${id}: `);
-        console.log(player);
+        // console.log(`Found player for id ${id}: `);
+        // console.log(player);
       }
 
       const { username, nickname } = player;

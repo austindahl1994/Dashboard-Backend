@@ -181,8 +181,8 @@ export const getFinalTasks = async (range) => {
 export const buyin = async (data) => {
   try {
     const { playerData, sheetRange } = data;
-    console.log(`Saving buyin to sheets: ${sheetRange} with data:`);
-    console.log(playerData);
+    // console.log(`Saving buyin to sheets: ${sheetRange} with data:`);
+    // console.log(playerData);
     await sheets.writeSingleSheet(sheetRange, [playerData]);
   } catch (error) {
     console.log(error);

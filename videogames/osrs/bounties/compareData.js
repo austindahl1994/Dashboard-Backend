@@ -26,9 +26,7 @@ const compareSources = (source, bounty) => {
 };
 
 const compareRegions = (dataRegion, bounty) => {
-  console.log(
-    `${parseInt(dataRegion.trim())} vs ${parseInt(bounty.Source.trim())}`
-  );
+  console.log(`${parseInt(dataRegion)} vs ${parseInt(bounty.Source)}`);
   return parseInt(dataRegion) === parseInt(bounty.Source);
 };
 

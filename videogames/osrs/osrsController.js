@@ -57,12 +57,14 @@ export const osrsController = async (req, res) => {
     } else {
       throw new Error(`No data was able to be parsed`);
     }
+    res.sendStatus(200);
   } catch (error) {
     console.log(`Deleting file because: ${error}`);
     if (req.file) {
       delete req.file;
       image = null;
     }
+    res.sendStatus(200);
   }
 };
 // console.log(parsedData);

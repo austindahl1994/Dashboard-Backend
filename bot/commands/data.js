@@ -16,9 +16,9 @@ export default {
           flags: MessageFlags.Ephemeral,
         });
       }
-      await interaction.deferReply({ 
+      await interaction.deferReply({
         content: "Attempting to get final task data.",
-        flags: MessageFlags.Ephemeral 
+        flags: MessageFlags.Ephemeral,
       });
       await finalTasks();
       await interaction.editReply({
@@ -26,7 +26,7 @@ export default {
         flags: MessageFlags.Ephemeral,
       });
     } catch (error) {
-      await interaction.reply({
+      await interaction.editReply({
         content: `There was an error getting data: ${error}`,
         flags: MessageFlags.Ephemeral,
       });

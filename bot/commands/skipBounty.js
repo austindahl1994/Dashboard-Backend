@@ -33,9 +33,9 @@ export default {
         .getString("difficulty")
         .trim()
         .toLowerCase();
-      await interaction.deferReply({ 
+      await interaction.deferReply({
         content: `Attempting to skip bounty ${choice}`,
-        flags: MessageFlags.Ephemeral 
+        flags: MessageFlags.Ephemeral,
       });
       await skipTask(choice);
       await interaction.editReply({
@@ -43,7 +43,7 @@ export default {
         flags: MessageFlags.Ephemeral,
       });
     } catch (error) {
-      await interaction.reply({
+      await interaction.editReply({
         content: `There was an error skipping: ${error}`,
         flags: MessageFlags.Ephemeral,
       });

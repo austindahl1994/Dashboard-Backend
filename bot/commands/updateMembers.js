@@ -15,9 +15,9 @@ export default {
           flags: MessageFlags.Ephemeral,
         });
       }
-      await interaction.deferReply({ 
+      await interaction.deferReply({
         content: "Attempting to update members",
-        flags: MessageFlags.Ephemeral 
+        flags: MessageFlags.Ephemeral,
       });
       const discordMembers = await interaction.guild.members.fetch();
       console.log(`Fetched ${discordMembers.size} guild members from Discord`);
@@ -27,7 +27,7 @@ export default {
         flags: MessageFlags.Ephemeral,
       });
     } catch (error) {
-      await interaction.reply({
+      await interaction.editReply({
         content: `There was an error updating members sheets: ${error}`,
         flags: MessageFlags.Ephemeral,
       });

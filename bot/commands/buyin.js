@@ -33,7 +33,6 @@ export default {
         .setRequired(true)
     ),
   async autocomplete(interaction) {
-    
     const focusedValue = interaction.options.getFocused();
     const members = await interaction.guild.members.fetch();
 
@@ -67,21 +66,28 @@ export default {
       const member = await interaction.guild.members.fetch(userId);
       const username = member.user.username;
       const nickname = member.nickname || username;
-      const id = member.id
+      const id = member.id;
       const donation = interaction.options.getNumber("donation") ?? 0;
-      const intendedHours = interaction.options.getNumber("time")
+      const intendedHours = interaction.options.getNumber("time");
       const rsn = interaction.options.getString("rsn");
-      await interaction.deferReply({ 
+      await interaction.deferReply({
         content: "Attempting to save buy in data...",
-        flags: MessageFlags.Ephemeral 
+        flags: MessageFlags.Ephemeral,
       });
-      await memberMoney({ nickname, username, id, donation, intendedHours, rsn });
+      await memberMoney({
+        nickname,
+        username,
+        id,
+        donation,
+        intendedHours,
+        rsn,
+      });
       await interaction.editReply({
         content: `Buy-in recorded for <@${userId}> with donation: ${donation}, play time ${intendedHours}, RSN: ${rsn}`,
         flags: MessageFlags.Ephemeral,
       });
     } catch (error) {
-      await interaction.reply({
+      await interaction.editReply({
         content: `There was an error saving buy in: ${error}`,
         flags: MessageFlags.Ephemeral,
       });

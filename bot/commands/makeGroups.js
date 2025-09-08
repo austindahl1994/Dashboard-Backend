@@ -27,7 +27,7 @@ export default {
         flags: MessageFlags.Ephemeral,
       });
     } catch (error) {
-      await interaction.reply({
+      await interaction.editReply({
         content: `There was an error creating groups: ${error}`,
         flags: MessageFlags.Ephemeral,
       });

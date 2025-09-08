@@ -3,30 +3,44 @@ import {
   buyin,
   getAllMembers,
 } from "../../../services/google/osrsSheets.js";
-import { players, teams } from "../cachedData.js"
+import { players, teams } from "../cachedData.js";
 
-const headers = ["username", "nickname", "id", "paid", "donation", "time", "rsn", "team"]
+const headers = [
+  "username",
+  "nickname",
+  "id",
+  "paid",
+  "donation",
+  "time",
+  "rsn",
+  "team",
+];
 
 // Based on google sheets data, will create object with kv pairs of username: {memberData}
 const createMemberObjects = (data) => {
   data.forEach((member, sheetIndex) => {
-    const teamName = member[7] || null
+    const teamName = member[7] || null;
     //if player has a team name but isnt a part of the cached team members list, add them to it
     if (teamName && teams[teamName] && !teams[teamName].includes(member[0])) {
-      teams[teamName].push(member[0])
-    //if player has a teamName but the teamName doesn't exist in cached teams 
+      teams[teamName].push(member[0]);
+      //if player has a teamName but the teamName doesn't exist in cached teams
     } else if (teamName && !teams[teamName]) {
-      teams[teamName] = [member[0]]
+      teams[teamName] = [member[0]];
     }
     //if no team, just move on
-    const discordObj = Object.fromEntries(headers.map((key, index) => {
-      return [key, member[index] ?? null]
-    })) //want a 2D array of kv pairs
-    discordObj.index = sheetIndex + 2
-    players[username] = discordObj
-  })
+    const discordObj = Object.fromEntries(
+      headers.map((key, index) => {
+        return [key, member[index] ?? null];
+      })
+    ); //want a 2D array of kv pairs
+    discordObj.index = sheetIndex + 2;
+    players[member[0]] = discordObj;
+  });
   // return memberObj
-}
+  console.log(`Cached ${Object.keys(players).length} members from sheets`);
+  // console.log(players);
+  return;
+};
 
 //TODO: Update to check if cached members keys length is zero, if so to pull and update cached members
 // Then after caching members, if any missing members, add them to both cached data as well as google sheets
@@ -38,7 +52,13 @@ export const updateUsers = async (discordMembers) => {
       console.log(`Add all members from discord to sheets`);
       const membersToAdd = discordMembers.map((member) => {
         const nickname = member.nickname ?? member.user.username;
-        return [nickname, member?.user?.username || "No username", member.id, "NO", 0];
+        return [
+          nickname,
+          member?.user?.username || "No username",
+          member.id,
+          "NO",
+          0,
+        ];
       });
       console.table(membersToAdd);
       await addMembers(membersToAdd);
@@ -55,7 +75,13 @@ export const updateUsers = async (discordMembers) => {
           console.log(
             `Member ${guildNickname} with username ${guildUsername} not found in sheets, adding them`
           );
-          missingMembers.push([guildNickname, guildUsername, guildMember.id, "NO", 0]);
+          missingMembers.push([
+            guildNickname,
+            guildUsername,
+            guildMember.id,
+            "NO",
+            0,
+          ]);
         }
       });
       if (missingMembers.length > 0) {
@@ -82,19 +108,27 @@ export const updateUsers = async (discordMembers) => {
 export const memberMoney = async (memberObj) => {
   try {
     const { nickname, username, id, donation, intendedHours, rsn } = memberObj;
-    const sheetsMembers = await getAllMembers();
-    const sheetsMembersObj = {};
-    sheetsMembers.forEach((rowMember, index) => {
-      sheetsMembersObj[rowMember[0]] = {
-        nickname: rowMember[1],
-        index: index + 2,
-      };
-    });
-    if (sheetsMembersObj[username]) {
-      const index = sheetsMembersObj[username].index;
-      const sheetData = [username, nickname, id, "YES", donation, intendedHours, rsn];
-      const sheetRange = `members!A${index}:G${index}`;
-      await buyin({ sheetData, sheetRange });
+    if (!username || !id || !nickname) {
+      throw new Error("Missing required member information");
+    }
+    if (players[username]) {
+      const playerData = [
+        username,
+        nickname,
+        id,
+        "YES",
+        donation,
+        intendedHours,
+        rsn,
+      ];
+      playerData.paid = "YES";
+      playerData.donation = donation || 0;
+      playerData.time = intendedHours || 0;
+      playerData.rsn = rsn || "";
+      console.log(`Updating player data for ${username}: `);
+      console.log(playerData);
+      const sheetRange = `members!A${players[username].index}:G${players[username].index}`;
+      await buyin({ playerData, sheetRange });
     } else {
       throw new Error(`User ${username} not found in sheets`);
     }
@@ -110,38 +144,40 @@ export const createGroups = async () => {
   try {
     const sheetsMembers = await getAllMembers();
     if (!sheetsMembers || sheetsMembers.length === 0) {
-      throw new Error('No members currently in sheets document')
+      throw new Error("No members currently in sheets document");
     }
-    const members = createMemberObjects(sheetsMembers)
+    const members = createMemberObjects(sheetsMembers);
     const paidMembers = Object.keys(members)
       .filter((key) => members[key].paid !== "YES")
       .sort((a, b) => {
-        const timeA = members[a]
-        const timeB = members[b]
-        return timeA - timeB
-    })
+        const timeA = members[a];
+        const timeB = members[b];
+        return timeA - timeB;
+      });
     if (!paidMembers || paidMembers.length === 0) {
-      throw new Error('No members have paid yet, cannot create any groups!')
+      throw new Error("No members have paid yet, cannot create any groups!");
     }
-    const amountOfTeams = Math.ceil(paidMembers.length / 5)
-    const allTeams = Array.from({ length: amountOfTeams}).map(() => [])
+    const amountOfTeams = Math.ceil(paidMembers.length / 5);
+    const allTeams = Array.from({ length: amountOfTeams }).map(() => []);
     paidMembers.forEach((member, index) => {
-      allTeams[index % amountOfTeams].push(member)
-    })
+      allTeams[index % amountOfTeams].push(member);
+    });
     //await teamsToSheets(teams)
     if (teamNames.length === 0) {
       teamNames = allTeams.map((teamArr, index) => {
-        return `Team ${index + 1}`
-      })
-      console.log("There were no team names, added them in, current team names: ")
-      console.log(teamNames)
+        return `Team ${index + 1}`;
+      });
+      console.log(
+        "There were no team names, added them in, current team names: "
+      );
+      console.log(teamNames);
     }
-    return allTeams
+    return allTeams;
   } catch (error) {
-    console.log(`Error creating group: ${error} `)
-    throw error
+    console.log(`Error creating group: ${error} `);
+    throw error;
   }
-}
+};
 
 const teamsToSheets = async (teams) => {
   try {
@@ -149,15 +185,15 @@ const teamsToSheets = async (teams) => {
       return teamArr.map((username) => {
         return {
           range: `members!H${members[username].index}`,
-          values: [[`Team ${teamIndex + 1}`]]
-        }
-      })
-    })
-    await writeSheetsGroups(dataToWrite)
+          values: [[`Team ${teamIndex + 1}`]],
+        };
+      });
+    });
+    await writeSheetsGroups(dataToWrite);
   } catch (error) {
-    throw error
+    throw error;
   }
-}
+};
 /* Example for copying object data from one key to new one
 if (peopleData[oldName]) {
   peopleData[newName] = peopleData[oldName];
@@ -167,36 +203,36 @@ if (peopleData[oldName]) {
 // TODO: Update this based on teams being an object
 export const updateTeamName = async (prevTeamName, newTeamName) => {
   try {
-    const teamIndex = teamNames.indexOf(prevTeamName)
+    const teamIndex = teamNames.indexOf(prevTeamName);
     if (teamIndex === -1) {
-      throw new Error('No team for specified name')
+      throw new Error("No team for specified name");
     }
-    teamNames[teamIndex] = newTeamName
-    const data = await getSpecificMemberData(["members!H2:H400"]) 
+    teamNames[teamIndex] = newTeamName;
+    const data = await getSpecificMemberData(["members!H2:H400"]);
     const teamIndices = data[0].map((teamName, sheetIndex) => {
-      return teamName?.trim() === prevTeamName?.trim() ? sheetIndex + 2 : null
-    })
+      return teamName?.trim() === prevTeamName?.trim() ? sheetIndex + 2 : null;
+    });
     const dataToWrite = teamIndices.map((n) => {
       return {
         range: `members!H${n}`,
-        value: [[newTeamName]]
-      }
-    })
-    console.log(dataToWrite)
+        value: [[newTeamName]],
+      };
+    });
+    console.log(dataToWrite);
   } catch (error) {
-    throw error
+    throw error;
   }
-}
+};
 
 // TODO look at the above code, see what is necessary still after having the member data cached
 //Array of arrays, each array is a row
-const updateCachedMembers = (data) => {
+export const updateCachedMembers = (data) => {
   try {
-    createMemberObjects(data)
+    createMemberObjects(data);
   } catch (e) {
-    throw e
+    throw e;
   }
-}
+};
 // Balancing groups, sort each member by playtime, then add members in one at a time to each group
 // Discord group channel creations
 /*

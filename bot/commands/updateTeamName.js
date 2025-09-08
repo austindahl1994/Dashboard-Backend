@@ -1,6 +1,6 @@
 import { SlashCommandBuilder, MessageFlags } from "discord.js";
 import { allowedUserIds } from "../utilities/discordUtils.js";
-import { teamNames } from "../../videogames/osrs/cachedData.js";
+import { teams } from "../../videogames/osrs/cachedData.js";
 import { updateTeamName } from "../../videogames/osrs/data/discordMembers.js";
 
 export default {
@@ -24,7 +24,7 @@ export default {
   async autocomplete(interaction) {
     const focusedValue = interaction.options.getFocused();
 
-    const choices = teamNames.map((name) => {
+    const choices = Object.keys(teams).map((name) => {
       return {
         name: name,
         value: name,
@@ -58,7 +58,7 @@ export default {
         flags: MessageFlags.Ephemeral,
       });
     } catch (error) {
-      await interaction.reply({
+      await interaction.editReply({
         content: `There was an error creating groups: ${error}`,
         flags: MessageFlags.Ephemeral,
       });

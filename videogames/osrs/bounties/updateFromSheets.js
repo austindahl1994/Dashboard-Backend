@@ -65,8 +65,8 @@ const sheetsToBounties = async (sheetsArr) => {
 
     updateSheetActives(newWrites);
 
-    // console.log(`Final cached bounties:`);
-    // console.log(cachedBounties);
+    console.log(`Final cached bounties:`);
+    console.log(cachedBounties);
     // console.log(`Number of bounties per tier:`);
     // console.table(numberOfBounties);
     // console.log(`Number of bounties per tier:`);

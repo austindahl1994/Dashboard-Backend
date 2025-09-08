@@ -19,7 +19,7 @@ const headers = [
 // Based on google sheets data, will create object with kv pairs of username: {memberData}
 const createMemberObjects = (data) => {
   data.forEach((member, sheetIndex) => {
-    const teamName = member[7] || null;
+    const teamName = member[7] ?? null;
     //if player has a team name but isnt a part of the cached team members list, add them to it
     if (teamName && teams[teamName] && !teams[teamName].includes(member[0])) {
       teams[teamName].push(member[0]);
@@ -53,8 +53,8 @@ export const updateUsers = async (discordMembers) => {
       const membersToAdd = discordMembers.map((member) => {
         const nickname = member.nickname ?? member.user.username;
         return [
-          nickname,
           member?.user?.username || "No username",
+          nickname,
           member.id,
           "NO",
           0,
@@ -63,6 +63,9 @@ export const updateUsers = async (discordMembers) => {
       console.table(membersToAdd);
       await addMembers(membersToAdd);
     } else {
+      if (Object.keys(players).length === 0) {
+        throw new Error("No cached members, please run /refresh first");
+      }
       const sheetsMembersObj = {};
       const missingMembers = [];
       sheetsMembers.forEach((rowMember) => {
@@ -76,12 +79,24 @@ export const updateUsers = async (discordMembers) => {
             `Member ${guildNickname} with username ${guildUsername} not found in sheets, adding them`
           );
           missingMembers.push([
-            guildNickname,
             guildUsername,
+            guildNickname,
             guildMember.id,
             "NO",
             0,
           ]);
+          players[guildUsername] = {
+            nickname: guildNickname,
+            id: guildMember.id,
+            paid: "NO",
+            donation: 0,
+            time: null,
+            rsn: null,
+            team: null,
+            index: Object.keys(players).length + 2,
+          };
+          console.log(`Added ${guildUsername} to cached members`);
+          console.log(players[guildUsername]);
         }
       });
       if (missingMembers.length > 0) {
@@ -107,7 +122,7 @@ export const updateUsers = async (discordMembers) => {
 //TODO: Update using cached users data, updates cached data and user in google sheets
 export const memberMoney = async (memberObj) => {
   try {
-    const { nickname, username, id, donation, intendedHours, rsn } = memberObj;
+    const { username, nickname, id, donation, intendedHours, rsn } = memberObj;
     if (!username || !id || !nickname) {
       throw new Error("Missing required member information");
     }
@@ -121,10 +136,10 @@ export const memberMoney = async (memberObj) => {
         intendedHours,
         rsn,
       ];
-      playerData.paid = "YES";
-      playerData.donation = donation || 0;
-      playerData.time = intendedHours || 0;
-      playerData.rsn = rsn || "";
+      players[username].paid = "YES";
+      players[username].donation = donation || 0;
+      players[username].time = intendedHours || 0;
+      players[username].rsn = rsn || "";
       console.log(`Updating player data for ${username}: `);
       console.log(playerData);
       const sheetRange = `members!A${players[username].index}:G${players[username].index}`;
@@ -228,6 +243,9 @@ export const updateTeamName = async (prevTeamName, newTeamName) => {
 //Array of arrays, each array is a row
 export const updateCachedMembers = (data) => {
   try {
+    if (!data || data.length === 0) {
+      throw new Error("No member data to cache");
+    }
     createMemberObjects(data);
   } catch (e) {
     throw e;

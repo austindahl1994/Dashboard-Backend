@@ -1,6 +1,7 @@
 import { SlashCommandBuilder, MessageFlags } from "discord.js";
 import { allowedUserIds } from "../utilities/discordUtils.js";
 import { memberMoney } from "../../videogames/osrs/data/discordMembers.js";
+import { players } from "../../videogames/osrs/cachedData.js";
 
 export default {
   cooldown: 5,
@@ -34,13 +35,18 @@ export default {
     ),
   async autocomplete(interaction) {
     const focusedValue = interaction.options.getFocused();
-    const members = await interaction.guild.members.fetch();
+    const members = Object.keys(players).map((username) => {
+      return {
+        username: username,
+        nickname: players[username].nickname,
+        id: players[username].id,
+      };
+    });
 
     const choices = members.map((m) => {
-      const nickname = m.nickname ?? m.user.username;
       return {
-        name: `${nickname} (${m.user.username})`,
-        value: m.user.id,
+        name: `${m.nickname} (${m.username})`,
+        value: m.username,
       };
     });
 
@@ -62,11 +68,21 @@ export default {
           flags: MessageFlags.Ephemeral,
         });
       }
-      const userId = interaction.options.getString("user");
-      const member = await interaction.guild.members.fetch(userId);
-      const username = member.user.username;
-      const nickname = member.nickname || username;
-      const id = member.id;
+      // const userId = interaction.options.getString("user");
+      // const member = await interaction.guild.members.fetch(userId);
+      // const username = member.user.username;
+      // const nickname = member.nickname || username;
+      // const id = member.id;
+      const username = interaction.options.getString("user");
+      const player = players[username] ?? null;
+      if (!player) {
+        return interaction.reply({
+          content: `⛔ User ${username} not found in cached members, please run /refresh first.`,
+          flags: MessageFlags.Ephemeral,
+        });
+      }
+      const nickname = player.nickname;
+      const id = player.id;
       const donation = interaction.options.getNumber("donation") ?? 0;
       const intendedHours = interaction.options.getNumber("time");
       const rsn = interaction.options.getString("rsn");
@@ -75,15 +91,15 @@ export default {
         flags: MessageFlags.Ephemeral,
       });
       await memberMoney({
-        nickname,
         username,
+        nickname,
         id,
         donation,
         intendedHours,
         rsn,
       });
       await interaction.editReply({
-        content: `Buy-in recorded for <@${userId}> with donation: ${donation}, play time ${intendedHours}, RSN: ${rsn}`,
+        content: `Buy-in recorded for <@${username}> with donation: ${donation}, play time ${intendedHours}, RSN: ${rsn}`,
         flags: MessageFlags.Ephemeral,
       });
     } catch (error) {

@@ -8,6 +8,7 @@ import { highscores } from "./cachedData.js";
 dotenv.config();
 
 export const osrsController = async (req, res) => {
+  console.log(`Received a request at osrsController`);
   const file = req.file;
   let image;
   let mimetype;

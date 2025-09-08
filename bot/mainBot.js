@@ -2,10 +2,12 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { Client, GatewayIntentBits, Collection } from "discord.js";
+import { getCachedData } from "../videogames/osrs/data/cachingData.js";
 import dotenv from "dotenv";
 
 dotenv.config();
 
+const testEnv = process.env.TEST_ENV ?? false;
 const token = process.env.DISCORD_BOT_TOKEN;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,6 +22,10 @@ client.cooldowns = new Collection();
 
 export async function startBot() {
   // Load commands
+  if (!testEnv) {
+    console.log("⚠️  Starting bot in prod mode");
+    getCachedData();
+  }
   const commandsPath = path.join(__dirname, "commands");
   const commandFiles = fs
     .readdirSync(commandsPath)

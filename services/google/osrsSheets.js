@@ -17,13 +17,13 @@ dotenv.config();
 
 export const getAllSheetData = async (data) => {
   try {
-    const response = await sheets.readMultipleSheets(data)
-    return response
+    const response = await sheets.readMultipleSheets(data);
+    return response;
   } catch (e) {
-    console.log("Error getting sheets data: ")
-    console.log(e)
+    console.log("Error getting sheets data: ");
+    console.log(e);
   }
-}
+};
 
 // Called with "/refresh" command, reads all sheets, updates cached bounties
 export const getAllSheetBounties = async () => {
@@ -180,11 +180,12 @@ export const getFinalTasks = async (range) => {
 //Take buy-ins/donations, get donation list, parse it, if user already paid or donated, add to donation amount, "/money" command
 export const buyin = async (data) => {
   try {
-    const { sheetData, sheetRange } = data;
-    // console.log(`Saving buyin to sheets: ${sheetRange} with data:`);
-    // console.log(sheetData);
-    await sheets.writeSingleSheet(sheetRange, [sheetData]);
+    const { playerData, sheetRange } = data;
+    console.log(`Saving buyin to sheets: ${sheetRange} with data:`);
+    console.log(playerData);
+    await sheets.writeSingleSheet(sheetRange, [playerData]);
   } catch (error) {
+    console.log(error);
     throw new Error(`Error saving buyin to sheets: ${error}`);
   }
 };
@@ -204,12 +205,12 @@ export const getAllMembers = async () => {
 // Takes in a range of data to get, Ex. ["member!B2:B400", "member!F2:F400"]
 export const getSpecificMemberData = async (ranges) => {
   try {
-    const data = await sheets.readMultipleSheets(ranges)
-    return data
+    const data = await sheets.readMultipleSheets(ranges);
+    return data;
   } catch (error) {
-    throw error
+    throw error;
   }
-}
+};
 
 //Add all discord members to google sheet from discord
 export const addMembers = async (memberData) => {
@@ -227,19 +228,19 @@ export const addMembers = async (memberData) => {
 
 const writeSheetsGroups = async (data) => {
   try {
-    await sheets.writeBatchToSheet(data)
+    await sheets.writeBatchToSheet(data);
   } catch (error) {
-    console.log(`Error writing groups to sheets: ${error}`)
-    throw error
+    console.log(`Error writing groups to sheets: ${error}`);
+    throw error;
   }
-}
+};
 
 //Move all final tasklist into the other sheets based on difficulty
 export const migrateTasks = async (data) => {
   try {
-    await sheets.writeBatchToSheet(data)
+    await sheets.writeBatchToSheet(data);
   } catch (error) {
-    console.log(`Error writing groups to sheets: ${error}`)
-    throw error
+    console.log(`Error writing groups to sheets: ${error}`);
+    throw error;
   }
 };

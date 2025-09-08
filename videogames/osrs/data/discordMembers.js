@@ -142,7 +142,8 @@ export const memberMoney = async (memberObj) => {
       players[username].rsn = rsn || "";
       console.log(`Updating player data for ${username}: `);
       console.log(playerData);
-      const sheetRange = `members!A${players[username].index}:G${players[username].index}`;
+      const sheetIndex = players[username].index;
+      const sheetRange = `members!A${sheetIndex}:G${sheetIndex}`;
       await buyin({ playerData, sheetRange });
     } else {
       throw new Error(`User ${username} not found in sheets`);

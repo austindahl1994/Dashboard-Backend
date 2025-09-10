@@ -25,3 +25,14 @@ export const completedBountyEmbed = (bounty) => {
   // can add footer or something as well based on RSN
   return embed;
 };
+/*
+    const completedBounty = {
+      Title: bounty.Title,
+      Difficulty: bounty.Difficulty,
+      Discord: data.discordUser.name || null,
+      RSN: data.playerName,
+      S3_URL: imageUrl,
+      Bounty: bounty.Bounty,
+      Type: bounty.Type,
+    };
+    */

@@ -8,7 +8,7 @@ import { highscores } from "./cachedData.js";
 dotenv.config();
 
 export const osrsController = async (req, res) => {
-  console.log(`Received a request at osrsController`);
+  // console.log(`Received a request at osrsController`);
   const file = req.file;
   let image;
   let mimetype;
@@ -27,7 +27,7 @@ export const osrsController = async (req, res) => {
         console.log(`Received data from ${parsedData.playerName}`);
         console.log(JSON.stringify(parsedData));
         const completedBounties = checkBounties(parsedData);
-        if (completedBounties.length > 0) {
+        if (completedBounties && completedBounties.length > 0) {
           for (const bounty of completedBounties) {
             bounty.Completed = true;
             let imageUrl = await uploadScreenshot(
@@ -51,7 +51,7 @@ export const osrsController = async (req, res) => {
             image = null;
           }
         } else {
-          throw new Error("There are no current bounties.");
+          throw new Error("Bounties don't match.");
         }
       }
     } else {

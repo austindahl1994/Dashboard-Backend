@@ -23,6 +23,8 @@ export const completeBounty = async (data, bounty, imageUrl) => {
       RSN: data.playerName,
       S3_URL: imageUrl,
       Bounty: bounty.Bounty,
+      Type: bounty.Type,
+      Other: bounty.Other,
     };
     const dataToUpdate = [
       "COMPLETED",

@@ -5,7 +5,10 @@ export const loot = (data, scrollImage, color, author) => {
   const embed = new EmbedBuilder()
     .setColor(color)
     .setTitle(data.Title || "Loot Bounty")
-    .setURL(data.Wiki_URL || "https://oldschool.runescape.wiki/")
+    .setURL(
+      data.Wiki_URL.replace("_detail", "").replace("_equipped_male", "") ||
+        "https://oldschool.runescape.wiki/"
+    )
     .setThumbnail(
       data.Wiki_Image ||
         "https://oldschool.runescape.wiki/images/Cabbage_detail.png"
@@ -42,10 +45,10 @@ export const loot = (data, scrollImage, color, author) => {
     value: itemsField,
     inline: true,
   });
-  if (data.Source) {
+  if (data.Source && data.Source.trim() !== "" && data.Source !== "*") {
     embed.addFields({
-      name: "__Source__",
-      value: data.Source === "*" ? "Any" : `${data.Source}`,
+      name: "__Specific Source__",
+      value: data.Source,
       inline: true,
     });
   }

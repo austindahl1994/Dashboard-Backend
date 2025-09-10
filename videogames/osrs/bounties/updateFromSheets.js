@@ -56,9 +56,10 @@ const sheetsToBounties = async (sheetsArr) => {
           createBounty(sheet[openIndex], difficulty, openIndex + 2);
         } else {
           // console.log(`No open index for: ${difficulty}`);
+          console.log(`All bounties completed for tier: ${difficulty}`);
           const newBounty = new Bounty();
           newBounty.Tier_completed = true;
-          cachedBounties[getTier(difficulty)] = newBounty;
+          cachedBounties[difficultyToTier(difficulty)] = newBounty;
         }
       }
     });

@@ -16,9 +16,12 @@ import {
   noCachedBounties,
 } from "./types/noCachedBounties.js";
 
+import dotenv from "dotenv";
+dotenv.config();
+
 export const getAllBountyEmbeds = () => {
   try {
-    if (!EVENT_STARTED) {
+    if (!EVENT_STARTED && !process.env.TEST_ENV) {
       return [eventNotStartedEmbed()];
     }
     let finalArr = cachedBounties.map((data, index) => {

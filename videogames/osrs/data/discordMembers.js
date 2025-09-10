@@ -153,6 +153,25 @@ export const memberMoney = async (memberObj) => {
   }
 };
 
+export const paidMembers = () => {
+  const paid = Object.values(players)
+    .filter((member) => member.paid === "YES")
+    .sort((a, b) => b.donation - a.donation);
+  console.log(`There are currently ${paid.length} paid members: `);
+  console.table(
+    paid.map((member) => {
+      return [member.nickname, member.donation, member.time];
+    })
+  );
+
+  console.log(
+    `Total GP: ${
+      paid.length * 11 +
+      paid.reduce((acc, member) => acc + (parseInt(member.donation) || 0), 0)
+    }`
+  );
+};
+
 //TODO: add logic if there are already team names?
 //TODO: after team names decided, add channels to discord based on team name, add mods to it, add players on those teams to them
 //Should only call this once after testing, will add team names to players based on play time

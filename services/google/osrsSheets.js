@@ -134,7 +134,11 @@ export const markManuallyCompleted = async (
       ["MANUALLY CLAIMED", "", discord, discordImgURL, "CLAIMED"],
     ];
     const range = `${sheet}!I${row}:M${row}`;
-    updateBountyAndCheckNext({ range: range, values: finalArr }, sheet, row);
+    await updateBountyAndCheckNext(
+      { range: range, values: finalArr },
+      sheet,
+      row
+    );
   } catch (error) {
     console.log(`Could not update bounty row: ${row}, sheet: ${sheet}`);
     console.error(error);
@@ -155,7 +159,11 @@ export const skipBounty = async (
     console.log("New bounty data: ");
     console.log(allData);
     allData.forEach((sheetData, index) => {
-      createNewBounty(difficultiesAdded[index], sheetData[0], rowIndex[index]);
+      createNewBounty(
+        difficultiesAdded[index],
+        sheetData[0],
+        rowIndex[index] + 1
+      );
     });
     // NEED TO ADD WHAT ROW IS BEING UPDATED
     // UPDATE BOUNTY BOARD AFTER TASK SKIPPED

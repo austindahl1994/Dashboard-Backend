@@ -37,6 +37,9 @@ export const skipTask = async (taskDifficulty) => {
     } else {
       console.log("Skipping all tasks");
       cachedBounties.forEach((bounty) => {
+        if (bounty.Tier_completed) {
+          return;
+        }
         dataToWrite.push(...setSheetSkipData(bounty));
         dataToRead.push(
           `${bounty.Difficulty}!A${bounty.Sheet_Index + 1}:H${
@@ -66,7 +69,7 @@ const setSheetSkipData = (bounty) => {
     range: `${bounty.Difficulty}!I${bounty.Sheet_Index}:M${bounty.Sheet_Index}`,
     values: [defaultValues],
   };
-  if (tasksLeft(bounty.Sheet_Index, bounty.Difficulty)) {
+  if (tasksLeft(bounty.Sheet_Index + 1, bounty.Difficulty)) {
     const nextActiveTask = {
       range: `${bounty.Difficulty}!I${bounty.Sheet_Index + 1}`,
       values: [["Active"]],

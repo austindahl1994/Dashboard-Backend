@@ -8,7 +8,7 @@ export const highscores = [];
 export const numberOfBounties = [3, 3, 3, 3, 3];
 
 //array of player players that have made post requests
-export let playerRequests = [];
+export const playerRequests = {};
 
 // Username : {nickname: STR, id: INT, paid: BOOL YES/NO, donation: INT, time: INT, rsn: STR, team: STR, index: INT}]}
 export const players = {};

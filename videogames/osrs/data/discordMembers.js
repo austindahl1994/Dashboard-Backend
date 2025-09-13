@@ -19,21 +19,13 @@ const headers = [
 // Based on google sheets data, will create object with kv pairs of username: {memberData}
 const createMemberObjects = (data) => {
   data.forEach((member, sheetIndex) => {
-    const teamName = member[7] ?? null;
-    //if player has a team name but isnt a part of the cached team members list, add them to it
-    if (teamName && teams[teamName] && !teams[teamName].includes(member[0])) {
-      teams[teamName].push(member[0]);
-      //if player has a teamName but the teamName doesn't exist in cached teams
-    } else if (teamName && !teams[teamName]) {
-      teams[teamName] = [member[0]];
-    }
-    //if no team, just move on
+    const playerIndex = Object.keys(players).length > 0 ? Object.keys(players).length + 2 : sheetIndex + 2;
     const discordObj = Object.fromEntries(
       headers.map((key, index) => {
         return [key, member[index] ?? null];
       })
     ); //want a 2D array of kv pairs
-    discordObj.index = sheetIndex + 2;
+    discordObj.index = playerIndex;
     players[member[0]] = discordObj;
   });
   // return memberObj
@@ -50,17 +42,18 @@ export const updateUsers = async (discordMembers) => {
     if (!sheetsMembers || sheetsMembers.length === 0) {
       console.log(`No sheets members found`);
       console.log(`Add all members from discord to sheets`);
-      const membersToAdd = discordMembers.map((member) => {
-        const nickname = member.nickname ?? member.user.username;
-        return [
-          member?.user?.username || "No username",
-          nickname,
-          member.id,
-          "NO",
-          0,
-        ];
+      const membersToAdd = discordMembers.map((member, i) => {
+        return {
+          range: `members!A:${i + 2}:H:${i + 2}`,
+          values: [[
+            member?.user?.username || "No username",
+            member.nickname || member.user.username,
+            member.id,
+            "NO",
+            0,
+          ]]
+        }
       });
-      console.table(membersToAdd);
       await addMembers(membersToAdd);
     } else {
       if (Object.keys(players).length === 0) {
@@ -83,19 +76,11 @@ export const updateUsers = async (discordMembers) => {
             guildNickname,
             guildMember.id,
             "NO",
-            0,
+            0, //donation
+            "", //time
+            "", //rsn
+            "" //team
           ]);
-          players[guildUsername] = {
-            nickname: guildNickname,
-            id: guildMember.id,
-            paid: "NO",
-            donation: 0,
-            time: null,
-            rsn: null,
-            team: null,
-            index: Object.keys(players).length + 2,
-          };
-          console.log(`Added ${guildUsername} to cached members`);
           console.log(players[guildUsername]);
         }
       });
@@ -104,10 +89,14 @@ export const updateUsers = async (discordMembers) => {
           `Adding ${missingMembers.length} missing members to sheets`
         );
         console.table(missingMembers);
-        missingMembers.forEach((member) => {
-          sheetsMembers.push(member);
+        createMemberObjects(missingMembers)
+        const dataToWrite = missingMembers.map((member) => {
+          return {
+            range: `members!A:${players[member[0]].index}:H:${players[member[0]].index}`,
+            values: [[member]]
+          }
         });
-        await addMembers(sheetsMembers);
+        await addMembers(dataToWrite);
       } else {
         console.log(`No missing members to add to sheets`);
       }

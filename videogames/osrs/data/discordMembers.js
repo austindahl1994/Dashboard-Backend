@@ -161,55 +161,49 @@ export const paidMembers = () => {
   );
 };
 
-//TODO: add logic if there are already team names?
 //TODO: after team names decided, add channels to discord based on team name, add mods to it, add players on those teams to them
 //Should only call this once after testing, will add team names to players based on play time
 export const createGroups = async () => {
   try {
-    const sheetsMembers = await getAllMembers();
-    if (!sheetsMembers || sheetsMembers.length === 0) {
-      throw new Error("No members currently in sheets document");
-    }
-    const members = createMemberObjects(sheetsMembers);
-    const paidMembers = Object.keys(members)
-      .filter((key) => members[key].paid !== "YES")
+    const paidMembers = Object.keys(players)
+      .filter((username) => players[username].paid !== "YES")
       .sort((a, b) => {
-        const timeA = members[a];
-        const timeB = members[b];
-        return timeA - timeB;
+        return players[a].time - players[b].time;
       });
     if (!paidMembers || paidMembers.length === 0) {
       throw new Error("No members have paid yet, cannot create any groups!");
     }
     const amountOfTeams = Math.ceil(paidMembers.length / 5);
     const allTeams = Array.from({ length: amountOfTeams }).map(() => []);
-    paidMembers.forEach((member, index) => {
-      allTeams[index % amountOfTeams].push(member);
+    paidMembers.forEach((username, index) => {
+      const teamName = `Team - ${index % amountOfTeams}`
+      allTeams[index % amountOfTeams].push(username);
+      if (players[username].team === "") {
+        players[username].team = teamName
+      }
+      if (teams[teamName]) {
+        teams[teamName].push(username)
+      } else {
+        teams[teamName] = [username]
+      }
     });
-    //await teamsToSheets(teams)
-    if (teamNames.length === 0) {
-      teamNames = allTeams.map((teamArr, index) => {
-        return `Team ${index + 1}`;
-      });
-      console.log(
-        "There were no team names, added them in, current team names: "
-      );
-      console.log(teamNames);
-    }
-    return allTeams;
+    console.log("Teams created! Teams are as follows: ")
+    console.table(teams)
+    await teamsToSheets()
   } catch (error) {
     console.log(`Error creating group: ${error} `);
     throw error;
   }
 };
 
-const teamsToSheets = async (teams) => {
+const teamsToSheets = async () => {
   try {
-    const dataToWrite = teams.flatMap((teamArr, teamIndex) => {
-      return teamArr.map((username) => {
+    const allTeams = Object.keys(teams)
+    const dataToWrite = allTeams.flatMap((teamName, teamIndex) => {
+      return teams[teamName].map((username) => {
         return {
-          range: `members!H${members[username].index}`,
-          values: [[`Team ${teamIndex + 1}`]],
+          range: `members!H${players[username].index}`,
+          values: [[players[username].team]],
         };
       });
     });

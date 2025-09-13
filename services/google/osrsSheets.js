@@ -223,10 +223,7 @@ export const getSpecificMemberData = async (ranges) => {
 //Add all discord members to google sheet from discord
 export const addMembers = async (memberData) => {
   try {
-    await sheets.writeSingleSheet(
-      `members!A2:E${memberData.length + 1}`,
-      memberData
-    );
+    await sheets.writeBatchToSheet(memberData);
     console.log(`Successfully added members to sheet`);
   } catch (error) {
     console.log(`Error adding members to sheet: `);

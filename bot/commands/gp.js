@@ -7,7 +7,7 @@ export default {
   cooldown: 5,
   data: new SlashCommandBuilder()
     .setName("gp")
-    .setDescription("Get total GP amounts for paid members"),
+    .setDescription("Get GP data for Bounty Event"),
   async execute(interaction) {
     try {
       if (!allowedUserIds.includes(interaction.user.id)) {
@@ -16,9 +16,10 @@ export default {
           flags: MessageFlags.Ephemeral,
         });
       }
-      paidMembers();
+      const players = paidMembers(); //Array of player objects that have paid the bounty
+      const embed = gpEmbed(players)
       await interaction.reply({
-        content: "Got gp amounts.",
+        embeds: embed,
         flags: MessageFlags.Ephemeral,
       });
     } catch (error) {

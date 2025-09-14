@@ -18,6 +18,7 @@ export const teams = {};
 
 export const channelsCreated = false;
 
+// {teamname: [category.id, text.id, voice.id]}
 export const eventChannels = {}
 
 //holds current highscores created by parsing sheets data

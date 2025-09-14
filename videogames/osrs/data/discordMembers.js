@@ -224,8 +224,8 @@ export const updateTeamName = async (prevName, newName) => {
   try {
     const teamPlayers = teams[newName]
     const finalData = []
-    teamPlayers.forEach((rsn) => {
-      const player = players[rsn]
+    teamPlayers.forEach((username) => {
+      const player = players[username]
       if (!player) {
         throw new Error(`Player ${rsn} was not found in cached players`)
       }

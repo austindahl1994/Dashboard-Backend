@@ -19,7 +19,7 @@ export default {
         content: "Attempting to create teams...",
         flags: MessageFlags.Ephemeral,
       });
-      await createTeams();
+      await createTeams(interaction.guild, interaction.client);
       await interaction.editReply({
         content: `Successfully created teams!`,
         flags: MessageFlags.Ephemeral,

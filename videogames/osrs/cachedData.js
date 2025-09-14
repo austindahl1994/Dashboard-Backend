@@ -18,6 +18,8 @@ export const teams = {};
 
 export const channelsCreated = false;
 
+export const eventChannels = {}
+
 //holds current highscores created by parsing sheets data
 // export const highscores = [
 //   { Player_Name: "Happy", Score: 69, TotalBounty: 420.69 },

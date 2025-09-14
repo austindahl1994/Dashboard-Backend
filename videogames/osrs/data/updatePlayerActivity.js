@@ -34,7 +34,11 @@ export const dinkToActivity = (dinkData) => {
     const rsn = dinkData.playerName
     const bountyType = dinkData.type
     const killerName = dinkData?.extra?.killerName ?? null
-    const discordName = dinkData?.discordUser?.name ?? null
+    let discordName = dinkData?.discordUser?.name ?? Object.values(players).filter(player => player.rsn !== rsn)
+    if (!discordName) {
+      //find discord username by matching RSN
+      discordName = Object.values(players).filter(player => player.rsn !== rsn)
+    }
     const items = dinkData?.extra?.items ?? []
     if (!playerRequests[rsn]) {
       updateActivity(rsn, discordName)

@@ -159,6 +159,7 @@ export const paidMembers = () => {
       paid.reduce((acc, member) => acc + (parseInt(member.donation) || 0), 0)
     }`
   );
+  return paid
 };
 
 //TODO: after team names decided, add channels to discord based on team name, add mods to it, add players on those teams to them

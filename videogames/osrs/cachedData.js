@@ -1,3 +1,13 @@
+// ------------------
+// LEAVING OFF TODOS
+// ------------------
+// Add cronjob for keeping track of number of requests to server based on player and/or discord
+// Have different types of completion messages depending on type - Bounty completion specific to the task
+// Fix updatePlayerActivity file, using players[rsn] whereas it should be players[username], using discord username
+// Add /check command for players to check if they paid, their donation (if any), and what exact RSN we have for them
+// Add trollish messages based on bountyType for completed bounties
+// There was also something in manually completed, to parse through and find correct discord user?
+
 export const EVENT_STARTED = false;
 
 export const cachedBounties = [];
@@ -144,14 +154,3 @@ export const eventChannels = {}
 //     Completed: false,
 //   },
 // ];
-
-// ------------------
-// LEAVING OFF TODOS
-// ------------------
-// Add rules/settings to announcements
-
-// Add cronjob for keeping track of number of requests to server based on player and/or discord
-
-// Have different types of completion messages depending on type - Bounty completion specific to the task
-
-// Add variety of tasks - hide n seek

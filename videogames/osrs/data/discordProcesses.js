@@ -17,8 +17,8 @@ export const createTeamChannels = async (guild, client) => {
       const userIds = [...allowedUserIds]
 
       // Use key of teamName in teams to get array of players on team, add each to userIds
-      teams[t].forEach((playerRSN) => { 
-        const player = players[playerRSN];
+      teams[t].forEach((username) => { 
+        const player = players[username];
         if (player && player.id) {
           userIds.push(player.id);
         }

@@ -44,7 +44,7 @@ export const updateUsers = async (discordMembers) => {
       console.log(`Add all members from discord to sheets`);
       const membersToAdd = discordMembers.map((member, i) => {
         return {
-          range: `members!A:${i + 2}:H:${i + 2}`,
+          range: `members!A${i + 2}:H${i + 2}`,
           values: [[
             member?.user?.username || "No username",
             member.nickname || member.user.username,
@@ -92,7 +92,7 @@ export const updateUsers = async (discordMembers) => {
         createMemberObjects(missingMembers)
         const dataToWrite = missingMembers.map((member) => {
           return {
-            range: `members!A:${players[member[0]].index}:H:${players[member[0]].index}`,
+            range: `members!A${players[member[0]].index}:H${players[member[0]].index}`,
             values: [[member]]
           }
         });

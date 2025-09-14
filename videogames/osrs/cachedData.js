@@ -16,6 +16,8 @@ export const players = {};
 // teamName : [playersOnTeam]
 export const teams = {};
 
+export const channelsCreated = false;
+
 //holds current highscores created by parsing sheets data
 // export const highscores = [
 //   { Player_Name: "Happy", Score: 69, TotalBounty: 420.69 },

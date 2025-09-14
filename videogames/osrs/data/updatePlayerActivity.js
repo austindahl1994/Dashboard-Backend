@@ -14,6 +14,19 @@ const headers = [
   "other",
   "totalPosts"
 ]
+
+export const activityCronJob = async () => {
+  try {
+    if (Object.keys(playerActivity).length > 0) {
+      await mergeActivity()
+    } else {
+      console.log(`There was no player activity to merge`)
+      return
+    }
+  } catch (e) {
+    console.log(`Error with cronjob: ${e}`)
+  }
+} 
 //TODO: Remember to add time for controller to see what time requests were made
 // Updates the playerRequests object with newest player data
 export const dinkToActivity = (dinkData) => {
@@ -112,12 +125,16 @@ const importActivity = async () => {
             // ["e:1"]
             obj[key] = cell.split(',').map((str) => {
               const [k, v] = str.trim().split(' ')
-              return {[k]: v}
+              return {[k]: parseInt(v)}
             })
           } else if (cell.length > 0){
-            obj[key] = cell
+            if (!NaN(Number(cell))) {
+              obj[key] = parseInt(cell)
+            } else {
+              obj[key] = cell
+            }
           } else {
-            obj[key] = null
+            obj[key] = ""
           }
         })
         obj.index = index + 2
@@ -144,11 +161,38 @@ export const mergeActivity = async () => {
       })
     } else {
       // Merge sheets and cached data together
-      Object.keys(playerRequests).forEach((rsn) => {
+      let count = 0
+      Object.keys(playerRequests).forEach((rsn, activityIndex) => {
         if (sheetsObj[rsn]) {
           // If it exists in sheets object, merge them together
+          const playerData = []
+          const p = playerActivity[rsn] //playerData based on rsn as key
+          const s = sheets[rsn] //sheetsData matching rsn as key
+          headers.forEach((key, index) => {
+            // Check if data is not an array
+            if (!Array.isArray(p[key])) {
+              // Check if data is numbers, if so add together
+              if (!NaN(Number(p[key]))) {
+                playerData.push(parseInt(p[key]) + parseInt(s[key]))
+              } else {
+                // Check if data is the same, otherwise use the data from cached playerActivity
+                playerData.push(p[key])
+              }
+            // Items are an array, check for any matching objects in array, if they match, add together values and delete
+            // That item from the array, if not Then just add the new value, then go over leftover values
+            } else {
+              playerData.push(mergeArrays(p[key], s[key]))
+            }
+          })
+          finalData.push({
+            range: `activity!A${s.index}:L${s.index}`,
+            values: [playerData]
+          })
         } else {
           // If it doesn't exist in sheets object, should add it's data individually
+          const sheetIndex = activityIndex + count + Object.keys(sheetsObj).length
+          finalData.push(addActivityToFinalData(rsn, sheetIndex))
+          count++
         }
       })
     }
@@ -166,8 +210,7 @@ export const mergeActivity = async () => {
 const addActivityToFinalData = (rsn, index) => {
   p = playerRequests[rsn]
   const playerData = []
-  playerData.push(rsn)
-  headers.slice(1, headers.length).forEach((key, index) => {
+  headers.forEach((key, index) => {
     if (Array.isArray(p[key])) {
       const str = p[key].map((obj) => Object.entries(obj).join(' ')).join(', ')
       playerData.push(str)
@@ -176,15 +219,32 @@ const addActivityToFinalData = (rsn, index) => {
     }
   }) 
   return {
-  range: `activity!A${index + 2}:L${index + 2}`,
-  values: [playerData]
+    range: `activity!A${index + 2}:L${index + 2}`,
+    values: [playerData]
   }
 }
 
-const exportActivity = async () => {
+const exportActivity = async (data) => {
   try {
-    
+    console.log(`Exporting data: `)
+    console.log(data)
+    await someExportFn()
   } catch (e) {
     console.log(`Error updating sheets activity: ${e}`)
+  }
+}
+
+// Want to return from [{item: 1}] to "item 1, "
+const mergeArrays = (arr1, arr2) => {
+  try {
+    const combined = [...arr1, ...arr2]
+    const finalObj = {} 
+    combined.forEach((obj) => {
+      const [name, quantity] = Object.entries(obj)[0]
+      finalObj[name] = (finalObj[name] ?? 0) + quantity
+    })
+    return Object.entries(finalObj).join(", ")
+  } catch (e) {
+    throw e
   }
 }

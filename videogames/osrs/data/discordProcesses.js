@@ -2,7 +2,7 @@ import { PermissionFlagsBits, ChannelType } from "discord.js";
 import { players, teams, channelsCreated, eventChannels } from "../cachedData.js"
 import { allowedUserIds } from "../../../bot/utilities/discordUtils.js";
 
-export const createTeams = async (guild, client) => {
+export const createTeamChannels = async (guild, client) => {
   try {
     if (channelsCreated) {
       throw new Error("Teams have already been completed.")

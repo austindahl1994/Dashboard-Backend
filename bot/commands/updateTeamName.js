@@ -2,6 +2,7 @@ import { SlashCommandBuilder, MessageFlags } from "discord.js";
 import { allowedUserIds } from "../utilities/discordUtils.js";
 import { teams } from "../../videogames/osrs/cachedData.js";
 import { updateTeamName } from "../../videogames/osrs/data/discordMembers.js";
+import { createTeamChannels } from "../../videogames/osrs/data/discordProcesses.js";
 
 export default {
   cooldown: 5,
@@ -53,6 +54,7 @@ export default {
       const prevName = interaction.options.getString("oldname");
       const newName = interaction.options.getString("newname");
       await updateTeamName(prevName, newName);
+      await createTeamChannels(interaction.guild, prevName, newName)
       await interaction.editReply({
         content: "Updated team name!",
         flags: MessageFlags.Ephemeral,

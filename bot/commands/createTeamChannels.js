@@ -26,7 +26,7 @@ export default {
       });
     } catch (error) {
       await interaction.editReply({
-        content: `There was an error getting data: ${error}`,
+        content: `There was an error creating teams: ${error}`,
         flags: MessageFlags.Ephemeral,
       });
     }

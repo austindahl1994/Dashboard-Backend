@@ -1,7 +1,7 @@
 import { SlashCommandBuilder, MessageFlags } from "discord.js";
 import { allowedUserIds } from "../utilities/discordUtils.js";
 import { paidMembers } from "../../videogames/osrs/data/discordMembers.js";
-
+import { gpEmbed } from "../embeds.js"
 // Command to display final tasks data
 export default {
   cooldown: 5,

@@ -37,7 +37,7 @@ export const dinkToActivity = (dinkData) => {
     const discordName = dinkData?.discordUser?.name ?? null
     const items = dinkData?.extra?.items ?? []
     if (!playerRequests[rsn]) {
-      createActivity(rsn, discordName)
+      updateActivity(rsn, discordName)
     } 
     compareActivity(playerRequests[rsn], bountyType, killerName, items)
   } catch (e) {

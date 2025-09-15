@@ -172,7 +172,7 @@ export const paidMembers = () => {
         return Number(b.time) - Number(a.time);
       }
     });
-    console.table(finalPaid);
+    console.table(finalPaid, ["rsn", "time", "donation"]);
     return finalPaid;
   } catch (error) {
     console.log(`Error with paid members: ${error}`);

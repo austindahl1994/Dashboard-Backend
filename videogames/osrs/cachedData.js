@@ -21,15 +21,15 @@ export const numberOfBounties = [3, 3, 3, 3, 3];
 export let playerRequests = {};
 
 // Username : {nickname: STR, id: INT, paid: BOOL YES/NO, donation: INT, time: INT, rsn: STR, team: STR, index: INT}]}
-export const players = {};
+export let players = {};
 
 // teamName : [playersOnTeam]
-export const teams = {};
+export let teams = {};
 
 export const channelsCreated = false;
 
 // {teamname: [category.id, text.id, voice.id]}
-export const eventChannels = {}
+export const eventChannels = {};
 
 //holds current highscores created by parsing sheets data
 // export const highscores = [

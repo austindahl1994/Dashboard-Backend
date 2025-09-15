@@ -1,7 +1,8 @@
 import { SlashCommandBuilder, MessageFlags } from "discord.js";
 import { allowedUserIds } from "../utilities/discordUtils.js";
 import { paidMembers } from "../../videogames/osrs/data/discordMembers.js";
-import { gpEmbed } from "../embeds.js"
+import { gpEmbed } from "../embeds/gpEmbed.js";
+
 // Command to display final tasks data
 export default {
   cooldown: 5,
@@ -17,7 +18,7 @@ export default {
         });
       }
       const players = paidMembers(); //Array of player objects that have paid the bounty
-      const embed = gpEmbed(players)
+      const embed = gpEmbed(players);
       await interaction.reply({
         embeds: embed,
         flags: MessageFlags.Ephemeral,

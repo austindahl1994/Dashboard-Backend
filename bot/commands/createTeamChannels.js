@@ -1,6 +1,11 @@
-import { SlashCommandBuilder, MessageFlags, PermissionFlagsBits, ChannelType } from "discord.js";
+import {
+  SlashCommandBuilder,
+  MessageFlags,
+  PermissionFlagsBits,
+  ChannelType,
+} from "discord.js";
 import { allowedUserIds } from "../utilities/discordUtils.js";
-import { createTeams } from "../../videogames/osrs/data/discordProcesses.js"
+import { createTeamChannels } from "../../videogames/osrs/data/discordProcesses.js";
 
 export default {
   cooldown: 5,
@@ -19,7 +24,7 @@ export default {
         content: "Attempting to create teams...",
         flags: MessageFlags.Ephemeral,
       });
-      await createTeams(interaction.guild, interaction.client);
+      await createTeamChannels(interaction.guild, interaction.client);
       await interaction.editReply({
         content: `Successfully created teams!`,
         flags: MessageFlags.Ephemeral,

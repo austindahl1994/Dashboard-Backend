@@ -20,7 +20,7 @@ export default {
       const players = paidMembers(); //Array of player objects that have paid the bounty
       const embed = gpEmbed(players);
       await interaction.reply({
-        embeds: embed,
+        embeds: [embed],
         flags: MessageFlags.Ephemeral,
       });
     } catch (error) {

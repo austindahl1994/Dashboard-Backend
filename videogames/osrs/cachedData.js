@@ -21,7 +21,7 @@ export const numberOfBounties = [3, 3, 3, 3, 3];
 export let playerRequests = {};
 
 // Username : {nickname: STR, id: INT, paid: BOOL YES/NO, donation: INT, time: INT, rsn: STR, team: STR, index: INT}]}
-export let players = {};
+export const players = {};
 
 // teamName : [playersOnTeam]
 export let teams = {};

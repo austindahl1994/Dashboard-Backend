@@ -2,8 +2,8 @@ import { EmbedBuilder } from "discord.js";
 
 export const gpEmbed = (paidPlayersArr) => {
   try {
-    console.log(`Passed in Data for gp: `);
-    console.table(paidPlayersArr, ["rsn", "donation", "time"]);
+    // console.log(`Passed in Data for gp: `);
+    // console.table(paidPlayersArr, ["rsn", "donation", "time"]);
 
     // Build one big string of all members
     const paidMembers = paidPlayersArr

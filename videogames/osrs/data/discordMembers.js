@@ -167,7 +167,13 @@ export const paidMembers = () => {
         paid.reduce((acc, member) => acc + (parseInt(member.donation) || 0), 0)
       }`
     );
-    return paid;
+    const finalPaid = paid.sort((a, b) => {
+      if (Number(a.donation) === 0 && Number(b.donation) === 0) {
+        return Number(b.time) - Number(a.time);
+      }
+    });
+    console.table(finalPaid);
+    return finalPaid;
   } catch (error) {
     console.log(`Error with paid members: ${error}`);
     throw error;

@@ -20,8 +20,8 @@ export default {
         content: "Attempting to generate teams",
         flags: MessageFlags.Ephemeral,
       });
-      const teams = await createGroups();
-      const embed = groupEmbed(teams);
+      // const teams = await createGroups();
+      // const embed = groupEmbed(teams);
       await interaction.editReply({
         embeds: embed,
         flags: MessageFlags.Ephemeral,

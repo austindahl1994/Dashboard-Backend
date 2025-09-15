@@ -1,5 +1,6 @@
 import { getAllSheetData } from "../../../services/google/osrsSheets.js";
 import { modifySheetData } from "../bounties/updateFromSheets.js";
+import { players } from "../cachedData.js";
 import { updateCachedMembers } from "./discordMembers.js";
 
 export const getCachedData = async () => {
@@ -20,6 +21,9 @@ export const getCachedData = async () => {
     const allData = await getAllSheetData(finalData);
     const memberData = allData.pop();
     modifySheetData(allData);
+    if (Object.keys(players).length > 0) {
+      players = {};
+    }
     updateCachedMembers(memberData);
     //Need to cache player information format will
   } catch (e) {

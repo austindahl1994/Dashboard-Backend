@@ -19,7 +19,10 @@ const headers = [
 // Based on google sheets data, will create object with kv pairs of username: {memberData}
 const createMemberObjects = (data) => {
   data.forEach((member, sheetIndex) => {
-    const playerIndex = Object.keys(players).length > 0 ? Object.keys(players).length + 2 : sheetIndex + 2;
+    const playerIndex =
+      Object.keys(players).length > 0
+        ? Object.keys(players).length + 2
+        : sheetIndex + 2;
     const discordObj = Object.fromEntries(
       headers.map((key, index) => {
         return [key, member[index] ?? null];
@@ -45,14 +48,16 @@ export const updateUsers = async (discordMembers) => {
       const membersToAdd = discordMembers.map((member, i) => {
         return {
           range: `members!A${i + 2}:H${i + 2}`,
-          values: [[
-            member?.user?.username || "No username",
-            member.nickname || member.user.username,
-            member.id,
-            "NO",
-            0,
-          ]]
-        }
+          values: [
+            [
+              member?.user?.username || "No username",
+              member.nickname || member.user.username,
+              member.id,
+              "NO",
+              0,
+            ],
+          ],
+        };
       });
       await addMembers(membersToAdd);
     } else {
@@ -79,7 +84,7 @@ export const updateUsers = async (discordMembers) => {
             0, //donation
             "", //time
             "", //rsn
-            "" //team
+            "", //team
           ]);
           console.log(players[guildUsername]);
         }
@@ -89,12 +94,14 @@ export const updateUsers = async (discordMembers) => {
           `Adding ${missingMembers.length} missing members to sheets`
         );
         console.table(missingMembers);
-        createMemberObjects(missingMembers)
+        createMemberObjects(missingMembers);
         const dataToWrite = missingMembers.map((member) => {
           return {
-            range: `members!A${players[member[0]].index}:H${players[member[0]].index}`,
-            values: [[member]]
-          }
+            range: `members!A${players[member[0]].index}:H${
+              players[member[0]].index
+            }`,
+            values: [member],
+          };
         });
         await addMembers(dataToWrite);
       } else {
@@ -159,7 +166,7 @@ export const paidMembers = () => {
       paid.reduce((acc, member) => acc + (parseInt(member.donation) || 0), 0)
     }`
   );
-  return paid
+  return paid;
 };
 
 //TODO: after team names decided, add channels to discord based on team name, add mods to it, add players on those teams to them
@@ -177,20 +184,20 @@ export const createGroups = async () => {
     const amountOfTeams = Math.ceil(paidMembers.length / 5);
     const allTeams = Array.from({ length: amountOfTeams }).map(() => []);
     paidMembers.forEach((username, index) => {
-      const teamName = `Team - ${index % amountOfTeams}`
+      const teamName = `Team - ${index % amountOfTeams}`;
       allTeams[index % amountOfTeams].push(username);
       if (players[username].team === "") {
-        players[username].team = teamName
+        players[username].team = teamName;
       }
       if (teams[teamName]) {
-        teams[teamName].push(username)
+        teams[teamName].push(username);
       } else {
-        teams[teamName] = [username]
+        teams[teamName] = [username];
       }
     });
-    console.log("Teams created! Teams are as follows: ")
-    console.table(teams)
-    await teamsToSheets()
+    console.log("Teams created! Teams are as follows: ");
+    console.table(teams);
+    await teamsToSheets();
   } catch (error) {
     console.log(`Error creating group: ${error} `);
     throw error;
@@ -199,7 +206,7 @@ export const createGroups = async () => {
 
 const teamsToSheets = async () => {
   try {
-    const allTeams = Object.keys(teams)
+    const allTeams = Object.keys(teams);
     const dataToWrite = allTeams.flatMap((teamName, teamIndex) => {
       return teams[teamName].map((username) => {
         return {
@@ -222,20 +229,20 @@ if (peopleData[oldName]) {
 // TODO: Update this based on teams being an object
 export const updateTeamName = async (prevName, newName) => {
   try {
-    const teamPlayers = teams[newName]
-    const finalData = []
+    const teamPlayers = teams[newName];
+    const finalData = [];
     teamPlayers.forEach((username) => {
-      const player = players[username]
+      const player = players[username];
       if (!player) {
-        throw new Error(`Player ${rsn} was not found in cached players`)
+        throw new Error(`Player ${rsn} was not found in cached players`);
       }
-      player.team = newName
+      player.team = newName;
       finalData.push({
         range: `members!H${player.index}`,
-        values: [[newName]]
-      })
-    })
-    console.log(finalData)
+        values: [[newName]],
+      });
+    });
+    console.log(finalData);
     // await someTeamFn()
     // delete teams[prevName]
   } catch (error) {
@@ -255,4 +262,3 @@ export const updateCachedMembers = (data) => {
     throw e;
   }
 };
-

@@ -53,8 +53,8 @@ export default {
       });
       const prevName = interaction.options.getString("oldname");
       const newName = interaction.options.getString("newname");
-      await updateTeamName(prevName, newName);
-      await createTeamChannels(interaction.guild, prevName, newName)
+      // await updateTeamName(prevName, newName);
+      // await createTeamChannels(interaction.guild, prevName, newName)
       await interaction.editReply({
         content: "Updated team name!",
         flags: MessageFlags.Ephemeral,

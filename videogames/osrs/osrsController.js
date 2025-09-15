@@ -1,9 +1,9 @@
-import { displayTime } from "../../Utilities.js"
+import { displayTime } from "../../Utilities.js";
 import { checkBounties } from "./bounties/checkBounties.js";
 import { completeBounty } from "./bounties/completeBounty.js";
 import { uploadScreenshot } from "../../services/aws/s3.js";
 import { updateBroadcast } from "../../bot/broadcasts.js";
-import { dinkToActivity } from "./data/updatePlayerActivity.js"
+import { dinkToActivity } from "./data/updatePlayerActivity.js";
 import { highscores } from "./cachedData.js";
 
 import dotenv from "dotenv";
@@ -11,7 +11,7 @@ dotenv.config();
 
 export const osrsController = async (req, res) => {
   // console.log(`Received a request at osrsController`);
-  displayTime()
+  displayTime();
   const file = req.file;
   let image;
   let mimetype;
@@ -27,7 +27,7 @@ export const osrsController = async (req, res) => {
     if (data) {
       const parsedData = JSON.parse(data);
       if (parsedData) {
-        dinkToActivity(parsedData)
+        // dinkToActivity(parsedData)
         console.log(`Received data from ${parsedData.playerName}`);
         console.log(JSON.stringify(parsedData));
         const completedBounties = checkBounties(parsedData);

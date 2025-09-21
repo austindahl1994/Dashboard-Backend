@@ -1,4 +1,8 @@
-import { PermissionFlagsBits, ChannelType } from "discord.js";
+import {
+  PermissionFlagsBits,
+  PermissionsBitField,
+  ChannelType,
+} from "discord.js";
 import {
   players,
   teams,
@@ -56,36 +60,40 @@ export const createTeamChannels = async (guild, client) => {
       teams[t].forEach((username) => {
         const p = players[username];
         if (p && p.id) {
+          console.log(`Adding player to channel: ${p.rsn} - ${p.id}`);
           userIds.push(p.id);
         }
       });
-      let overwrites = [
+      console.log("Resolved userIds:", userIds);
+
+      const overwrites = [
         {
-          id: guild.roles.everyone,
-          deny: [PermissionFlagsBits.ViewChannel],
+          id: guild.roles.everyone.id,
+          deny: [PermissionsBitField.Flags.ViewChannel],
         },
-        ...userIds.map((id) => {
-          return {
-            id,
-            allow: [
-              PermissionFlagsBits.ViewChannel,
-              PermissionFlagsBits.SendMessages,
-              PermissionFlagsBits.Connect,
-              PermissionFlagsBits.Speak,
-            ],
-          };
-        }),
+        ...userIds.map((id) => ({
+          id, // string snowflake is fine
+          type: 1, // 1 = member, 0 = role
+          allow: [
+            PermissionsBitField.Flags.ViewChannel,
+            PermissionsBitField.Flags.SendMessages,
+            PermissionsBitField.Flags.Connect,
+            PermissionsBitField.Flags.Speak,
+          ],
+        })),
         {
           id: client.user.id,
+          type: 1,
           allow: [
-            PermissionFlagsBits.ViewChannel,
-            PermissionFlagsBits.SendMessages,
-            PermissionFlagsBits.Connect,
-            PermissionFlagsBits.Speak,
-            PermissionFlagsBits.ManageChannels,
+            PermissionsBitField.Flags.ViewChannel,
+            PermissionsBitField.Flags.SendMessages,
+            PermissionsBitField.Flags.Connect,
+            PermissionsBitField.Flags.Speak,
+            PermissionsBitField.Flags.ManageChannels,
           ],
         },
       ];
+
       console.log(`Creating channels for team: ${t}`);
       console.log(`overwrites: `);
       console.table(overwrites, ["id", "allow", "deny"]);

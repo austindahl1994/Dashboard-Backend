@@ -6,7 +6,7 @@ import { updateCachedMembers } from "./discordMembers.js";
 export const getCachedData = async () => {
   try {
     // cachedBounties, highscores, numberOfBounties should all be updated from updateSheetsFunction
-    const sheets = ["easy", "medium", "hard", "elite", "master", "members"];
+    const sheets = ["easy", "medium", "hard", "elite", "master", "teams"];
     const ranges = [
       "A2:L75",
       "A2:L75",

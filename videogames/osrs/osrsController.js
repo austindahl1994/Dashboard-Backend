@@ -3,8 +3,8 @@ import { checkBounties } from "./bounties/checkBounties.js";
 import { completeBounty } from "./bounties/completeBounty.js";
 import { uploadScreenshot } from "../../services/aws/s3.js";
 import { updateBroadcast } from "../../bot/broadcasts.js";
-import { dinkToActivity } from "./data/updatePlayerActivity.js";
-import { highscores } from "./cachedData.js";
+// import { dinkToActivity } from "./data/updatePlayerActivity.js";
+// import { highscores } from "./cachedData.js";
 
 import dotenv from "dotenv";
 dotenv.config();

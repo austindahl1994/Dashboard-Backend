@@ -33,7 +33,7 @@ const createMemberObjects = (data) => {
   });
   // return memberObj
   console.log(`Cached ${Object.keys(players).length} members from sheets`);
-  // console.log(players);
+  console.log(players);
   return;
 };
 
@@ -123,6 +123,8 @@ export const memberMoney = async (memberObj) => {
       throw new Error("Missing required member information");
     }
     if (players[username]) {
+      console.log(`Player exists in cached members:`);
+      console.log(players[username]);
       const playerData = [
         username,
         nickname,
@@ -140,6 +142,7 @@ export const memberMoney = async (memberObj) => {
       console.log(playerData);
       const sheetIndex = players[username].index;
       const sheetRange = `members!A${sheetIndex}:G${sheetIndex}`;
+      console.log(playerData + "" + sheetRange);
       await buyin({ playerData, sheetRange });
     } else {
       throw new Error(`User ${username} not found in sheets`);
@@ -172,7 +175,7 @@ export const paidMembers = () => {
         return Number(b.time) - Number(a.time);
       }
     });
-    console.table(finalPaid, ["rsn", "time", "donation"]);
+    console.table(finalPaid, ["rsn", "time", "donation", "index"]);
     return finalPaid;
   } catch (error) {
     console.log(`Error with paid members: ${error}`);
@@ -254,7 +257,6 @@ export const updateTeamName = async (prevName, newName) => {
       });
     });
     console.log(finalData);
-    // await someTeamFn()
     // delete teams[prevName]
   } catch (error) {
     throw error;

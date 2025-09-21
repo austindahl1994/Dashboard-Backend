@@ -1,17 +1,13 @@
-import {
-  SlashCommandBuilder,
-  MessageFlags,
-  PermissionFlagsBits,
-  ChannelType,
-} from "discord.js";
+import { SlashCommandBuilder, MessageFlags } from "discord.js";
 import { allowedUserIds } from "../utilities/discordUtils.js";
 import { createTeamChannels } from "../../videogames/osrs/data/discordProcesses.js";
 
+// Command to display final tasks data
 export default {
   cooldown: 5,
   data: new SlashCommandBuilder()
-    .setName("createchannels")
-    .setDescription("Create team channels for Bounty Board event"),
+    .setName("teams")
+    .setDescription("Create teams for the event"),
   async execute(interaction) {
     try {
       if (!allowedUserIds.includes(interaction.user.id)) {
@@ -20,18 +16,14 @@ export default {
           flags: MessageFlags.Ephemeral,
         });
       }
-      await interaction.deferReply({
-        content: "Attempting to create teams...",
-        flags: MessageFlags.Ephemeral,
-      });
       await createTeamChannels(interaction.guild, interaction.client);
-      await interaction.editReply({
-        content: `Successfully created teams!`,
+      await interaction.reply({
+        content: `✅ Team channels have been created.`,
         flags: MessageFlags.Ephemeral,
       });
     } catch (error) {
-      await interaction.editReply({
-        content: `There was an error creating teams: ${error}`,
+      await interaction.reply({
+        content: `Refresh before using this command. Error of: ${error}.`,
         flags: MessageFlags.Ephemeral,
       });
     }

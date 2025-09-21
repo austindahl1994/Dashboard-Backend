@@ -26,7 +26,7 @@ export const players = {};
 // teamName : [playersOnTeam]
 export const teams = {};
 
-export let channelsCreated = false;
+export let channelsCreated = true;
 
 // {teamname: [category.id, text.id, voice.id]}
 export const eventChannels = {};

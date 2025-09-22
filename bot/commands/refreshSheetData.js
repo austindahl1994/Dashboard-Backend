@@ -14,12 +14,6 @@ export default {
     .setDescription("Refresh the sheets data if bounties are not populated"),
   async execute(interaction) {
     try {
-      if (!allowedUserIds.includes(interaction.user.id)) {
-        return interaction.reply({
-          content: "⛔ You are not allowed to use this command.",
-          flags: MessageFlags.Ephemeral,
-        });
-      }
       await interaction.deferReply({
         content: "Attempting to refresh sheets.",
         flags: MessageFlags.Ephemeral,

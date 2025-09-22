@@ -32,8 +32,8 @@ const createMemberObjects = (data) => {
     players[member[0]] = discordObj;
   });
   // return memberObj
-  console.log(`Cached ${Object.keys(players).length} members from sheets`);
-  console.log(players);
+  // console.log(`Cached ${Object.keys(players).length} members from sheets`);
+  // console.log(players);
   return;
 };
 

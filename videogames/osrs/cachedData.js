@@ -8,7 +8,7 @@
 // Add trollish messages based on bountyType for completed bounties
 // There was also something in manually completed, to parse through and find correct discord user?
 
-export const EVENT_STARTED = false;
+export const EVENT_STARTED = true;
 
 export const cachedBounties = [];
 

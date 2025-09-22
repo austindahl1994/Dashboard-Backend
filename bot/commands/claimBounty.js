@@ -30,16 +30,10 @@ export default {
     ),
   async execute(interaction) {
     try {
-      if (!allowedUserIds.includes(interaction.user.id)) {
-        return interaction.reply({
-          content: "⛔ You are not allowed to use this command (At this time).",
-          flags: MessageFlags.Ephemeral,
-        });
-      }
-      await interaction.deferReply({ 
-          content: "Attempting to claim bounty",
-          flags: MessageFlags.Ephemeral 
-        });
+      await interaction.deferReply({
+        content: "Attempting to claim bounty",
+        flags: MessageFlags.Ephemeral,
+      });
       const difficulty = interaction.options
         .getString("difficulty")
         .toLowerCase();

@@ -13,7 +13,7 @@ const compareItems = (data, bounty) => {
 
 // bounty.Source === '*' || Any time we would use wild card? add functionality later if needed
 const compareSources = (source, bounty) => {
-  if (bounty.Source.trim() === "*") {
+  if (bounty.Source.trim() === "*" || bounty.Source.trim() === "") {
     console.log(`Source was anything!`);
     return true;
   }

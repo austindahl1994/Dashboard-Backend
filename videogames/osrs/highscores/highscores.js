@@ -39,8 +39,8 @@ export const createCachedHighscores = async (sheetData) => {
   try {
     if (highscores.length !== 0) {
       const previousHighscores = structuredClone(highscores);
-      console.log(`Previous highscores:`);
-      console.table(previousHighscores);
+      // console.log(`Previous highscores:`);
+      // console.table(previousHighscores);
       highscores.length = 0;
     }
     // console.log(`Creating highscores from cached sheets`);
@@ -61,8 +61,8 @@ export const createCachedHighscores = async (sheetData) => {
           return;
         }
         const status = bounty.Status.trim().toLowerCase();
-        console.log(`Player: ${player}`);
-        console.log(`Status is: ${status}`);
+        // console.log(`Player: ${player}`);
+        // console.log(`Status is: ${status}`);
         if (
           !player ||
           !status ||

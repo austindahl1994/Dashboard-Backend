@@ -28,7 +28,7 @@ export const getAllSheetData = async (data) => {
 // Called with "/refresh" command, reads all sheets, updates cached bounties
 export const getAllSheetBounties = async () => {
   const sheetsToRead = ["easy", "medium", "hard", "elite", "master"];
-  const range = "A2:L75"; //Start from A2 since the first row is header row, we just add this in later
+  const range = "A2:L150"; //Start from A2 since the first row is header row, we just add this in later
   const allRanges = sheetsToRead.map((sheet) => `${sheet}!${range}`);
 
   try {

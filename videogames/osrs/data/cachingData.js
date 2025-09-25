@@ -8,11 +8,11 @@ export const getCachedData = async () => {
     // cachedBounties, highscores, numberOfBounties should all be updated from updateSheetsFunction
     const sheets = ["easy", "medium", "hard", "elite", "master", "teams"];
     const ranges = [
-      "A2:L75",
-      "A2:L75",
-      "A2:L75",
-      "A2:L75",
-      "A2:L75",
+      "A2:L150",
+      "A2:L150",
+      "A2:L150",
+      "A2:L150",
+      "A2:L150",
       "A2:H500",
     ];
     const finalData = sheets.map((sheet, i) => {

@@ -7,7 +7,8 @@ export const displayTime = () => {
     hour: 'numeric',     // e.g., "7"
     minute: '2-digit',   // e.g., "34"
     second: '2-digit',   // e.g., "08"
-    hour12: true         // 12-hour format with AM/PM
+    hour12: true,         // 12-hour format with AM/PM
+    timeZone: 'America/Chicago'
   };
   const formattedTime = currentTime.toLocaleString('en-US', options);
   console.log(formattedTime);

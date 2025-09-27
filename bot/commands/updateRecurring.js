@@ -1,9 +1,6 @@
 import { SlashCommandBuilder, MessageFlags } from "discord.js";
 import { allowedUserIds } from "../utilities/discordUtils.js";
-import { client } from "../mainBot.js";
-
-const recurringChannelId = process.env.RECURRING_BOUNTY_CHANNEL_ID;
-const recurringMessageId = process.env.RECURRING_BOUNTY_MESSAGE_ID || null;
+import { updateRecurring } from "../../videogames/osrs/bounties/recurring/recurring.js"
 
 export default {
   cooldown: 5,
@@ -16,13 +13,11 @@ export default {
           flags: MessageFlags.Ephemeral,
         });
       }
-      const channel = await client.channels.fetch(recurringChannelId);
-      if (!channel || !channel.isTextBased()) {
-        throw new Error(`Channel not found from channel ID`);
-      }
-      const sent = await channel.send({ embeds: embed });
-      savedMessageId = sent.id;
-      console.log(`New message sent. Save this ID: ${savedMessageId}`);
+      await updateRecurring()
+      await interaction.editReply({
+        content: `Updated recurring tasks successfully.`,
+        flags: MessageFlags.Ephemeral,
+      });
     } catch (error) {
       await interaction.editReply({
         content: `There was an error updating members sheets: ${error}`,

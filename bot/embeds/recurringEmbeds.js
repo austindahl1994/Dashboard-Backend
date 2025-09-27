@@ -43,13 +43,13 @@ export const emptyRecurringEmbed = () => {
 
 // Return single embed to display data
 export const completedRecurring = (data) => {
-  const {discord, rsn, item, team, url} = data
+  const {player, url, item} = data
   let player = rsn || players[discord].rsn
   try {
     const embed = new EmbedBuilder()
       .setColor("Green")
       .setTitle("Recurring Bounty Completed!")
-      .setDescription(`**${player}** has completed a recurring bounty by getting a **${item}**!`)
+      .setDescription(`**${player.rsn}** has completed a recurring bounty by getting a **${item}**!`)
       .setImage(url)
     return embed
   } catch (e) {

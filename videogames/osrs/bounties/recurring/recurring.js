@@ -1,5 +1,6 @@
 import { readSingleSheet } from ../../../services/google/sheets.js
-import { recurring } from "../../cachedData.js"
+import { recurring, players } from "../../cachedData.js"
+import { uploadScreenshot } from "../../../../services/aws/s3.js";
 
 const headers = ["title", "description", "url", "items"]
 
@@ -37,9 +38,54 @@ const updateRecurring = async (sheetData) => {
 };
 
 // Compare against recurring items from dink data
-export const compareRecurring = async () => {
+export const compareRecurring = async (data, image, mimetype) => {
   try {
-    return false;
+    if (data.type.toLowerCase() !== "loot") {
+      return
+    }
+    const matchingItems = data.extra.items.filter((item) => {
+      return recurring.items.includes(item)
+    });
+
+    if (matchingItems.length > 0) {
+      let player = players?.[data?.discordUser?.name] ?? null;
+      if (!player) {
+        console.log("No player found on list, checking via player name");
+        const searchedPlayerKey = Object.keys(players).find(
+          key => players[key]?.rsn === data.playerName
+        );
+        player = searchedPlayerKey ? players[searchedPlayerKey] : data.playerName;
+        player.points += 2 * matchingItems.length //Add points for each player object based on how many object match
+      } else {
+        console.log(`Player found for recurring: ${player}`);
+        player.points += 2 * matchingItems.length //Add points for each player object based on how many object match
+      }
+      
+      const date = new Date().toISOString().replace(/[:.]/g, "-");
+      let imageUrl = await uploadScreenshot(
+        `recurring/${data.playerName}_${date}.png`
+          .replace(/\s+/g, "_")           // replace spaces with underscores
+          .replace(/[^\w.-]/g, ""),       // remove anything not allowed in filenames
+        image,
+        mimetype
+      );
+      let finalItemStr;
+      if (matchedItems.length === 1) {
+        finalItemStr = matchedItems[0]
+      } else {
+        finalItemStr = matchedItems.map((item, index) => {
+          if (index === matchedItems.length - 2) {
+            return `${item}, and`
+          } else if (index === matchedItems.length - 1) {
+            return item
+          } else {
+            return `${item},`
+          }
+        }).join(' ')
+      }
+      console.log(finalItemStr)
+      await completeRecurring(player, imageURL, finalItemStr)
+    }
   } catch (error) {
     console.log(`Error comparing recurring loot: `);
     console.log(error);
@@ -47,8 +93,26 @@ export const compareRecurring = async () => {
   }
 };
 
-// If loot matches, upload image to S3 /recurring, post completion to Discord, update points for player
+export const manuallyCompleteRecurring = async () => {
+  try {
+    return
+  } catch (error) {
+    console.log(`Error comparing recurring loot: `);
+    console.log(error);
+    throw error;
+  }
+}
 
+// If loot matches, upload image to S3 /recurring, post completion to Discord, update points for player
+export const completeRecurring = async () => {
+  try {
+    return 
+  } catch (error) {
+    console.log(`Error comparing recurring loot: `);
+    console.log(error);
+    throw error;
+  }
+}
 // Update highscores to show including bonus points
 
 

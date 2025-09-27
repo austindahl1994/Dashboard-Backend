@@ -2,7 +2,7 @@ import { client } from "./mainBot.js";
 import { getAllBountyEmbeds } from "./embeds/embededBounties.js";
 import { getHighscoresEmbeds } from "./embeds/embededHighscores.js";
 import { completedBountyEmbed } from "./embeds/completedBountyEmbed.js";
-import { recurringEmbed, emptyRecurringEmbed } from "./embeds/recurringEmbeds.js" 
+import { recurringEmbed, emptyRecurringEmbed, completedRecurring } from "./embeds/recurringEmbeds.js" 
 import { recurring } from "../videogames/osrs/cachedBounty.js"
 import dotenv from "dotenv";
 
@@ -78,6 +78,7 @@ export const broadcastBountyCompletion = async (bounty) => {
   }
 };
 
+// broadcast completion of recurring bounty
 export const broadcastRecurringCompletion = async (data) => {
   try {
     const channelId = completedBountiesChannel
@@ -91,9 +92,9 @@ export const broadcastRecurringCompletion = async (data) => {
     console.error(`Error broadcasting completed recurring task: ${error}`);
   }
 }
-// const recurringChannelId = process.env.RECURRING_BOUNTY_CHANNEL_ID || null;
-// const recurringMessageId = process.env.RECURRING_BOUNTY_MESSAGE_ID || null;
 
+
+// To show all recurring embeds in the channel
 export const broadcastRecurring = async () => {
   try {
     const channelId = recurringChannelId

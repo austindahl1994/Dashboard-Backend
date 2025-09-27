@@ -9,11 +9,11 @@ export const getCachedData = async () => {
     const sheets = ["easy", "medium", "hard", "elite", "master", "teams"];
     const ranges = [
       "A2:L150",
-      "A2:L150",
-      "A2:L150",
-      "A2:L150",
-      "A2:L150",
-      "A2:H500",
+      "A2:L75",
+      "A2:L75",
+      "A2:L75",
+      "A2:L75",
+      "A2:H75",
     ];
     const finalData = sheets.map((sheet, i) => {
       return `${sheet}!${ranges[i]}`;

@@ -2,6 +2,8 @@ import { client } from "./mainBot.js";
 import { getAllBountyEmbeds } from "./embeds/embededBounties.js";
 import { getHighscoresEmbeds } from "./embeds/embededHighscores.js";
 import { completedBountyEmbed } from "./embeds/completedBountyEmbed.js";
+import { recurringEmbed, emptyRecurringEmbed } from "./embeds/recurringEmbeds.js" 
+import { recurring } from "../videogames/osrs/cachedBounty.js"
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -9,6 +11,9 @@ dotenv.config();
 const completedBountiesChannel = process.env.COMPLETED_BOUNTIES_CHANNEL_ID;
 const bountyBoardChannel = process.env.BOUNTY_BOARD_CHANNEL_ID;
 const highscoresChannel = process.env.HIGHSCORES_CHANNEL_ID;
+
+const recurringChannelId = process.env.RECURRING_BOUNTY_CHANNEL_ID || null;
+const recurringMessageId = process.env.RECURRING_BOUNTY_MESSAGE_ID || null;
 
 // Used to update broadcasted messages that have already been created, if they haven't then create a new one and just
 // clg the savedMessageId for both highscores and bounties to be saved
@@ -72,3 +77,40 @@ export const broadcastBountyCompletion = async (bounty) => {
     console.error(`Error broadcasting completed bounty: ${error}`);
   }
 };
+
+export const broadcastRecurringCompletion = async (data) => {
+  try {
+    const channelId = completedBountiesChannel
+    const channel = await client.channels.fetch(channelId);
+    if (!channel || !channel.isTextBased()) {
+      throw new Error(`Channel not found from channel ID`);
+    }
+    const embed = completedRecurring(data)
+    await channel.send({ embeds: [embed] })
+  } catch (e) {
+    console.error(`Error broadcasting completed recurring task: ${error}`);
+  }
+}
+// const recurringChannelId = process.env.RECURRING_BOUNTY_CHANNEL_ID || null;
+// const recurringMessageId = process.env.RECURRING_BOUNTY_MESSAGE_ID || null;
+
+export const broadcastRecurring = async () => {
+  try {
+    const channelId = recurringChannelId
+    if (!channelId) throw new Error(`No recurring channel in env`)
+    const channel = await client.channels.fetch(channelId);
+    if (!channel || !channel.isTextBased()) {
+      throw new Error(`Channel not found from channel ID`);
+    }
+    if (recurringMessageId && recurringMessageId.trim() !== "") {
+      const embed = recurringEmbed()
+      const message = await channel.messages.fetch(recurringMessageId)
+      await message.edit({ embeds: embed })
+    } else {
+      const embed = emptyRecurringEmbed()
+      await channel.send({ embeds: [embed] })
+    }
+  } catch (e) {
+    console.error(`Error broadcasting recurring tasks: ${error}`);
+  }
+}

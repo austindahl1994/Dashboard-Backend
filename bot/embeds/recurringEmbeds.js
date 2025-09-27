@@ -1,5 +1,6 @@
 import { EmbedBuilder } from "discord.js";
-import { recurring } from "../../videogames/osrs/cachedBounty.js"
+import { recurring, players } from "../../videogames/osrs/cachedBounty.js"
+import { getScrollImage } from "./embedUtilities.js"
 
 const RECURRING_EMBED_COUNT = 5
 //Return array of embeds, one for each active recurring embed
@@ -10,11 +11,16 @@ export const recurringEmbed = () => {
       const allItems = recurring.items.join(',')
       
       const embed = new EmbedBuilder()
+        .setColor(0x00ced1)
         .setTitle(recurring.title[index])
         .setDescription(recurring.description[index])
         .setThumbnail(recurring.url[index])
         .addFields({
           name: "Allowed Items", value: allItems || "None input"
+        });
+        .setAuthor({
+          name: "Recurring Bounty",
+          iconURL: getScrollImage(1),
         });
       return embed
     })
@@ -35,15 +41,15 @@ export const emptyRecurringEmbed = () => {
   }
 }
 
-
 // Return single embed to display data
 export const completedRecurring = (data) => {
-  const {rsn, item, team, url} = data
+  const {discord, rsn, item, team, url} = data
+  let player = rsn || players[discord].rsn
   try {
     const embed = new EmbedBuilder()
       .setColor("Green")
       .setTitle("Recurring Bounty Completed!")
-      .setDescription(`**${rsn}** has completed a recurring bounty by getting a **${item}**!`)
+      .setDescription(`**${player}** has completed a recurring bounty by getting a **${item}**!`)
       .setImage(url)
     return embed
   } catch (e) {

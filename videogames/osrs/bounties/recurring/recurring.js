@@ -1,5 +1,5 @@
 import { readSingleSheet } from ../../../services/google/sheets.js
-import { recurring } from "../../cahcedData.js"
+import { recurring } from "../../cachedData.js"
 
 const headers = ["title", "description", "url", "items"]
 

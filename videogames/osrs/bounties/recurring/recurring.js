@@ -55,7 +55,7 @@ export const compareRecurring = async () => {
 // Import sheets data for recurring bounties
 export const importRecurring = async () => {
   try {
-    const range = "recurring!A2:D4"
+    const range = "recurring!A2:D6"
     const data = await readSingleSheet(range)
     console.log("Obtained data from sheets: ")
     console.log(data)

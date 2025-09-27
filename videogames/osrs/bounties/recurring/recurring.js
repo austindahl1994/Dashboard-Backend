@@ -1,29 +1,34 @@
-// Import sheets data for recurring bounties
-export const importRecurring = async () => {
-  try {
-  } catch (error) {
-    console.log("Error importing recurring bounties from sheets: ");
-    console.log(error);
-    throw error;
-  }
-};
+import { readSingleSheet } from ../../../services/google/sheets.js
+import { recurring } from "../../cahcedData.js"
 
-/*
-in cachedData
-const recurring = {}
-
-Then after getting sheet data, for each row add data to arrays in object like so:
-recurring = {
-  title: [],
-  description: [],
-  url: [],
-  items: []
-}
-*/
+const headers = ["title", "description", "url", "items"]
 
 // Caches recurring from sheets data
-const updateRecurring = () => {
+const updateRecurring = async (sheetData) => {
   try {
+    // const recurring = {} in cachedData
+    recurring.title = []
+    recurring.description = []
+    recurring.url = []
+    recurring.items = []
+    
+    sheetData.forEach((row) => {
+      row.forEach((cell, index) => {
+        const header = headers[index]
+        // check if is items
+        if (index !== 3) {
+          recurring[header].push(cell.trim())
+        } else {
+          const splitItems = cell.split(',')
+          splitItems.forEach((item) => {
+            const trimmedItem = item.trim()
+            recurring.items.push(trimmedItem)
+          })
+        }
+      })
+    })
+
+    // Broadcast the recurring bounties
   } catch (error) {
     console.log("Error updating recurring bounties from sheets: ");
     console.log(error);
@@ -32,7 +37,7 @@ const updateRecurring = () => {
 };
 
 // Compare against recurring items from dink data
-export const compareRecurring = () => {
+export const compareRecurring = async () => {
   try {
     return false;
   } catch (error) {
@@ -46,6 +51,21 @@ export const compareRecurring = () => {
 
 // Update highscores to show including bonus points
 
+
+// Import sheets data for recurring bounties
+export const importRecurring = async () => {
+  try {
+    const range = "recurring!A2:D4"
+    const data = await readSingleSheet(range)
+    console.log("Obtained data from sheets: ")
+    console.log(data)
+    updateRecurring(data)
+  } catch (error) {
+    console.log("Error importing recurring bounties from sheets: ");
+    console.log(error);
+    throw error;
+  }
+};
 // TODO:
 // Create embed to display the 3 different recurring bounties that are active
 // Update cached players to include bonus points

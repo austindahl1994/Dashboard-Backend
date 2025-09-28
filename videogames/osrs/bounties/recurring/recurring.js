@@ -1,6 +1,7 @@
 import { readSingleSheet } from ../../../services/google/sheets.js
-import { recurring, players } from "../../cachedData.js"
+import { recurring, players, highscores } from "../../cachedData.js"
 import { uploadScreenshot } from "../../../../services/aws/s3.js";
+import { broadcastRecurring, updateBroadcast } from "../../../../bot/broadcasts.js"
 
 const headers = ["title", "description", "url", "items"]
 
@@ -101,7 +102,9 @@ export const completeRecurring = async (playerObj, url, item) => {
     const range = `teams!H${playerObj.index}`
     const dataToWrite = playerObj.points
     await writeSingleSheet(range, dataToWrite)
+    await updateHighscores(highscores)
     await broadcastRecurring({playerObj, url, item})
+    await updateBroadcast("highscores")
     // broadcast/change highscores to also show bonus points
   } catch (error) {
     console.error('Error completing recurring task');

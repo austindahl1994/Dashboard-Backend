@@ -43,8 +43,12 @@ export const compareRecurring = async (data, image, mimetype) => {
       console.log(`Not checking recurring as type is: ${data.type}`)
       return
     }
-    const matchingItems = data.extra.items.filter((item) => {
-      return recurring.items.includes(item)
+    const dinkItems = data.extra.items.map(itemObj => itemObj.name)
+    console.log(`Passed in items from dink: `)
+    console.log(dinkItems)
+    
+    const matchingItems = dinkItems.filter((item) => {
+      recurring.items.some(subArr => subArr.includes(item))
     });
 
     if (matchingItems.length > 0) {
@@ -77,7 +81,7 @@ export const manuallyCompleteRecurring = async (discord, url, rsn, items) => {
   try {
     const player = matchPlayer(discordName, rsn) || null
     if (!player) {
-      throw new Error(`Could not find player via discord username: ${discord}`)
+      throw new Error(`Could not find player via discord username: ${discord} or given RSN: ${rsn}`)
     }
     // items is single string, make into array of strings
     const passedItems = items.split(',').map(item => item.trim())

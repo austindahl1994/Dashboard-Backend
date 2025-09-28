@@ -49,7 +49,9 @@ export const checkPoints = (allSheets) => {
         }
       })
     })
-    displayResults({ totalRP, claimedGP, availableGP, availablePoints, teamPoints, teamGP, claimedPoints })
+    const allData = { totalRP, claimedGP, availableGP, availablePoints, teamPoints, teamGP, claimedPoints }
+    displayResults(allData)
+    return allData
   } catch (error) {
     console.log(`Error calcing points or GP from sheets: ${error}`)
     throw error

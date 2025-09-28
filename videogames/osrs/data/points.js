@@ -13,6 +13,7 @@ export const checkPoints = (allSheets) => {
     const availableGP = 0
     const availablePoints = 0
     const teamPoints = [0, 0, 0]
+    const teamGP = [0, 0, 0]
     keys.forEach((discordUsername) => { // Player earned points through recurring bounties
       const player = players[discordUsername]
       const index = parseInt(player.team)
@@ -36,6 +37,7 @@ export const checkPoints = (allSheets) => {
             console.log(`Player from sheets with discord: ${rowObj.Discord} was not found in cached players`)
           } else {
             const teamNumber = parseInt(player.team)
+            teamGP[teamNumber - 1] += gpValue
             teamPoints[teamNumber - 1] += tabIndex + 1
           }
         // calc the remaining GP and points if rowObj.Status.toLowerCase() === "open" 
@@ -45,7 +47,7 @@ export const checkPoints = (allSheets) => {
         }
       })
     })
-    displayResults({ totalRP, claimedGP, availableGP, availablePoints, teamPoints })
+    displayResults({ totalRP, claimedGP, availableGP, availablePoints, teamPoints, teamGP })
   } catch (error) {
     console.log(`Error calcing points or GP from sheets: ${error}`)
     throw error
@@ -53,7 +55,7 @@ export const checkPoints = (allSheets) => {
 }
 
 const displayResults = (data) => {
-  const { totalRP, claimedGP, availableGP, availablePoints, teamPoints } = data;
+  const { totalRP, claimedGP, availableGP, availablePoints, teamPoints, teamGP } = data;
   const generalTable = [
     { Label: "Total RP", Value: totalRP },
     { Label: "Claimed GP", Value: claimedGP },
@@ -63,9 +65,9 @@ const displayResults = (data) => {
   
   // Table 2: Team Points
   const teamTable = [
-    { Team: "Hard Sox", Points: teamPoints[0] },
-    { Team: "Draynor Cabbage Mafia", Points: teamPoints[1] },
-    { Team: "Futt Buckers", Points: teamPoints[2] }
+    { Team: "Hard Sox", Points: teamPoints[0], GP: teamGP[0] },
+    { Team: "Draynor Cabbage Mafia", Points: teamPoints[1], GP: teamGP[0] },
+    { Team: "Futt Buckers", Points: teamPoints[2], GP: teamGP[0] }
   ];
   
   // Output

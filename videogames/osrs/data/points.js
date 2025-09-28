@@ -1,5 +1,5 @@
 import { players } from "../cachedData.js"
-
+import { formatBounty } from "../bounties/bountyUtilities.js"
 const gpTotals = [0.5, 1, 3, 5, 10]
 // Displays points earned for each team
 export const checkPoints = (allSheets) => {
@@ -10,6 +10,7 @@ export const checkPoints = (allSheets) => {
     }
     const totalRP = 0
     const claimedGP = 0
+    const claimedPoints = 0
     const availableGP = 0
     const availablePoints = 0
     const teamPoints = [0, 0, 0]
@@ -33,6 +34,7 @@ export const checkPoints = (allSheets) => {
         const player = players[rowObj.Discord] ?? null
         if (status === "completed" || status === "manually claimed") {
           claimedGP += gpValue
+          claimedPoints += tabIndex + 1
           if (!player) {
             console.log(`Player from sheets with discord: ${rowObj.Discord} was not found in cached players`)
           } else {
@@ -47,7 +49,7 @@ export const checkPoints = (allSheets) => {
         }
       })
     })
-    displayResults({ totalRP, claimedGP, availableGP, availablePoints, teamPoints, teamGP })
+    displayResults({ totalRP, claimedGP, availableGP, availablePoints, teamPoints, teamGP, claimedPoints })
   } catch (error) {
     console.log(`Error calcing points or GP from sheets: ${error}`)
     throw error
@@ -55,19 +57,20 @@ export const checkPoints = (allSheets) => {
 }
 
 const displayResults = (data) => {
-  const { totalRP, claimedGP, availableGP, availablePoints, teamPoints, teamGP } = data;
+  const { totalRP, claimedGP, availableGP, availablePoints, teamPoints, teamGP, claimedPoints } = data;
   const generalTable = [
-    { Label: "Total RP", Value: totalRP },
-    { Label: "Claimed GP", Value: claimedGP },
-    { Label: "Available GP", Value: availableGP },
+    { Label: "Total Recurring points", Value: totalRP },
+    { Label: "Claimed GP", Value: formatBounty(claimedGP) },
+    { Label: "Claimed Points", Value: claimedPoints },
+    { Label: "Available GP", Value: formatBounty(availableGP) },
     { Label: "Available Points", Value: availablePoints }
   ];
   
   // Table 2: Team Points
   const teamTable = [
-    { Team: "Hard Sox", Points: teamPoints[0], GP: teamGP[0] },
-    { Team: "Draynor Cabbage Mafia", Points: teamPoints[1], GP: teamGP[0] },
-    { Team: "Futt Buckers", Points: teamPoints[2], GP: teamGP[0] }
+    { Team: "Hard Sox", Points: teamPoints[0], GP: formatBounty(teamGP[0]) },
+    { Team: "Draynor Cabbage Mafia", Points: teamPoints[1], GP: formatBounty(teamGP[0]) },
+    { Team: "Futt Buckers", Points: teamPoints[2], GP: formatBounty(teamGP[0]) }
   ];
   
   // Output

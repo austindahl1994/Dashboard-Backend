@@ -159,7 +159,7 @@ const createFinalItemString = (matchedItems) => {
 // Import sheets data for recurring bounties
 export const importRecurring = async () => {
   try {
-    const range = "recurring!A2:D6"
+    const range = "recurring!A2:D5"
     const data = await readSingleSheet(range)
     console.log("Obtained data from sheets: ")
     console.log(data)

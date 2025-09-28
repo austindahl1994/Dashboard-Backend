@@ -2,17 +2,40 @@ import { highscores, players } from "../cachedData.js";
 import { difficultyToTier } from "../bounties/bountyUtilities.js";
 import { updateBroadcast } from "../../../bot/broadcasts.js";
 
+// Passed in array of objects
 export const updateHighscores = async (newHighscores) => {
   // console.log(`Updating highscores based on data: `);
   // console.log(newHighscores);
   try {
-    // Update the cached highscores array in place
-    let topTenLength = newHighscores.length > 10 ? 10 : newHighscores.length;
+    
+    // TODO: Need to go through each array of objects from 'newHigscores', checking if Object.Player_Name matches 
+    // players[Player_Name] for cached players, if so need to increase score with players[Player_Name].rp
+    
+    // const modifiedHS = newHighscores.map((obj) => { // Each obj has Player_Name, Score, and TotalBounty
+    //   const discord = obj.Player_Name
+    //   const player = players[discord] ?? null
+    //   if (player) {
+    //     console.log(`Player found when updating highscores: ${discord}, RSN: ${player.rsn}, RP: ${player.rp}`)
+    //     const summedScore = parseInt(player.rp) + parseInt(obj.Score)
+    //     const summedBounty = parseInt(player.rp) * 0.25 + parseFloat(obj.TotalBounty)
+    //     console.log(`Player old TotalBounty: ${obj.TotalBounty} and score: ${obj.Score}`)
+    //     console.log(`Player supposed new TotalBounty: ${summedBounty} and score: ${summedScore}`)
+    //     return { Player_Name: discord, Score: summedScore, TotalBounty: summedBounty}
+    //   } else {
+    //     console.log(`Player not found in cached players with discord of: ${discord}`)
+    //     return obj
+    //   }
+    // })
+    
+    const sortedHS = sortHighscores(Object.values(newHighscores))
+    let topTenLength = sortedHS.length > 10 ? 10 : sortedHS.length;
     highscores.length = topTenLength;
+    
+    // Update the cached highscores array in place
     for (let i = 0; i < topTenLength; i++) {
-      highscores[i] = newHighscores[i];
+      highscores[i] = sortedHS[i];
     }
-    highscores = sortHighscores(highscores)
+    
     // console.log(`Finished updating highscores:`);
     // console.table(highscores);
   } catch (error) {
@@ -93,7 +116,8 @@ export const createCachedHighscores = async (sheetData) => {
       console.log(`Player for highscores: ${key}`)
       console.log(`Comparing highscores playerStats discord name against cached players`)
       if (players[key]) {
-        console.log(`Player found in cached players, RSN: ${players[key].rsn}, RP: ${players[key].rp}`)
+        console.log(`Player ${key} found in cached players!`)
+        console.log(`RSN: ${players[key].rsn}, Score: ${playerStats[key].Score}, RP: ${players[key].rp}`)
       } else {
         console.log(`Player with Discord: ${key} not found from highscores`)
       }
@@ -102,8 +126,8 @@ export const createCachedHighscores = async (sheetData) => {
     // Convert to array and sort
     // console.log(`playerStats before sort:`);
     // console.log(Object.values(playerStats));
-    const newHighscores = sortHighscores(Object.values(playerStats));
-    await updateHighscores(newHighscores);
+    // const newHighscores = sortHighscores(Object.values(playerStats));
+    await updateHighscores(Object.values(playerStats)); //sorting in update instead
     await updateBroadcast("highscores");
   } catch (error) {
     console.log(error);

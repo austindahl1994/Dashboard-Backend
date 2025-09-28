@@ -8,6 +8,7 @@ import {
   bountyHeaders as headers,
 } from "./bountyUtilities.js";
 import { writeBatchToSheet } from "../../../services/google/sheets.js";
+import { checkPoints } from "../data/points.js"
 
 // receives all sheet data as an array of arrays, each array is a sheet
 // each sheet has first row as headers, rest as data
@@ -75,6 +76,7 @@ const sheetsToBounties = async (sheetsArr) => {
     //   console.log(`Tier ${getTier(index)}: ${count}`);
     // });
     createCachedHighscores(sheetsArr);
+    checkPoints(sheetsArr)
   } catch (error) {
     console.log(error);
   }

@@ -1,5 +1,5 @@
 import { EmbedBuilder } from "discord.js";
-import { highscores } from "../../videogames/osrs/cachedData.js";
+import { highscores, players } from "../../videogames/osrs/cachedData.js";
 import { formatBounty } from "../../videogames/osrs/bounties/bountyUtilities.js";
 
 const highscoreEmbed = () => {
@@ -13,6 +13,8 @@ const highscoreEmbed = () => {
 
     const topPlayers = highscores.slice(0, 10);
     topPlayers.forEach((player, index) => {
+      const p = players[player] ?? null
+      const rp = p ? `(${p.rp})` : ""
       const medal =
         index === 0
           ? "🥇"
@@ -23,7 +25,7 @@ const highscoreEmbed = () => {
           : `#${index + 1} - `;
       embed.addFields({
         name: `__${medal} ${player.Player_Name}__`,
-        value: `**Points:** ${player.Score} \n**GP made:** ${formatBounty(
+        value: `**Points:** ${player.Score} ${rp} \n**GP made:** ${formatBounty(
           player.TotalBounty
         )}`,
         inline: false, // set to true for side-by-side

@@ -13,7 +13,7 @@ export const pointsEmbed = (data) => {
     } = data;
 
     // If you want, you can create some labels for teamPoints and teamGP arrays
-    const teamNames = ["Team 1", "Team 2", "Team 3"];
+    const teamNames = ["Hard Sox", "Draynor Cabbage Mafia", "Futt Buckers"];
 
     // Format the team points and team GP fields nicely
     const teamPointsField = teamPoints

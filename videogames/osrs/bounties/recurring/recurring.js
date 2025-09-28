@@ -21,11 +21,8 @@ const updateRecurring = async (sheetData) => {
         if (index !== 3) {
           recurring[header].push(cell.trim())
         } else {
-          const splitItems = cell.split(',')
-          splitItems.forEach((item) => {
-            const trimmedItem = item.trim()
-            recurring.items.push(trimmedItem)
-          })
+          const splitItems = cell.split(',').map(item => item.trim())
+          recurring.items.push(splitItems)
         }
       })
     })

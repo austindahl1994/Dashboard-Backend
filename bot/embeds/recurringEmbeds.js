@@ -8,7 +8,7 @@ const RECURRING_EMBED_COUNT = 5
 export const recurringEmbed = () => {
   try {
     const finalEmbeds = Array.from({ length: RECURRING_EMBED_COUNT }).map((_, index) => {
-      const allItems = recurring.items.join(',')
+      const allItems = recurring.items[index].join('/n')
       
       const embed = new EmbedBuilder()
         .setColor(0x00ced1)
@@ -16,7 +16,7 @@ export const recurringEmbed = () => {
         .setDescription(recurring.description[index])
         .setThumbnail(recurring.url[index])
         .addFields({
-          name: "Allowed Items", value: allItems || "None input"
+          name: "Allowed Items", value: allItems || "None input", inline: true
         });
         .setAuthor({
           name: "Recurring Bounty",
@@ -24,6 +24,7 @@ export const recurringEmbed = () => {
         });
       return embed
     })
+    
     return finalEmbeds
   } catch (e) {
     console.error(`Error creating recurring bounties embed: ${e}`);

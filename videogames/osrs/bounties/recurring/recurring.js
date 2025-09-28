@@ -97,10 +97,10 @@ export const manuallyCompleteRecurring = async (discord, url, rsn, items) => {
 // If loot matches, post completion to Discord, update points for player
 export const completeRecurring = async (playerObj, url, item) => {
   try {
-    playerObj.points = parseInt(playerObj.points) + 1
-    console.log(`After update, player points are: ${playerObj.points}`)
+    playerObj.rp = parseInt(playerObj.rp) + 1
+    console.log(`After update, player RP are: ${playerObj.rp}`)
     const range = `teams!H${playerObj.index}`
-    const dataToWrite = playerObj.points
+    const dataToWrite = playerObj.rp
     await writeSingleSheet(range, dataToWrite)
     await updateHighscores(highscores)
     await broadcastRecurring({playerObj, url, item})

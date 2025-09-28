@@ -4,7 +4,7 @@ import { updateRecurring } from "../../videogames/osrs/bounties/recurring/recurr
 
 export default {
   cooldown: 5,
-  data: new SlashCommandBuilder().setName("recurring").setDescription("secret"),
+  data: new SlashCommandBuilder().setName("rr").setDescription("secret"),
   async execute(interaction) {
     try {
       if (!allowedUserIds.includes(interaction.user.id)) {

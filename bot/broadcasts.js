@@ -13,7 +13,6 @@ const bountyBoardChannel = process.env.BOUNTY_BOARD_CHANNEL_ID;
 const highscoresChannel = process.env.HIGHSCORES_CHANNEL_ID;
 
 const recurringChannelId = process.env.RECURRING_BOUNTY_CHANNEL_ID || null;
-const recurringMessageId = process.env.RECURRING_BOUNTY_MESSAGE_ID || null;
 
 // Used to update broadcasted messages that have already been created, if they haven't then create a new one and just
 // clg the savedMessageId for both highscores and bounties to be saved
@@ -103,14 +102,8 @@ export const broadcastRecurring = async () => {
     if (!channel || !channel.isTextBased()) {
       throw new Error(`Channel not found from channel ID`);
     }
-    if (recurringMessageId && recurringMessageId.trim() !== "") {
-      const embed = recurringEmbed()
-      const message = await channel.messages.fetch(recurringMessageId)
-      await message.edit({ embeds: embed })
-    } else {
-      const embed = emptyRecurringEmbed()
-      await channel.send({ embeds: [embed] })
-    }
+    const embed = recurringEmbed()
+    await channel.send({ embeds: [embed] })
   } catch (e) {
     console.error(`Error broadcasting recurring tasks: ${error}`);
   }

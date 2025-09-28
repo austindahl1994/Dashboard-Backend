@@ -17,7 +17,7 @@ export const updateHighscores = async (newHighscores) => {
     //   if (player) {
     //     console.log(`Player found when updating highscores: ${discord}, RSN: ${player.rsn}, RP: ${player.rp}`)
     //     const summedScore = parseInt(player.rp) + parseInt(obj.Score)
-    //     const summedBounty = parseInt(player.rp) * 0.25 + parseFloat(obj.TotalBounty)
+    //     const summedBounty = parseInt(player.rp) * 0.1 + parseFloat(obj.TotalBounty)
     //     console.log(`Player old TotalBounty: ${obj.TotalBounty} and score: ${obj.Score}`)
     //     console.log(`Player supposed new TotalBounty: ${summedBounty} and score: ${summedScore}`)
     //     return { Player_Name: discord, Score: summedScore, TotalBounty: summedBounty}

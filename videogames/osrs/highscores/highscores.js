@@ -16,8 +16,8 @@ export const updateHighscores = async (newHighscores) => {
     //   const player = players[discord] ?? null
     //   if (player) {
     //     console.log(`Player found when updating highscores: ${discord}, RSN: ${player.rsn}, RP: ${player.rp}`)
-    //     const summedScore = parseInt(player.rp) + parseInt(obj.Score)
-    //     const summedBounty = parseInt(player.rp) * 0.1 + parseFloat(obj.TotalBounty)
+    //     const summedScore = parseInt(player.rp ?? 0) + parseInt(obj.Score)
+    //     const summedBounty = parseInt(player.rp ?? 0) * 0.1 + parseFloat(obj.TotalBounty)
     //     console.log(`Player old TotalBounty: ${obj.TotalBounty} and score: ${obj.Score}`)
     //     console.log(`Player supposed new TotalBounty: ${summedBounty} and score: ${summedScore}`)
     //     return { Player_Name: discord, Score: summedScore, TotalBounty: summedBounty}
@@ -27,7 +27,7 @@ export const updateHighscores = async (newHighscores) => {
     //   }
     // })
     
-    const sortedHS = sortHighscores(Object.values(newHighscores))
+    const sortedHS = sortHighscores(newHighscores)
     let topTenLength = sortedHS.length > 10 ? 10 : sortedHS.length;
     highscores.length = topTenLength;
     
@@ -50,7 +50,7 @@ const sortHighscores = (hs) => {
       if (a.Score !== b.Score) {
         return b.Score - a.Score;
       } else {
-        return b.TotalBounty - a.Total_Bounty;
+        return b.TotalBounty - a.TotalBounty;
       }
     });
   } catch (error) {

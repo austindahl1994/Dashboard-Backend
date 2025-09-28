@@ -120,7 +120,7 @@ const matchPlayer = (discordName, rsn) => {
       throw new Error("No RSN passed in and discord user doesn't match cached values")
     }
     const searchedPlayerKey = Object.keys(players).find(
-      key => players[key]?.rsn === rsn
+      key => players[key]?.rsn.toLowerCase() === rsn.toLowerCase()
     );
 
     if (searchedPlayerKey) {

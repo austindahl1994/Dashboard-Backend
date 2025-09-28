@@ -14,7 +14,7 @@ const headers = [
   "time",
   "rsn",
   "team",
-  "points"
+  "rp"
 ];
 
 // Based on google sheets data, will create object with kv pairs of username: {memberData}
@@ -26,6 +26,9 @@ const createMemberObjects = (data) => {
         : sheetIndex + 2;
     const discordObj = Object.fromEntries(
       headers.map((key, index) => {
+        if (index === headers.length - 1) {
+          return [key, parseInt(member[index]) ?? 0]
+        }
         return [key, member[index] ?? null];
       })
     ); //want a 2D array of kv pairs
@@ -33,8 +36,8 @@ const createMemberObjects = (data) => {
     players[member[0]] = discordObj;
   });
   // return memberObj
-  // console.log(`Cached ${Object.keys(players).length} members from sheets`);
-  // console.log(players);
+  console.log(`Cached ${Object.keys(players).length} members from sheets`);
+  console.log(players);
   return;
 };
 

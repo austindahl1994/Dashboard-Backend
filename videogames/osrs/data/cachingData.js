@@ -2,6 +2,7 @@ import { getAllSheetData } from "../../../services/google/osrsSheets.js";
 import { modifySheetData } from "../bounties/updateFromSheets.js";
 import { players } from "../cachedData.js";
 import { updateCachedMembers } from "./discordMembers.js";
+import { updateRecurring } from "../bounties/recurring/recurring.js"
 
 export const getCachedData = async () => {
   try {
@@ -13,7 +14,7 @@ export const getCachedData = async () => {
       "A2:L75",
       "A2:L75",
       "A2:L75",
-      "A2:H75",
+      "A2:I75",
     ];
     const finalData = sheets.map((sheet, i) => {
       return `${sheet}!${ranges[i]}`;
@@ -22,6 +23,7 @@ export const getCachedData = async () => {
     const memberData = allData.pop();
     modifySheetData(allData);
     updateCachedMembers(memberData);
+    await updateRecurring()
     //Need to cache player information format will
   } catch (e) {
     console.log("Error getting cached data: ");

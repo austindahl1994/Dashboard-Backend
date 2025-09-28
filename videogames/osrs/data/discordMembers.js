@@ -14,6 +14,7 @@ const headers = [
   "time",
   "rsn",
   "team",
+  "points"
 ];
 
 // Based on google sheets data, will create object with kv pairs of username: {memberData}
@@ -41,6 +42,7 @@ const createMemberObjects = (data) => {
 // Then after caching members, if any missing members, add them to both cached data as well as google sheets
 export const updateUsers = async (discordMembers) => {
   try {
+    throw new Error("No longer need to update sheets members")
     const sheetsMembers = await getAllMembers();
     if (!sheetsMembers || sheetsMembers.length === 0) {
       console.log(`No sheets members found`);
@@ -85,6 +87,7 @@ export const updateUsers = async (discordMembers) => {
             "", //time
             "", //rsn
             "", //team
+            0
           ]);
           console.log(players[guildUsername]);
         }
@@ -138,6 +141,7 @@ export const memberMoney = async (memberObj) => {
       players[username].donation = donation || 0;
       players[username].time = intendedHours || 0;
       players[username].rsn = rsn || "";
+      players[username].points = 0
       console.log(`Updating player data for ${username}: `);
       console.log(playerData);
       const sheetIndex = players[username].index;
@@ -187,6 +191,7 @@ export const paidMembers = () => {
 //Should only call this once after testing, will add team names to players based on play time
 export const createGroups = async () => {
   try {
+    throw new Error("Teams already created.")
     const paidMembers = Object.keys(players)
       .filter((username) => players[username].paid !== "YES")
       .sort((a, b) => {

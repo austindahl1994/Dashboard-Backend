@@ -1,4 +1,4 @@
-import { highscores } from "../cachedData.js";
+import { highscores, players } from "../cachedData.js";
 import { difficultyToTier } from "../bounties/bountyUtilities.js";
 import { updateBroadcast } from "../../../bot/broadcasts.js";
 
@@ -12,7 +12,7 @@ export const updateHighscores = async (newHighscores) => {
     for (let i = 0; i < topTenLength; i++) {
       highscores[i] = newHighscores[i];
     }
-
+    highscores = sortHighscores(highscores)
     // console.log(`Finished updating highscores:`);
     // console.table(highscores);
   } catch (error) {
@@ -35,18 +35,11 @@ const sortHighscores = (hs) => {
   }
 };
 
+// Passed in array of arrays of Objects
 export const createCachedHighscores = async (sheetData) => {
   try {
-    if (highscores.length !== 0) {
-      const previousHighscores = structuredClone(highscores);
-      // console.log(`Previous highscores:`);
-      // console.table(previousHighscores);
-      highscores.length = 0;
-    }
     // console.log(`Creating highscores from cached sheets`);
-
     const playerStats = {};
-
     sheetData.forEach((sheet, tier) => {
       sheet.forEach((bounty) => {
         let player;
@@ -84,6 +77,7 @@ export const createCachedHighscores = async (sheetData) => {
             Player_Name: player,
             Score: 0,
             TotalBounty: 0,
+            // BP: 0
           };
         }
         playerStats[player].Score =
@@ -93,7 +87,18 @@ export const createCachedHighscores = async (sheetData) => {
           parseFloat(bountyAmount);
       });
     });
-
+    
+    //TEMP: Comparing HS against Players for data
+    Object.keys(playerStats).forEach((key) => {
+      console.log(`Player for highscores: ${key}`)
+      console.log(`Comparing highscores playerStats discord name against cached players`)
+      if (players[key]) {
+        console.log(`Player found in cached players, RSN: ${players[key].rsn}, RP: ${players[key].rp}`)
+      } else {
+        console.log(`Player with Discord: ${key} not found from highscores`)
+      }
+    })
+    
     // Convert to array and sort
     // console.log(`playerStats before sort:`);
     // console.log(Object.values(playerStats));

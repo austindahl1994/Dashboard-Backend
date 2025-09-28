@@ -8,7 +8,8 @@ import {
   bountyHeaders as headers,
 } from "./bountyUtilities.js";
 import { writeBatchToSheet } from "../../../services/google/sheets.js";
-import { checkPoints } from "../data/points.js"
+
+let sheetData; // Cached sheets overall
 
 // receives all sheet data as an array of arrays, each array is a sheet
 // each sheet has first row as headers, rest as data
@@ -16,7 +17,7 @@ import { checkPoints } from "../data/points.js"
 // then calls checkBounties to update cachedBounties if needed
 const modifySheetData = (allSheetData) => {
   try {
-    const finalSheetData = allSheetData.map((sheet) => {
+    finalSheetData = allSheetData.map((sheet) => {
       const sheetsArr = [];
       sheet.forEach((row) => {
         const bountyObject = createBountyObject(row);
@@ -33,6 +34,7 @@ const modifySheetData = (allSheetData) => {
 const sheetsToBounties = async (sheetsArr) => {
   try {
     const newWrites = [];
+    sheetData = sheetsArr
     //We add +2 for indexes since sheets start at index 1 AND skipping header row
     sheetsArr.forEach((sheet, tier) => {
       numberOfBounties[tier] = sheet.length;
@@ -76,7 +78,6 @@ const sheetsToBounties = async (sheetsArr) => {
     //   console.log(`Tier ${getTier(index)}: ${count}`);
     // });
     createCachedHighscores(sheetsArr);
-    checkPoints(sheetsArr)
   } catch (error) {
     console.log(error);
   }

@@ -8,10 +8,7 @@ export default {
     .setName("reclaim")
     .setDescription("Claim a recurring bounty manually")
     .addStringOption((option) =>
-      option
-        .setName("rsn")
-        .setDescription("Player Name")
-        .setRequired(true)
+      option.setName("rsn").setDescription("Player Name").setRequired(true)
     )
     .addStringOption((option) =>
       option
@@ -31,15 +28,11 @@ export default {
         content: "Attempting to claim recurring bounty",
         flags: MessageFlags.Ephemeral,
       });
-      const rsn = interaction.options
-        .getString("rsn")
-        .toLowerCase();
-      const items = interaction.options
-        .getString("items")
-        .toLowerCase();
+      const rsn = interaction.options.getString("rsn").toLowerCase();
+      const items = interaction.options.getString("items").toLowerCase();
       const discord = interaction.user.username;
       const image = interaction.options.getAttachment("image");
-      await manuallyCompleteRecurring(discord, image, rsn, items)
+      await manuallyCompleteRecurring(discord, image.url, rsn, items);
       await interaction.editReply({
         content: `Successfully completed a recurring bounty.`,
         flags: MessageFlags.Ephemeral,

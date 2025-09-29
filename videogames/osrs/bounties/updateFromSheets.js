@@ -9,15 +9,15 @@ import {
 } from "./bountyUtilities.js";
 import { writeBatchToSheet } from "../../../services/google/sheets.js";
 
-let sheetData; // Cached sheets overall
+export let sheetData; // Cached sheets overall
 
 // receives all sheet data as an array of arrays, each array is a sheet
 // each sheet has first row as headers, rest as data
 // converts each sheet to an array of objects, stores in cachedSheets
 // then calls checkBounties to update cachedBounties if needed
-const modifySheetData = (allSheetData) => {
+const modifySheetData = async (allSheetData) => {
   try {
-    finalSheetData = allSheetData.map((sheet) => {
+    const finalSheetData = allSheetData.map((sheet) => {
       const sheetsArr = [];
       sheet.forEach((row) => {
         const bountyObject = createBountyObject(row);
@@ -25,7 +25,7 @@ const modifySheetData = (allSheetData) => {
       });
       return sheetsArr;
     });
-    sheetsToBounties(finalSheetData);
+    await sheetsToBounties(finalSheetData);
   } catch (error) {
     console.log(error);
   }
@@ -34,7 +34,7 @@ const modifySheetData = (allSheetData) => {
 const sheetsToBounties = async (sheetsArr) => {
   try {
     const newWrites = [];
-    sheetData = sheetsArr
+    sheetData = sheetsArr;
     //We add +2 for indexes since sheets start at index 1 AND skipping header row
     sheetsArr.forEach((sheet, tier) => {
       numberOfBounties[tier] = sheet.length;
@@ -69,8 +69,8 @@ const sheetsToBounties = async (sheetsArr) => {
 
     updateSheetActives(newWrites);
 
-    console.log(`Final cached bounties:`);
-    console.log(cachedBounties);
+    // console.log(`Final cached bounties:`);
+    // console.log(cachedBounties);
     // console.log(`Number of bounties per tier:`);
     // console.table(numberOfBounties);
     // console.log(`Number of bounties per tier:`);

@@ -7,6 +7,7 @@ import { updateBroadcast } from "../../bot/broadcasts.js";
 // import { highscores } from "./cachedData.js";
 
 import dotenv from "dotenv";
+import { compareRecurring } from "./bounties/recurring/recurring.js";
 dotenv.config();
 
 export const osrsController = async (req, res) => {
@@ -27,9 +28,9 @@ export const osrsController = async (req, res) => {
     if (data) {
       const parsedData = JSON.parse(data);
       if (parsedData) {
-        // dinkToActivity(parsedData)
         console.log(`Received data from ${parsedData.playerName}`);
         console.log(JSON.stringify(parsedData));
+        await compareRecurring(parsedData, image, mimetype);
         const completedBounties = checkBounties(parsedData);
         if (completedBounties && completedBounties.length > 0) {
           for (const bounty of completedBounties) {

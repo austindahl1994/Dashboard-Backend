@@ -1,33 +1,40 @@
-import { readSingleSheet } from ../../../services/google/sheets.js
-import { recurring, players, highscores } from "../../cachedData.js"
+import {
+  readSingleSheet,
+  writeSingleSheet,
+} from "../../../../services/google/sheets.js";
+import { recurring, players, highscores } from "../../cachedData.js";
 import { uploadScreenshot } from "../../../../services/aws/s3.js";
-import { broadcastRecurring, updateBroadcast } from "../../../../bot/broadcasts.js"
+import {
+  updateBroadcast,
+  broadcastRecurringCompletion,
+} from "../../../../bot/broadcasts.js";
+import { updateHighscores } from "../../highscores/highscores.js";
 
-const headers = ["title", "description", "url", "items"]
+const headers = ["title", "description", "url", "items"];
 
 // Caches recurring from sheets data
-const updateRecurring = async (sheetData) => {
+export const updateRecurring = async (sheetData) => {
   try {
     // const recurring = {} in cachedData
-    recurring.title = []
-    recurring.description = []
-    recurring.url = []
-    recurring.items = []
-    
+    recurring.title = [];
+    recurring.description = [];
+    recurring.url = [];
+    recurring.items = [];
+
     sheetData.forEach((row) => {
       row.forEach((cell, index) => {
-        const header = headers[index]
+        const header = headers[index];
         // check if is items
         if (index !== 3) {
-          recurring[header].push(cell.trim())
+          recurring[header].push(cell.trim());
         } else {
-          const splitItems = cell.split(',').map(item => item.trim())
-          recurring.items.push(splitItems)
+          const splitItems = cell.split(",").map((item) => item.trim());
+          recurring.items.push(splitItems);
         }
-      })
-    })
-    console.log("Recurring after refresh: ")
-    console.log(recurring)
+      });
+    });
+    // console.log("Recurring after refresh: ");
+    // console.log(recurring);
     // Broadcast the recurring bounties
   } catch (error) {
     console.log("Error updating recurring bounties from sheets: ");
@@ -40,35 +47,42 @@ const updateRecurring = async (sheetData) => {
 export const compareRecurring = async (data, image, mimetype) => {
   try {
     if (data.type.toLowerCase() !== "loot") {
-      console.log(`Not checking recurring as type is: ${data.type}`)
-      return
+      console.log(`Not checking recurring as type is: ${data.type}`);
+      return;
     }
-    const dinkItems = data.extra.items.map(itemObj => itemObj.name)
-    console.log(`Passed in items from dink: `)
-    console.log(dinkItems)
-    
-    const matchingItems = dinkItems.filter((item) => {
-      recurring.items.some(subArr => subArr.includes(item))
-    });
+    const dinkItems = data.extra.items.map((itemObj) => itemObj.name);
+    console.log(`Passed in items from dink: `);
+    console.log(dinkItems);
+    console.log(`Recurring items: ${recurring.items}`);
+    const matchingItems = dinkItems.filter((item) =>
+      recurring.items.some((subArr) =>
+        subArr.some((subItem) => subItem.toLowerCase() === item.toLowerCase())
+      )
+    );
 
     if (matchingItems.length > 0) {
-      const player = matchPlayer(data.discordUser.name, data.playerName) ?? null
+      const player =
+        matchPlayer(data.discordUser.name, data.playerName) ?? null;
       if (!player) {
-        throw new Error(`Could not find player via discord: ${data.discordUser.name} or RSN: ${data.playerName}`)
+        throw new Error(
+          `Could not find player via discord: ${data.discordUser.name} or RSN: ${data.playerName}`
+        );
       }
       const date = new Date().toISOString().replace(/[:.]/g, "-");
       let imageUrl = await uploadScreenshot(
         `recurring/${data.playerName}_${date}.png`
-          .replace(/\s+/g, "_")           // replace spaces with underscores
-          .replace(/[^\w.-]/g, ""),       // remove anything not allowed in filenames
+          .replace(/\s+/g, "_") // replace spaces with underscores
+          .replace(/[^\w.-]/g, ""), // remove anything not allowed in filenames
         image,
         mimetype
       );
-      const finalItemStr = createFinalItemString(matchingItems) 
-      console.log(finalItemStr)
-      await completeRecurring(player, imageURL, finalItemStr)
+      const finalItemStr = createFinalItemString(matchingItems);
+      console.log(finalItemStr);
+      await completeRecurring(player, imageUrl, finalItemStr);
     } else {
-      console.log(`Bounty items don't match against recurring: ${data.extra.items}`)
+      console.log(
+        `Bounty items don't match against recurring: ${data.extra.items}`
+      );
     }
   } catch (error) {
     console.log(`Error comparing recurring loot: `);
@@ -79,68 +93,77 @@ export const compareRecurring = async (data, image, mimetype) => {
 
 export const manuallyCompleteRecurring = async (discord, url, rsn, items) => {
   try {
-    const player = matchPlayer(discordName, rsn) || null
+    const player = matchPlayer(discord, rsn) || null;
     if (!player) {
-      throw new Error(`Could not find player via discord username: ${discord} or given RSN: ${rsn}`)
+      throw new Error(
+        `Could not find player via discord username: ${discord} or given RSN: ${rsn}`
+      );
     }
     // items is single string, make into array of strings
-    const passedItems = items.split(',').map(item => item.trim())
-    const finalStr = createFinalItemString(passedItems)
-    await completeRecurring(player, url, finalStr)
+    const passedItems = items.split(",").map((item) => item.trim());
+    const finalStr = createFinalItemString(passedItems);
+    await completeRecurring(player, url, finalStr);
   } catch (error) {
     console.log(`Error comparing recurring loot: `);
     console.log(error);
     throw error;
   }
-}
-
+};
 
 // If loot matches, post completion to Discord, update points for player
 export const completeRecurring = async (playerObj, url, item) => {
   try {
-    playerObj.rp = parseInt(playerObj.rp) + 1
-    console.log(`After update, player RP are: ${playerObj.rp}`)
-    const range = `teams!H${playerObj.index}`
-    const dataToWrite = playerObj.rp
-    await writeSingleSheet(range, dataToWrite)
-    await updateHighscores(highscores)
-    await broadcastRecurring({playerObj, url, item})
-    await updateBroadcast("highscores")
+    playerObj.rp = parseInt(playerObj.rp) + 1;
+    const rsn = playerObj.rsn;
+    console.log(`Completing recurring for player with RSN: ${rsn}`);
+    console.log(`After update, player RP are: ${playerObj.rp}`);
+    const range = `teams!I${playerObj.index}`;
+    const dataToWrite = [[playerObj.rp]];
+    await writeSingleSheet(range, dataToWrite);
+    await updateHighscores(highscores);
+    await broadcastRecurringCompletion(rsn, url, item);
+    await updateBroadcast("highscores");
     // broadcast/change highscores to also show bonus points
   } catch (error) {
-    console.error('Error completing recurring task');
-    console.error('Player:', playerObj);
-    console.error('URL:', url);
-    console.error('Item String:', itemStr);
-    console.error('Error:', error);
+    console.error("Error completing recurring task: ");
+    console.log(error);
     throw error;
   }
-}
+};
 
 const matchPlayer = (discordName, rsn) => {
   if (!players[discordName]) {
-    console.log(`No player found on list, checking via player name for discord user: ${discordName}`);
+    console.log(
+      `No player found on list, checking via player name for discord user: ${discordName}`
+    );
     if (!rsn) {
-      throw new Error("No RSN passed in and discord user doesn't match cached values")
+      throw new Error(
+        "No RSN passed in and discord user doesn't match cached values"
+      );
     }
     const searchedPlayerKey = Object.keys(players).find(
-      key => players[key]?.rsn.toLowerCase() === rsn.toLowerCase()
+      (key) =>
+        players[key]?.rsn.toLowerCase().trim() === rsn.toLowerCase().trim()
     );
 
     if (searchedPlayerKey) {
-      return players[searchedPlayerKey]
+      return players[searchedPlayerKey];
     } else {
-      throw new Error(`Error matching player RSN: ${rsn} as it does not exist in players`)
+      throw new Error(
+        `Error matching player RSN: ${rsn} as it does not exist in players`
+      );
     }
   } else {
-    console.log(`Player found for recurring: ${players[discordName]}`);
-    return players[discordName]
+    console.log(
+      `Player found for recurring: ${JSON.stringify(players[discordName])}`
+    );
+    return players[discordName];
   }
-}
+};
 
 //passed in array of strings
 const createFinalItemString = (matchedItems) => {
-  const trimmedItems = matchedItems.map(item => item.trim());
+  const trimmedItems = matchedItems.map((item) => item.trim());
 
   if (trimmedItems.length === 1) {
     return trimmedItems[0];
@@ -150,21 +173,20 @@ const createFinalItemString = (matchedItems) => {
     return `${trimmedItems[0]} and ${trimmedItems[1]}`;
   }
 
-  const allButLast = trimmedItems.slice(0, -1).join(', ');
+  const allButLast = trimmedItems.slice(0, -1).join(", ");
   const lastItem = trimmedItems[trimmedItems.length - 1];
   return `${allButLast}, and ${lastItem}`;
-}
+};
 // Update highscores to show including bonus points
-
 
 // Import sheets data for recurring bounties
 export const importRecurring = async () => {
   try {
-    const range = "recurring!A2:D5"
-    const data = await readSingleSheet(range)
-    console.log("Obtained data from sheets: ")
-    console.log(data)
-    updateRecurring(data)
+    const range = "recurring!A2:D6";
+    const data = await readSingleSheet(range);
+    // console.log("Obtained data from sheets: ");
+    // console.log(data);
+    updateRecurring(data);
   } catch (error) {
     console.log("Error importing recurring bounties from sheets: ");
     console.log(error);

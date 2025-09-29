@@ -7,10 +7,9 @@ export const updateHighscores = async (newHighscores) => {
   // console.log(`Updating highscores based on data: `);
   // console.log(newHighscores);
   try {
-    
-    // TODO: Need to go through each array of objects from 'newHigscores', checking if Object.Player_Name matches 
+    // TODO: Need to go through each array of objects from 'newHigscores', checking if Object.Player_Name matches
     // players[Player_Name] for cached players, if so need to increase score with players[Player_Name].rp
-    
+
     // const modifiedHS = newHighscores.map((obj) => { // Each obj has Player_Name, Score, and TotalBounty
     //   const discord = obj.Player_Name
     //   const player = players[discord] ?? null
@@ -26,16 +25,16 @@ export const updateHighscores = async (newHighscores) => {
     //     return obj
     //   }
     // })
-    
-    const sortedHS = sortHighscores(newHighscores)
+
+    const sortedHS = sortHighscores(newHighscores);
     let topTenLength = sortedHS.length > 10 ? 10 : sortedHS.length;
     highscores.length = topTenLength;
-    
+
     // Update the cached highscores array in place
     for (let i = 0; i < topTenLength; i++) {
       highscores[i] = sortedHS[i];
     }
-    
+
     // console.log(`Finished updating highscores:`);
     // console.table(highscores);
   } catch (error) {
@@ -93,9 +92,9 @@ export const createCachedHighscores = async (sheetData) => {
         const bountyAmount = parseFloat(bounty.Bounty) || 0;
 
         if (!playerStats[player]) {
-          console.log(
-            `${player} was not a part of the highscores, adding them in`
-          );
+          // console.log(
+          //   `${player} was not a part of the highscores, adding them in`
+          // );
           playerStats[player] = {
             Player_Name: player,
             Score: 0,
@@ -110,19 +109,21 @@ export const createCachedHighscores = async (sheetData) => {
           parseFloat(bountyAmount);
       });
     });
-    
+
     //TEMP: Comparing HS against Players for data
     Object.keys(playerStats).forEach((key) => {
-      console.log(`Player for highscores: ${key}`)
-      console.log(`Comparing highscores playerStats discord name against cached players`)
+      // console.log(`Player for highscores: ${key}`)
+      // console.log(`Comparing highscores playerStats discord name against cached players`)
       if (players[key]) {
-        console.log(`Player ${key} found in cached players!`)
-        console.log(`RSN: ${players[key].rsn}, Score: ${playerStats[key].Score}, RP: ${players[key].rp}`)
+        console.log(`Player ${key} found in cached players!`);
+        console.log(
+          `RSN: ${players[key].rsn}, Score: ${playerStats[key].Score}, RP: ${players[key].rp}`
+        );
       } else {
-        console.log(`Player with Discord: ${key} not found from highscores`)
+        // console.log(`Player with Discord: ${key} not found from highscores`)
       }
-    })
-    
+    });
+
     // Convert to array and sort
     // console.log(`playerStats before sort:`);
     // console.log(Object.values(playerStats));

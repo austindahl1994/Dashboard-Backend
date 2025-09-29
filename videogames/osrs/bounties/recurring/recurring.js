@@ -53,7 +53,7 @@ export const compareRecurring = async (data, image, mimetype) => {
     const dinkItems = data.extra.items.map((itemObj) => itemObj.name);
     console.log(`Passed in items from dink: `);
     console.log(dinkItems);
-    console.log(`Recurring items: ${recurring.items}`);
+    // console.log(`Recurring items: ${recurring.items}`);
     const matchingItems = dinkItems.filter((item) =>
       recurring.items.some((subArr) =>
         subArr.some((subItem) => subItem.toLowerCase() === item.toLowerCase())
@@ -80,9 +80,10 @@ export const compareRecurring = async (data, image, mimetype) => {
       console.log(finalItemStr);
       await completeRecurring(player, imageUrl, finalItemStr);
     } else {
-      console.log(
-        `Bounty items don't match against recurring: ${data.extra.items}`
-      );
+      console
+        .log
+        // `Bounty items don't match against recurring: ${data.extra.items}`
+        ();
     }
   } catch (error) {
     console.log(`Error comparing recurring loot: `);

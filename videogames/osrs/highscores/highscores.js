@@ -111,18 +111,18 @@ export const createCachedHighscores = async (sheetData) => {
     });
 
     //TEMP: Comparing HS against Players for data
-    Object.keys(playerStats).forEach((key) => {
-      // console.log(`Player for highscores: ${key}`)
-      // console.log(`Comparing highscores playerStats discord name against cached players`)
-      if (players[key]) {
-        console.log(`Player ${key} found in cached players!`);
-        console.log(
-          `RSN: ${players[key].rsn}, Score: ${playerStats[key].Score}, RP: ${players[key].rp}`
-        );
-      } else {
-        // console.log(`Player with Discord: ${key} not found from highscores`)
-      }
-    });
+    // Object.keys(playerStats).forEach((key) => {
+    //   // console.log(`Player for highscores: ${key}`)
+    //   // console.log(`Comparing highscores playerStats discord name against cached players`)
+    //   if (players[key]) {
+    //     // console.log(`Player ${key} found in cached players!`);
+    //     // console.log(
+    //     //   `RSN: ${players[key].rsn}, Score: ${playerStats[key].Score}, RP: ${players[key].rp}`
+    //     // );
+    //   } else {
+    //     // console.log(`Player with Discord: ${key} not found from highscores`)
+    //   }
+    // });
 
     // Convert to array and sort
     // console.log(`playerStats before sort:`);

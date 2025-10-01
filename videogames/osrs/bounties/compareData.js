@@ -139,7 +139,7 @@ export const speedrun = (data, bounty) => {
       parseFloat(timeToBeat[2]);
     console.log("current: " + combinedCurrent);
     console.log("beat:" + combinedToBeat);
-    return combinedCurrent < combinedToBeat;
+    return combinedCurrent <= combinedToBeat;
   }
 };
 

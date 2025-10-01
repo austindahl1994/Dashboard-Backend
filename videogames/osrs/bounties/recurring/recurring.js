@@ -70,7 +70,7 @@ export const compareRecurring = async (data, image, mimetype) => {
       }
       const date = new Date().toISOString().replace(/[:.]/g, "-");
       let imageUrl = await uploadScreenshot(
-        `recurring/${data.playerName}_${date}.png`
+        `/recurring/${data.playerName}_${date}.png`
           .replace(/\s+/g, "_") // replace spaces with underscores
           .replace(/[^\w.-]/g, ""), // remove anything not allowed in filenames
         image,

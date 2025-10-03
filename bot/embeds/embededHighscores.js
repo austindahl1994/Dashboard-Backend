@@ -13,7 +13,6 @@ const highscoreEmbed = () => {
 
     const topPlayers = highscores.slice(0, 10);
     topPlayers.forEach((player, index) => {
-      const extra = player.Player_Name === "ohvinny" ? " (-55m PK deaths)" : "";
       const p = players[player] ?? null;
       const rp = p ? `(${p.rp})` : "";
       const medal =
@@ -28,7 +27,7 @@ const highscoreEmbed = () => {
         name: `__${medal} ${player.Player_Name}__`,
         value: `**Points:** ${player.Score} ${rp} \n**GP made:** ${formatBounty(
           player.TotalBounty
-        )}${extra}`,
+        )}`,
         inline: false, // set to true for side-by-side
       });
     });

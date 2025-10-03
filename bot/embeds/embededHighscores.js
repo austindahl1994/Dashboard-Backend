@@ -13,8 +13,7 @@ const highscoreEmbed = () => {
 
     const topPlayers = highscores.slice(0, 10);
     topPlayers.forEach((player, index) => {
-      const extra =
-        player.Player_Name === "ohvinny" ? " (-55m failed PK bounties)" : "";
+      const extra = player.Player_Name === "ohvinny" ? " (-55m PK deaths)" : "";
       const p = players[player] ?? null;
       const rp = p ? `(${p.rp})` : "";
       const medal =

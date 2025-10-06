@@ -7,27 +7,8 @@ export const updateHighscores = async (newHighscores) => {
   // console.log(`Updating highscores based on data: `);
   // console.log(newHighscores);
   try {
-    // TODO: Need to go through each array of objects from 'newHigscores', checking if Object.Player_Name matches
-    // players[Player_Name] for cached players, if so need to increase score with players[Player_Name].rp
-
-    // const modifiedHS = newHighscores.map((obj) => { // Each obj has Player_Name, Score, and TotalBounty
-    //   const discord = obj.Player_Name
-    //   const player = players[discord] ?? null
-    //   if (player) {
-    //     console.log(`Player found when updating highscores: ${discord}, RSN: ${player.rsn}, RP: ${player.rp}`)
-    //     const summedScore = parseInt(player.rp ?? 0) + parseInt(obj.Score)
-    //     const summedBounty = parseInt(player.rp ?? 0) * 0.1 + parseFloat(obj.TotalBounty)
-    //     console.log(`Player old TotalBounty: ${obj.TotalBounty} and score: ${obj.Score}`)
-    //     console.log(`Player supposed new TotalBounty: ${summedBounty} and score: ${summedScore}`)
-    //     return { Player_Name: discord, Score: summedScore, TotalBounty: summedBounty}
-    //   } else {
-    //     console.log(`Player not found in cached players with discord of: ${discord}`)
-    //     return obj
-    //   }
-    // })
-
     const sortedHS = sortHighscores(newHighscores);
-    let topTenLength = sortedHS.length > 10 ? 10 : sortedHS.length;
+    let topTenLength = sortedHS.length;
     highscores.length = topTenLength;
 
     // Update the cached highscores array in place
@@ -110,24 +91,6 @@ export const createCachedHighscores = async (sheetData) => {
       });
     });
 
-    //TEMP: Comparing HS against Players for data
-    // Object.keys(playerStats).forEach((key) => {
-    //   // console.log(`Player for highscores: ${key}`)
-    //   // console.log(`Comparing highscores playerStats discord name against cached players`)
-    //   if (players[key]) {
-    //     // console.log(`Player ${key} found in cached players!`);
-    //     // console.log(
-    //     //   `RSN: ${players[key].rsn}, Score: ${playerStats[key].Score}, RP: ${players[key].rp}`
-    //     // );
-    //   } else {
-    //     // console.log(`Player with Discord: ${key} not found from highscores`)
-    //   }
-    // });
-
-    // Convert to array and sort
-    // console.log(`playerStats before sort:`);
-    // console.log(Object.values(playerStats));
-    // const newHighscores = sortHighscores(Object.values(playerStats));
     await updateHighscores(Object.values(playerStats)); //sorting in update instead
     await updateBroadcast("highscores");
   } catch (error) {

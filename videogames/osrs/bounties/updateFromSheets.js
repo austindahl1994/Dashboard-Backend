@@ -8,6 +8,7 @@ import {
   bountyHeaders as headers,
 } from "./bountyUtilities.js";
 import { writeBatchToSheet } from "../../../services/google/sheets.js";
+import { updateCachedMembers } from "../data/discordMembers.js";
 
 export let sheetData; // Cached sheets overall
 
@@ -15,7 +16,7 @@ export let sheetData; // Cached sheets overall
 // each sheet has first row as headers, rest as data
 // converts each sheet to an array of objects, stores in cachedSheets
 // then calls checkBounties to update cachedBounties if needed
-const modifySheetData = async (allSheetData) => {
+const modifySheetData = async (allSheetData, memberData) => {
   try {
     const finalSheetData = allSheetData.map((sheet) => {
       const sheetsArr = [];
@@ -25,13 +26,13 @@ const modifySheetData = async (allSheetData) => {
       });
       return sheetsArr;
     });
-    await sheetsToBounties(finalSheetData);
+    await sheetsToBounties(finalSheetData, memberData);
   } catch (error) {
     console.log(error);
   }
 };
 
-const sheetsToBounties = async (sheetsArr) => {
+const sheetsToBounties = async (sheetsArr, memberData) => {
   try {
     const newWrites = [];
     sheetData = sheetsArr;
@@ -77,6 +78,7 @@ const sheetsToBounties = async (sheetsArr) => {
     // numberOfBounties.forEach((count, index) => {
     //   console.log(`Tier ${getTier(index)}: ${count}`);
     // });
+    await updateCachedMembers(memberData);
     createCachedHighscores(sheetsArr);
   } catch (error) {
     console.log(error);

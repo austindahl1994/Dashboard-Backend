@@ -20,9 +20,9 @@ export const getCachedData = async () => {
     });
     const allData = await getAllSheetData(finalData);
     const memberData = allData.pop();
-    await modifySheetData(allData);
-    await updateCachedMembers(memberData);
-    await importRecurring();
+    await modifySheetData(allData, memberData);
+    // await updateCachedMembers(memberData);
+    // await importRecurring();
     //Need to cache player information format will
   } catch (e) {
     console.log("Error getting cached data: ");

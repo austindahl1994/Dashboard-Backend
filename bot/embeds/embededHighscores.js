@@ -10,26 +10,22 @@ const highscoreEmbed = () => {
       .setThumbnail(
         "https://oldschool.runescape.wiki/images/Ardougne_teleport_scroll_detail.png"
       );
-
-    const topPlayers = highscores.slice(0, 10);
-    topPlayers.forEach((player, index) => {
-      const p = players[player] ?? null;
+    // console.log(players);
+    const topPlayers = highscores;
+    let allHS = topPlayers.map((player, index) => {
+      const p = players[player.Player_Name] ?? null;
+      console.log(`Player from highscores: `);
+      console.log(p);
       const rp = p ? `(${p.rp})` : "";
-      const medal =
-        index === 0
-          ? "🥇"
-          : index === 1
-          ? "🥈"
-          : index === 2
-          ? "🥉"
-          : `#${index + 1} - `;
-      embed.addFields({
-        name: `__${medal} ${player.Player_Name}__`,
-        value: `**Points:** ${player.Score} ${rp} \n**GP made:** ${formatBounty(
-          player.TotalBounty
-        )}`,
-        inline: false, // set to true for side-by-side
-      });
+      const total =
+        parseInt(player.Score) + parseInt(players[player.Player_Name]?.rp || 0);
+      return `${index + 1}. ${p.rsn || player.Player_Name} ${total} ${rp}`;
+    });
+    console.log(`All highscoresL:`);
+    console.log(allHS);
+    embed.addFields({
+      name: `Bounties Completed:`,
+      value: allHS.length > 0 ? allHS.join("\n") : "No highscores yet",
     });
 
     return embed;

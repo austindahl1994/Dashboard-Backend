@@ -34,6 +34,7 @@ const createMemberObjects = async (data) => {
   });
   // console.log(`Cached ${Object.keys(players).length} members from sheets`);
   // console.log(players);
+  console.log(`Finished caching members from sheets`);
   return;
 };
 
@@ -278,4 +279,9 @@ export const updateCachedMembers = async (data) => {
   } catch (e) {
     throw e;
   }
+};
+
+export const updateAllMemberPoints = () => {
+  try {
+  } catch (error) {}
 };

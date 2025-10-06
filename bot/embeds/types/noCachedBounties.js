@@ -2,14 +2,14 @@ import { EmbedBuilder } from "discord.js";
 
 export const noCachedBounties = () => {
   const embed = new EmbedBuilder()
-    .setTitle("There are no current bounties")
+    .setTitle("Bounty Event is over!")
     .setColor(0xe74c3c);
   return embed;
 };
 
 export const eventNotStartedEmbed = () => {
   const embed = new EmbedBuilder()
-    .setTitle("The event has not started yet")
+    .setTitle("Bounty Event is over!")
     .setColor(0xe74c3c);
   return embed;
 };

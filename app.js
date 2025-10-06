@@ -43,7 +43,7 @@ app.use("/profile", authJwt, authenticateUser, profileRoutes);
 app.use("/expenses", authJwt, authenticateUser, expenseRoutes);
 app.use("/widgetSettings", authJwt, authenticateUser, settingsRoutes);
 app.use("/auth", authRoutes);
-app.use("/osrs", osrsRoutes);
+//app.use("/osrs", osrsRoutes);
 app.use("/", (req, res) => {
   res.send("Server up and running!");
 });

@@ -30,6 +30,10 @@ export default {
     ),
   async execute(interaction) {
     try {
+      await interaction.reply({
+        content: `Bounty event is over!`,
+        flags: MessageFlags.Ephemeral,
+      });
       await interaction.deferReply({
         content: "Attempting to claim bounty",
         flags: MessageFlags.Ephemeral,

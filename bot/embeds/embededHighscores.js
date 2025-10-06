@@ -14,8 +14,8 @@ const highscoreEmbed = () => {
     const topPlayers = highscores;
     let allHS = topPlayers.map((player, index) => {
       const p = players[player.Player_Name] ?? null;
-      console.log(`Player from highscores: `);
-      console.log(p);
+      // console.log(`Player from highscores: `);
+      // console.log(p);
       const rp = p ? `(${p.rp})` : "";
       const total =
         parseInt(player.Score) + parseInt(players[player.Player_Name]?.rp || 0);

@@ -18,6 +18,7 @@ export const updateHighscores = async (newHighscores) => {
 
     // console.log(`Finished updating highscores:`);
     // console.table(highscores);
+    calcTeamPoints();
   } catch (error) {
     console.log(error);
   }
@@ -143,5 +144,31 @@ export const addToHighscores = async (
     await updateHighscores(highscores);
   } catch (error) {
     console.log(error);
+  }
+};
+
+const calcTeamPoints = () => {
+  try {
+    Object.keys(players).forEach((key) => {
+      const playerIndex = highscores.findIndex((p) => p.Player_Name === key);
+      if (playerIndex === -1) {
+        // console.log(`Player ${key} not found in highscores`);
+        if (players[key].rp !== 0) {
+          // console.log(`But has ${players[key].rp} RP`);
+          highscores.push({
+            Player_Name: key,
+            Score: 0,
+            TotalBounty: 0,
+          });
+        }
+      }
+    });
+    teamPoints = [0, 0, 0];
+    Object.keys(players).forEach((key) => {
+      // go off of highscores cached data?
+      return;
+    });
+  } catch (error) {
+    console.log(`Error calculating team points: ${error}`);
   }
 };

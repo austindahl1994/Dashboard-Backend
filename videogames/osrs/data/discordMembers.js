@@ -280,8 +280,3 @@ export const updateCachedMembers = async (data) => {
     throw e;
   }
 };
-
-export const updateAllMemberPoints = () => {
-  try {
-  } catch (error) {}
-};

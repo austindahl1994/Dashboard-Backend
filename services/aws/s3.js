@@ -31,3 +31,41 @@ export const uploadScreenshot = async (key, image, mimetype) => {
     console.error(`There was an error uploading the image: ${error}`);
   }
 };
+
+/*
+// USING UPLOAD INSTEAD OF PUTOBJECT TO ALLOW BUFFER OR STREAM
+import { S3Client } from "@aws-sdk/client-s3";
+import { Upload } from "@aws-sdk/lib-storage";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const s3 = new S3Client({ region: process.env.AWS_REGION });
+const bucketName = process.env.S3_BUCKET_NAME;
+
+export const uploadScreenshot = async (key, image, mimetype) => {
+  if (!image || !image.length) {
+    throw new Error("Image is empty or undefined");
+  }
+
+  try {
+    const upload = new Upload({
+      client: s3,
+      params: {
+        Bucket: bucketName,
+        Key: key,
+        Body: image,
+        ContentType: mimetype || "image/png",
+      },
+    });
+
+    await upload.done();
+    console.log("✅ Upload successful");
+
+    return `https://${bucketName}.s3.${process.env.AWS_REGION}.amazonaws.com/${key}`;
+  } catch (error) {
+    console.error("❌ Upload error:", error);
+    throw error;
+  }
+};
+*/

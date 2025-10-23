@@ -19,10 +19,8 @@ const highscoreEmbed = () => {
       const rp = p ? `(${p.rp})` : "";
       const total =
         parseInt(player.Score) + parseInt(players[player.Player_Name]?.rp || 0);
-      return `${index + 1}. ${p.rsn || player.Player_Name} ${total} ${rp}`;
+      return `${index + 1}. ${p.rsn || player.Player_Name}: ${total}`;
     });
-    console.log(`All highscoresL:`);
-    console.log(allHS);
     embed.addFields({
       name: `Bounties Completed:`,
       value: allHS.length > 0 ? allHS.join("\n") : "No highscores yet",

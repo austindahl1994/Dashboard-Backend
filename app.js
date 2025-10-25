@@ -9,7 +9,6 @@ import profileRoutes from "./widgets/charGen/profileRoutes.js";
 import expenseRoutes from "./widgets/expenseTracker/expenseRoutes.js";
 import settingsRoutes from "./widgets/settings/settingsRoutes.js";
 import authRoutes from "./auth/authRoutes.js";
-import osrsRoutes from "./videogames/osrs/osrsRoutes.js";
 
 import dotenv from "dotenv";
 dotenv.config();

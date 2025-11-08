@@ -1,5 +1,7 @@
 import { SlashCommandBuilder, MessageFlags } from "discord.js";
-import { allowedUserIds } from "../utilities/discordUtils.js";
+import { allowedUserIds } from "../discordUtilities.js";
+
+// Refreshes cached data from google sheets : board data from "tiles" and player data from "players" 
 
 export default {
   cooldown: 5,

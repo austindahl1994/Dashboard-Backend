@@ -22,7 +22,10 @@ interface Tile {
   url: string;
 }
 
+// board keys are row number
 let board = new Map<number, Tile>();
+
+// player keys are discord_ids
 let players = new Map<string, Player>();
 
 export { Board, Players, Player, Tile, EVENT_STARTED }

@@ -15,11 +15,7 @@ export const cacheBoard = async (): Promise<void> => {
     throw e
   }
 }
-// Single sheet returned data:
-// [
-//   ["id", "title", "description", "source", "items", "tier", "quantity", "url"],
-//   ["1", "temp", "something", "", "item1, item2", "1", "3", "www.example"]
-// ]
+
 // After board data is pulled, update cached board data
 const updateCachedBoard = (boardData : Array<Array<string>>) => {
   try {
@@ -52,16 +48,6 @@ const updateCachedBoard = (boardData : Array<Array<string>>) => {
   }
 }
 
-// gets ALL data from completions table on server load to cache each teams completions
-export const getPoints = () => {
-  try {
-
-  } catch (e) {
-    console.log(e)
-    throw e
-  }
-}
-
 // When player completion data is stored, also store the board_id in row
 // Called when team data is gotten
 // Passed in all data for that team, will calc points based on cached board data
@@ -78,3 +64,9 @@ export const calcPoints = (team : Array<object>) : Array<number> => {
     throw e
   }
 }
+
+// Single sheet returned data:
+// [
+//   ["id", "title", "description", "source", "items", "tier", "quantity", "url"],
+//   ["1", "temp", "something", "", "item1, item2", "1", "3", "www.example"]
+// ]

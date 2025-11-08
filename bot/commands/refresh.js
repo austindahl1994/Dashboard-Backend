@@ -16,9 +16,9 @@ export default {
           flags: MessageFlags.Ephemeral,
         });
       }
+      await refreshAllData()
       await interaction.reply({
-        // embeds: [embed],
-        content: `Called refresh command to refresh board data for site`
+        content: `Successfully refreshed data`
         flags: MessageFlags.Ephemeral,
       });
     } catch (error) {

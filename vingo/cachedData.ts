@@ -25,3 +25,5 @@ interface Board {
 
 let Board = new Map<number, Board>();
 let Players = new Map<string, Player>();
+
+export { Board, Players, EVENT_STARTED }

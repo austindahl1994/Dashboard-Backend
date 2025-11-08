@@ -3,11 +3,11 @@ import { getVingoBoard } from "../serives/google/vingoBoard.ts"
 
 const headers : Array<string> = ["id", "title", "description", "source", "items", "tier", "quantity", "url"]
 
-export const getBoardData = async (): Promise<void> => {
+export const updateCachedBoard = async (): Promise<void> => {
   try {
     if (!board || board.size === 0 ) {
       const boardData : Promise<Array<Array<string>>> = await getVingoBoard()
-      updateCachedBoard(boardData)
+      formatBoard(boardData)
     } 
     return Object.fromEntries(board)
   } catch (e) {

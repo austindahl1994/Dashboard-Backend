@@ -22,7 +22,7 @@ interface Tile {
   url: string;
 }
 
-let Board = new Map<number, Tile>();
-let Players = new Map<string, Player>();
+let board = new Map<number, Tile>();
+let players = new Map<string, Player>();
 
-export { Board, Players, EVENT_STARTED }
+export { Board, Players, Player, Tile, EVENT_STARTED }

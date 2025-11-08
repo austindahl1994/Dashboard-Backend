@@ -8,8 +8,8 @@ import * as vingoController from "./vingoController.ts"
 
 const router = express.Router();
 
-router.post("/bingo/upload", upload.single("file"), vingoController.uploadController);
-router.get("/bingo/board", playerAuthJWT, vingoController.boardController)
-router.get("/bingo/team", playerAuthJWT, vingoController.teamController)
+router.post("/bingo/upload", upload.single("file"), vingoController.upload);
+router.get("/bingo/board", playerAuthJWT, vingoController.board)
+router.get("/bingo/team", playerAuthJWT, vingoController.team)
 
 export default router;

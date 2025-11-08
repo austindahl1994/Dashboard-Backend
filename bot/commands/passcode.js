@@ -15,7 +15,7 @@ export default {
         .setName("rsn")
         .setDescription("RSN")
         .setRequired(true)
-    )
+    ),
   async execute(interaction) {
     try {
       const discord_id = interaction.user.id;

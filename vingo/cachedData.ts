@@ -32,4 +32,15 @@ const playersMap = new Map<string, Player>();
 // outer map number is team number, inner map number is tile id, array is RSN who have completed that tile by id
 const completionsMap = new Map<number, Map<number, Array<string>>>()
 
+export const refreshAllData = (): Promise<void> => {
+  try {
+    await cacheBoard()
+    await cachePlayers()
+    await cacheCompletions()
+  } catch (e) {
+    console.log(e)
+    throw e
+  }
+}
+
 export { Board, Players, Player, Tile, EVENT_STARTED }

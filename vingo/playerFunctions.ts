@@ -8,7 +8,7 @@ import { boardMap, playersMap, Player } from "./cachedData.ts"
 const headers : string[] = ["discord", "nickname", "discord_id", "rsn", "team", "paid", "donation"]
 const END_COLUMN = "G"
 // caches player data
-export const cachePlayerData = async () : Promise<void> => {
+export const cachePlayers = async () : Promise<void> => {
   try {
     if (!playersMap) {
       const sheetsPlayers = await getVingoPlayers()

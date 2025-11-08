@@ -15,8 +15,8 @@ export const getVingoPlayers = async (): Promise<Array<Array<string>>> => {
   }
 };
 
-// sheets POST request to update vingo players
-export const updateVingoPlayers = async (range: number): Promise<void> => {
+// sheets POST request to update vingo player
+export const updateVingoPlayer = async (range: number): Promise<void> => {
   try {
     await writeSingleSheet(`players!${range}`);
   } catch (error) {

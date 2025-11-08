@@ -1,3 +1,7 @@
+// Update manually once event is going to start? Or could use discord command if need be
+// Set true for testing
+const EVENT_STARTED : boolean = true
+
 interface Player {
   discord_username: string;
   discord_nickname: string;

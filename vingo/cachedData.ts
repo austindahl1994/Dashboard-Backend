@@ -3,6 +3,7 @@
 const EVENT_STARTED : boolean = true
 
 interface Player {
+  sheets_row: number;
   discord_username: string;
   discord_nickname: string;
   rsn: string;

@@ -9,6 +9,7 @@ import profileRoutes from "./widgets/charGen/profileRoutes.js";
 import expenseRoutes from "./widgets/expenseTracker/expenseRoutes.js";
 import settingsRoutes from "./widgets/settings/settingsRoutes.js";
 import authRoutes from "./auth/authRoutes.js";
+import bingoRoutes from "/vingo/vingoRoutes.ts"
 
 import dotenv from "dotenv";
 dotenv.config();
@@ -37,6 +38,7 @@ app.use(
   })
 );
 
+app.use("/bingo", bingoRoutes)
 app.use("/check-session", check);
 app.use("/profile", authJwt, authenticateUser, profileRoutes);
 app.use("/expenses", authJwt, authenticateUser, expenseRoutes);

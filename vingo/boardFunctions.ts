@@ -3,7 +3,7 @@ import { getVingoBoard } from "../serives/google/vingoBoard.ts"
 
 const headers : Array<string> = ["id", "title", "description", "source", "items", "tier", "quantity", "url"]
 
-export const getBoardData = async () => {
+export const getBoardData = async (): Promise<void> => {
   try {
     if (!board || board.size === 0 ) {
       const boardData : Promise<Array<Array<string>>> = await getVingoBoard()
@@ -53,7 +53,7 @@ const updateCachedBoard = (boardData : Array<Array<string>>) => {
 }
 
 // gets ALL data from completions table on server load to cache each teams completions
-export const getPoints = async () => {
+export const getPoints = () => {
   try {
 
   } catch (e) {

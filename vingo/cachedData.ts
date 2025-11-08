@@ -11,7 +11,7 @@ interface Player {
   donation: number;
 }
 
-interface Board {
+interface Tile {
   id: number;
   title: string;
   description: string;
@@ -23,7 +23,7 @@ interface Board {
   url: string;
 }
 
-let Board = new Map<number, Board>();
+let Board = new Map<number, Tile>();
 let Players = new Map<string, Player>();
 
 export { Board, Players, EVENT_STARTED }

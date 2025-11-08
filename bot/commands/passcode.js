@@ -24,10 +24,10 @@ export default {
       } 
       const player : Player = playersMap.get(discord_id)
       if (player.rsn !== interaction.options.getString("rsn")) {
-        throw new Error(`Your RSN does not match what is on sheets. Make sure it is *EXACTLY THE SAME* or check with a mod`)
+        throw new Error(`Your RSN does not match what is on sheets. Make sure it's the *EXACTLY SAME* or check with a mod`)
       }
       if (!player.team && player.team !== 0) {
-        throw new Error(`You have not been assigned a team yet, please check with an event moderator`)
+        throw new Error(`You have not been assigned a team yet, check with a mod if you should be`)
       }
       const passcode: string = createPlayerToken(player.team, player.discord_id)
       await interaction.reply({

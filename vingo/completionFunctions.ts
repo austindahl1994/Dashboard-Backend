@@ -9,7 +9,7 @@ import { boardMap, completionsMap } from
 const BOARD_ARRAY : Array<[number, Array<string>]> = Array.from({ length: 100 }, (_, index) => [index + 1, []])
 
 // Need to await board creation and cache first
-export const getCompletionsData = async () : Promise<void> => {
+export const cacheCompletions = async () : Promise<void> => {
   try {
     const completionsData : Array<object> = await getAllCompletionData() // NEED TO IMPLEMENT AS A MODEL 
     // Teams data returned will be array of objects
@@ -44,7 +44,7 @@ const createCachedCompletions = (completionsData : Array<object>) : void => {
   }
 }
 
-export const updateCachedCompletion = (team: number, tile_id: number, rsn: string) : void => {
+export const updatePlayerCompletion = (team: number, tile_id: number, rsn: string) : void => {
   try {
     const teamMap = completionsMap.get(team)
     if (!teamMap) {

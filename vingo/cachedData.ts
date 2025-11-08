@@ -17,7 +17,6 @@ interface Tile {
   description: string;
   source: string;
   items: Array<string>;
-  category: string;
   tier: number;
   quantity: number;
   url: string;

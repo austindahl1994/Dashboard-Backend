@@ -3,7 +3,7 @@ import { getVingoBoard } from "../serives/google/vingoBoard.ts"
 
 const headers : Array<string> = ["id", "title", "description", "source", "items", "tier", "quantity", "url"]
 
-export const updateCachedBoard = async (): Promise<void> => {
+export const cacheBoard = async (): Promise<void> => {
   try {
     if (!board || board.size === 0 ) {
       const boardData : Promise<Array<Array<string>>> = await getVingoBoard()

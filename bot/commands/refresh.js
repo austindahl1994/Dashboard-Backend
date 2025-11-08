@@ -23,7 +23,7 @@ export default {
       });
     } catch (error) {
       await interaction.reply({
-        content: `There was an error skipping: ${error}`,
+        content: `There was an error refreshing data: ${error}`,
         flags: MessageFlags.Ephemeral,
       });
     }

@@ -23,9 +23,12 @@ interface Tile {
 }
 
 // board keys are row number
-let board = new Map<number, Tile>();
+const board = new Map<number, Tile>();
 
 // player keys are discord_ids
-let players = new Map<string, Player>();
+const players = new Map<string, Player>();
+
+// outer map number is team number, inner map number is tile id, array is RSN who have completed that tile by id
+const teams = new Map<number, Map<number, Array<string>>>()
 
 export { Board, Players, Player, Tile, EVENT_STARTED }

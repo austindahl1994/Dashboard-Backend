@@ -1,7 +1,7 @@
 {
   "type": "module",
   "scripts": {
-    "server": "nodemon --delay 1000ms --watch src --ext ts,js --exec tsx src/server.js",
+    "server": "nodemon --watch src --ext ts,tsx,js,json --exec tsx src/server.ts ",
     "build": "tsc",
     "start": "node dist/server.js"
   },

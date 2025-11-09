@@ -23,10 +23,10 @@ const END_COLUMN = "G";
 // caches player data
 export const cachePlayers = async (): Promise<void> => {
   try {
-    if (!playersMap) {
-      const sheetsPlayers = await getVingoPlayers();
-      formatPlayers(sheetsPlayers); //formats and caches player data
-    }
+    const sheetsPlayers = await getVingoPlayers();
+    console.log(`Got data from sheets: `);
+    console.log(sheetsPlayers);
+    formatPlayers(sheetsPlayers); //formats and caches player data
   } catch (e) {
     console.log(e);
     throw e;
@@ -43,8 +43,8 @@ const formatPlayers = (sheetsPlayers: Array<string[]>) => {
         nickname: playerRow[2],
         rsn: playerRow[3],
         team: Number(playerRow[4]),
-        paid: playerRow[5].toLowerCase() === "YES",
-        donation: Number(playerRow[6]),
+        paid: playerRow[5] ? true : false,
+        donation: playerRow[6] ? Number(playerRow[6]) : 0,
       };
 
       playersMap.set(playerDiscord, newPlayer);

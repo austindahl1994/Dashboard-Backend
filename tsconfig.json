@@ -10,11 +10,11 @@
     "moduleResolution": "NodeNext", // resolves .ts/.js properly
     "esModuleInterop": true, // allows default imports from CommonJS
     "allowSyntheticDefaultImports": true,
-
+    "allowImportingTsExtensions": true,
     /* === Type Support === */
     "types": ["node"], // adds Node.js types
     "skipLibCheck": true, // speeds up build
-
+    "noEmit": true,
     /* === Strictness === */
     "strict": true, // enable all strict checks
     "noImplicitAny": false,
@@ -27,7 +27,9 @@
     "isolatedModules": true,
     "paths": {
       "@/*": ["*"] // "@" points to src/
-    }
+    },
+    "allowJs": true,
+    "checkJs": true
   },
   "include": ["src/**/*"], // files to compile
   "exclude": ["node_modules", "dist"] // ignore build + deps

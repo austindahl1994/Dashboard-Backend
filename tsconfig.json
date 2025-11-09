@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    /* === File & Output Structure === */
+    "baseUrl": "./src",
+    "rootDir": "./src", // your TypeScript source
+    "outDir": "./dist", // compiled JS output
+    /* === Language & Module Settings === */
+    "target": "ES2020", // modern JS
+    "module": "NodeNext", // supports ESM (import/export)
+    "moduleResolution": "NodeNext", // resolves .ts/.js properly
+    "esModuleInterop": true, // allows default imports from CommonJS
+    "allowSyntheticDefaultImports": true,
+
+    /* === Type Support === */
+    "types": ["node"], // adds Node.js types
+    "skipLibCheck": true, // speeds up build
+
+    /* === Strictness === */
+    "strict": true, // enable all strict checks
+    "noImplicitAny": false,
+
+    /* === Source Maps === */
+    "sourceMap": true, // helpful for debugging
+
+    /* === Other === */
+    "resolveJsonModule": true, // allow importing .json
+    "isolatedModules": true,
+    "paths": {
+      "@/*": ["*"] // "@" points to src/
+    }
+  },
+  "include": ["src/**/*"], // files to compile
+  "exclude": ["node_modules", "dist"] // ignore build + deps
+}

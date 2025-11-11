@@ -59,7 +59,7 @@ const updateCachedBoard = (boardData: Array<Array<string>>) => {
         }
 
         const tile: Tile = tileObj;
-        boardMap.set(rowIndex, tile);
+        boardMap.set(rowIndex + 2, tile);
       });
     });
   } catch (e) {

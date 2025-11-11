@@ -3,12 +3,13 @@ import { cacheBoard } from "./boardFunctions.js";
 import { cacheCompletions } from "./completionFunctions.js";
 import { cachePlayers } from "./playerFunctions.ts";
 import { Player } from "@/types/player.js";
+import { Client } from "@/types/client.ts";
 
 // Update manually once event is going to start? Or could use discord command if need be
 export const refreshAllData = async (): Promise<void> => {
   try {
     // await cacheBoard();
-    await cachePlayers();
+    // await cachePlayers();
     // await cacheCompletions();
   } catch (e) {
     console.log(e);
@@ -26,11 +27,13 @@ const playersMap = new Map<string, Player>();
 // outer map number is team number, inner map number is tile id, array is RSN who have completed that tile by id
 const completionsMap = new Map<number, Map<number, Array<string>>>();
 
+let clients: Client[] = [];
+
 refreshAllData()
   .then(() => {
     console.log("Successfully refreshed data");
-    // console.log(`Board Map:`);
-    // console.log(boardMap);
+    console.log(`Board Map:`);
+    console.log(boardMap);
     console.log("Players Map:");
     console.log(playersMap);
     // console.log("Completions map:")
@@ -40,4 +43,4 @@ refreshAllData()
     console.log(`Error refreshing data: ${e}`);
   });
 
-export { boardMap, playersMap, completionsMap, EVENT_STARTED };
+export { boardMap, playersMap, completionsMap, clients, EVENT_STARTED };

@@ -1,20 +1,31 @@
 import { EVENT_STARTED } from "../cachedData.js";
+import { Request, Response } from "express";
+import { Multer } from "multer";
 
+import { Client } from "@/types/client.ts";
+import { clients } from "../cachedData.ts";
 // Check if file is
 // FROM DINK
 // Allow players to upload images from web page as well? Rename to dinkUpload if that's the case
-export const upload = async (req, res) => {
-  const file = req.file;
-  let image;
-  let mimetype;
+export const upload = async (
+  req: Request & { file?: Multer.File },
+  res: Response
+) => {
+  // const file = req.file;
+  // let image;
+  // let mimetype;
   try {
-    if (!file) {
-      console.log(`No file sent with`);
-      throw new Error(`No file sent with.`);
-    } else {
-      image = file.buffer;
-      mimetype = file.mimetype;
-    }
+    const data = req.body.payload_json;
+    const parsedData = JSON.parse(data);
+    console.log(`Received data from ${parsedData.playerName}`);
+    console.log(JSON.stringify(parsedData));
+    // if (!file) {
+    //   console.log(`No file sent with`);
+    //   throw new Error(`No file sent with.`);
+    // } else {
+    //   image = file.buffer;
+    //   mimetype = file.mimetype;
+    // }
     // Compare against board tile data, see if it is on the item list
     // If on list, need to upload (USE STREAM METHOD INSTEAD OF JUST UPLOAD FOR AWS)
     // After image is uploaded, save data to RDS with image URL
@@ -22,15 +33,15 @@ export const upload = async (req, res) => {
     // Send completion data to client side via SSE event
   } catch (e) {
     console.log(`Deleting file: ${e}`);
-    if (req.file) {
-      delete req.file;
-      image = null;
-    }
+    // if (req.file) {
+    //   delete req.file;
+    //   image = null;
+    // }
     res.sendStatus(200); // Send back to dink as to not get more requests?
   }
 };
 
-export const board = async (req, res) => {
+export const board = async (req: Request, res: Response) => {
   try {
     if (!EVENT_STARTED) {
       throw new Error("Event has not started yet!");
@@ -41,14 +52,58 @@ export const board = async (req, res) => {
   }
 };
 
-export const team = async (req, res) => {
+export const team = async (req: Request, res: Response) => {
   const { team, discord_id } = req.body;
   try {
     // Check to make sure player is on team from cached players
     // Get all board completion data for that team
+    console.log(`Team: ${team} id: ${discord_id}`);
   } catch (e) {
     return res
       .status(400)
       .json({ message: `Error getting team data from database: ${e}` });
+  }
+};
+
+export const event = async (req: Request, res: Response) => {
+  try {
+    const { team, discord_id } = req.body;
+
+    res.setHeader("Content-Type", "text/event-stream");
+    res.setHeader("Cache-Control", "no-cache");
+    res.setHeader("Connection", "keep-alive");
+    res.flushHeaders();
+
+    const clientId = Date.now();
+
+    const newClient: Client = {
+      id: clientId,
+      res: res,
+      team,
+      player: discord_id,
+    };
+
+    clients.push(newClient);
+    console.log(`Client ${clientId} connected (${clients.length} total)`);
+    res.write(`data: ${JSON.stringify({ message: "Connected!" })}\n\n`);
+
+    req.on("close", () => {
+      console.log(`Client ${clientId} disconnected`);
+      const idx = clients.findIndex((c) => c.id === clientId);
+      if (idx !== -1) clients.splice(idx, 1);
+    });
+  } catch (error) {
+    return res
+      .status(400)
+      .json({ message: `Error getting team data from database: ${error}` });
+  }
+};
+
+export const broadcast = async (req: Request, res: Response) => {
+  try {
+  } catch (error) {
+    return res
+      .status(400)
+      .json({ message: `Error broadcasting data: ${error}` });
   }
 };

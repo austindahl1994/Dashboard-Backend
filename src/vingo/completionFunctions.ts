@@ -7,6 +7,8 @@ import { getAllCompletionData } from "./mvc/vingo.js";
 // Assumptions for completions SQL table:
 // id: number auto_increments, team: number, tile_id: number, rsn: string, url: string, item: array, obained_at: string
 
+const pointValues: number[] = [1, 2, 3, 5, 8];
+
 const BOARD_ARRAY: Array<[number, Array<string>]> = Array.from(
   { length: 100 },
   (_, index) => [index + 1, []]

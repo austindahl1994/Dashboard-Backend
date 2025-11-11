@@ -4,6 +4,7 @@ import { Multer } from "multer";
 
 import { Client } from "@/types/client.ts";
 import { clients } from "../cachedData.ts";
+import { displayTime } from "@/Utilities.js";
 // Check if file is
 // FROM DINK
 // Allow players to upload images from web page as well? Rename to dinkUpload if that's the case
@@ -14,6 +15,8 @@ export const upload = async (
   // const file = req.file;
   // let image;
   // let mimetype;
+  console.log(`✅ Upload successful`);
+  displayTime();
   try {
     const data = req.body.payload_json;
     const parsedData = JSON.parse(data);

@@ -1,6 +1,6 @@
 import { EVENT_STARTED } from "../cachedData.js";
 import { Request, Response } from "express";
-import { Multer } from "multer";
+import type { File as MulterFile } from "multer";
 
 import { Client } from "@/types/client.ts";
 import { clients } from "../cachedData.ts";
@@ -9,26 +9,28 @@ import { displayTime } from "@/Utilities.js";
 // FROM DINK
 // Allow players to upload images from web page as well? Rename to dinkUpload if that's the case
 export const upload = async (
-  req: Request & { file?: Multer.File },
+  req: Request & { file?: MulterFile },
   res: Response
 ) => {
-  // const file = req.file;
-  // let image;
-  // let mimetype;
+  const file = req.file;
+  let image: Buffer | undefined | null;
+  let mimetype: string = "";
   console.log(`✅ Upload successful`);
   displayTime();
   try {
+    if (!file) {
+      console.log(`No file sent with`);
+      throw new Error(`No file sent with.`);
+    } else {
+      image = file.buffer;
+      mimetype = file.mimetype;
+    }
+
     const data = req.body.payload_json;
     const parsedData = JSON.parse(data);
+
     console.log(`Received data from ${parsedData.playerName}`);
     console.log(JSON.stringify(parsedData));
-    // if (!file) {
-    //   console.log(`No file sent with`);
-    //   throw new Error(`No file sent with.`);
-    // } else {
-    //   image = file.buffer;
-    //   mimetype = file.mimetype;
-    // }
     // Compare against board tile data, see if it is on the item list
     // If on list, need to upload (USE STREAM METHOD INSTEAD OF JUST UPLOAD FOR AWS)
     // After image is uploaded, save data to RDS with image URL
@@ -36,10 +38,11 @@ export const upload = async (
     // Send completion data to client side via SSE event
   } catch (e) {
     console.log(`Deleting file: ${e}`);
-    // if (req.file) {
-    //   delete req.file;
-    //   image = null;
-    // }
+    if (req.file) {
+      delete req.file;
+      image = null;
+      mimetype = "";
+    }
     res.sendStatus(200); // Send back to dink as to not get more requests?
   }
 };

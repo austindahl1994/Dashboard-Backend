@@ -8,7 +8,7 @@ export const getAllCompletionData = async (): Promise<Array<Completion>> => {
       tile_id: 69,
       rsn: "Dubzie",
       url: "dahldash.com",
-      item: ["BCP"],
+      item: "BCP",
       obtained_at: "Today",
     };
     return [temp];

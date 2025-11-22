@@ -55,7 +55,7 @@ const updateCachedBoard = (boardData: Array<Array<string>>) => {
               : [];
             break;
           default:
-            tileObj[header] = value;
+            tileObj[header] = value.toLowerCase();
         }
 
         const tile: Tile = tileObj;
@@ -65,6 +65,20 @@ const updateCachedBoard = (boardData: Array<Array<string>>) => {
   } catch (e) {
     console.log(e);
     throw e;
+  }
+};
+
+export const getAllBoardItems = (): string[] => {
+  try {
+    const allItems: Set<string> = new Set();
+    for (const [_, tile] of boardMap) {
+      tile.items.forEach((item) => {
+        allItems.add(item);
+      });
+    }
+    return [...allItems];
+  } catch (error) {
+    throw error;
   }
 };
 

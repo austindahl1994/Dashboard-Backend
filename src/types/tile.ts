@@ -3,7 +3,7 @@ export interface Tile {
   title: string;
   description: string;
   source: string;
-  items: Array<string>;
+  items: string[];
   tier: number;
   quantity: number;
   url: string;

@@ -7,6 +7,9 @@ import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import dotenv from "dotenv";
 import fs from "fs";
 
+// USING UPLOAD INSTEAD OF PUTOBJECT TO ALLOW BUFFER OR STREAM
+import { Upload } from "@aws-sdk/lib-storage";
+
 dotenv.config();
 
 const s3 = new S3Client({ region: process.env.AWS_REGION });
@@ -32,18 +35,9 @@ export const uploadScreenshot = async (key, image, mimetype) => {
   }
 };
 
-/*
-// USING UPLOAD INSTEAD OF PUTOBJECT TO ALLOW BUFFER OR STREAM
-import { S3Client } from "@aws-sdk/client-s3";
-import { Upload } from "@aws-sdk/lib-storage";
-import dotenv from "dotenv";
+const streamBucket = process.env.S3_BUCKET_NAME;
 
-dotenv.config();
-
-const s3 = new S3Client({ region: process.env.AWS_REGION });
-const bucketName = process.env.S3_BUCKET_NAME;
-
-export const uploadScreenshot = async (key, image, mimetype) => {
+export const streamUpload = async (key, image, mimetype) => {
   if (!image || !image.length) {
     throw new Error("Image is empty or undefined");
   }
@@ -52,7 +46,7 @@ export const uploadScreenshot = async (key, image, mimetype) => {
     const upload = new Upload({
       client: s3,
       params: {
-        Bucket: bucketName,
+        Bucket: streamBucket,
         Key: key,
         Body: image,
         ContentType: mimetype || "image/png",
@@ -68,4 +62,3 @@ export const uploadScreenshot = async (key, image, mimetype) => {
     throw error;
   }
 };
-*/

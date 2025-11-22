@@ -57,7 +57,7 @@ const formatPlayers = (sheetsPlayers: Array<string[]>) => {
 
 // [discord, nickname, discord_id, rsn, team, paid, donation]
 // Update single player for buy in to google sheets
-const updatePlayer = async (
+export const updatePlayer = async (
   discord_id: string,
   discord_username: string,
   discord_nickname: string,
@@ -92,5 +92,43 @@ const updatePlayer = async (
   } catch (e) {
     console.log(e);
     throw e;
+  }
+};
+
+export const getAllRSNs = (): string[] => {
+  try {
+    const allRSNs: string[] = [];
+    for (const [_, player] of playersMap) {
+      allRSNs.push(player.rsn);
+    }
+    return allRSNs;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const getPlayerInfo = (
+  rsn: string,
+  id?: string,
+  name?: string
+): Player | undefined => {
+  try {
+    if (id) {
+      const byId = playersMap.get(id);
+      if (byId) return byId;
+    }
+
+    const rsnLower = rsn.toLowerCase();
+    const nameLower = name?.toLowerCase();
+
+    for (const [_id, player] of playersMap) {
+      if (player.rsn.toLowerCase() === rsnLower) return player;
+      if (nameLower && player.username.toLowerCase() === nameLower)
+        return player;
+    }
+
+    return undefined;
+  } catch (error) {
+    throw error;
   }
 };

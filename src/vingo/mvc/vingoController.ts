@@ -34,8 +34,12 @@ export const upload = async (
     // Compare against board tile data, see if it is on the item list
     // If on list, need to upload (USE STREAM METHOD INSTEAD OF JUST UPLOAD FOR AWS)
     // After image is uploaded, save data to RDS with image URL
+    // Save completion data to completion map for that team
     // Send completion data to discord tile completions for that team
     // Send completion data to client side via SSE event
+
+    // Add a check, if tile is completed but RSN does not match in playermap, check if discord_id is sent with dink data, if not then just return null, if it does do everything but send an error message in a discord channel
+    // await sendMismatch(rsn, expectedRSN, username, nickname)
   } catch (e) {
     console.log(`Deleting file: ${e}`);
     if (req.file) {

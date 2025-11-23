@@ -29,18 +29,18 @@ const completionsMap = new Map<number, Map<number, Array<string>>>();
 
 let clients: Client[] = [];
 
-refreshAllData()
-  .then(() => {
-    console.log("Successfully refreshed data");
-    console.log(`Board Map:`);
-    console.log(boardMap);
-    console.log("Players Map:");
-    console.log(playersMap);
-    // console.log("Completions map:")
-    // console.log(completionsMap)
-  })
-  .catch((e) => {
-    console.log(`Error refreshing data: ${e}`);
-  });
+// refreshAllData()
+//   .then(() => {
+//     console.log("Successfully refreshed data");
+//     console.log(`Board Map:`);
+//     console.log(boardMap);
+//     console.log("Players Map:");
+//     console.log(playersMap);
+// console.log("Completions map:")
+// console.log(completionsMap)
+//   })
+//   .catch((e) => {
+//     console.log(`Error refreshing data: ${e}`);
+//   });
 
 export { boardMap, playersMap, completionsMap, clients, EVENT_STARTED };

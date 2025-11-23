@@ -16,7 +16,7 @@ export default {
           flags: MessageFlags.Ephemeral,
         });
       }
-      await refreshAllData();
+      // await refreshAllData();
       await interaction.reply({
         content: `Successfully refreshed data`,
         flags: MessageFlags.Ephemeral,

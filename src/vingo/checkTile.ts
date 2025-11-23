@@ -20,8 +20,7 @@ export const checkTile = (data: any): Completion[] | null => {
       source: extra?.source ?? "",
       discordUser,
     };
-    // Add a check, if tile is completed but RSN does not match in playermap, check if discord_id is sent with dink data, if not then just return null, if it does do everything but send an error message in a discord channel
-    // await sendMismatch(rsn, expectedRSN, username, nickname)
+
     if (dink.items.length === 0 || dink?.type?.toLocaleLowerCase() !== "loot") {
       throw new Error(`Type mismatch: ${dink.type} OR no items passed in`);
     }
@@ -32,12 +31,13 @@ export const checkTile = (data: any): Completion[] | null => {
         if (matchingTiles.length === 0) return [];
       }
     });
-    const matchingPlayer: Player | undefined = getPlayerInfo(
-      dink.playerName,
-      discordUser.id,
-      discordUser.name
-    );
-    if (completedTiles.length > 0 && matchingPlayer) {
+    // Move this to controller
+    // const matchingPlayer: Player | undefined = getPlayerInfo(
+    //   dink.playerName,
+    //   discordUser.id,
+    //   discordUser.name
+    // );
+    if (completedTiles.length) {
       // What to return here, array of completed items to be added?
       // After this step, if returnedData.length > 0, upload/create AWS URL string
       // For each array object, insert into completions table

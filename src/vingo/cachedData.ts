@@ -8,9 +8,16 @@ import { Client } from "@/types/client.ts";
 // Update manually once event is going to start? Or could use discord command if need be
 export const refreshAllData = async (): Promise<void> => {
   try {
-    // await cacheBoard();
+    await cacheBoard();
     // await cachePlayers();
     // await cacheCompletions();
+    console.log("Successfully refreshed data");
+    console.log(`Board Map:`);
+    console.log(boardMap);
+    console.log("Players Map:");
+    console.log(playersMap);
+    console.log("Completions map:");
+    console.log(completionsMap);
   } catch (e) {
     console.log(e);
     throw e;

@@ -1,5 +1,6 @@
 import { SlashCommandBuilder, MessageFlags } from "discord.js";
 import { allowedUserIds } from "../discordUtilities.js";
+import { refreshAllData } from "../../vingo/cachedData.ts";
 
 // Refreshes cached data from google sheets : board data from "tiles" and player data from "players"
 
@@ -16,13 +17,17 @@ export default {
           flags: MessageFlags.Ephemeral,
         });
       }
-      // await refreshAllData();
-      await interaction.reply({
+      await interaction.deferReply({
+        content: `Attempting to refresh data`,
+        flags: MessageFlags.Ephemeral,
+      });
+      await refreshAllData();
+      await interaction.editReply({
         content: `Successfully refreshed data`,
         flags: MessageFlags.Ephemeral,
       });
     } catch (error) {
-      await interaction.reply({
+      await interaction.editReply({
         content: `There was an error refreshing data: ${error}`,
         flags: MessageFlags.Ephemeral,
       });

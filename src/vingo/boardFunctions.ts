@@ -18,7 +18,8 @@ export const getBoard = async (): Promise<object | undefined> => {
     if (boardMap.size === 0) {
       await cacheBoard();
     }
-    return Object.fromEntries(boardMap);
+    // return Object.fromEntries(boardMap);
+    return Array.from(boardMap.values());
   } catch (error) {}
 };
 
@@ -53,6 +54,9 @@ const updateCachedBoard = (boardData: Array<Array<string>>) => {
             tileObj[header] = value
               ? value.split(",").map((s) => s.trim())
               : [];
+            break;
+          case "url":
+            tileObj[header] = value;
             break;
           default:
             tileObj[header] = value.toLowerCase();

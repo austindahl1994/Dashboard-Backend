@@ -9,11 +9,11 @@ import { playerAuthJWT } from "../../middleware/authMiddleware.js";
 // Route to get teamData
 
 const router = express.Router();
-
+// Removed player auth for testing site
 router.post("/upload", uploadImage.single("file"), upload);
-router.get("/board", playerAuthJWT, board);
-router.get("/team", playerAuthJWT, team);
-router.post("/event", playerAuthJWT, event);
+router.get("/board", board);
+router.get("/team", team);
+router.post("/event", event);
 router.post("/broadcast", broadcast);
 
 export default router;

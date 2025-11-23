@@ -5,6 +5,7 @@ import type { File as MulterFile } from "multer";
 import { Client } from "@/types/client.ts";
 import { clients } from "../cachedData.ts";
 import { displayTime } from "@/Utilities.js";
+import { getBoard } from "../boardFunctions.ts";
 // Check if file is
 // FROM DINK
 // Allow players to upload images from web page as well? Rename to dinkUpload if that's the case
@@ -53,10 +54,14 @@ export const upload = async (
 
 export const board = async (req: Request, res: Response) => {
   try {
-    if (!EVENT_STARTED) {
-      throw new Error("Event has not started yet!");
-    }
+    console.log(`Called get board`);
+    // if (!EVENT_STARTED) {
+    //   throw new Error("Event has not started yet!");
+    // }
     // Try to get cached board, if there is none, make google call to get board
+    const board = await getBoard();
+    console.log(`Board gotten`);
+    res.json(board);
   } catch (e) {
     return res.status(400).json({ message: `Error getting board: ${e}` });
   }

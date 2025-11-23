@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { Client, GatewayIntentBits, Collection } from "discord.js";
-import { refreshAllData } from "../vingo/cachedData.ts";
+// import { refreshAllData } from "../vingo/cachedData.ts";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -24,7 +24,7 @@ export async function startBot() {
   // Load commands
   if (!testEnv) {
     console.log("⚠️  Starting bot in prod mode");
-    refreshAllData();
+    // refreshAllData();
   }
   const commandsPath = path.join(__dirname, "commands");
   const commandFiles = fs

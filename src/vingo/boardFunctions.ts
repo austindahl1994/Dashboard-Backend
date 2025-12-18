@@ -25,10 +25,13 @@ export const getBoard = async (): Promise<object | undefined> => {
 
 export const cacheBoard = async (): Promise<void> => {
   try {
-    if (!boardMap || boardMap.size === 0) {
-      const boardData: string[][] = await getVingoBoard();
-      updateCachedBoard(boardData);
+    if (boardMap.size !== 0) {
+      console.log(`Board size not 0, clearing`);
+      boardMap.clear();
+      console.log(`After clear: ${boardMap.size}`);
     }
+    const boardData: string[][] = await getVingoBoard();
+    updateCachedBoard(boardData);
   } catch (e) {
     console.log(e);
     throw e;
@@ -38,7 +41,6 @@ export const cacheBoard = async (): Promise<void> => {
 // After board data is pulled, update cached board data
 const updateCachedBoard = (boardData: Array<Array<string>>) => {
   try {
-    boardMap.clear();
     boardData.forEach((rowArr: Array<string>, rowIndex: number) => {
       const tileObj: any = {};
       headers.forEach((header, colIndex) => {
@@ -55,11 +57,11 @@ const updateCachedBoard = (boardData: Array<Array<string>>) => {
               ? value.split(",").map((s) => s.trim())
               : [];
             break;
-          case "url":
-            tileObj[header] = value;
+          case "source":
+            tileObj[header] = value.toLocaleLowerCase();
             break;
           default:
-            tileObj[header] = value.toLowerCase();
+            tileObj[header] = value;
         }
 
         const tile: Tile = tileObj;

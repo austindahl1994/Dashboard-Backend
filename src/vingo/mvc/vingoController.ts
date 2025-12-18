@@ -16,7 +16,7 @@ export const upload = async (
   const file = req.file;
   let image: Buffer | undefined | null;
   let mimetype: string = "";
-  console.log(`✅ Upload successful`);
+  console.log(`✅ Received API request to /upload`);
   displayTime();
   try {
     if (!file) {

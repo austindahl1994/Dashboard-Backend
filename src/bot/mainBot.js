@@ -17,7 +17,9 @@ export const client = new Client({
   intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers],
 });
 
+// @ts-ignore
 client.commands = new Collection();
+// @ts-ignore
 client.cooldowns = new Collection();
 
 export async function startBot() {
@@ -37,6 +39,7 @@ export async function startBot() {
     const command = commandModule.default ?? commandModule;
 
     if ("data" in command && "execute" in command) {
+      // @ts-ignore
       client.commands.set(command.data.name, command);
     } else {
       console.warn(

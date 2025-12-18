@@ -69,6 +69,17 @@ export default {
           { name: "15 events + 1 Bingo", value: "6" },
           { name: "15 events + 1 Bingo + Invited a friend", value: "8" }
         )
+    )
+    .addStringOption((option) =>
+      option
+        .setName("choice")
+        .setDescription("What category are you applying for?")
+        .setRequired(true)
+        .addChoices(
+          { name: "PvM", value: "pvm" },
+          { name: "Skilling", value: "skilling" },
+          { name: "Hybrid", value: "hybrid" }
+        )
     ),
   async execute(interaction) {
     try {
@@ -84,6 +95,7 @@ export default {
       const combatAchievements =
         interaction.options.getString("combat-achievements") ?? "none";
       const diaries = interaction.options.getString("diaries") ?? "none";
+      const choice = interaction.options.getString("choice");
       const events = Number(interaction.options.getString("events")) || 0;
 
       // Get user data

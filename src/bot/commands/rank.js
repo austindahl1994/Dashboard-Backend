@@ -13,7 +13,9 @@ export default {
   cooldown: 5,
   data: new SlashCommandBuilder()
     .setName("rank")
-    .setDescription("Apply for a rank within the Cabbage Clan")
+    .setDescription(
+      "Check player rank OR apply for a rank within the Cabbage Clan"
+    )
     .addStringOption((option) =>
       option.setName("rsn").setDescription("RSN").setRequired(true)
     )

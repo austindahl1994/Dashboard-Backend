@@ -244,7 +244,7 @@ const ranksList = [
   "Bulwark: 1k Slayer bosses",
   "Justicar: 50 raids",
   "Sentry: Elite CAs",
-  "Guardian: 100 raids + 10 HM",
+  "Guardian: 100 raids + 10 HM for each",
   "Warden: Infernal or quiver",
   "Vanguard: Master CAs",
   "Templar: Grandmaster CAs",

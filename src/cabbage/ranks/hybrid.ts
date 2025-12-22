@@ -49,11 +49,11 @@ export const calcHybrid = (
 };
 const ranks = ["Seasoned", "Achiever", "Elite", "Completionist", "Perfect"];
 const ranksList = [
-  "Sentry, Gold, Tier 4",
-  "Guardian, Mithril, Tier 5",
-  "Warden, Adamant, Tier 6",
-  "Vanguard, Rune, Tier 7",
-  "Templar, Dragon, Tier 8",
+  "Seasoned, Gold, Tier 4",
+  "Achiever, Mithril, Tier 5",
+  "Elite, Adamant, Tier 6",
+  "Completionist, Rune, Tier 7",
+  "Perfect, Dragon, Tier 8",
 ];
 
 /*

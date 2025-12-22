@@ -42,7 +42,7 @@ const calcTime = (joinTime: Date) => {
     // Calculate the difference in months
     const monthsDifference =
       (currentYear - joinYear) * 12 + (currentMonth - joinMonth);
-    console.log(`Months in clan: ${monthsDifference}`);
+    // console.log(`Months in clan: ${monthsDifference}`);
 
     return monthsDifference;
   } catch (error) {

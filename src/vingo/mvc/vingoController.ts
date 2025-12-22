@@ -1,11 +1,10 @@
 import { EVENT_STARTED } from "../cachedData.js";
 import { Request, Response } from "express";
 import type { File as MulterFile } from "multer";
-
-import { Client } from "@/types/client.ts";
-import { clients } from "../cachedData.ts";
 import { displayTime } from "@/Utilities.js";
-import { getBoard } from "../boardFunctions.ts";
+import { getBoard } from "../board.ts";
+// CNTL + ALT + I Copilot
+
 // Check if file is
 // FROM DINK
 // Allow players to upload images from web page as well? Rename to dinkUpload if that's the case
@@ -55,10 +54,6 @@ export const upload = async (
 export const board = async (req: Request, res: Response) => {
   try {
     console.log(`Called get board`);
-    // if (!EVENT_STARTED) {
-    //   throw new Error("Event has not started yet!");
-    // }
-    // Try to get cached board, if there is none, make google call to get board
     const board = await getBoard();
     console.log(`Board gotten`);
     res.json(board);
@@ -68,11 +63,15 @@ export const board = async (req: Request, res: Response) => {
 };
 
 export const team = async (req: Request, res: Response) => {
-  const { team, discord_id } = req.body;
+  const { rsn, team, discord_id } = req.body;
   try {
     // Check to make sure player is on team from cached players
     // Get all board completion data for that team
-    console.log(`Team: ${team} id: ${discord_id}`);
+    console.log(
+      `Called team with data: RSN: ${rsn}, Team: ${team} id: ${discord_id}`
+    );
+    const board = await getBoard();
+    return res.status(200).json({ team: team });
   } catch (e) {
     return res
       .status(400)
@@ -80,45 +79,63 @@ export const team = async (req: Request, res: Response) => {
   }
 };
 
-export const event = async (req: Request, res: Response) => {
+// Leaving off on splitting up the getting board and completion data, need to figure out caching board, split it into chunks?
+
+export const completions = async (req: Request, res: Response) => {
   try {
-    const { team, discord_id } = req.body;
-
-    res.setHeader("Content-Type", "text/event-stream");
-    res.setHeader("Cache-Control", "no-cache");
-    res.setHeader("Connection", "keep-alive");
-    res.flushHeaders();
-
-    const clientId = Date.now();
-
-    const newClient: Client = {
-      id: clientId,
-      res: res,
-      team,
-      player: discord_id,
-    };
-
-    clients.push(newClient);
-    console.log(`Client ${clientId} connected (${clients.length} total)`);
-    res.write(`data: ${JSON.stringify({ message: "Connected!" })}\n\n`);
-
-    req.on("close", () => {
-      console.log(`Client ${clientId} disconnected`);
-      const idx = clients.findIndex((c) => c.id === clientId);
-      if (idx !== -1) clients.splice(idx, 1);
-    });
-  } catch (error) {
-    return res
-      .status(400)
-      .json({ message: `Error getting team data from database: ${error}` });
-  }
+    const { rsn, team, discord_id } = req.body;
+  } catch (error) {}
 };
 
-export const broadcast = async (req: Request, res: Response) => {
-  try {
-  } catch (error) {
-    return res
-      .status(400)
-      .json({ message: `Error broadcasting data: ${error}` });
-  }
-};
+// import { Client } from "@/types/client.ts";
+// import { clients } from "../cachedData.ts";
+// import { parse } from "node:path";
+// export const event = async (req: Request, res: Response) => {
+//   try {
+//     const teamParam = req.query.team;
+//     if (!teamParam) return res.status(400).end();
+//     const team = teamParam.toString();
+
+//     console.log(`Creating new SSE client with TEAM: ${team}`);
+
+//     res.setHeader("Content-Type", "text/event-stream");
+//     res.setHeader("Cache-Control", "no-cache");
+//     res.setHeader("Connection", "keep-alive");
+//     res.flushHeaders();
+
+//     const clientId = Date.now();
+
+//     const newClient: Client = {
+//       id: clientId,
+//       res,
+//       team,
+//     };
+
+//     clients.push(newClient);
+//     console.log(`Client ${clientId} connected (${clients.length} total)`);
+
+//     // Initial message
+//     res.write(`data: ${JSON.stringify({ message: "Connected!" })}\n\n`);
+
+//     // Keep connection alive
+//     const keepAlive = setInterval(() => res.write(": keep-alive\n\n"), 15000);
+
+//     req.on("close", () => {
+//       clearInterval(keepAlive);
+//       const idx = clients.findIndex((c) => c.id === clientId);
+//       if (idx !== -1) clients.splice(idx, 1);
+//       console.log(`Client ${clientId} disconnected`);
+//     });
+//   } catch (error) {
+//     return res.status(500).json({ message: `Error setting up SSE: ${error}` });
+//   }
+// };
+
+// export const broadcast = async (req: Request, res: Response) => {
+//   try {
+//   } catch (error) {
+//     return res
+//       .status(400)
+//       .json({ message: `Error broadcasting data: ${error}` });
+//   }
+// };

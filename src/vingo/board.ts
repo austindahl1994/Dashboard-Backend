@@ -82,6 +82,8 @@ export const getAllBoardItems = (): string[] => {
         allItems.add(item);
       });
     }
+    console.log(`All items:`);
+    console.log(`${[...allItems].join(", ")}`);
     return [...allItems];
   } catch (error) {
     throw error;

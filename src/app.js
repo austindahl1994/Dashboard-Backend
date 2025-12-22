@@ -38,7 +38,6 @@ app.use(
   })
 );
 
-//app.use("/osrs", osrsRoutes);
 app.use("/bingo", bingoRoutes);
 app.use("/check-session", check);
 app.use("/profile", authJwt, authenticateUser, profileRoutes);

@@ -37,3 +37,27 @@ export const rankEmbed = (ranks) => {
     throw error;
   }
 };
+
+export const pathEmbed = (user, rsn, path) => {
+  try {
+    const embed = new EmbedBuilder()
+      .setTitle(
+        `**${user}** (RSN: __${rsn}__) has applied for **${path.toUpperCase()}** rank!`
+      )
+      .setColor(Colors.Purple);
+    return embed;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const noteEmbed = () => {
+  try {
+    const embed = new EmbedBuilder()
+      .setTitle(`**__NOTE:__** This is just a rank check, no application sent!`)
+      .setColor(Colors.White);
+    return embed;
+  } catch (error) {
+    throw error;
+  }
+};

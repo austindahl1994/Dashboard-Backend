@@ -55,18 +55,23 @@ const authenticateUser = async (req, res, next) => {
 };
 
 const playerAuthJWT = (req, res, next) => {
-  const accessToken = req.cookies.accessToken;
+  const passcode = req.body.passcode;
+  // console.log(`Attempting to auth player with token: ${passcode}`);
   //console.log(`Checking session in middleware`);
   try {
-    if (!accessToken) {
-      console.log(`No token passed into middleware`);
+    if (!passcode) {
+      console.log(`No passcode token passed into middleware`);
     }
-    jwt.verify(accessToken, TS, (err, user) => {
+    jwt.verify(passcode, TS, (err, user) => {
       if (err) {
         console.error(`Error: ${err}`);
       }
+      req.body.rsn = user.rsn;
       req.body.team = user.team;
       req.body.discord_id = user.discord_id;
+      // console.log(
+      //   `Verified player data: RSN:${user.rsn}, TEAM:${user.team}, DISCORD:${user.discord_id}`
+      // );
       next();
     });
   } catch (error) {

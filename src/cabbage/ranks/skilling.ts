@@ -24,16 +24,18 @@ export const calcSkilling = (skills: Skill[], diary: string): RankEmbed => {
       const icon = meetsReq ? "✅" : "❌";
       skillDetails.push(`${icon} ${ranksList[index]}`);
       if (meetsReq && !hitWall) {
-        highestRank = index + 1;
+        highestRank = index;
       } else {
         hitWall = true;
       }
     });
     const title = "Skilling Path";
     const rank = ranks[highestRank];
-    const description = `You have achieved the **${rank}** rank in Skilling!`;
+    const description = `**${
+      overall.level
+    }** total level with **${diary.toUpperCase()}** diaries achieves **${rank.toUpperCase()}** Skilling rank!`;
     details.push({ header: "Ranks", fields: skillDetails });
-    return { title, description, details, rank };
+    return { title, description, details, rank, rankIndex: highestRank + 1 };
   } catch (error) {
     console.log(error);
     throw error;
@@ -60,23 +62,25 @@ const checkRank = (
   nonCBXP: number
 ): boolean => {
   switch (rankName) {
+    case "Cabbage":
+      return true;
     case "Bronze":
-      return totalLevel >= 1000;
+      return totalLevel >= 1500;
     case "Iron":
-      return totalLevel >= 1500 && matchDiary(diary) >= 1;
+      return totalLevel >= 1750 && matchDiary(diary) >= 1;
     case "Steel":
-      return totalLevel >= 1750 && matchDiary(diary) >= 2;
+      return totalLevel >= 2000 && matchDiary(diary) >= 2;
     case "Gold":
-      return totalLevel >= 2000 && matchDiary(diary) >= 3;
+      return totalLevel >= 2100 && matchDiary(diary) >= 3;
     case "Mithril":
-      return totalLevel >= 2100;
+      return totalLevel >= 2200;
     case "Adamant":
-      return totalLevel >= 2200 && matchDiary(diary) >= 4;
+      return totalLevel >= 2300 && matchDiary(diary) >= 4;
     case "Rune":
-      return totalLevel >= 2277;
+      return totalLevel >= 2376;
     case "Dragon":
       return (
-        totalLevel >= 2277 && (totalXp >= 1000000000 || nonCBXP >= 75000000)
+        totalLevel >= 2376 && (totalXp >= 1000000000 || nonCBXP >= 75000000)
       );
     default:
       return false;
@@ -99,6 +103,7 @@ const matchDiary = (diaries: string): number => {
 };
 
 const ranks = [
+  "Cabbage",
   "Bronze",
   "Iron",
   "Steel",
@@ -110,12 +115,13 @@ const ranks = [
 ];
 
 const ranksList = [
-  "Bronze: 1000 Total Level",
-  "Iron: 1500 Total Level + Easy Diaries",
-  "Steel: 1750 Total Level + Medium Diaries",
-  "Gold: 2000 Total Level + Hard Diaries",
-  "Mithril: 2100 Total Level",
-  "Adamant: 2200 Total Level + Elite Diaries",
-  "Rune: 2277 Total Level",
-  "Dragon: 2277 Total Level **AND** \n1B total xp **OR** \n75m in 1x non cb-skill",
+  "Cabbage: New to clan",
+  "Bronze: 1500 Total Level",
+  "Iron: 1750 Total Level + Easy Diaries",
+  "Steel: 2000 Total Level + Medium Diaries",
+  "Gold: 2100 Total Level + Hard Diaries",
+  "Mithril: 2200 Total Level",
+  "Adamant: 2300 Total Level + Elite Diaries",
+  "Rune: 2376 Total Level",
+  "Dragon: 2376 Total Level **AND** \n1B total xp **OR** \n75m in 1x non cb-skill",
 ];

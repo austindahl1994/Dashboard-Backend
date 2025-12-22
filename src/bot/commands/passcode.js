@@ -36,7 +36,7 @@ export default {
           `You have not been assigned a team yet, check with a mod if you should be`
         );
       }
-      const passcode = createPlayerToken(player.team, discord_id);
+      const passcode = createPlayerToken(player.rsn, player.team, discord_id);
       // const displayJwt = passcode
       //   .split(".")
       //   .map((part) => part + ".")

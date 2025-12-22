@@ -1,6 +1,6 @@
 import express from "express";
 import { uploadImage } from "../../middleware/multerMiddleware.js";
-import { board, team, upload, event, broadcast } from "./vingoController.js";
+import { board, completions, team, upload } from "./vingoController.js";
 import { playerAuthJWT } from "../../middleware/authMiddleware.js";
 
 // Route for image upload from dink
@@ -12,8 +12,9 @@ const router = express.Router();
 // Removed player auth for testing site
 router.post("/upload", uploadImage.single("file"), upload);
 router.get("/board", board);
-router.get("/team", team);
-router.post("/event", event);
-router.post("/broadcast", broadcast);
+router.post("/team", playerAuthJWT, team);
+router.get("/completions", playerAuthJWT, completions);
+// router.post("/event", event);
+// router.post("/broadcast", broadcast);
 
 export default router;

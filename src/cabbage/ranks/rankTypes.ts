@@ -22,6 +22,7 @@ export interface RankEmbed {
   description: string;
   details: Details[];
   rank: string;
+  rankIndex?: number; // will be used for hybrid rank calculation
 }
 
 export interface Details {

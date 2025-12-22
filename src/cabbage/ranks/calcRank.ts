@@ -26,7 +26,7 @@ export const calcRank = async (data: RankInput): Promise<RankEmbed[]> => {
       data.joinTime,
       data.events
     );
-    console.log(communityTier);
+    // console.log(communityTier);
     const pvmRank: RankEmbed = calcPVM(
       data.firecape,
       data.quiverOrInfernal,
@@ -38,7 +38,11 @@ export const calcRank = async (data: RankInput): Promise<RankEmbed[]> => {
       data.diaries
     );
     // const hybridRank: RankEmbed = calcHybrid(communityTier, skillingRank, pvmRank);
-    const hybridRank: RankEmbed = calcHybrid();
+    const hybridRank: RankEmbed = calcHybrid(
+      communityTier,
+      skillingRank?.rankIndex || 0,
+      pvmRank?.rankIndex || 0
+    );
     return [pvmRank, skillingRank, hybridRank];
     // return [skillingRank, pvmRank, hybridRank];
   } catch (error) {

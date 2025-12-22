@@ -1,12 +1,19 @@
 import { SlashCommandBuilder, MessageFlags } from "discord.js";
 import { calcRank } from "../../cabbage/ranks/calcRank.ts";
-import { rankEmbed } from "../embeds/cabbage/rank/rankEmbeds.js";
+import {
+  noteEmbed,
+  pathEmbed,
+  rankEmbed,
+} from "../embeds/cabbage/rank/rankEmbeds.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export default {
   cooldown: 5,
   data: new SlashCommandBuilder()
     .setName("rank")
-    .setDescription("Check your rank within the Cabbage clan")
+    .setDescription("Apply for a rank within the Cabbage Clan")
     .addStringOption((option) =>
       option.setName("rsn").setDescription("RSN").setRequired(true)
     )
@@ -72,20 +79,20 @@ export default {
     )
     .addStringOption((option) =>
       option
-        .setName("choice")
-        .setDescription("What category are you applying for?")
+        .setName("apply")
+        .setDescription("Are you applying for a new rank?")
         .setRequired(true)
         .addChoices(
-          { name: "PvM", value: "pvm" },
-          { name: "Skilling", value: "skilling" },
-          { name: "Hybrid", value: "hybrid" }
+          { name: "No, just checking rank", value: "no" },
+          { name: "Yes, pvm", value: "pvm" },
+          { name: "Yes, skilling", value: "skilling" },
+          { name: "Yes, hybrid", value: "hybrid" }
         )
     ),
   async execute(interaction) {
     try {
-      // Get interaction options
       const rsn = interaction.options.getString("rsn");
-
+      const apply = interaction.options.getString("apply");
       const firecape =
         interaction.options.getString("firecape") === "yes" ? true : false;
       const quiverOrInfernal =
@@ -95,12 +102,14 @@ export default {
       const combatAchievements =
         interaction.options.getString("combat-achievements") ?? "none";
       const diaries = interaction.options.getString("diaries") ?? "none";
-      const choice = interaction.options.getString("choice");
       const events = Number(interaction.options.getString("events")) || 0;
 
       // Get user data
       const targetUser = interaction.user;
       const member = await interaction.guild.members.fetch(targetUser.id);
+
+      // Get discord nickname, or if not set, the username
+      const username = member.nickname ?? targetUser.username;
       const joinTime = member.joinedAt;
 
       const inputData = {
@@ -114,16 +123,39 @@ export default {
       };
 
       await interaction.deferReply({
-        content: "Attempting to calculate rank",
+        content: "Calculating rank...",
         flags: MessageFlags.Ephemeral,
       });
 
       const ranks = await calcRank(inputData);
       const embeds = rankEmbed(ranks);
+      // after you edit the interaction reply
+      if (apply === "no") {
+        const noteEmbedInstance = noteEmbed();
+        const finalEmbeds = [noteEmbedInstance, ...embeds];
+        await interaction.editReply({
+          embeds: finalEmbeds,
+          flags: MessageFlags.Ephemeral,
+        });
+        return;
+      }
+
+      // PLAYER IS APPLYING FOR RANK AS WELL ----------------------------
+      // path is apply, since choices are pvm, skilling, hybrid by value, no need to split
+      const pathDefinitionEmbed = pathEmbed(username, rsn, apply);
+      const finalEmbeds = [pathDefinitionEmbed, ...embeds];
       await interaction.editReply({
-        embeds,
-        // content: `Called rank checker, this has not been implemented yet.`,
+        content: `Successfully applied for rank down the ${apply.toUpperCase()} path!`,
         flags: MessageFlags.Ephemeral,
+      });
+      const channelId = process.env.RANK_CHANNEL_ID;
+      const targetChannel = await interaction.client.channels.fetch(channelId);
+      if (!targetChannel || typeof targetChannel.send !== "function") {
+        console.error("Channel not found or not sendable");
+        return;
+      }
+      await targetChannel.send({
+        embeds: finalEmbeds,
       });
     } catch (error) {
       await interaction.editReply({

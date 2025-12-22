@@ -13,8 +13,8 @@ const createRefreshtoken = (user_id) => {
   return jwt.sign({ user_id }, RTS, { expiresIn: "1d" });
 };
 
-const createPlayerToken = (team, discord_id) => {
-  return jwt.sign({ team, discord_id }, TS);
+const createPlayerToken = (rsn, team, discord_id) => {
+  return jwt.sign({ rsn, team, discord_id }, TS);
 };
 
 export { createToken, createRefreshtoken, createPlayerToken };

@@ -2,7 +2,7 @@ import {
   getVingoPlayers,
   updateVingoPlayer,
 } from "@/services/google/vingoPlayers.js";
-import { playersMap } from "./cachedData.js";
+import { playersMap } from "./cachedData.ts";
 import { Player } from "@/types/player.js";
 
 // Gets player data from sheets

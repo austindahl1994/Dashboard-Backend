@@ -1,7 +1,7 @@
 import { Tile } from "@/types/tile.ts";
 import { boardMap } from "./cachedData.ts";
 import { Dink, Item } from "@/types/dink.ts";
-import { getPlayerInfo } from "./playerFunctions.ts";
+import { getPlayerInfo } from "./players.ts";
 import { Player } from "@/types/player.ts";
 import { Completion } from "@/types/completion.ts";
 

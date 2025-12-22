@@ -130,5 +130,6 @@ dist
 .pnp.*
 
 dahldash-c31422a55722.json
+sqlInfo.txt
 
 testing/

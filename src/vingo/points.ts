@@ -18,8 +18,20 @@ const REQUIRED_COL_COUNT: number[] = Array(GRID_SIZE).fill(0);
 const POINT_VALUES: number[] = [1, 2, 3, 5, 8];
 
 // --------------------- INITIAL ------------------------
-export const setTeamStates = (): void => {
+export const createTeamStates = (): void => {
   try {
+    for (const keys of completionsMap.keys()) {
+      const teamState: Team = {
+        tileCounts: new Map(),
+        completedTiles: new Set(),
+        rowCounts: Array(10).fill(0),
+        colCounts: Array(10).fill(0),
+        completedRows: new Set(),
+        completedCols: new Set(),
+        tilePoints: 0,
+      };
+      teamStates.push(teamState);
+    }
     // Create board req map for number of required tile completions for each tile AND array for row/col totals
     const boardRequirements: Map<number, number> = new Map();
 

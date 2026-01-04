@@ -6,7 +6,7 @@ import { cachePlayers } from "./players.ts";
 import { Player } from "@/types/player.js";
 import { SimpleCompletion } from "@/types/completion.ts";
 import { Team } from "@/types/teams.ts";
-import { createTeamStates } from "./teamUtils.ts";
+import { createTeamStates } from "./points.ts";
 // import { computePoints } from "./points.ts";
 
 // Update manually once event is going to start? Or could use discord command if need be

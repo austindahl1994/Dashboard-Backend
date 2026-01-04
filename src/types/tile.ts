@@ -1,5 +1,5 @@
 export interface Tile {
-  id: number; // actual tile id, starting 0, not row position in sheet
+  row: number; // row position in sheets
   title: string;
   description: string;
   source: string;

@@ -1,11 +1,13 @@
+// import { Client } from "@/types/client.ts";
 import { Tile } from "@/types/tile.js";
 import { cacheBoard } from "./board.js";
 import { cacheCompletions } from "./completions.ts";
 import { cachePlayers } from "./players.ts";
 import { Player } from "@/types/player.js";
-// import { Client } from "@/types/client.ts";
-import { Completion, SimpleCompletion } from "@/types/completion.ts";
-import { computePoints } from "./points.ts";
+import { SimpleCompletion } from "@/types/completion.ts";
+import { Team } from "@/types/teams.ts";
+import { createTeamStates } from "./teamUtils.ts";
+// import { computePoints } from "./points.ts";
 
 // Update manually once event is going to start? Or could use discord command if need be
 export const refreshAllData = async (): Promise<void> => {
@@ -13,7 +15,8 @@ export const refreshAllData = async (): Promise<void> => {
     await cacheBoard();
     await cachePlayers();
     await cacheCompletions();
-    computePoints();
+    createTeamStates();
+    // computePoints();
     console.log("Successfully refreshed data");
     // console.log(`Board Map:`);
     // console.log(boardMap);
@@ -29,24 +32,31 @@ export const refreshAllData = async (): Promise<void> => {
   }
 };
 
-const EVENT_STARTED: boolean = true;
+export const EVENT_STARTED: boolean = true;
 
 // board keys are row number
-const boardMap = new Map<number, Tile>();
+// Swapping keys from being row numbers to tile IDs for easier access when computing completions
+export const boardMap = new Map<number, Tile>();
 
 // player keys are discord_ids
-const playersMap = new Map<string, Player>();
+export const playersMap = new Map<string, Player>();
 
 // Map number is team, Completion[] is array of completions for that team
-const completionsMap = new Map<number, Map<number, SimpleCompletion[]>>();
+export const completionsMap = new Map<
+  number,
+  Map<number, SimpleCompletion[]>
+>();
 
 // Points are listed by team number index-1 Ex. [28, 78, 23]
-const teamPoints: number[] = [0, 0, 0];
+export const teamPoints: number[] = [0, 0, 0];
+
+// cached deaths or just use a call from frontend to get all deaths from shame table?
+// const deaths = new Map<string, number>();
 
 // Top 5 players per team by points [[team1 top 5], [t2], [t3]]
-const highscores: number[][] = [[], [], []];
+export const highscores: number[][] = [[], [], []];
 
-export { boardMap, playersMap, completionsMap, teamPoints, EVENT_STARTED };
+export const teamStates: Team[] = [];
 
 // Use if adding SSE
 // let clients: Client[] = [];

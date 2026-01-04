@@ -2,16 +2,17 @@ export interface Completion {
   team: number;
   tile_id: number;
   rsn: string;
-  url?: string;
+  url: string | null;
   item: string;
-  obtained_at: string;
+  obtained_at?: string;
 }
 
+// Added simple completion for caching purposes, dont need to cache team and tile_id again, team is used in outter map as key, tile_id is used as key in inner map
 export interface SimpleCompletion {
   rsn: string;
   url?: string;
   item: string;
-  obtained_at: string;
+  obtained_at?: string;
 }
 // id: number auto_increments, team: number, tile_id: number, rsn: string, url: string, item: array, obained_at: string
 

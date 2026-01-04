@@ -3,15 +3,21 @@ export interface DiscordUser {
   name: string;
 }
 
-export interface Item {
+interface Items {
   name: string;
+}
+
+interface Extra {
+  items?: Items[];
+  source?: string;
+  isPvP?: string;
+  killerName?: string;
 }
 
 export interface Dink {
   type: string;
   playerName: string;
-  items: Item[];
-  source: string;
+  extra?: Extra;
   discordUser?: DiscordUser;
 }
 /*

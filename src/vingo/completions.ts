@@ -2,7 +2,7 @@ import { Completion, SimpleCompletion } from "@/types/completion.js";
 import { completionsMap } from "./cachedData.ts";
 import { addCompletion, getCompletions } from "./mvc/vingo.ts";
 // Completions map = ([team number, team Map()])
-// team map = array of Completions[]
+// team map = <tile_id, array of Completions[]>
 
 // Assumptions for completions SQL table:
 // id: number auto_increments, team: number, tile_id: number, rsn: string, url: string, item: array, obained_at: string
@@ -30,14 +30,20 @@ const createCachedCompletions = (completionsData: Completion[]): void => {
         const teamMap = completionsMap.get(team);
         if (teamMap) {
           if (teamMap.has(tile_id)) {
-            teamMap.get(tile_id)?.push({ rsn, url, item, obtained_at });
+            teamMap
+              .get(tile_id)
+              ?.push({ rsn, url: url ?? undefined, item, obtained_at });
           } else {
-            teamMap.set(tile_id, [{ rsn, url, item, obtained_at }]);
+            teamMap.set(tile_id, [
+              { rsn, url: url ?? undefined, item, obtained_at },
+            ]);
           }
         }
       } else {
         const teamMap = new Map<number, SimpleCompletion[]>();
-        teamMap.set(tile_id, [{ rsn, url, item, obtained_at }]);
+        teamMap.set(tile_id, [
+          { rsn, url: url ?? undefined, item, obtained_at },
+        ]);
         completionsMap.set(team, teamMap);
       }
     });
@@ -47,10 +53,8 @@ const createCachedCompletions = (completionsData: Completion[]): void => {
   }
 };
 
-// When a new completion is added, need to add to database and update cached completionsMap
 export const updateCompletions = async (data: Completion): Promise<void> => {
   try {
-    await addCompletion(data);
     const { team, tile_id, rsn, url, item, obtained_at } = data;
     const teamMap = completionsMap.get(team);
     if (!teamMap || !teamMap.has(tile_id)) {
@@ -58,7 +62,9 @@ export const updateCompletions = async (data: Completion): Promise<void> => {
         `There is either no team: ${team} cached or no tile_id: ${tile_id} for that team cached!`
       );
     }
-    teamMap.get(tile_id)?.push({ rsn, url, item, obtained_at });
+    teamMap
+      .get(tile_id)
+      ?.push({ rsn, url: url ?? undefined, item, obtained_at });
     console.log(`Successfully added completion to cachedCompletions: `);
     console.log({ rsn, url, item, obtained_at });
   } catch (e) {
@@ -67,16 +73,16 @@ export const updateCompletions = async (data: Completion): Promise<void> => {
   }
 };
 
-export const getTeamCompletions = (
-  team: number
-): { tile_id: number; completions: SimpleCompletion[] }[] => {
-  const teamMap = completionsMap.get(team);
-  if (!teamMap) {
-    return [];
-  }
-  const result: { tile_id: number; completions: SimpleCompletion[] }[] = [];
-  teamMap.forEach((completions, tile_id) => {
-    result.push({ tile_id, completions });
-  });
-  return result;
-};
+// export const getTeamCompletions = (
+//   team: number
+// ): { tile_id: number; completions: SimpleCompletion[] }[] => {
+//   const teamMap = completionsMap.get(team);
+//   if (!teamMap) {
+//     return [];
+//   }
+//   const result: { tile_id: number; completions: SimpleCompletion[] }[] = [];
+//   teamMap.forEach((completions, tile_id) => {
+//     result.push({ tile_id, completions });
+//   });
+//   return result;
+// };

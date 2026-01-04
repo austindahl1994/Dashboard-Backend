@@ -3,12 +3,14 @@ import { Request, Response } from "express";
 import type { File as MulterFile } from "multer";
 import { displayTime } from "@/Utilities.js";
 import { getBoard } from "../board.ts";
+import { checkShame } from "../shame.ts";
+import { checkDinkLoot } from "../checkDinkLoot.ts";
+import { Completion, Dink } from "@/types/index.ts";
+import { completeTile } from "../completeTile.ts";
 // CNTL + ALT + I Copilot
 
-// Check if file is
-// FROM DINK
 // Allow players to upload images from web page as well? Rename to dinkUpload if that's the case
-export const upload = async (
+export const dinkUpload = async (
   req: Request & { file?: MulterFile },
   res: Response
 ) => {
@@ -27,10 +29,35 @@ export const upload = async (
     }
 
     const data = req.body.payload_json;
-    const parsedData = JSON.parse(data);
+    const parsedData: Dink = JSON.parse(data);
 
     console.log(`Received data from ${parsedData.playerName}`);
     console.log(JSON.stringify(parsedData));
+
+    if (!image) throw new Error(`No image was passed with dink data.`);
+
+    if (parsedData.type.toLowerCase() === "death") {
+      await checkShame(parsedData, image, mimetype);
+      delete req.file;
+      image = null;
+      mimetype = "";
+    } else if (parsedData.type.toLowerCase() === "loot") {
+      const verifiedCompletions: Completion[] | false =
+        checkDinkLoot(parsedData);
+
+      if (verifiedCompletions) {
+        for await (const completion of verifiedCompletions) {
+          await completeTile(completion, image, mimetype);
+        }
+      } else {
+        throw new Error(`Data was loot type but not needed`);
+      }
+    } else {
+      console.log(
+        `Dink Type: ${parsedData.type} from player: ${parsedData.playerName} is not loot/death type`
+      );
+      throw new Error(`Invalid Dink type`);
+    }
     // Compare against board tile data, see if it is on the item list
     // If on list, need to upload (USE STREAM METHOD INSTEAD OF JUST UPLOAD FOR AWS)
     // After image is uploaded, save data to RDS with image URL
@@ -84,7 +111,12 @@ export const team = async (req: Request, res: Response) => {
 export const completions = async (req: Request, res: Response) => {
   try {
     const { rsn, team, discord_id } = req.body;
-  } catch (error) {}
+  } catch (error) {
+    console.log(`Error getting completions: ${error}`);
+    return res
+      .status(400)
+      .json({ message: `Error getting completions: ${error}` });
+  }
 };
 
 // import { Client } from "@/types/client.ts";

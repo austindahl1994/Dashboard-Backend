@@ -19,6 +19,7 @@ export const dinkUpload = async (
   let mimetype: string = "";
   console.log(`✅ Received API request to /upload`);
   displayTime();
+  // AWAIT discord post from bot, showing what data was sent from server before anything else
   try {
     if (!file) {
       console.log(`No file sent with`);
@@ -37,11 +38,13 @@ export const dinkUpload = async (
     if (!image) throw new Error(`No image was passed with dink data.`);
 
     if (parsedData.type.toLowerCase() === "death") {
+      console.log(`Type was death, skipping rest`);
       await checkShame(parsedData, image, mimetype);
       delete req.file;
       image = null;
       mimetype = "";
     } else if (parsedData.type.toLowerCase() === "loot") {
+      console.log(`Type was loot`);
       const verifiedCompletions: Completion[] | false =
         checkDinkLoot(parsedData);
 

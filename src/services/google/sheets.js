@@ -25,6 +25,7 @@ const getSheetsClient = async () => {
   });
 
   const client = await auth.getClient();
+  // @ts-ignore -- auth client type mismatch; runtime client works fine
   sheetsClient = google.sheets({ version: "v4", auth: client });
 
   return sheetsClient;

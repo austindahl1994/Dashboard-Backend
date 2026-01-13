@@ -51,16 +51,17 @@ export const getCompletions = async (): Promise<Completion[]> => {
 // id (auto increment): number, playerName: string, pvp: bool, killer: string, created_at: timestamp
 export const addShame = async (data: Shame) => {
   try {
-    const { playerName, pvp, killerName, url } = data;
+    const { playerName, pvp, killer, url } = data;
     const query = `INSERT INTO shame (playerName, pvp, killer, url) VALUES (?, ?, ?, ?);`;
     const [result] = await pool.execute<ResultSetHeader>(query, [
       playerName,
       pvp,
-      killerName,
+      killer,
       url,
     ]);
 
     console.log(`Response for addShame query:`);
+    console.log(result);
     if (result.affectedRows !== 1) {
       throw new Error(`Failed to add shame entry for player: ${playerName}`);
     }

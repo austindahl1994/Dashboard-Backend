@@ -4,6 +4,8 @@ import { readSingleSheet } from "./sheets.js";
 export const getVingoBoard = async (): Promise<Array<Array<string>>> => {
   try {
     const data = await readSingleSheet("tiles!A2:I101");
+    // console.log(`Data from sheets:`);
+    // console.log(data);
     return data;
   } catch (error) {
     console.error(

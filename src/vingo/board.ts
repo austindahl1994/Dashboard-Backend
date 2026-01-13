@@ -53,25 +53,27 @@ const updateCachedBoard = (boardData: string[][]) => {
   try {
     boardData.forEach((rowArr: string[], rowIndex: number) => {
       const tileObj: any = {};
+      let mapID: number | null = null;
       headers.forEach((header, colIndex) => {
-        let mapID: number | null = null;
         const value = rowArr[colIndex];
-
+        // console.log(`ID at row:${rowIndex} and col:${colIndex} is:${value}`);
         switch (header) {
           case "id":
-            mapID = value ? Number(value) : null;
+            mapID = value != null && value !== "" ? Number(value) : null;
             break;
           case "tier":
           case "quantity":
-            tileObj[header] = value ? Number(value) : 0;
+            tileObj[header] = value != null && value !== "" ? Number(value) : 0;
             break;
           case "items":
-            tileObj[header] = value
-              ? value.split(",").map((s) => s.trim())
-              : [];
+            tileObj[header] =
+              value != null && value !== ""
+                ? value.split(",").map((s) => s.trim())
+                : [];
             break;
           case "source":
-            tileObj[header] = value.toLowerCase();
+            tileObj[header] =
+              value != null && value !== "" ? value.toLowerCase() : "";
             break;
           default:
             tileObj[header] = value;
@@ -83,6 +85,7 @@ const updateCachedBoard = (boardData: string[][]) => {
         boardMap.set(mapID, tile);
       });
     });
+    // getAllBoardItems();
   } catch (e) {
     console.log(e);
     throw e;

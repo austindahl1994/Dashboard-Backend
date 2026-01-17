@@ -8,6 +8,8 @@ import { SimpleCompletion } from "@/types/completion.ts";
 import { Team } from "@/types/teams.ts";
 import { createTeamStates } from "./points.ts";
 // import { computePoints } from "./points.ts";
+import dotenv from "dotenv";
+dotenv.config();
 
 // Update manually once event is going to start? Or could use discord command if need be
 export const refreshAllData = async (): Promise<void> => {

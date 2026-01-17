@@ -7,6 +7,8 @@ import { checkShame } from "../shame.ts";
 import { checkDinkLoot } from "../checkDinkLoot.ts";
 import { Completion, Dink } from "@/types/index.ts";
 import { completeTile } from "../completeTile.ts";
+import { lootEmbed } from "../../bot/embeds/vingo/logs.js";
+import { sendLog } from "../../bot/broadcasts/sendLog.js";
 // CNTL + ALT + I Copilot
 
 // Allow players to upload images from web page as well? Rename to dinkUpload if that's the case
@@ -44,6 +46,8 @@ export const dinkUpload = async (
       image = null;
       mimetype = "";
     } else if (parsedData.type.toLowerCase() === "loot") {
+      const embed = lootEmbed(parsedData);
+      await sendLog(embed);
       console.log(`Type was loot`);
       const verifiedCompletions: Completion[] | false =
         checkDinkLoot(parsedData);

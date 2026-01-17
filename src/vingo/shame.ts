@@ -3,6 +3,8 @@ import { Player } from "@/types/player.ts";
 import { getPlayerInfo } from "./players.ts";
 import { streamUpload } from "@/services/aws/s3.js";
 import { addShame } from "./mvc/vingo.ts";
+import { deathEmbed } from "../bot/embeds/vingo/logs.js";
+import { sendLog } from "../bot/broadcasts/sendLog.js";
 
 export const checkShame = async (
   data: Dink,
@@ -24,6 +26,8 @@ export const checkShame = async (
       killer: data.extra?.killerName || null,
       url,
     });
+    const embed: any = deathEmbed(data, url);
+    await sendLog(embed);
     // since type was death, add them to "shame" table, save playerName, image, and what killed them (if included)
   } catch (error) {
     throw error;

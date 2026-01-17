@@ -18,32 +18,11 @@ const REQUIRED_COL_COUNT: number[] = Array(GRID_SIZE).fill(0);
 const POINT_VALUES: number[] = [1, 2, 3, 5, 8];
 
 // --------------------- INITIAL ------------------------
-export const createTeamStates = (): void => {
+export const createTeamStates = (numberOfTeams: number): void => {
   try {
-    // SHOULD NOT MATTER ANYMORE, IF IT DOESNT EXIST IT CREATES WHEN CHECKING
-    // Ensure we have team placeholders when no completions are cached
-    // if (completionsMap.size === 0) {
-    //   for (let t = 1; t <= 3; t++) {
-    //     const newCompletion = new Map<number, SimpleCompletion[]>();
-    //     const exmapleCompletionData: SimpleCompletion[] = [
-    //       {
-    //         rsn: "Testuser",
-    //         item: "Test Item",
-    //         url: "https://cabbage-bounty.s3.us-east-2.amazonaws.com/shame/GIMP+Yzero1768659844812",
-    //       },
-    //     ];
-    //     // random number is the tile id
-    //     newCompletion.set(
-    //       Math.floor(Math.random() * 10),
-    //       exmapleCompletionData,
-    //     );
-    //     completionsMap.set(t, newCompletion);
-    //   }
-    // }
-
-    // Reset any existing teamStates so repeated calls don't duplicate entries
+    // Fill with three temp teamstates
     teamStates.length = 0;
-    for (const keys of completionsMap.keys()) {
+    for (let t = 0; t <= numberOfTeams - 1; t++) {
       const teamState: Team = {
         tileCounts: new Map(),
         completedTiles: new Set(),
@@ -55,6 +34,23 @@ export const createTeamStates = (): void => {
       };
       teamStates.push(teamState);
     }
+    // if (completionsMap.size === 0) {
+    // } else {
+    //   // Reset any existing teamStates so repeated calls don't duplicate entries
+    //   for (const keys of completionsMap.keys()) {
+    //     const teamState: Team = {
+    //       tileCounts: new Map(),
+    //       completedTiles: new Set(),
+    //       rowCounts: Array(10).fill(0),
+    //       colCounts: Array(10).fill(0),
+    //       completedRows: new Set(),
+    //       completedCols: new Set(),
+    //       tilePoints: 0,
+    //     };
+    //     teamStates.push(teamState);
+    //   }
+    // }
+
     // Create board req map for number of required tile completions for each tile AND array for row/col totals
     const boardRequirements: Map<number, number> = new Map();
 
@@ -68,7 +64,7 @@ export const createTeamStates = (): void => {
 
     for (const [teamNumber, teamCompletions] of completionsMap) {
       updateTeamStates(
-        teamStates[teamNumber - 1],
+        teamStates[teamNumber],
         teamCompletions,
         boardRequirements,
       );
@@ -127,7 +123,7 @@ const updateTeamStates = (
 // Incremental completion computations, have state as a global object created at server start or during refresh cache discord command
 export const addCompletionToTeamState = (completedTile: Completion) => {
   try {
-    const teamState = teamStates[completedTile.team - 1];
+    const teamState = teamStates[completedTile.team];
     if (teamState.completedTiles.has(completedTile.tile_id)) {
       console.log(
         `addCompletionToTeamState: Tile completion was sent to teamstate but not needed`,

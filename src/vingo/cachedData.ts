@@ -2,7 +2,7 @@
 import { Tile } from "@/types/tile.js";
 import { cacheBoard } from "./board.js";
 import { cacheCompletions } from "./completions.ts";
-import { cachePlayers } from "./players.ts";
+import { cachePlayers, getNumberOfTeams } from "./players.ts";
 import { Player } from "@/types/player.js";
 import { SimpleCompletion } from "@/types/completion.ts";
 import { Team } from "@/types/teams.ts";
@@ -16,8 +16,9 @@ export const refreshAllData = async (): Promise<void> => {
   try {
     await cacheBoard();
     await cachePlayers();
+    const teamNumber: number = getNumberOfTeams();
     await cacheCompletions();
-    createTeamStates();
+    createTeamStates(teamNumber);
     // computePoints();
     console.log("Successfully refreshed data");
     // console.log(`Board Map:`);
@@ -28,6 +29,8 @@ export const refreshAllData = async (): Promise<void> => {
     console.log(completionsMap);
     console.log(`Team points: `);
     console.log(teamPoints);
+    // console.log(`Team States:`);
+    // console.log(teamStates);
   } catch (e) {
     console.log(e);
     throw e;

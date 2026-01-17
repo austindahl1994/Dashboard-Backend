@@ -132,3 +132,18 @@ export const getPlayerInfo = (
     throw error;
   }
 };
+
+export const getNumberOfTeams = (): number => {
+  try {
+    //iterate through playersMap to get all team numbers, add them to a set to get unique values
+    const teamSet: Set<number> = new Set();
+    for (const [_id, player] of playersMap) {
+      teamSet.add(player.team);
+    }
+    // console.log(`Found number of teams: ${teamSet.size}`);
+    return teamSet.size;
+  } catch (error) {
+    console.log(`Error getting number of teams: ${error}`);
+    throw error;
+  }
+};

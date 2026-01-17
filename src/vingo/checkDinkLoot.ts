@@ -9,6 +9,7 @@ import { Completion } from "@/types/completion.ts";
 interface MatchedItem {
   item: string;
   tile: Tile;
+  tileId: number;
 }
 
 // Take in dink items, check each item/source against all items listed for the board, if any match, add them to a board array
@@ -17,7 +18,7 @@ export const checkDinkLoot = (data: Dink): Completion[] | false => {
   try {
     const boardArr: MatchedItem[] = checkBoard(
       data?.extra?.items?.map((item) => item.name) || [],
-      data?.extra?.source || ""
+      data?.extra?.source || "",
     );
     if (boardArr.length === 0) {
       console.log(`checkDinkLoot: No items match board`);
@@ -28,7 +29,8 @@ export const checkDinkLoot = (data: Dink): Completion[] | false => {
       const verified: Completion | false = checkCompletions(
         e.tile,
         data.playerName,
-        e.item
+        e.item,
+        e.tileId,
       );
       if (verified) {
         completions.push(verified);
@@ -43,20 +45,21 @@ export const checkDinkLoot = (data: Dink): Completion[] | false => {
 
 const checkBoard = (items: string[], source: string): MatchedItem[] => {
   try {
-    const tilesIterator = boardMap.values();
+    const tilesIterator = boardMap.entries();
     const matchedItems: MatchedItem[] = [];
-    for (const tile of tilesIterator) {
+    for (const [tileId, tile] of tilesIterator) {
       for (const item of items) {
         if (
           tile.items.includes(item) &&
           (tile.source === source || tile.source.trim() === "")
         ) {
-          matchedItems.push({ item, tile });
+          matchedItems.push({ item, tile, tileId });
         }
       }
     }
     // If true, use tile_id with team to check and see if that team needs the item for completion
-    console.log(`checkBoard: items matching board: ${matchedItems}`);
+    const matchedItemsArr = matchedItems.map((mi) => mi.item).join(", ");
+    console.log(`checkBoard: items matching board: ${matchedItemsArr}`);
     return matchedItems;
   } catch (error) {
     console.error(`There was an error: ${error}`);
@@ -70,7 +73,8 @@ const checkBoard = (items: string[], source: string): MatchedItem[] => {
 const checkCompletions = (
   tile: Tile,
   rsn: string,
-  item: string
+  item: string,
+  tileId: number,
 ): Completion | false => {
   try {
     const player: Player | undefined = getPlayerInfo(rsn);
@@ -82,27 +86,27 @@ const checkCompletions = (
     const teamMap = completionsMap.get(team);
     if (!teamMap) {
       console.log(
-        `checkCompletions: No matching team for player: ${player} against team: ${team}`
+        `checkCompletions: No matching team for player: ${player} against team: ${team}`,
       );
       return false;
     }
-    const completionsForTile = teamMap.get(tile.id);
+    const completionsForTile = teamMap.get(tileId);
     if (!completionsForTile) {
       console.log(
-        `checkCompletions: No completions found for tile ID: ${tile.id} in team: ${team}`
+        `checkCompletions: No completions found for tile ID: ${tileId} in team: ${team}`,
       );
       return false;
     }
     console.log(
-      `checkCompletions: existing tile completions for team ${team}: ${completionsForTile.length} against necessary completions for tile: ${tile.quantity}`
+      `checkCompletions: existing tile completions for team ${team}: ${completionsForTile.length} against necessary completions for tile: ${tile.quantity}`,
     );
     if (completionsForTile.length < tile.quantity) {
-      const imageURL = `completions/team${team}/${tile.id}/${rsn
+      const imageURL = `completions/team${team}/${tileId}/${rsn
         .replace(/\s+/g, "_")
         .replace(/[^\w.-]/g, "")}.png`;
       return {
         team,
-        tile_id: tile.id,
+        tile_id: tileId,
         rsn,
         url: imageURL,
         item,

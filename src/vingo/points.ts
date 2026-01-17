@@ -20,6 +20,28 @@ const POINT_VALUES: number[] = [1, 2, 3, 5, 8];
 // --------------------- INITIAL ------------------------
 export const createTeamStates = (): void => {
   try {
+    // Ensure we have team placeholders when no completions are cached
+    if (completionsMap.size === 0) {
+      for (let t = 1; t <= 3; t++) {
+        const newCompletion = new Map<number, SimpleCompletion[]>();
+        const exmapleCompletionData: SimpleCompletion[] = [
+          {
+            rsn: "Testuser",
+            item: "Test Item",
+            url: "https://cabbage-bounty.s3.us-east-2.amazonaws.com/shame/GIMP+Yzero1768659844812",
+          },
+        ];
+        // random number is the tile id
+        newCompletion.set(
+          Math.floor(Math.random() * 10),
+          exmapleCompletionData,
+        );
+        completionsMap.set(t, newCompletion);
+      }
+    }
+
+    // Reset any existing teamStates so repeated calls don't duplicate entries
+    teamStates.length = 0;
     for (const keys of completionsMap.keys()) {
       const teamState: Team = {
         tileCounts: new Map(),
@@ -47,7 +69,7 @@ export const createTeamStates = (): void => {
       updateTeamStates(
         teamStates[teamNumber - 1],
         teamCompletions,
-        boardRequirements
+        boardRequirements,
       );
     }
   } catch (error) {
@@ -60,7 +82,7 @@ export const createTeamStates = (): void => {
 const updateTeamStates = (
   teamState: Team,
   teamCompletions: Map<number, SimpleCompletion[]>,
-  boardReqs: Map<number, number>
+  boardReqs: Map<number, number>,
 ): void => {
   try {
     // Updates tile points and completed tiles set
@@ -107,7 +129,7 @@ export const addCompletionToTeamState = (completedTile: Completion) => {
     const teamState = teamStates[completedTile.team - 1];
     if (teamState.completedTiles.has(completedTile.tile_id)) {
       console.log(
-        `addCompletionToTeamState: Tile completion was sent to teamstate but not needed`
+        `addCompletionToTeamState: Tile completion was sent to teamstate but not needed`,
       );
       return; // Tile already completed, no need to update
     }
@@ -117,7 +139,7 @@ export const addCompletionToTeamState = (completedTile: Completion) => {
 
     if (!tile)
       throw new Error(
-        `Tile with ID ${completedTile.tile_id} not found in boardMap`
+        `Tile with ID ${completedTile.tile_id} not found in boardMap`,
       );
 
     // Need to add the completion to the completedTiles set if now completed (completion count >= quantity)
@@ -131,7 +153,7 @@ export const addCompletionToTeamState = (completedTile: Completion) => {
     const completionCount = teamMap.get(completedTile.tile_id)?.length || 0;
     if (completionCount !== requiredQty) {
       console.log(
-        `Completion count does not equal required quantity, will not update team state`
+        `Completion count does not equal required quantity, will not update team state`,
       );
       return;
     }
@@ -142,7 +164,7 @@ export const addCompletionToTeamState = (completedTile: Completion) => {
     const tier = tile.tier;
     if (!tier)
       throw new Error(
-        `Tile tier not found for tile ID ${completedTile.tile_id}`
+        `Tile tier not found for tile ID ${completedTile.tile_id}`,
       );
 
     teamState.tilePoints += POINT_VALUES[tier - 1];
@@ -166,7 +188,7 @@ export const addCompletionToTeamState = (completedTile: Completion) => {
     calcFinalTeamPoints(teamState, completedTile.team);
   } catch (error) {
     console.log(
-      `addCompletionToTeamState: Error adding completion to team state: ${error}`
+      `addCompletionToTeamState: Error adding completion to team state: ${error}`,
     );
     throw error;
   }

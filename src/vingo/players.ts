@@ -24,7 +24,7 @@ const END_COLUMN = "G";
 export const cachePlayers = async (): Promise<void> => {
   try {
     const sheetsPlayers = await getVingoPlayers();
-    console.log(`Got data from sheets: `);
+    // console.log(`Got data from sheets: `);
     console.log(sheetsPlayers);
     formatPlayers(sheetsPlayers); //formats and caches player data
   } catch (e) {
@@ -62,7 +62,7 @@ export const updatePlayer = async (
   discord_username: string,
   discord_nickname: string,
   rsn: string,
-  donation: string
+  donation: string,
 ) => {
   try {
     let range: number;
@@ -71,7 +71,7 @@ export const updatePlayer = async (
       const player = playersMap.get(discord_id);
       if (!player)
         throw new Error(
-          `Could not find player data, even though discord id is cached`
+          `Could not find player data, even though discord id is cached`,
         );
       range = player.sheets_row;
       // player is not on sheets, add them in
@@ -110,7 +110,7 @@ export const getAllRSNs = (): string[] => {
 export const getPlayerInfo = (
   rsn: string,
   id?: string,
-  name?: string
+  name?: string,
 ): Player | undefined => {
   try {
     if (id) {

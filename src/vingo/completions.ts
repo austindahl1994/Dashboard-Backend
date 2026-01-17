@@ -1,6 +1,6 @@
 import { Completion, SimpleCompletion } from "@/types/completion.js";
 import { completionsMap } from "./cachedData.ts";
-import { addCompletion, getCompletions } from "./mvc/vingo.ts";
+import { getCompletions } from "./mvc/vingo.ts";
 // Completions map = ([team number, team Map()])
 // team map = <tile_id, array of Completions[]>
 
@@ -59,7 +59,7 @@ export const updateCompletions = async (data: Completion): Promise<void> => {
     const teamMap = completionsMap.get(team);
     if (!teamMap || !teamMap.has(tile_id)) {
       throw new Error(
-        `There is either no team: ${team} cached or no tile_id: ${tile_id} for that team cached!`
+        `There is either no team: ${team} cached or no tile_id: ${tile_id} for that team cached!`,
       );
     }
     teamMap

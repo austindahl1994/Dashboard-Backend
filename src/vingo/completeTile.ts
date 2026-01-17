@@ -6,16 +6,17 @@ import { updateCompletions } from "./completions.ts";
 export const completeTile = async (
   completion: Completion,
   imageBuffer: Buffer,
-  mimetype: string
+  mimetype: string,
 ): Promise<void> => {
   try {
-    await streamUpload(completion.url, imageBuffer, mimetype);
+    const safePlayerName = encodeURIComponent(completion.rsn);
+    await streamUpload(safePlayerName, imageBuffer, mimetype);
     console.log(
-      `Successfully uploaded completion image to S3 at ${completion.url}`
+      `Successfully uploaded completion image to S3 at ${completion.url}`,
     );
     const insertId = await addCompletion(completion);
     console.log(
-      `Successfully updated completion database with new tile completion, insertId: ${insertId}`
+      `Successfully updated completion database with new tile completion, insertId: ${insertId}`,
     );
     updateCompletions(completion);
     console.log(`Successfully updated cached completions map`);
@@ -25,7 +26,7 @@ export const completeTile = async (
     // Send SSE event to client side
   } catch (error) {
     console.error(
-      `completeTile: There was an error uploading completion: ${error}`
+      `completeTile: There was an error uploading completion: ${error}`,
     );
     throw error;
   }

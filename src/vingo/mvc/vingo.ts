@@ -30,7 +30,7 @@ export const addCompletion = async (data: Completion): Promise<number> => {
 export const getCompletions = async (): Promise<Completion[]> => {
   try {
     const [rows] = (await pool.execute(
-      `SELECT team, tile_id, rsn, url, item, obtained_at FROM completions;`
+      `SELECT team, tile_id, rsn, url, item, obtained_at FROM completions;`,
     )) as [any[], any];
     return rows.map(
       (r) =>
@@ -41,7 +41,7 @@ export const getCompletions = async (): Promise<Completion[]> => {
           url: String(r.url),
           item: r.item,
           obtained_at: String(r.obtained_at),
-        } as Completion)
+        }) as Completion,
     );
   } catch (error) {
     throw error;
@@ -60,8 +60,8 @@ export const addShame = async (data: Shame) => {
       url,
     ]);
 
-    console.log(`Response for addShame query:`);
-    console.log(result);
+    // console.log(`Response for addShame query:`);
+    // console.log(result);
     if (result.affectedRows !== 1) {
       throw new Error(`Failed to add shame entry for player: ${playerName}`);
     }

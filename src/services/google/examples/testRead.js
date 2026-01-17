@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import { readFromMultipleSheets } from "./sheetService.js";
-import { checkSheets } from "../videogames/osrs/bounties/bountyUtilities.js";
+// import { checkSheets } from "../videogames/osrs/bounties/bountyUtilities.js";
 
 export const testRead = async () => {
   const sheetsToRead = ["easy", "medium", "hard", "elite", "master"];
@@ -26,7 +26,7 @@ export const testRead = async () => {
     //   console.log(values);
     // });
 
-    checkSheets(allSheetData);
+    // checkSheets(allSheetData);
     return true;
   } catch (error) {
     console.error("Error reading from sheets:", error);

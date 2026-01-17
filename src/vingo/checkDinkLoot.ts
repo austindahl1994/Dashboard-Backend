@@ -4,7 +4,7 @@ import { boardMap, completionsMap, playersMap } from "./cachedData.ts";
 import { Dink } from "@/types/dink.ts";
 import { getPlayerInfo } from "./players.ts";
 import { Player } from "@/types/player.ts";
-import { Completion } from "@/types/completion.ts";
+import { Completion, SimpleCompletion } from "@/types/completion.ts";
 
 interface MatchedItem {
   item: string;
@@ -83,27 +83,36 @@ const checkCompletions = (
       return false;
     }
     const team = player.team;
-    const teamMap = completionsMap.get(team);
-    if (!teamMap) {
+    let teamMap = completionsMap.get(team);
+
+    // Check if there is a outer team map that exists
+    if (!teamMap || teamMap === undefined) {
       console.log(
-        `checkCompletions: No matching team for player: ${player} against team: ${team}`,
+        `checkCompletions: No matching team for player: ${player.rsn} against team: ${team}`,
       );
-      return false;
+      console.log(`Creating team: ${team} in completionsMap...`);
+      teamMap = new Map<number, SimpleCompletion[]>();
+      completionsMap.set(team, teamMap);
     }
-    const completionsForTile = teamMap.get(tileId);
+    let completionsForTile = teamMap.get(tileId);
+
+    // check if there is an inner tile array that exists
     if (!completionsForTile) {
       console.log(
         `checkCompletions: No completions found for tile ID: ${tileId} in team: ${team}`,
       );
-      return false;
+      console.log(
+        `Creating tile for id: ${tileId} inside the team ${team} completionsMap...`,
+      );
+      completionsForTile = [];
+      teamMap.set(tileId, completionsForTile);
     }
     console.log(
       `checkCompletions: existing tile completions for team ${team}: ${completionsForTile.length} against necessary completions for tile: ${tile.quantity}`,
     );
     if (completionsForTile.length < tile.quantity) {
-      const imageURL = `completions/team${team}/${tileId}/${rsn
-        .replace(/\s+/g, "_")
-        .replace(/[^\w.-]/g, "")}.png`;
+      const safePlayerName = encodeURIComponent(rsn);
+      const imageURL = `completions/team${team}/${tileId}/${safePlayerName}`;
       return {
         team,
         tile_id: tileId,

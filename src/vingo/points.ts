@@ -20,25 +20,26 @@ const POINT_VALUES: number[] = [1, 2, 3, 5, 8];
 // --------------------- INITIAL ------------------------
 export const createTeamStates = (): void => {
   try {
+    // SHOULD NOT MATTER ANYMORE, IF IT DOESNT EXIST IT CREATES WHEN CHECKING
     // Ensure we have team placeholders when no completions are cached
-    if (completionsMap.size === 0) {
-      for (let t = 1; t <= 3; t++) {
-        const newCompletion = new Map<number, SimpleCompletion[]>();
-        const exmapleCompletionData: SimpleCompletion[] = [
-          {
-            rsn: "Testuser",
-            item: "Test Item",
-            url: "https://cabbage-bounty.s3.us-east-2.amazonaws.com/shame/GIMP+Yzero1768659844812",
-          },
-        ];
-        // random number is the tile id
-        newCompletion.set(
-          Math.floor(Math.random() * 10),
-          exmapleCompletionData,
-        );
-        completionsMap.set(t, newCompletion);
-      }
-    }
+    // if (completionsMap.size === 0) {
+    //   for (let t = 1; t <= 3; t++) {
+    //     const newCompletion = new Map<number, SimpleCompletion[]>();
+    //     const exmapleCompletionData: SimpleCompletion[] = [
+    //       {
+    //         rsn: "Testuser",
+    //         item: "Test Item",
+    //         url: "https://cabbage-bounty.s3.us-east-2.amazonaws.com/shame/GIMP+Yzero1768659844812",
+    //       },
+    //     ];
+    //     // random number is the tile id
+    //     newCompletion.set(
+    //       Math.floor(Math.random() * 10),
+    //       exmapleCompletionData,
+    //     );
+    //     completionsMap.set(t, newCompletion);
+    //   }
+    // }
 
     // Reset any existing teamStates so repeated calls don't duplicate entries
     teamStates.length = 0;

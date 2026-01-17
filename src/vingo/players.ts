@@ -25,7 +25,7 @@ export const cachePlayers = async (): Promise<void> => {
   try {
     const sheetsPlayers = await getVingoPlayers();
     // console.log(`Got data from sheets: `);
-    console.log(sheetsPlayers);
+    // console.log(sheetsPlayers);
     formatPlayers(sheetsPlayers); //formats and caches player data
   } catch (e) {
     console.log(e);

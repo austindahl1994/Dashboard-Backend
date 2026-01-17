@@ -9,7 +9,7 @@ import { sendLog } from "../bot/broadcasts/sendLog.js";
 export const checkShame = async (
   data: Dink,
   image: Buffer,
-  mimetype: string
+  mimetype: string,
 ) => {
   try {
     if (data.type.toLocaleLowerCase() !== "death") return;
@@ -18,7 +18,8 @@ export const checkShame = async (
       console.log(`No player found on teams with rsn: ${data.playerName}`);
       return;
     }
-    const key: string = "shame/" + data.playerName + Date.now();
+    const key: string =
+      "shame/" + data.playerName.replace(" ", "+") + Date.now();
     const url = await streamUpload(key, image, mimetype);
     await addShame({
       playerName: data.playerName,

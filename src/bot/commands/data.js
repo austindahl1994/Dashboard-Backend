@@ -19,9 +19,11 @@ export default {
         flags: MessageFlags.Ephemeral,
       });
     } catch (error) {
-      console.log(`There was an error getting passcode: ${error}`);
+      console.log(`There was an error getting player data: ${error}`);
       await interaction.reply({
-        content: "Error creating passcode, please reach out to Kirk.",
+        content:
+          "Error getting player data, please reach out to Dubz, error of: " +
+          error,
         flags: MessageFlags.Ephemeral,
       });
     }

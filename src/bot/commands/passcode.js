@@ -12,14 +12,14 @@ export default {
     .setName("passcode")
     .setDescription("Gets player passcode for website")
     .addStringOption((option) =>
-      option.setName("rsn").setDescription("RSN").setRequired(true)
+      option.setName("rsn").setDescription("RSN").setRequired(true),
     ),
   async execute(interaction) {
     try {
       const discord_id = interaction.user.id;
       if (!playersMap.has(discord_id)) {
         throw new Error(
-          `Could not create passcode, discord ID ${discord_id} is not on the list of players`
+          `Could not create passcode, discord ID ${discord_id} is not on the list of players`,
         );
       }
       const player = playersMap.get(discord_id);
@@ -28,12 +28,12 @@ export default {
       }
       if (player.rsn !== interaction.options.getString("rsn")) {
         throw new Error(
-          `Your RSN does not match what is on sheets. Make sure it's the *EXACTLY SAME* or check with a mod`
+          `Your RSN does not match what is on sheets. Make sure it's the *EXACTLY SAME* or check with a mod`,
         );
       }
       if (!player.team && player.team !== 0) {
         throw new Error(
-          `You have not been assigned a team yet, check with a mod if you should be`
+          `You have not been assigned a team yet, check with a mod if you should be`,
         );
       }
       const passcode = createPlayerToken(player.rsn, player.team, discord_id);
@@ -51,7 +51,9 @@ export default {
     } catch (error) {
       console.log(`There was an error getting passcode: ${error}`);
       await interaction.reply({
-        content: "Error creating passcode, please reach out to Kirk.",
+        content:
+          "Error creating passcode, please make sure your RSN entered is **EXACTLY** the same as your in-game name. If it is, please reach out to an Event Moderator. Server error: " +
+          error,
         flags: MessageFlags.Ephemeral,
       });
     }

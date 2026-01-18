@@ -112,7 +112,7 @@ const checkCompletions = (
     );
     if (completionsForTile.length < tile.quantity) {
       const safePlayerName = encodeURIComponent(rsn);
-      const imageURL = `completions/team${team}/${tileId}/${safePlayerName}`;
+      const imageURL = `completions/${team}/${tileId}/${safePlayerName}-${Date.now()}`;
       return {
         team,
         tile_id: tileId,

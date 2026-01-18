@@ -9,16 +9,13 @@ export const completeTile = async (
   mimetype: string,
 ): Promise<void> => {
   try {
-    const safePlayerName = encodeURIComponent(completion.rsn);
-    await streamUpload(safePlayerName, imageBuffer, mimetype);
-    console.log(
-      `Successfully uploaded completion image to S3 at ${completion.url}`,
-    );
-    const insertId = await addCompletion(completion);
+    const awsURL = await streamUpload(completion.url, imageBuffer, mimetype);
+    console.log(`Successfully uploaded completion image to S3 at ${awsURL}`);
+    const insertId = await addCompletion({ ...completion, url: awsURL });
     console.log(
       `Successfully updated completion database with new tile completion, insertId: ${insertId}`,
     );
-    updateCompletions(completion);
+    updateCompletions({ ...completion, url: awsURL });
     console.log(`Successfully updated cached completions map`);
     // Final 3 steps:
     // Update cached scores

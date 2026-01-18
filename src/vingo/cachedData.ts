@@ -26,8 +26,16 @@ export const refreshAllData = async (): Promise<void> => {
     console.log("Players Map:");
     console.log(playersMap);
     console.log("Completions map:");
-    console.log(completionsMap);
-    console.log(completionsMap.values());
+    for (const [team, innerMap] of completionsMap) {
+      console.log(`Team ${team}:`);
+      if (innerMap && innerMap.size > 0) {
+        for (const [tileId, completions] of innerMap) {
+          console.log(`  Tile ${tileId}:`, completions);
+        }
+      } else {
+        console.log("  (no completions cached)");
+      }
+    }
     console.log(`Team points: `);
     console.log(teamPoints);
     // console.log(`Team States:`);

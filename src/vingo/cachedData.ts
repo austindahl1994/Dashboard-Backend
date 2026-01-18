@@ -27,6 +27,7 @@ export const refreshAllData = async (): Promise<void> => {
     console.log(playersMap);
     console.log("Completions map:");
     console.log(completionsMap);
+    console.log(completionsMap.values());
     console.log(`Team points: `);
     console.log(teamPoints);
     // console.log(`Team States:`);

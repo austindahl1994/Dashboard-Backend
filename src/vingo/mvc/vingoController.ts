@@ -14,7 +14,7 @@ import { sendLog } from "../../bot/broadcasts/sendLog.js";
 // Allow players to upload images from web page as well? Rename to dinkUpload if that's the case
 export const dinkUpload = async (
   req: Request & { file?: MulterFile },
-  res: Response
+  res: Response,
 ) => {
   const file = req.file;
   let image: Buffer | undefined | null;
@@ -46,6 +46,9 @@ export const dinkUpload = async (
       image = null;
       mimetype = "";
     } else if (parsedData.type.toLowerCase() === "loot") {
+      if (parsedData.extra?.source?.toLowerCase() === "loot chest") {
+        throw new Error("PvP Loot chest not allowed");
+      }
       const embed = lootEmbed(parsedData);
       await sendLog(embed);
       console.log(`Type was loot`);
@@ -61,7 +64,7 @@ export const dinkUpload = async (
       }
     } else {
       console.log(
-        `Dink Type: ${parsedData.type} from player: ${parsedData.playerName} is not loot/death type`
+        `Dink Type: ${parsedData.type} from player: ${parsedData.playerName} is not loot/death type`,
       );
       throw new Error(`Invalid Dink type`);
     }
@@ -102,7 +105,7 @@ export const team = async (req: Request, res: Response) => {
     // Check to make sure player is on team from cached players
     // Get all board completion data for that team
     console.log(
-      `Called team with data: RSN: ${rsn}, Team: ${team} id: ${discord_id}`
+      `Called team with data: RSN: ${rsn}, Team: ${team} id: ${discord_id}`,
     );
     const board = await getBoard();
     return res.status(200).json({ team: team });

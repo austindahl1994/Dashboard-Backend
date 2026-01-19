@@ -10,7 +10,7 @@ interface Items {
 interface Extra {
   items?: Items[];
   source?: string;
-  isPvP?: string;
+  isPvp?: string;
   killerName?: string;
 }
 

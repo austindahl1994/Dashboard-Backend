@@ -24,7 +24,7 @@ export const checkShame = async (
     const url = await streamUpload(key, image, mimetype);
     await addShame({
       playerName: data.playerName,
-      pvp: data.extra?.isPvP ? 1 : 0,
+      pvp: data.extra?.isPvp ? 1 : 0,
       killer: data.extra?.killerName || null,
       url,
     });

@@ -17,8 +17,8 @@ interface MatchedItem {
 export const checkDinkLoot = (data: Dink): Completion[] | false => {
   try {
     const boardArr: MatchedItem[] = checkBoard(
-      data?.extra?.items?.map((item) => item.name) || [],
-      data?.extra?.source || "",
+      data?.extra?.items?.map((item) => item.name.toLowerCase().trim()) || [],
+      data?.extra?.source?.toLowerCase().trim() || "",
     );
     if (boardArr.length === 0) {
       console.log(`checkDinkLoot: No items match board`);
@@ -51,7 +51,8 @@ const checkBoard = (items: string[], source: string): MatchedItem[] => {
       for (const item of items) {
         if (
           tile.items.includes(item) &&
-          (tile.source === source || tile.source.trim() === "")
+          (tile.source.toLowerCase().trim() === source.toLowerCase().trim() ||
+            tile.source.trim() === "")
         ) {
           matchedItems.push({ item, tile, tileId });
         }

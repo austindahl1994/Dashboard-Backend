@@ -68,7 +68,7 @@ const updateCachedBoard = (boardData: string[][]) => {
           case "items":
             tileObj[header] =
               value != null && value !== ""
-                ? value.split(",").map((s) => s.trim())
+                ? value.split(",").map((s) => s.toLowerCase().trim())
                 : [];
             break;
           case "source":

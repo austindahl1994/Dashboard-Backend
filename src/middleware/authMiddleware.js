@@ -69,6 +69,13 @@ const playerAuthJWT = (req, res, next) => {
       req.body.rsn = user.rsn;
       req.body.team = user.team;
       req.body.discord_id = user.discord_id;
+      let role;
+      if (process.env.ALLOWED_USER_IDS?.includes(user.discord_id)) {
+        role = "admin";
+      } else {
+        role = "player";
+      }
+      req.body.role = role;
       // console.log(
       //   `Verified player data: RSN:${user.rsn}, TEAM:${user.team}, DISCORD:${user.discord_id}`
       // );

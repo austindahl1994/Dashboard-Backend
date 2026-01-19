@@ -100,15 +100,14 @@ export const board = async (req: Request, res: Response) => {
 };
 
 export const team = async (req: Request, res: Response) => {
-  const { rsn, team, discord_id } = req.body;
+  const { rsn, team, discord_id, role } = req.body;
   try {
     // Check to make sure player is on team from cached players
-    // Get all board completion data for that team
+    // Send RSN, and role back as well
     console.log(
-      `Called team with data: RSN: ${rsn}, Team: ${team} id: ${discord_id}`,
+      `Called team with data: RSN: ${rsn}, Team: ${team} id: ${discord_id}, role: ${role}`,
     );
-    const board = await getBoard();
-    return res.status(200).json({ team: team });
+    return res.status(200).json({ team: team, rsn: rsn, role: role });
   } catch (e) {
     return res
       .status(400)

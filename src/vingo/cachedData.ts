@@ -62,7 +62,7 @@ export const completionsMap = new Map<
 >();
 
 // Points are listed by team number index-1 Ex. [28, 78, 23]
-export const teamPoints: number[] = [0, 0, 0];
+export const teamPoints: Map<number, number> = new Map<number, number>();
 
 // cached deaths or just use a call from frontend to get all deaths from shame table?
 // const deaths = new Map<string, number>();

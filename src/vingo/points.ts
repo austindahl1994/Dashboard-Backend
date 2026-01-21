@@ -24,6 +24,7 @@ export const createTeamStates = (numberOfTeams: number): void => {
     teamStates.length = 0;
     for (let t = 0; t <= numberOfTeams - 1; t++) {
       const teamState: Team = {
+        teamNumber: t + 1,
         tileCounts: new Map(),
         completedTiles: new Set(),
         rowCounts: Array(10).fill(0),
@@ -62,12 +63,17 @@ export const createTeamStates = (numberOfTeams: number): void => {
       REQUIRED_COL_COUNT[colCalc] += tile.quantity;
     }
 
+    console.log(`Updating team states now`);
     for (const [teamNumber, teamCompletions] of completionsMap) {
       updateTeamStates(
         teamStates[teamNumber],
         teamCompletions,
         boardRequirements,
       );
+    }
+    // Need to calc initial points after creating team states
+    for (const state of teamStates.values()) {
+      calcFinalTeamPoints(state);
     }
   } catch (error) {
     console.log(`calcInitialPoints: Error computing initial points: ${error}`);
@@ -85,8 +91,14 @@ const updateTeamStates = (
     // Updates tile points and completed tiles set
     for (const [id, completionArr] of teamCompletions) {
       const requiredQty = boardReqs.get(id);
+      console.log(
+        `For tile id: ${id}, number of completions: ${completionArr.length} found, required quantity: ${requiredQty}`,
+      );
       if (requiredQty && completionArr.length >= requiredQty) {
         const tile = boardMap.get(id);
+        console.log(
+          `Tile found and need to update teamState for tile id: ${id}`,
+        );
         if (tile) {
           const tilePoints = POINT_VALUES[tile.tier - 1];
           teamState.tilePoints += tilePoints;
@@ -182,7 +194,7 @@ export const addCompletionToTeamState = (completedTile: Completion) => {
     }
 
     // Finally re-calc final team points
-    calcFinalTeamPoints(teamState, completedTile.team);
+    calcFinalTeamPoints(teamState);
   } catch (error) {
     console.log(
       `addCompletionToTeamState: Error adding completion to team state: ${error}`,
@@ -191,11 +203,12 @@ export const addCompletionToTeamState = (completedTile: Completion) => {
   }
 };
 
-const calcFinalTeamPoints = (teamState: Team, team: number): void => {
+const calcFinalTeamPoints = (teamState: Team): void => {
+  console.log(`Passed in team number: ${teamState.teamNumber}`);
   let totalPoints = teamState.tilePoints;
   totalPoints += teamState.completedRows.size * ROW_POINTS;
   totalPoints += teamState.completedCols.size * COL_POINTS;
-  teamPoints[team - 1] = totalPoints;
+  teamPoints.set(teamState.teamNumber, totalPoints);
 };
 
 // --------------------- HIGHSCORES ------------------------

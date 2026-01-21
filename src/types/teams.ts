@@ -1,4 +1,5 @@
 export interface Team {
+  teamNumber: number;
   tileCounts: Map<number, number>;
   completedTiles: Set<number>;
   rowCounts: Array<number>;

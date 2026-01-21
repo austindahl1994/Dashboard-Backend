@@ -24,10 +24,10 @@ client.commands = new Collection();
 client.cooldowns = new Collection();
 
 export async function startBot() {
-  // Load commands
   if (!testEnv) {
-    console.log("⚠️  Starting bot in prod mode");
-    // refreshAllData();
+    console.log(
+      "⚠️  Starting bot in prod mode at time: " + new Date().toLocaleString(),
+    );
   }
   const commandsPath = path.join(__dirname, "commands");
   const commandFiles = fs
@@ -44,7 +44,7 @@ export async function startBot() {
       client.commands.set(command.data.name, command);
     } else {
       console.warn(
-        `[WARNING] The command at ${filePath} is missing "data" or "execute".`
+        `[WARNING] The command at ${filePath} is missing "data" or "execute".`,
       );
     }
   }

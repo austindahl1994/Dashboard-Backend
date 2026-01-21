@@ -1,12 +1,12 @@
 import { readSingleSheet, writeSingleSheet } from "./sheets.js";
 const END_COLUMN = "G";
-const END_ROW_COUNT = 5;
+const END_ROW_COUNT = 100;
 
 // sheets GET request for vingo players
 export const getVingoPlayers = async (): Promise<Array<Array<string>>> => {
   try {
     const data = await readSingleSheet(
-      `players!A2:${END_COLUMN}${END_ROW_COUNT}`
+      `players!A2:${END_COLUMN}${END_ROW_COUNT}`,
     );
     return data;
   } catch (error) {
@@ -18,7 +18,7 @@ export const getVingoPlayers = async (): Promise<Array<Array<string>>> => {
 // sheets POST request to update vingo player
 export const updateVingoPlayer = async (
   row: number,
-  data: string[]
+  data: string[],
 ): Promise<void> => {
   try {
     await writeSingleSheet(`players!A${row}:${END_ROW_COUNT}${row}`, [data]);

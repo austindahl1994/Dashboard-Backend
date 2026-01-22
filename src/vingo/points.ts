@@ -89,27 +89,27 @@ const updateTeamStates = (
 ): void => {
   try {
     // Updates tile points and completed tiles set
-    console.log(`Team number for update: ${teamState.teamNumber}`);
+    // console.log(`Team number for update: ${teamState.teamNumber}`);
     for (const [id, completionArr] of teamCompletions) {
       const requiredQty = boardReqs.get(id);
-      console.log(
-        `For tile id: ${id}, number of completions: ${completionArr.length} found, required quantity: ${requiredQty}`,
-      );
+      // console.log(
+      //   `For tile id: ${id}, number of completions: ${completionArr.length} found, required quantity: ${requiredQty}`,
+      // );
       if (requiredQty && completionArr.length >= requiredQty) {
         const tile = boardMap.get(id);
-        console.log(
-          `Tile found and need to update teamState for tile id: ${id} since completions meet/exceed required quantity`,
-        );
+        // console.log(
+        //   `Tile found and need to update teamState for tile id: ${id} since completions meet/exceed required quantity`,
+        // );
         if (tile) {
           const tilePoints = POINT_VALUES[tile.tier - 1];
-          console.log(
-            `Points that should be added to team: ${teamState.teamNumber} are: ${tilePoints}`,
-          );
+          // console.log(
+          //   `Points that should be added to team: ${teamState.teamNumber} are: ${tilePoints}`,
+          // );
           teamState.tilePoints += tilePoints;
           teamState.completedTiles.add(id);
-          console.log(
-            `After adding that tile to completed tiles, all completed tiles are:`,
-          );
+          // console.log(
+          //   `After adding that tile to completed tiles, all completed tiles are:`,
+          // );
           console.log(teamState.completedTiles);
         }
       }
@@ -212,7 +212,7 @@ export const addCompletionToTeamState = (completedTile: Completion) => {
 };
 
 const calcFinalTeamPoints = (teamState: Team): void => {
-  console.log(`Passed in team number: ${teamState.teamNumber}`);
+  // console.log(`Passed in team number: ${teamState.teamNumber}`);
   let totalPoints = teamState.tilePoints;
   totalPoints += teamState.completedRows.size * ROW_POINTS;
   totalPoints += teamState.completedCols.size * COL_POINTS;

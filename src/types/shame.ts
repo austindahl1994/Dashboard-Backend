@@ -3,4 +3,5 @@ export interface Shame {
   pvp: 0 | 1;
   killer: string | null;
   url: string;
+  team: number;
 }

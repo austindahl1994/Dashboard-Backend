@@ -27,6 +27,7 @@ export const checkShame = async (
       pvp: data.extra?.isPvp ? 1 : 0,
       killer: data.extra?.killerName || null,
       url,
+      team: player.team,
     });
     const embed: any = deathEmbed(data, url);
     await sendLog(embed);

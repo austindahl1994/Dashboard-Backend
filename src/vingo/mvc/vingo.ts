@@ -26,8 +26,8 @@ export const addCompletion = async (data: Completion): Promise<number> => {
   }
 };
 
-// Currently gets all completions from database
-export const getCompletions = async (): Promise<Completion[]> => {
+// Currently gets all completions from database used at server start and on refresh
+export const getAllCompletions = async (): Promise<Completion[]> => {
   try {
     const [rows] = (await pool.execute(
       `SELECT team, tile_id, rsn, url, item, obtained_at FROM completions;`,
@@ -48,11 +48,34 @@ export const getCompletions = async (): Promise<Completion[]> => {
   }
 };
 
+export const getCompletionsByTeam = async (
+  team: number,
+): Promise<Completion[]> => {
+  try {
+    const [rows] = (await pool.execute(
+      `SELECT team, tile_id, rsn, url, item, obtained_at FROM completions WHERE team = ?;`,
+      [team],
+    )) as [any[], any];
+    return rows.map(
+      (r) =>
+        ({
+          team: Number(r.team),
+          tile_id: Number(r.tile_id),
+          rsn: String(r.rsn),
+          url: String(r.url),
+          item: r.item,
+          obtained_at: String(r.obtained_at),
+        }) as Completion,
+    );
+  } catch (error) {
+    throw error;
+  }
+};
 // id (auto increment): number, playerName: string, pvp: bool, killer: string, created_at: timestamp
 export const addShame = async (data: Shame) => {
   try {
-    const { playerName, pvp, killer, url } = data;
-    const query = `INSERT INTO shame (playerName, pvp, killer, url) VALUES (?, ?, ?, ?);`;
+    const { playerName, pvp, killer, url, team } = data;
+    const query = `INSERT INTO shame (playerName, pvp, killer, url, team) VALUES (?, ?, ?, ?, ?);`;
     const [result] = await pool.execute<ResultSetHeader>(query, [
       playerName,
       pvp,
@@ -70,10 +93,10 @@ export const addShame = async (data: Shame) => {
   }
 };
 
-export const getShame = async (): Promise<Shame[]> => {
+export const getShameByTeam = async (team: number): Promise<Shame[]> => {
   try {
-    const query = "SELECT * FROM shame;";
-    const [rows] = await pool.execute<RowDataPacket[]>(query);
+    const query = "SELECT * FROM shame WHERE team = ?;";
+    const [rows] = await pool.execute<RowDataPacket[]>(query, [team]);
     return rows as Shame[];
   } catch (error) {
     throw error;

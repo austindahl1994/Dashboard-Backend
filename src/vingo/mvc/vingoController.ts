@@ -9,6 +9,7 @@ import { Completion, Dink } from "@/types/index.ts";
 import { completeTile } from "../completeTile.ts";
 import { lootEmbed } from "../../bot/embeds/vingo/logs.js";
 import { sendLog } from "../../bot/broadcasts/sendLog.js";
+import { getCompletionsByTeam, getShameByTeam } from "./vingo.ts";
 // CNTL + ALT + I Copilot
 
 // Allow players to upload images from web page as well? Rename to dinkUpload if that's the case
@@ -119,12 +120,29 @@ export const team = async (req: Request, res: Response) => {
 
 export const completions = async (req: Request, res: Response) => {
   try {
-    const { rsn, team, discord_id } = req.body;
+    const { team } = req.body;
+    const data = await getCompletionsByTeam(team);
+    // console.log(`Got completions for team: ${team}`);
+    // console.log(`Data returned: ${JSON.stringify(data)}`);
+    res.status(200).json(data);
   } catch (error) {
     console.log(`Error getting completions: ${error}`);
     return res
       .status(400)
       .json({ message: `Error getting completions: ${error}` });
+  }
+};
+
+export const shame = async (req: Request, res: Response) => {
+  try {
+    const { team } = req.body;
+    const data = await getShameByTeam(team);
+    // console.log(`Data returned:`);
+    // console.log(JSON.stringify(data));
+    res.status(200).json(data);
+  } catch (error) {
+    console.log(`Error getting shame: ${error}`);
+    return res.status(400).json({ message: `Error getting shame: ${error}` });
   }
 };
 

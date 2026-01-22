@@ -1,6 +1,6 @@
 import { Completion, SimpleCompletion } from "@/types/completion.js";
 import { completionsMap } from "./cachedData.ts";
-import { getCompletions } from "./mvc/vingo.ts";
+import { getAllCompletions } from "./mvc/vingo.ts";
 // Completions map = ([team number, team Map()])
 // team map = <tile_id, array of Completions[]>
 
@@ -10,7 +10,7 @@ import { getCompletions } from "./mvc/vingo.ts";
 // Run on refresh and server start
 export const cacheCompletions = async (): Promise<void> => {
   try {
-    const completionsData: Completion[] = await getCompletions();
+    const completionsData: Completion[] = await getAllCompletions();
     createCachedCompletions(completionsData);
   } catch (e) {
     console.log(e);

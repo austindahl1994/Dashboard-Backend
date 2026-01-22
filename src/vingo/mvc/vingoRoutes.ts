@@ -6,6 +6,7 @@ import {
   team,
   dinkUpload,
   shame,
+  highscores,
 } from "./vingoController.js";
 import { playerAuthJWT } from "../../middleware/authMiddleware.js";
 
@@ -21,6 +22,7 @@ router.get("/board", board);
 router.post("/team", playerAuthJWT, team);
 router.post("/completions", playerAuthJWT, completions);
 router.post("/shame", playerAuthJWT, shame);
+router.get("/highscores", highscores);
 // router.post("/event", event);
 // router.post("/broadcast", broadcast);
 

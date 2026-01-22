@@ -1,4 +1,4 @@
-import { EVENT_STARTED } from "../cachedData.js";
+import { EVENT_STARTED, teamPoints } from "../cachedData.js";
 import { Request, Response } from "express";
 import type { File as MulterFile } from "multer";
 import { displayTime } from "@/Utilities.js";
@@ -143,6 +143,16 @@ export const shame = async (req: Request, res: Response) => {
   } catch (error) {
     console.log(`Error getting shame: ${error}`);
     return res.status(400).json({ message: `Error getting shame: ${error}` });
+  }
+};
+
+export const highscores = async (req: Request, res: Response) => {
+  try {
+    return res.status(200).json(Object.fromEntries(teamPoints));
+  } catch (e) {
+    return res
+      .status(400)
+      .json({ message: `Error getting highscores data: ${e}` });
   }
 };
 

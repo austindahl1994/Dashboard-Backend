@@ -112,13 +112,12 @@ const checkCompletions = (
       `checkCompletions: existing tile completions for team ${team}: ${completionsForTile.length} against necessary completions for tile: ${tile.quantity}`,
     );
     if (completionsForTile.length < tile.quantity) {
-      const safePlayerName = encodeURIComponent(rsn);
-      const imageURL = `completions/${team}/${tileId}/${safePlayerName}-${Date.now()}`;
+      const imageKey = `completions/${team}/${tileId}/${player.sheets_row}-${Date.now()}.png`;
       return {
         team,
         tile_id: tileId,
         rsn,
-        url: imageURL,
+        url: imageKey,
         item,
         obtained_at: new Date().toISOString(),
       };

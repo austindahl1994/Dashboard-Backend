@@ -18,9 +18,7 @@ export const checkShame = async (
       console.log(`No player found on teams with rsn: ${data.playerName}`);
       return;
     }
-    const safePlayerName = encodeURIComponent(data.playerName);
-
-    const key = `shame/${safePlayerName}-${Date.now()}`;
+    const key = `shame/${player.sheets_row}-${Date.now()}.png`;
     const url = await streamUpload(key, image, mimetype);
     await addShame({
       playerName: data.playerName,

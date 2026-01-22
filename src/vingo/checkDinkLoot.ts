@@ -112,7 +112,8 @@ const checkCompletions = (
       `checkCompletions: existing tile completions for team ${team}: ${completionsForTile.length} against necessary completions for tile: ${tile.quantity}`,
     );
     if (completionsForTile.length < tile.quantity) {
-      const imageKey = `completions/${team}/${tileId}/${player.sheets_row}-${Date.now()}.png`;
+      const safeName = player.rsn.replace(/ /g, "_");
+      const imageKey = `completions/${team}/${tileId}/${safeName}-${Date.now()}.png`;
       return {
         team,
         tile_id: tileId,

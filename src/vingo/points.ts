@@ -21,10 +21,10 @@ const POINT_VALUES: number[] = [1, 2, 3, 5, 8];
 export const createTeamStates = (numberOfTeams: number): void => {
   try {
     // Fill with three temp teamstates
-    teamStates.length = 0;
-    for (let t = 0; t <= numberOfTeams - 1; t++) {
+    teamStates.clear();
+    for (let t = 1; t <= numberOfTeams; t++) {
       const teamState: Team = {
-        teamNumber: t + 1,
+        teamNumber: t,
         tileCounts: new Map(),
         completedTiles: new Set(),
         rowCounts: Array(10).fill(0),
@@ -33,7 +33,7 @@ export const createTeamStates = (numberOfTeams: number): void => {
         completedCols: new Set(),
         tilePoints: 0,
       };
-      teamStates.push(teamState);
+      teamStates.set(t, teamState);
     }
     // if (completionsMap.size === 0) {
     // } else {
@@ -66,7 +66,7 @@ export const createTeamStates = (numberOfTeams: number): void => {
     console.log(`Updating team states now`);
     for (const [teamNumber, teamCompletions] of completionsMap) {
       updateTeamStates(
-        teamStates[teamNumber],
+        teamStates.get(teamNumber)!,
         teamCompletions,
         boardRequirements,
       );
@@ -89,6 +89,7 @@ const updateTeamStates = (
 ): void => {
   try {
     // Updates tile points and completed tiles set
+    console.log(`Team number for update: ${teamState.teamNumber}`);
     for (const [id, completionArr] of teamCompletions) {
       const requiredQty = boardReqs.get(id);
       console.log(
@@ -97,12 +98,19 @@ const updateTeamStates = (
       if (requiredQty && completionArr.length >= requiredQty) {
         const tile = boardMap.get(id);
         console.log(
-          `Tile found and need to update teamState for tile id: ${id}`,
+          `Tile found and need to update teamState for tile id: ${id} since completions meet/exceed required quantity`,
         );
         if (tile) {
           const tilePoints = POINT_VALUES[tile.tier - 1];
+          console.log(
+            `Points that should be added to team: ${teamState.teamNumber} are: ${tilePoints}`,
+          );
           teamState.tilePoints += tilePoints;
           teamState.completedTiles.add(id);
+          console.log(
+            `After adding that tile to completed tiles, all completed tiles are:`,
+          );
+          console.log(teamState.completedTiles);
         }
       }
     }

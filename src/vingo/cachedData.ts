@@ -70,7 +70,7 @@ export const teamPoints: Map<number, number> = new Map<number, number>();
 // Top 5 players per team by points [[team1 top 5], [t2], [t3]]
 export const highscores: number[][] = [[], [], []];
 
-export const teamStates: Team[] = [];
+export const teamStates: Map<number, Team> = new Map<number, Team>();
 
 // Use if adding SSE
 // let clients: Client[] = [];

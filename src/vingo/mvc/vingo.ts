@@ -14,8 +14,8 @@ export const addCompletion = async (data: Completion): Promise<number> => {
       url,
       item,
     ]);
-    console.log(`Response for addCompletion query:`);
-    console.log(response);
+    // console.log(`Response for addCompletion query:`);
+    // console.log(response);
     if (response.affectedRows !== 1) {
       throw new Error(`Failed to add completion entry for player: ${rsn}`);
     }

@@ -16,6 +16,7 @@ export const getVingoPlayers = async (): Promise<Array<Array<string>>> => {
 };
 
 // sheets POST request to update vingo player
+//discord_id, username, nickname, rsn, team, paid, donation
 export const updateVingoPlayer = async (
   row: number,
   data: string[],

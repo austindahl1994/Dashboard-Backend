@@ -1,6 +1,7 @@
 import { SlashCommandBuilder, MessageFlags } from "discord.js";
 import { createPlayerToken } from "../../auth/jwtUtils.js";
-import { playersMap } from "../../vingo/cachedData.js";
+import { EVENT_STARTED, playersMap } from "../../vingo/cachedData.js";
+import { allowedUserIds } from "../discordUtilities.js";
 
 // Checks if player is part of cached players
 // Make player add a username for the passcode? This way it double checks we have the correct username for player from buyin
@@ -17,6 +18,12 @@ export default {
   async execute(interaction) {
     try {
       const discord_id = interaction.user.id;
+      if (!allowedUserIds.includes(discord_id) && !EVENT_STARTED) {
+        return interaction.reply({
+          content: "⛔ EVENT HASN'T STARTED YET!",
+          flags: MessageFlags.Ephemeral,
+        });
+      }
       if (!playersMap.has(discord_id)) {
         throw new Error(
           `Could not create passcode, discord ID ${discord_id} is not on the list of players`,

@@ -57,7 +57,7 @@ const formatPlayers = (sheetsPlayers: Array<string[]>) => {
 
 // [discord, nickname, discord_id, rsn, team, paid, donation]
 // Update single player for buy in to google sheets
-export const updatePlayer = async (
+export const updatePlayerBuyin = async (
   discord_id: string,
   discord_username: string,
   discord_nickname: string,
@@ -65,30 +65,33 @@ export const updatePlayer = async (
   donation: string,
 ) => {
   try {
-    let range: number;
-    // Check if player is already on sheets to update some value
-    if (playersMap.has(discord_id)) {
-      const player = playersMap.get(discord_id);
-      if (!player)
-        throw new Error(
-          `Could not find player data, even though discord id is cached`,
-        );
-      range = player.sheets_row;
-      // player is not on sheets, add them in
-    } else {
-      range = playersMap.size + 2;
+    // check if playersManp has discord_id
+    const player = playersMap.get(discord_id);
+    if (player) {
+      throw new Error(`Player with discord_id ${discord_id} already exists`);
     }
-
+    let range: number = playersMap.size + 2; // +2 for header and 0 index
     const dataToUpdate: string[] = [
+      discord_id,
       discord_username,
       discord_nickname,
-      discord_id,
       rsn,
       "0",
       "YES",
       donation,
     ];
     await updateVingoPlayer(range, dataToUpdate);
+    playersMap.set(discord_id, {
+      sheets_row: range,
+      username: discord_username,
+      nickname: discord_nickname,
+      rsn: rsn,
+      team: 0,
+      paid: true,
+      donation: Number(donation),
+    });
+    console.log(`List of players after change: `);
+    console.log(playersMap);
   } catch (e) {
     console.log(e);
     throw e;

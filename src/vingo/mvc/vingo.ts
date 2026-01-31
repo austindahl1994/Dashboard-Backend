@@ -81,6 +81,7 @@ export const addShame = async (data: Shame) => {
       pvp,
       killer,
       url,
+      team,
     ]);
 
     // console.log(`Response for addShame query:`);

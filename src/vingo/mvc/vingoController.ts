@@ -24,6 +24,9 @@ export const dinkUpload = async (
   displayTime();
   // AWAIT discord post from bot, showing what data was sent from server before anything else
   try {
+    // if (!EVENT_STARTED) {
+    //   throw new Error("Event has not started yet");
+    // }
     if (!file) {
       console.log(`No file sent with`);
       throw new Error(`No file sent with.`);
@@ -91,7 +94,7 @@ export const dinkUpload = async (
 
 export const board = async (req: Request, res: Response) => {
   try {
-    console.log(`Called get board`);
+    //console.log(`Called get board`);
     const board = await getBoard();
     console.log(`Board gotten`);
     res.json(board);

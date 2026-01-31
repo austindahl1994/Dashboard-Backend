@@ -9,6 +9,7 @@ import { Team } from "@/types/teams.ts";
 import { createTeamStates } from "./points.ts";
 // import { computePoints } from "./points.ts";
 import dotenv from "dotenv";
+import { createCachedShameCounts } from "./shame.ts";
 dotenv.config();
 
 // Update manually once event is going to start? Or could use discord command if need be
@@ -38,8 +39,9 @@ export const refreshAllData = async (): Promise<void> => {
     }
     console.log(`Team points: `);
     console.log(teamPoints);
-    // console.log(`Team States:`);
-    // console.log(teamStates);
+    console.log(`Team States:`);
+    console.log(teamStates);
+    await createCachedShameCounts();
   } catch (e) {
     console.log(e);
     throw e;
@@ -69,7 +71,7 @@ export const teamPoints: Map<number, number> = new Map<number, number>();
 
 // Top 5 players per team by points [[team1 top 5], [t2], [t3]]
 export const highscores: number[][] = [[], [], []];
-
+export const teamShameMap: Map<number, number> = new Map<number, number>();
 export const teamStates: Map<number, Team> = new Map<number, Team>();
 
 // Use if adding SSE

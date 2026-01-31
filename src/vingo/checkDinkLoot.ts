@@ -99,12 +99,12 @@ const checkCompletions = (
 
     // check if there is an inner tile array that exists
     if (!completionsForTile) {
-      console.log(
-        `checkCompletions: No completions found for tile ID: ${tileId} in team: ${team}`,
-      );
-      console.log(
-        `Creating tile for id: ${tileId} inside the team ${team} completionsMap...`,
-      );
+      // console.log(
+      //   `checkCompletions: No completions found for tile ID: ${tileId} in team: ${team}`,
+      // );
+      // console.log(
+      //   `Creating tile for id: ${tileId} inside the team ${team} completionsMap...`,
+      // );
       completionsForTile = [];
       teamMap.set(tileId, completionsForTile);
     }
@@ -114,13 +114,26 @@ const checkCompletions = (
     if (completionsForTile.length < tile.quantity) {
       const safeName = player.rsn.replace(/ /g, "_");
       const imageKey = `completions/${team}/${tileId}/${safeName}-${Date.now()}.png`;
+      const obtained_at = new Intl.DateTimeFormat("en-US", {
+        timeZone: "America/Chicago",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false,
+        timeZoneName: "short",
+      })
+        .format(new Date())
+        .replace(",", "");
       return {
         team,
         tile_id: tileId,
         rsn,
         url: imageKey,
         item,
-        obtained_at: new Date().toISOString(),
+        obtained_at,
       };
     }
     return false;

@@ -1,6 +1,7 @@
 import { Completion, SimpleCompletion } from "@/types/completion.js";
 import { completionsMap } from "./cachedData.ts";
-import { getAllCompletions } from "./mvc/vingo.ts";
+import { addCompletion, getAllCompletions } from "./mvc/vingo.ts";
+import { addCompletionToTeamState } from "./points.ts";
 // Completions map = ([team number, team Map()])
 // team map = <tile_id, array of Completions[]>
 
@@ -57,16 +58,21 @@ export const updateCompletions = async (data: Completion): Promise<void> => {
   try {
     const { team, tile_id, rsn, url, item, obtained_at } = data;
     const teamMap = completionsMap.get(team);
-    if (!teamMap || !teamMap.has(tile_id)) {
-      throw new Error(
-        `There is either no team: ${team} cached or no tile_id: ${tile_id} for that team cached!`,
-      );
+    if (!teamMap) {
+      throw new Error(`There is no team: ${team} cached!`);
     }
-    teamMap
-      .get(tile_id)
-      ?.push({ rsn, url: url ?? undefined, item, obtained_at });
+
+    // If the team exists but the tile_id is missing, create it and push the data
+    if (!teamMap.has(tile_id)) {
+      teamMap.set(tile_id, [{ rsn, url: url ?? undefined, item, obtained_at }]);
+    } else {
+      teamMap
+        .get(tile_id)
+        ?.push({ rsn, url: url ?? undefined, item, obtained_at });
+    }
     console.log(`Successfully added completion to cachedCompletions: `);
     console.log({ rsn, url, item, obtained_at });
+    addCompletionToTeamState(data);
   } catch (e) {
     console.log(e);
     throw e;

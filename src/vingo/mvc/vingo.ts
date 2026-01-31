@@ -104,6 +104,16 @@ export const getShameByTeam = async (team: number): Promise<Shame[]> => {
   }
 };
 
+export const getAllShames = async (): Promise<Shame[]> => {
+  try {
+    const query = "SELECT * FROM shame;";
+    const [rows] = await pool.execute<RowDataPacket[]>(query);
+    return rows as Shame[];
+  } catch (error) {
+    throw error;
+  }
+};
+
 /*
   CREATE TABLE shame (
   id INT NOT NULL AUTO_INCREMENT,

@@ -35,24 +35,6 @@ export const createTeamStates = (numberOfTeams: number): void => {
       };
       teamStates.set(t, teamState);
     }
-    // if (completionsMap.size === 0) {
-    // } else {
-    //   // Reset any existing teamStates so repeated calls don't duplicate entries
-    //   for (const keys of completionsMap.keys()) {
-    //     const teamState: Team = {
-    //       tileCounts: new Map(),
-    //       completedTiles: new Set(),
-    //       rowCounts: Array(10).fill(0),
-    //       colCounts: Array(10).fill(0),
-    //       completedRows: new Set(),
-    //       completedCols: new Set(),
-    //       tilePoints: 0,
-    //     };
-    //     teamStates.push(teamState);
-    //   }
-    // }
-
-    // Create board req map for number of required tile completions for each tile AND array for row/col totals
     const boardRequirements: Map<number, number> = new Map();
 
     for (const [id, tile] of boardMap) {
@@ -143,7 +125,16 @@ const updateTeamStates = (
 // Incremental completion computations, have state as a global object created at server start or during refresh cache discord command
 export const addCompletionToTeamState = (completedTile: Completion) => {
   try {
-    const teamState = teamStates[completedTile.team];
+    console.log(`Trying to add completion for team states, passed in data:`);
+    console.log(completedTile);
+    const teamState = teamStates.get(completedTile.team);
+    if (!teamState) {
+      throw new Error(
+        `addCompletionToTeamState: No team state found for team ${completedTile.team}`,
+      );
+    }
+    console.log(`Found teamstate from data: `);
+    console.log(teamState);
     if (teamState.completedTiles.has(completedTile.tile_id)) {
       console.log(
         `addCompletionToTeamState: Tile completion was sent to teamstate but not needed`,
@@ -202,6 +193,8 @@ export const addCompletionToTeamState = (completedTile: Completion) => {
     }
 
     // Finally re-calc final team points
+    console.log(`Finished adding team to state, result: `);
+    console.log(teamState);
     calcFinalTeamPoints(teamState);
   } catch (error) {
     console.log(

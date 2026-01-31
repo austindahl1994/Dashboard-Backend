@@ -7,6 +7,7 @@ import {
   dinkUpload,
   shame,
   highscores,
+  webImage,
 } from "./vingoController.js";
 import { playerAuthJWT } from "../../middleware/authMiddleware.js";
 
@@ -17,6 +18,7 @@ import { playerAuthJWT } from "../../middleware/authMiddleware.js";
 
 const router = express.Router();
 // Removed player auth for testing site
+router.post("/webImage", uploadImage.single("file"), playerAuthJWT, webImage);
 router.post("/upload", uploadImage.single("file"), dinkUpload);
 router.get("/board", board);
 router.post("/team", playerAuthJWT, team);

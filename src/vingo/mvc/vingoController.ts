@@ -1,4 +1,10 @@
-import { EVENT_STARTED, teamPoints } from "../cachedData.js";
+import {
+  EVENT_STARTED,
+  teamPoints,
+  teamShameMap,
+  completionsMap,
+  boardMap,
+} from "../cachedData.js";
 import { Request, Response } from "express";
 import type { File as MulterFile } from "multer";
 import { displayTime } from "@/Utilities.js";
@@ -7,9 +13,15 @@ import { checkShame } from "../shame.ts";
 import { checkDinkLoot } from "../checkDinkLoot.ts";
 import { Completion, Dink } from "@/types/index.ts";
 import { completeTile } from "../completeTile.ts";
-import { lootEmbed } from "../../bot/embeds/vingo/logs.js";
+import { lootEmbed, manualEmbed } from "../../bot/embeds/vingo/logs.js";
 import { sendLog } from "../../bot/broadcasts/sendLog.js";
-import { getCompletionsByTeam, getShameByTeam } from "./vingo.ts";
+import {
+  addCompletion,
+  getCompletionsByTeam,
+  getShameByTeam,
+} from "./vingo.ts";
+import { streamUpload } from "@/services/aws/s3.js";
+import { updateCompletions } from "../completions.ts";
 // CNTL + ALT + I Copilot
 
 // Allow players to upload images from web page as well? Rename to dinkUpload if that's the case
@@ -55,7 +67,7 @@ export const dinkUpload = async (
       }
       const embed = lootEmbed(parsedData);
       await sendLog(embed);
-      console.log(`Type was loot`);
+      // console.log(`Type was loot`);
       const verifiedCompletions: Completion[] | false =
         checkDinkLoot(parsedData);
 
@@ -72,15 +84,6 @@ export const dinkUpload = async (
       );
       throw new Error(`Invalid Dink type`);
     }
-    // Compare against board tile data, see if it is on the item list
-    // If on list, need to upload (USE STREAM METHOD INSTEAD OF JUST UPLOAD FOR AWS)
-    // After image is uploaded, save data to RDS with image URL
-    // Save completion data to completion map for that team
-    // Send completion data to discord tile completions for that team
-    // Send completion data to client side via SSE event
-
-    // Add a check, if tile is completed but RSN does not match in playermap, check if discord_id is sent with dink data, if not then just return null, if it does do everything but send an error message in a discord channel
-    // await sendMismatch(rsn, expectedRSN, username, nickname)
   } catch (e) {
     console.log(`Deleting file: ${e}`);
     if (req.file) {
@@ -106,8 +109,6 @@ export const board = async (req: Request, res: Response) => {
 export const team = async (req: Request, res: Response) => {
   const { rsn, team, discord_id, role } = req.body;
   try {
-    // Check to make sure player is on team from cached players
-    // Send RSN, and role back as well
     console.log(
       `Called team with data: RSN: ${rsn}, Team: ${team} id: ${discord_id}, role: ${role}`,
     );
@@ -151,11 +152,108 @@ export const shame = async (req: Request, res: Response) => {
 
 export const highscores = async (req: Request, res: Response) => {
   try {
-    return res.status(200).json(Object.fromEntries(teamPoints));
+    const highscores = Object.fromEntries(teamPoints);
+    const deathCounts = Object.fromEntries(teamShameMap);
+
+    // Build completions object as flat mapping team -> completion count for teams 1..3
+    const completions: Record<string, number> = {};
+    for (let t = 1; t <= 3; t++) {
+      const teamMap = completionsMap.get(t);
+      let count = 0;
+      if (teamMap) {
+        for (const [, arr] of teamMap) {
+          count += Array.isArray(arr) ? arr.length : 0;
+        }
+      }
+      completions[String(t)] = count;
+    }
+    // console.log(`Highscores called, returning data: `);
+    // console.log({ highscores, deathCounts, completions });
+    return res.status(200).json({ highscores, deathCounts, completions });
   } catch (e) {
     return res
       .status(400)
       .json({ message: `Error getting highscores data: ${e}` });
+  }
+};
+
+export const webImage = async (
+  req: Request & { file?: MulterFile },
+  res: Response,
+) => {
+  // This is similar to dinkUpload but only for web uploads
+  try {
+    const { team, rsn, id, selectedItem } = req.body;
+    console.log(`✅ Received Web Upload request`);
+    displayTime();
+    const file = req.file;
+    let image: Buffer | undefined | null;
+    let mimetype: string = "";
+    if (!file) {
+      console.log(`No file sent with`);
+      throw new Error(`No file sent with.`);
+    } else {
+      image = file.buffer;
+      mimetype = file.mimetype;
+    }
+    // Check if tile still needs completions before uploading
+    const tileIdNum = Number(id);
+    const teamNum = Number(team);
+    const tile = boardMap.get(tileIdNum);
+    if (!tile) throw new Error(`Invalid tile id: ${id}`);
+    if (!image) throw new Error(`No image was passed with web data.`);
+    const teamMap = completionsMap.get(teamNum);
+    const completionsForTile = teamMap?.get(tileIdNum) ?? [];
+    if (completionsForTile.length >= tile.quantity) {
+      throw new Error(
+        `Tile ${tileIdNum} for team ${team} already has required completions`,
+      );
+    }
+
+    const safeName = rsn.replace(/ /g, "_");
+    const imageKey = `completions/${team}/${id}/${safeName}-${Date.now()}.png`;
+    const item = selectedItem || "None";
+    const timeObtained = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/Chicago",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+      timeZoneName: "short",
+    })
+      .format(new Date())
+      .replace(",", "");
+
+    // upload completion image and wait for final S3 URL
+    const awsUrl = await completeTile(
+      {
+        team: teamNum,
+        tile_id: tileIdNum,
+        rsn,
+        url: imageKey,
+        item,
+        obtained_at: timeObtained,
+      },
+      image,
+      mimetype,
+    );
+    const embed = manualEmbed({
+      rsn,
+      team: teamNum,
+      tile_id: tileIdNum,
+      item,
+      url: awsUrl,
+      obtained_at: timeObtained,
+    });
+    await sendLog(embed);
+    res.status(200).json({ message: `Image uploaded successfully` });
+  } catch (error) {
+    return res
+      .status(400)
+      .json({ message: `Error uploading image from web: ${error}` });
   }
 };
 

@@ -25,9 +25,20 @@ client.cooldowns = new Collection();
 
 export async function startBot() {
   if (!testEnv) {
-    console.log(
-      "⚠️  Starting bot in prod mode at time: " + new Date().toLocaleString(),
-    );
+    const startTime = new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/Chicago",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+      timeZoneName: "short",
+    })
+      .format(new Date())
+      .replace(",", "");
+    console.log(`⚠️  Starting bot in prod mode at time: ${startTime}`);
   }
   const commandsPath = path.join(__dirname, "commands");
   const commandFiles = fs

@@ -277,7 +277,28 @@ export const adminGetStates = async (req: Request, res: Response) => {
     if (role !== "admin") {
       return res.status(403).json({ message: "Forbidden" });
     }
-    return res.status(200).json(Object.fromEntries(teamStates));
+    const plainStates: Record<number, any> = {};
+    for (const [teamNumber, state] of teamStates) {
+      plainStates[teamNumber] = {
+        teamNumber: state.teamNumber,
+        tileCounts: state.tileCounts
+          ? Object.fromEntries(state.tileCounts)
+          : {},
+        completedTiles: state.completedTiles
+          ? Array.from(state.completedTiles)
+          : [],
+        rowCounts: state.rowCounts,
+        colCounts: state.colCounts,
+        completedRows: state.completedRows
+          ? Array.from(state.completedRows)
+          : [],
+        completedCols: state.completedCols
+          ? Array.from(state.completedCols)
+          : [],
+        tilePoints: state.tilePoints,
+      };
+    }
+    return res.status(200).json(plainStates);
   } catch (error) {
     return res
       .status(400)

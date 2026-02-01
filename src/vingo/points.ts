@@ -25,7 +25,7 @@ export const createTeamStates = (numberOfTeams: number): void => {
     for (let t = 1; t <= numberOfTeams; t++) {
       const teamState: Team = {
         teamNumber: t,
-        tileCounts: new Map(),
+        tileCounts: new Map(), // How many completions for that tile id
         completedTiles: new Set(),
         rowCounts: Array(10).fill(0),
         colCounts: Array(10).fill(0),
@@ -39,8 +39,8 @@ export const createTeamStates = (numberOfTeams: number): void => {
 
     for (const [id, tile] of boardMap) {
       boardRequirements.set(id, tile.quantity);
-      const rowCalc = Math.floor(id / GRID_SIZE);
-      const colCalc = id % GRID_SIZE;
+      const rowCalc = Math.floor((id - 1) / GRID_SIZE);
+      const colCalc = (id - 1) % GRID_SIZE;
       REQUIRED_ROW_COUNT[rowCalc] += tile.quantity;
       REQUIRED_COL_COUNT[colCalc] += tile.quantity;
     }
@@ -101,8 +101,8 @@ const updateTeamStates = (
     // so for an id of 7, row = Math.floor(7/10) = 0, col = 7%10 = 7, increment rowCounts[0] and colCounts[7]
     // results in rowCounts = [1,0,0,0,0,0,0,0,0,0], colCounts = [0,0,0,0,0,0,0,1,0,0]
     for (const tileId of teamState.completedTiles) {
-      const rowCalc = Math.floor(tileId / GRID_SIZE);
-      const colCalc = tileId % GRID_SIZE;
+      const rowCalc = Math.floor((tileId - 1) / GRID_SIZE);
+      const colCalc = (tileId - 1) % GRID_SIZE;
       teamState.rowCounts[rowCalc]++; //updates the counter for row at that index
       teamState.colCounts[colCalc]++; //updates the counter for col at that index
     }
@@ -179,8 +179,8 @@ export const addCompletionToTeamState = (completedTile: Completion) => {
     teamState.tilePoints += POINT_VALUES[tier - 1];
 
     // Need to add the completion to rowCounts and colCounts
-    const compRowIndex = Math.floor(completedTile.tile_id / GRID_SIZE);
-    const compColIndex = completedTile.tile_id % GRID_SIZE;
+    const compRowIndex = Math.floor((completedTile.tile_id - 1) / GRID_SIZE);
+    const compColIndex = (completedTile.tile_id - 1) % GRID_SIZE;
     teamState.rowCounts[compRowIndex]++;
     teamState.colCounts[compColIndex]++;
 

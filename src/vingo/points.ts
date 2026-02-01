@@ -101,10 +101,12 @@ const updateTeamStates = (
     // so for an id of 7, row = Math.floor(7/10) = 0, col = 7%10 = 7, increment rowCounts[0] and colCounts[7]
     // results in rowCounts = [1,0,0,0,0,0,0,0,0,0], colCounts = [0,0,0,0,0,0,0,1,0,0]
     for (const tileId of teamState.completedTiles) {
+      const tile = boardMap.get(tileId);
+      const qty = tile?.quantity ?? 1;
       const rowCalc = Math.floor((tileId - 1) / GRID_SIZE);
       const colCalc = (tileId - 1) % GRID_SIZE;
-      teamState.rowCounts[rowCalc]++; //updates the counter for row at that index
-      teamState.colCounts[colCalc]++; //updates the counter for col at that index
+      teamState.rowCounts[rowCalc] += qty; //updates the counter for row at that index
+      teamState.colCounts[colCalc] += qty; //updates the counter for col at that index
     }
     // Now check for completed rows and cols, add points accordingly
     Array.from({ length: GRID_SIZE }, (_, i) => i).forEach((index) => {
@@ -181,8 +183,9 @@ export const addCompletionToTeamState = (completedTile: Completion) => {
     // Need to add the completion to rowCounts and colCounts
     const compRowIndex = Math.floor((completedTile.tile_id - 1) / GRID_SIZE);
     const compColIndex = (completedTile.tile_id - 1) % GRID_SIZE;
-    teamState.rowCounts[compRowIndex]++;
-    teamState.colCounts[compColIndex]++;
+    const compQty = tile.quantity ?? 1;
+    teamState.rowCounts[compRowIndex] += compQty;
+    teamState.colCounts[compColIndex] += compQty;
 
     // Need to check if row or col is now completed, if so add to completedRows/Cols sets
     if (teamState.rowCounts[compRowIndex] >= REQUIRED_ROW_COUNT[compRowIndex]) {

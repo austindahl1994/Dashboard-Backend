@@ -38,9 +38,9 @@ export const dinkUpload = async (
   console.log(`⚠️ Received API request to /upload ⚠️`);
   displayTime();
   try {
-    // if (!EVENT_STARTED) {
-    //   throw new Error("Event has not started yet");
-    // }
+    if (!EVENT_STARTED) {
+      throw new Error("Event has not started yet");
+    }
     if (!file) {
       console.log(`No file sent with`);
       throw new Error(`No file sent with.`);
@@ -378,7 +378,7 @@ export const adminDelete = async (req: Request, res: Response) => {
     if (!url || typeof url !== "string") {
       return res.status(400).json({ message: "No URL provided" });
     }
-      console.log(`❗ ADMIN DELETE call made by RSN: ${rsn} for url: ${url} ❗`);
+    console.log(`❗ ADMIN DELETE call made by RSN: ${rsn} for url: ${url} ❗`);
     // Delete by DB id resolved from URL, then refresh completions and team states
     await deleteCompletionByURL(url);
     await cacheCompletions();

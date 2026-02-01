@@ -50,11 +50,13 @@ export const getAllCompletions = async (): Promise<Completion[]> => {
 
 export const getCompletionsByTeam = async (
   team: number,
+  adminTeam?: number,
 ): Promise<Completion[]> => {
   try {
+    let finalTeam = adminTeam !== undefined ? adminTeam : team;
     const [rows] = (await pool.execute(
       `SELECT team, tile_id, rsn, url, item, obtained_at FROM completions WHERE team = ?;`,
-      [team],
+      [finalTeam],
     )) as [any[], any];
     return rows.map(
       (r) =>
@@ -109,6 +111,27 @@ export const getAllShames = async (): Promise<Shame[]> => {
     const query = "SELECT * FROM shame;";
     const [rows] = await pool.execute<RowDataPacket[]>(query);
     return rows as Shame[];
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const deleteCompletionByURL = async (url: string): Promise<void> => {
+  try {
+    // Find the primary key id for the completion with this URL
+    const findQuery = "SELECT id FROM completions WHERE url = ? LIMIT 1;";
+    const [rows] = await pool.execute<RowDataPacket[]>(findQuery, [url]);
+    if (!rows || rows.length === 0) {
+      throw new Error(`No completion found with URL: ${url}`);
+    }
+    const id = rows[0].id;
+
+    // Delete by primary key id (safer and uses index)
+    const deleteQuery = "DELETE FROM completions WHERE id = ?;";
+    const [result] = await pool.execute<ResultSetHeader>(deleteQuery, [id]);
+    if (result.affectedRows === 0) {
+      throw new Error(`Failed to delete completion with id: ${id}`);
+    }
   } catch (error) {
     throw error;
   }

@@ -10,6 +10,8 @@ import {
   webImage,
   adminGetPlayers,
   adminGetStates,
+  adminRefresh,
+  adminDelete,
 } from "./vingoController.js";
 import { playerAuthJWT } from "../../middleware/authMiddleware.js";
 
@@ -32,4 +34,6 @@ router.get("/highscores", highscores);
 // ADMIN ROUTES
 router.post("/admin/players", playerAuthJWT, adminGetPlayers);
 router.post("/admin/states", playerAuthJWT, adminGetStates);
+router.post("/admin/refresh", playerAuthJWT, adminRefresh);
+router.post("/admin/delete", playerAuthJWT, adminDelete);
 export default router;

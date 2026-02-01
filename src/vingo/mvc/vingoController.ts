@@ -5,7 +5,12 @@ import {
   completionsMap,
   boardMap,
   teamStates,
+  refreshAllData,
 } from "../cachedData.js";
+import { cacheBoard } from "../board.ts";
+import { cacheCompletions } from "../completions.ts";
+import { cachePlayers, getNumberOfTeams } from "../players.ts";
+import { createTeamStates } from "../points.ts";
 import { Request, Response } from "express";
 import type { File as MulterFile } from "multer";
 import { displayTime } from "@/Utilities.js";
@@ -16,7 +21,11 @@ import { Completion, Dink } from "@/types/index.ts";
 import { completeTile } from "../completeTile.ts";
 import { manualEmbed } from "../../bot/embeds/vingo/logs.js";
 import { sendLog } from "../../bot/broadcasts/sendLog.js";
-import { getCompletionsByTeam, getShameByTeam } from "./vingo.ts";
+import {
+  getCompletionsByTeam,
+  getShameByTeam,
+  deleteCompletionByURL,
+} from "./vingo.ts";
 // CNTL + ALT + I Copilot
 
 export const dinkUpload = async (
@@ -118,8 +127,13 @@ export const team = async (req: Request, res: Response) => {
 export const completions = async (req: Request, res: Response) => {
   try {
     // console.log(`Completion request`);
-    const { team } = req.body;
-    const data = await getCompletionsByTeam(team);
+    const { team, role, adminTeam } = req.body;
+    if (role !== "admin" && adminTeam !== undefined) {
+      return res.status(403).json({
+        message: `Only admins can request completions for other teams`,
+      });
+    }
+    const data = await getCompletionsByTeam(team, adminTeam);
     // console.log(`Got completions for team: ${team}`);
     // console.log(`Data returned: ${JSON.stringify(data)}`);
     res.status(200).json(data);
@@ -133,8 +147,14 @@ export const completions = async (req: Request, res: Response) => {
 
 export const shame = async (req: Request, res: Response) => {
   try {
-    const { team } = req.body;
-    const data = await getShameByTeam(team);
+    const { team, adminTeam, role } = req.body;
+    if (role !== "admin" && adminTeam !== undefined) {
+      return res.status(403).json({
+        message: `Only admins can request shame for other teams`,
+      });
+    }
+    const finalTeam = adminTeam !== undefined ? adminTeam : team;
+    const data = await getShameByTeam(finalTeam);
     // console.log(`Data returned:`);
     // console.log(JSON.stringify(data));
     res.status(200).json(data);
@@ -303,6 +323,74 @@ export const adminGetStates = async (req: Request, res: Response) => {
     return res
       .status(400)
       .json({ message: `Error getting all team states: ${error}` });
+  }
+};
+
+export const adminRefresh = async (req: Request, res: Response) => {
+  try {
+    const { role, targets } = req.body;
+    // console.log(`Admin refresh call made with data: `);
+    // console.log(req.body);
+    if (role !== "admin") {
+      return res.status(403).json({ message: "Forbidden" });
+    }
+    if (!targets || typeof targets !== "string") {
+      return res.status(400).json({ message: "No target provided" });
+    }
+
+    const target = targets;
+    switch (target) {
+      case "all":
+        await refreshAllData();
+        break;
+      case "players":
+        await cachePlayers();
+        break;
+      case "board":
+        await cacheBoard();
+        break;
+      case "completions":
+        await cacheCompletions();
+        break;
+      case "teamStates": {
+        const numTeams = getNumberOfTeams();
+        createTeamStates(numTeams);
+        break;
+      }
+      default:
+        return res.status(400).json({ message: `Unknown target: ${target}` });
+    }
+
+    return res.status(200).json({ message: "Refreshed target", target });
+  } catch (error) {
+    return res
+      .status(400)
+      .json({ message: `Error refreshing all cached data: ${error}` });
+  }
+};
+
+export const adminDelete = async (req: Request, res: Response) => {
+  try {
+    const { role, url, rsn } = req.body;
+    if (role !== "admin") {
+      return res.status(403).json({ message: "Forbidden" });
+    }
+    if (!url || typeof url !== "string") {
+      return res.status(400).json({ message: "No URL provided" });
+    }
+      console.log(`❗ ADMIN DELETE call made by RSN: ${rsn} for url: ${url} ❗`);
+    // Delete by DB id resolved from URL, then refresh completions and team states
+    await deleteCompletionByURL(url);
+    await cacheCompletions();
+    createTeamStates(3);
+
+    return res
+      .status(200)
+      .json({ message: "Deleted completion and refreshed cache" });
+  } catch (error) {
+    return res
+      .status(400)
+      .json({ message: `Error handling deleted completion: ${error}` });
   }
 };
 

@@ -4,6 +4,7 @@ import {
   teamShameMap,
   completionsMap,
   boardMap,
+  teamStates,
 } from "../cachedData.js";
 import { Request, Response } from "express";
 import type { File as MulterFile } from "multer";
@@ -13,18 +14,11 @@ import { checkShame } from "../shame.ts";
 import { checkDinkLoot } from "../checkDinkLoot.ts";
 import { Completion, Dink } from "@/types/index.ts";
 import { completeTile } from "../completeTile.ts";
-import { lootEmbed, manualEmbed } from "../../bot/embeds/vingo/logs.js";
+import { manualEmbed } from "../../bot/embeds/vingo/logs.js";
 import { sendLog } from "../../bot/broadcasts/sendLog.js";
-import {
-  addCompletion,
-  getCompletionsByTeam,
-  getShameByTeam,
-} from "./vingo.ts";
-import { streamUpload } from "@/services/aws/s3.js";
-import { updateCompletions } from "../completions.ts";
+import { getCompletionsByTeam, getShameByTeam } from "./vingo.ts";
 // CNTL + ALT + I Copilot
 
-// Allow players to upload images from web page as well? Rename to dinkUpload if that's the case
 export const dinkUpload = async (
   req: Request & { file?: MulterFile },
   res: Response,
@@ -32,9 +26,8 @@ export const dinkUpload = async (
   const file = req.file;
   let image: Buffer | undefined | null;
   let mimetype: string = "";
-  console.log(`✅ Received API request to /upload`);
+  console.log(`⚠️ Received API request to /upload ⚠️`);
   displayTime();
-  // AWAIT discord post from bot, showing what data was sent from server before anything else
   try {
     // if (!EVENT_STARTED) {
     //   throw new Error("Event has not started yet");
@@ -65,8 +58,8 @@ export const dinkUpload = async (
       if (parsedData.extra?.source?.toLowerCase() === "loot chest") {
         throw new Error("PvP Loot chest not allowed");
       }
-      const embed = lootEmbed(parsedData);
-      await sendLog(embed);
+      // const embed = lootEmbed(parsedData);
+      // await sendLog(embed);
       // console.log(`Type was loot`);
       const verifiedCompletions: Completion[] | false =
         checkDinkLoot(parsedData);
@@ -124,6 +117,7 @@ export const team = async (req: Request, res: Response) => {
 
 export const completions = async (req: Request, res: Response) => {
   try {
+    // console.log(`Completion request`);
     const { team } = req.body;
     const data = await getCompletionsByTeam(team);
     // console.log(`Got completions for team: ${team}`);
@@ -184,7 +178,7 @@ export const webImage = async (
   // This is similar to dinkUpload but only for web uploads
   try {
     const { team, rsn, id, selectedItem } = req.body;
-    console.log(`✅ Received Web Upload request`);
+    console.log(`⚠️ Received Web Upload request ⚠️`);
     displayTime();
     const file = req.file;
     let image: Buffer | undefined | null;
@@ -254,6 +248,40 @@ export const webImage = async (
     return res
       .status(400)
       .json({ message: `Error uploading image from web: ${error}` });
+  }
+};
+
+//ADMIN COMMANDS
+export const adminGetPlayers = async (req: Request, res: Response) => {
+  try {
+    const { role } = req.body;
+    if (role !== "admin") {
+      return res.status(403).json({ message: "Forbidden" });
+    }
+    //Using cached player map, return array of player objects (exclude map keys)
+    const { playersMap } = await import("../cachedData.js");
+    const allPlayers = Array.from(playersMap.values());
+    // console.log(`allPlayers data:`);
+    // console.log(allPlayers);
+    return res.status(200).json(allPlayers);
+  } catch (error) {
+    return res
+      .status(400)
+      .json({ message: `Error getting all players: ${error}` });
+  }
+};
+
+export const adminGetStates = async (req: Request, res: Response) => {
+  try {
+    const { role } = req.body;
+    if (role !== "admin") {
+      return res.status(403).json({ message: "Forbidden" });
+    }
+    return res.status(200).json(Object.fromEntries(teamStates));
+  } catch (error) {
+    return res
+      .status(400)
+      .json({ message: `Error getting all team states: ${error}` });
   }
 };
 

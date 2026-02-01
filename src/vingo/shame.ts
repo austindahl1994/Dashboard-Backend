@@ -37,8 +37,8 @@ export const checkShame = async (
       // noop on cache update failure
       console.log(`Error adding shame to counter: ${e}`);
     }
-    const embed: any = deathEmbed(data, url);
-    await sendLog(embed);
+    // const embed: any = deathEmbed(data, url);
+    // await sendLog(embed);
     // since type was death, add them to "shame" table, save playerName, image, and what killed them (if included)
   } catch (error) {
     throw error;
@@ -61,8 +61,8 @@ export const createCachedShameCounts = async () => {
       const currentCount = shameCountMap.get(teamNum) || 0;
       shameCountMap.set(teamNum, currentCount + 1);
     }
-    console.log(`Shame counts by team: `);
-    console.log(shameCountMap);
+    // console.log(`Shame counts by team: `);
+    // console.log(shameCountMap);
     // Update global cached map
     for (const [team, count] of shameCountMap) {
       teamShameMap.set(team, count);

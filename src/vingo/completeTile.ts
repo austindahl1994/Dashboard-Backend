@@ -12,11 +12,11 @@ export const completeTile = async (
 ): Promise<string> => {
   try {
     const awsURL = await streamUpload(completion.url, imageBuffer, mimetype);
-    console.log(`Successfully uploaded completion image to S3 at ${awsURL}`);
+    // console.log(`Successfully uploaded completion image to S3 at ${awsURL}`);
     const insertId = await addCompletion({ ...completion, url: awsURL });
-    console.log(
-      `Successfully updated completion database with new tile completion, insertId: ${insertId}`,
-    );
+    // console.log(
+    //   `Successfully updated completion database with new tile completion, insertId: ${insertId}`,
+    // );
     updateCompletions({ ...completion, url: awsURL });
     console.log(`Successfully updated cached completions map`);
     // Final steps:

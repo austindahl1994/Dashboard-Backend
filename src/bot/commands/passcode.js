@@ -35,10 +35,10 @@ export default {
       }
       if (player.rsn !== interaction.options.getString("rsn")) {
         throw new Error(
-          `Your RSN does not match what is on sheets. Make sure it's the *EXACTLY SAME* or check with a mod`,
+          `Error creating passcode, please make sure your RSN entered is **EXACTLY** the same as your in-game name. If it is, please reach out to an Event Moderator.`,
         );
       }
-      if (!player.team && player.team !== 0) {
+      if (!player.team || player.team === 0) {
         throw new Error(
           `You have not been assigned a team yet, check with a mod if you should be`,
         );
@@ -56,11 +56,9 @@ export default {
         flags: MessageFlags.Ephemeral,
       });
     } catch (error) {
-      console.log(`There was an error getting passcode: ${error}`);
+      // console.log(`There was an error getting passcode: ${error}`);
       await interaction.reply({
-        content:
-          "Error creating passcode, please make sure your RSN entered is **EXACTLY** the same as your in-game name. If it is, please reach out to an Event Moderator. Server error: " +
-          error,
+        content: String(error),
         flags: MessageFlags.Ephemeral,
       });
     }

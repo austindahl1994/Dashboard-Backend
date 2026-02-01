@@ -45,7 +45,7 @@ export const createTeamStates = (numberOfTeams: number): void => {
       REQUIRED_COL_COUNT[colCalc] += tile.quantity;
     }
 
-    console.log(`Updating team states now`);
+    // console.log(`Updating team states now`);
     for (const [teamNumber, teamCompletions] of completionsMap) {
       updateTeamStates(
         teamStates.get(teamNumber)!,
@@ -92,7 +92,7 @@ const updateTeamStates = (
           // console.log(
           //   `After adding that tile to completed tiles, all completed tiles are:`,
           // );
-          console.log(teamState.completedTiles);
+          // console.log(teamState.completedTiles);
         }
       }
     }
@@ -125,20 +125,21 @@ const updateTeamStates = (
 // Incremental completion computations, have state as a global object created at server start or during refresh cache discord command
 export const addCompletionToTeamState = (completedTile: Completion) => {
   try {
-    console.log(`Trying to add completion for team states, passed in data:`);
-    console.log(completedTile);
+    // console.log(`Trying to add completion for team states, passed in data:`);
+    // console.log(completedTile);
     const teamState = teamStates.get(completedTile.team);
     if (!teamState) {
       throw new Error(
         `addCompletionToTeamState: No team state found for team ${completedTile.team}`,
       );
     }
-    console.log(`Found teamstate from data: `);
-    console.log(teamState);
+    // console.log(`Found teamstate from data: `);
+    // console.log(teamState);
     if (teamState.completedTiles.has(completedTile.tile_id)) {
       console.log(
-        `addCompletionToTeamState: Tile completion was sent to teamstate but not needed`,
+        `addCompletionToTeamState: Tile completion was sent to teamstate but not needed for data:`,
       );
+      console.log(completedTile);
       return; // Tile already completed, no need to update
     }
 
@@ -193,8 +194,8 @@ export const addCompletionToTeamState = (completedTile: Completion) => {
     }
 
     // Finally re-calc final team points
-    console.log(`Finished adding team to state, result: `);
-    console.log(teamState);
+    // console.log(`Finished adding team to state, result: `);
+    // console.log(teamState);
     calcFinalTeamPoints(teamState);
   } catch (error) {
     console.log(

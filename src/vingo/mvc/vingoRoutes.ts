@@ -8,6 +8,8 @@ import {
   shame,
   highscores,
   webImage,
+  adminGetPlayers,
+  adminGetStates,
 } from "./vingoController.js";
 import { playerAuthJWT } from "../../middleware/authMiddleware.js";
 
@@ -15,7 +17,6 @@ import { playerAuthJWT } from "../../middleware/authMiddleware.js";
 // Route for image upload from player discord or is the same?
 // Route to get board
 // Route to get teamData
-
 const router = express.Router();
 // Removed player auth for testing site
 router.post("/webImage", uploadImage.single("file"), playerAuthJWT, webImage);
@@ -28,4 +29,7 @@ router.get("/highscores", highscores);
 // router.post("/event", event);
 // router.post("/broadcast", broadcast);
 
+// ADMIN ROUTES
+router.post("/admin/players", playerAuthJWT, adminGetPlayers);
+router.post("/admin/states", playerAuthJWT, adminGetStates);
 export default router;

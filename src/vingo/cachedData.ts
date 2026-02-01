@@ -24,23 +24,23 @@ export const refreshAllData = async (): Promise<void> => {
     console.log("Successfully refreshed data");
     // console.log(`Board Map:`);
     // console.log(boardMap);
-    console.log("Players Map:");
-    console.log(playersMap);
-    console.log("Completions map:");
-    for (const [team, innerMap] of completionsMap) {
-      console.log(`Team ${team}:`);
-      if (innerMap && innerMap.size > 0) {
-        for (const [tileId, completions] of innerMap) {
-          console.log(`  Tile ${tileId}:`, completions);
-        }
-      } else {
-        console.log("  (no completions cached)");
-      }
-    }
-    console.log(`Team points: `);
-    console.log(teamPoints);
-    console.log(`Team States:`);
-    console.log(teamStates);
+    // console.log("Players Map:");
+    // console.log(playersMap);
+    // console.log("Completions map:");
+    // for (const [team, innerMap] of completionsMap) {
+    //   console.log(`Team ${team}:`);
+    //   if (innerMap && innerMap.size > 0) {
+    //     for (const [tileId, completions] of innerMap) {
+    //       console.log(`  Tile ${tileId}:`, completions);
+    //     }
+    //   } else {
+    //     console.log("  (no completions cached)");
+    //   }
+    // }
+    // console.log(`Team points: `);
+    // console.log(teamPoints);
+    // console.log(`Team States:`);
+    // console.log(teamStates);
     await createCachedShameCounts();
   } catch (e) {
     console.log(e);

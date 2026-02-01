@@ -111,10 +111,10 @@ const updateTeamStates = (
     // Now check for completed rows and cols, add points accordingly
     Array.from({ length: GRID_SIZE }, (_, i) => i).forEach((index) => {
       if (teamState.rowCounts[index] >= REQUIRED_ROW_COUNT[index]) {
-        teamState.completedRows.add(index);
+        teamState.completedRows.add(index + 1);
       }
       if (teamState.colCounts[index] >= REQUIRED_COL_COUNT[index]) {
-        teamState.completedCols.add(index);
+        teamState.completedCols.add(index + 1);
       }
     });
   } catch (error) {
@@ -189,11 +189,11 @@ export const addCompletionToTeamState = (completedTile: Completion) => {
 
     // Need to check if row or col is now completed, if so add to completedRows/Cols sets
     if (teamState.rowCounts[compRowIndex] >= REQUIRED_ROW_COUNT[compRowIndex]) {
-      teamState.completedRows.add(compRowIndex);
+      teamState.completedRows.add(compRowIndex + 1);
     }
 
     if (teamState.colCounts[compColIndex] >= REQUIRED_COL_COUNT[compColIndex]) {
-      teamState.completedCols.add(compColIndex);
+      teamState.completedCols.add(compColIndex + 1);
     }
 
     // Finally re-calc final team points

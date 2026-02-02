@@ -48,7 +48,7 @@ export const refreshAllData = async (): Promise<void> => {
   }
 };
 
-export const EVENT_STARTED: boolean = false;
+export const EVENT_STARTED: boolean = true;
 
 // board keys are row number
 // Swapping keys from being row numbers to tile IDs for easier access when computing completions

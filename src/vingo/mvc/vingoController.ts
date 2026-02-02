@@ -38,9 +38,9 @@ export const dinkUpload = async (
   console.log(`⚠️ Received API request to /upload ⚠️`);
   displayTime();
   try {
-    if (!EVENT_STARTED) {
-      throw new Error("Event has not started yet");
-    }
+    // if (!EVENT_STARTED) {
+    //   throw new Error("Event has not started yet");
+    // }
     if (!file) {
       console.log(`No file sent with`);
       throw new Error(`No file sent with.`);

@@ -23,6 +23,10 @@ const END_COLUMN = "G";
 // caches player data
 export const cachePlayers = async (): Promise<void> => {
   try {
+    if (playersMap.size > 0) {
+      console.log(`Clear players map was called`);
+      playersMap.clear();
+    }
     const sheetsPlayers = await getVingoPlayers();
     // console.log(`Got data from sheets: `);
     // console.log(sheetsPlayers);

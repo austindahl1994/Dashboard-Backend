@@ -8,8 +8,8 @@ import {
 } from "./cachedData.ts";
 
 const GRID_SIZE: number = 10;
-const ROW_POINTS: number = 10;
-const COL_POINTS: number = 10;
+const ROW_POINTS: number = 8;
+const COL_POINTS: number = 8;
 
 const REQUIRED_ROW_COUNT: number[] = Array(GRID_SIZE).fill(0);
 const REQUIRED_COL_COUNT: number[] = Array(GRID_SIZE).fill(0);

@@ -1,3 +1,4 @@
+import { write } from "fs";
 import { readSingleSheet, writeSingleSheet } from "./sheets.js";
 const END_COLUMN = "G";
 const END_ROW_COUNT = 100;
@@ -24,6 +25,16 @@ export const updateVingoPlayer = async (
   try {
     await writeSingleSheet(`players!A${row}:${END_ROW_COUNT}${row}`, [data]);
     console.log(`Successfully updated player sheets with data: ${data}`);
+  } catch (error) {
+    console.error(`There was an error: ${error}`);
+    throw error;
+  }
+};
+
+export const addAllDiscordMembers = async (users: any[]): Promise<void> => {
+  try {
+    await writeSingleSheet(`allPlayers!A2`, users);
+    console.log(`Successfully added members to sheets`);
   } catch (error) {
     console.error(`There was an error: ${error}`);
     throw error;

@@ -1,4 +1,5 @@
 import {
+  addAllDiscordMembers,
   getVingoPlayers,
   updateVingoPlayer,
 } from "@/services/google/vingoPlayers.js";
@@ -151,6 +152,19 @@ export const getNumberOfTeams = (): number => {
     return teamSet.size;
   } catch (error) {
     console.log(`Error getting number of teams: ${error}`);
+    throw error;
+  }
+};
+
+export const updateUsers = async (users: any[]) => {
+  try {
+    const memberRows = users.map((member) => [
+      member.id,
+      member.user.username,
+      member.nickname || member.user.username,
+    ]);
+    await addAllDiscordMembers(memberRows);
+  } catch (error) {
     throw error;
   }
 };

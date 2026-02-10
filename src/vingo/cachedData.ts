@@ -74,6 +74,7 @@ export const highscores: number[][] = [[], [], []];
 export const teamShameMap: Map<number, number> = new Map<number, number>();
 export const teamStates: Map<number, Team> = new Map<number, Team>();
 
+export const allPlayers = [];
 // Use if adding SSE
 // let clients: Client[] = [];
 

@@ -1,6 +1,7 @@
 import { SlashCommandBuilder, MessageFlags } from "discord.js";
 import { allowedUserIds } from "../discordUtilities.js";
 import { updatePlayerBuyin } from "../../vingo/players.ts";
+import { allPlayers } from "../../vingo/cachedData.ts";
 
 export default {
   cooldown: 5,
@@ -27,30 +28,29 @@ export default {
         .setRequired(true),
     ),
   async autocomplete(interaction) {
-    const focusedValue = interaction.options.getFocused();
-    if (!interaction.guild) return;
-
-    // Try to ensure members are available in the cache (may require GUILD_MEMBERS intent)
     try {
-      await interaction.guild.members.fetch();
+      const focused = interaction.options.getFocused();
+      const suggestions = [];
+      for (const [username, smallPlayer] of allPlayers) {
+        const display = `${username} (${smallPlayer.nickname ?? ""})`;
+        const value = smallPlayer.discord_id ?? username;
+        if (
+          !focused ||
+          display.toLowerCase().includes(String(focused).toLowerCase()) ||
+          username.toLowerCase().includes(String(focused).toLowerCase()) ||
+          (smallPlayer.nickname || "")
+            .toLowerCase()
+            .includes(String(focused).toLowerCase())
+        ) {
+          suggestions.push({ name: display, value: String(value) });
+        }
+        if (suggestions.length >= 25) break;
+      }
+      await interaction.respond(suggestions.slice(0, 25));
     } catch (err) {
-      // ignore fetch errors and fall back to whatever is cached
+      console.error(err);
+      throw err;
     }
-
-    const channelMembers =
-      interaction.channel?.members ?? interaction.guild.members.cache;
-    const query = String(focusedValue || "").toLowerCase();
-    const suggestions = [];
-
-    for (const [, member] of channelMembers) {
-      const display = member.displayName || member.user.username;
-      if (!display) continue;
-      if (query && !display.toLowerCase().includes(query)) continue;
-      suggestions.push({ name: display, value: member.id });
-      if (suggestions.length >= 25) break; // Discord limits to 25 suggestions
-    }
-
-    await interaction.respond(suggestions);
   },
 
   async execute(interaction) {

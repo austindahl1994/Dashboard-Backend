@@ -10,6 +10,7 @@ import { createTeamStates } from "./points.ts";
 // import { computePoints } from "./points.ts";
 import dotenv from "dotenv";
 import { createCachedShameCounts } from "./shame.ts";
+import { getAllDiscordMembers } from "@/services/google/vingoPlayers.ts";
 dotenv.config();
 
 // Update manually once event is going to start? Or could use discord command if need be
@@ -42,6 +43,7 @@ export const refreshAllData = async (): Promise<void> => {
     // console.log(`Team States:`);
     // console.log(teamStates);
     await createCachedShameCounts();
+    await getAllDiscordMembers();
   } catch (e) {
     console.log(e);
     throw e;
@@ -74,7 +76,13 @@ export const highscores: number[][] = [[], [], []];
 export const teamShameMap: Map<number, number> = new Map<number, number>();
 export const teamStates: Map<number, Team> = new Map<number, Team>();
 
-export const allPlayers = [];
+interface SmallPlayer {
+  discord_id: string;
+  nickname: string;
+  username: string;
+}
+
+export const allPlayers = new Map<string, SmallPlayer>();
 // Use if adding SSE
 // let clients: Client[] = [];
 

@@ -99,10 +99,10 @@ export const dinkUpload = async (
 
 export const board = async (req: Request, res: Response) => {
   try {
+    console.log(`Called get board`);
     if (!EVENT_STARTED) {
-      return res.status(200).json(null);
+      return res.status(400).json({ message: "Event has not started yet" });
     }
-    //console.log(`Called get board`);
     const board = await getBoard();
     console.log(`Board gotten`);
     res.json(board);

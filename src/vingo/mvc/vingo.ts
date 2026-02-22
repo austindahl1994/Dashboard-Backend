@@ -137,6 +137,22 @@ export const deleteCompletionByURL = async (url: string): Promise<void> => {
   }
 };
 
+// export const playerActivity = async () {
+//   try {
+
+//   } catch (error) {
+
+//   }
+// }
+
+// export const getPlayerActivity = async (team: number) => {
+//   try {
+
+//   } catch (error) {
+
+//   }
+// }
+
 /*
   CREATE TABLE shame (
   id INT NOT NULL AUTO_INCREMENT,

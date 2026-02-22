@@ -18,12 +18,12 @@ export default {
   async execute(interaction) {
     try {
       const discord_id = interaction.user.id;
-      if (!allowedUserIds.includes(discord_id) && !EVENT_STARTED) {
-        return interaction.reply({
-          content: "⛔ EVENT HASN'T STARTED YET!",
-          flags: MessageFlags.Ephemeral,
-        });
-      }
+      // if (!allowedUserIds.includes(discord_id) && !EVENT_STARTED) {
+      //   return interaction.reply({
+      //     content: "⛔ EVENT HASN'T STARTED YET!",
+      //     flags: MessageFlags.Ephemeral,
+      //   });
+      // }
       if (!playersMap.has(discord_id)) {
         throw new Error(
           `Could not create passcode, discord ID ${discord_id} is not on the list of players`,

@@ -8,30 +8,25 @@ const profileHome = async (req, res) => {
       .json({ message: "Successfully called profiles home" });
   } catch (error) {
     console.error(`There was an error of: ${error}`);
-    return res.status(400).json({message: `Error with database: ${error}`});
+    return res.status(400).json({ message: `Error with database: ${error}` });
   }
 };
 
 const saveProfile = async (req, res) => {
   const name = req.params.name;
   const { user_id, properties } = req.body;
-  // console.log(`Creating profile`);
-  // console.log(user_id, name, properties);
+  console.log(`Creating profile`);
+  console.log(user_id, name, properties);
   try {
     if (!name || name.length === 0 || Object.keys(properties).length === 0) {
-      // console.log(`No name, or no properties`)
+      console.log(`No name, or no properties`);
       throw new Error("Need to have name and properties");
     }
     // console.log(`Trying to create profile now`)
     const data = await profile.saveProfile(user_id, name, properties);
     // console.log(data)
-    if (!data || data.affectedRows !== 1) {
-      throw new Error("Profile was not created");
-    }
     // console.log(`Creation successful`)
-    return res
-      .status(201)
-      .json({ message: "Successfully saved profile", id: data.insertId });
+    return res.status(201).json({ message: "Successfully saved profile" });
   } catch (error) {
     return res
       .status(500)
@@ -51,7 +46,7 @@ const getProfile = async (req, res) => {
     if (data.length === 0) {
       throw new Error("No profile found");
     }
-    console.log(data)
+    console.log(data);
     return res.status(200).json(data);
   } catch (error) {
     return res.status(404).json({ message: `Error getting profile: ${error}` });
@@ -60,11 +55,9 @@ const getProfile = async (req, res) => {
 
 const getRecentProfiles = async (req, res) => {
   // console.log(`Calling get recent profiles`)
-  const user_id = req.body.user_id
+  const user_id = req.body.user_id;
   try {
-    const data = await profile.getRecentProfiles(
-      user_id
-    );
+    const data = await profile.getRecentProfiles(user_id);
     // console.log(data)
     return res.status(200).json(data);
   } catch (error) {
@@ -78,15 +71,12 @@ const deleteProfile = async (req, res) => {
   const { name } = req.params;
   const user_id = req.body.user_id;
   try {
-    if (!name || !name.length === 0 || !user_id) {
+    if (!name || name.length === 0 || !user_id) {
       throw new Error("Need to submit profile name");
     } else if (!user_id) {
       throw new Error("Need to submit user_id to delete");
     }
-    const response = await profile.deleteProfile(user_id, name);
-    if (response.affectedRows !== 1) {
-      throw new Error("Profile did not exist and was not deleted");
-    }
+    await profile.deleteProfile(user_id, name);
     res.status(200).json({ message: "Successfully deleted profile" });
   } catch (error) {
     return res

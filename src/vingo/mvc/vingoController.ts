@@ -99,6 +99,9 @@ export const dinkUpload = async (
 
 export const board = async (req: Request, res: Response) => {
   try {
+    if (!EVENT_STARTED) {
+      return res.status(200).json(null);
+    }
     //console.log(`Called get board`);
     const board = await getBoard();
     console.log(`Board gotten`);
@@ -111,9 +114,9 @@ export const board = async (req: Request, res: Response) => {
 export const team = async (req: Request, res: Response) => {
   const { rsn, team, discord_id, role } = req.body;
   try {
-    console.log(
-      `Called team with data: RSN: ${rsn}, Team: ${team} id: ${discord_id}, role: ${role}`,
-    );
+    // console.log(
+    //   `Called team with data: RSN: ${rsn}, Team: ${team} id: ${discord_id}, role: ${role}`,
+    // );
     return res.status(200).json({ team: team, rsn: rsn, role: role });
   } catch (e) {
     return res
@@ -126,8 +129,11 @@ export const team = async (req: Request, res: Response) => {
 
 export const completions = async (req: Request, res: Response) => {
   try {
-    // console.log(`Completion request`);
     const { team, role, adminTeam } = req.body;
+    // console.log(`Completion request`);
+    if (!EVENT_STARTED && role !== "admin") {
+      return res.status(200).json(null);
+    }
     if (role !== "admin" && adminTeam !== undefined) {
       return res.status(403).json({
         message: `Only admins can request completions for other teams`,
@@ -148,6 +154,9 @@ export const completions = async (req: Request, res: Response) => {
 export const shame = async (req: Request, res: Response) => {
   try {
     const { team, adminTeam, role } = req.body;
+    if (!EVENT_STARTED && role !== "admin") {
+      return res.status(200).json(null);
+    }
     if (role !== "admin" && adminTeam !== undefined) {
       return res.status(403).json({
         message: `Only admins can request shame for other teams`,
@@ -166,6 +175,9 @@ export const shame = async (req: Request, res: Response) => {
 
 export const highscores = async (req: Request, res: Response) => {
   try {
+    if (!EVENT_STARTED) {
+      return res.status(200).json(null);
+    }
     const highscores = Object.fromEntries(teamPoints);
     const deathCounts = Object.fromEntries(teamShameMap);
 
@@ -197,6 +209,9 @@ export const webImage = async (
 ) => {
   // This is similar to dinkUpload but only for web uploads
   try {
+    if (!EVENT_STARTED && req.body.role !== "admin") {
+      return res.status(403).json({ message: "Event has not started yet" });
+    }
     const { team, rsn, id, selectedItem } = req.body;
     console.log(`⚠️ Received Web Upload request ⚠️`);
     displayTime();

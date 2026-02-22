@@ -12,6 +12,7 @@ import authRoutes from "./auth/authRoutes.js";
 import bingoRoutes from "./vingo/mvc/vingoRoutes.js";
 
 import dotenv from "dotenv";
+import battleshipRoutes from "./battleship/mvc/battleshipRoutes.ts";
 dotenv.config();
 
 //15 minutes, 100 requests per window
@@ -35,10 +36,11 @@ app.use(
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
-  })
+  }),
 );
 
 app.use("/bingo", bingoRoutes);
+app.use("/battleship", battleshipRoutes);
 app.use("/check-session", check);
 app.use("/profile", authJwt, authenticateUser, profileRoutes);
 app.use("/expenses", authJwt, authenticateUser, expenseRoutes);

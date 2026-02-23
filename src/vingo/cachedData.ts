@@ -11,6 +11,7 @@ import { createTeamStates } from "./points.ts";
 import dotenv from "dotenv";
 import { createCachedShameCounts } from "./shame.ts";
 import { getAllDiscordMembers } from "@/services/google/vingoPlayers.ts";
+import { createTeamChannels } from "./data/createChannels.ts";
 dotenv.config();
 
 // Update manually once event is going to start? Or could use discord command if need be
@@ -21,29 +22,10 @@ export const refreshAllData = async (): Promise<void> => {
     const teamNumber: number = getNumberOfTeams();
     await cacheCompletions();
     createTeamStates(teamNumber);
-    // computePoints();
     console.log("Successfully refreshed data");
-    // console.log(`Board Map:`);
-    // console.log(boardMap);
-    // console.log("Players Map:");
-    // console.log(playersMap);
-    // console.log("Completions map:");
-    // for (const [team, innerMap] of completionsMap) {
-    //   console.log(`Team ${team}:`);
-    //   if (innerMap && innerMap.size > 0) {
-    //     for (const [tileId, completions] of innerMap) {
-    //       console.log(`  Tile ${tileId}:`, completions);
-    //     }
-    //   } else {
-    //     console.log("  (no completions cached)");
-    //   }
-    // }
-    // console.log(`Team points: `);
-    // console.log(teamPoints);
-    // console.log(`Team States:`);
-    // console.log(teamStates);
     await createCachedShameCounts();
     await getAllDiscordMembers();
+    await createTeamChannels();
   } catch (e) {
     console.log(e);
     throw e;
@@ -83,6 +65,15 @@ interface SmallPlayer {
 }
 
 export const allPlayers = new Map<string, SmallPlayer>();
+
+// Tracks whether event team channels have been created
+export let channelsCreated: boolean = false;
+
+// Setter for `channelsCreated` to allow other modules to change the value
+export const setChannelsCreated = (v: boolean): void => {
+  channelsCreated = v;
+};
+
 // Use if adding SSE
 // let clients: Client[] = [];
 

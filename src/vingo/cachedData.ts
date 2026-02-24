@@ -11,7 +11,7 @@ import { createTeamStates } from "./points.ts";
 import dotenv from "dotenv";
 import { createCachedShameCounts } from "./shame.ts";
 import { getAllDiscordMembers } from "@/services/google/vingoPlayers.ts";
-import { createTeamChannels } from "./data/createChannels.ts";
+// import { createTeamChannels } from "./data/createChannels.ts";
 dotenv.config();
 
 // Update manually once event is going to start? Or could use discord command if need be
@@ -25,7 +25,7 @@ export const refreshAllData = async (): Promise<void> => {
     console.log("Successfully refreshed data");
     await createCachedShameCounts();
     await getAllDiscordMembers();
-    await createTeamChannels();
+    // await createTeamChannels();
   } catch (e) {
     console.log(e);
     throw e;

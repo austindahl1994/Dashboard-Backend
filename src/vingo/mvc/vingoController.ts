@@ -26,6 +26,7 @@ import {
   getShameByTeam,
   deleteCompletionByURL,
 } from "./vingo.ts";
+import { sendScreenshot } from "@/bot/broadcasts/sendScreenshot.js";
 // CNTL + ALT + I Copilot
 
 export const dinkUpload = async (
@@ -58,15 +59,15 @@ export const dinkUpload = async (
     if (!image) throw new Error(`No image was passed with dink data.`);
 
     if (parsedData.type.toLowerCase() === "death") {
-      console.log(`Type was death, skipping rest`);
+      // console.log(`Type was death, skipping rest`);
       await checkShame(parsedData, image, mimetype);
       delete req.file;
       image = null;
       mimetype = "";
     } else if (parsedData.type.toLowerCase() === "loot") {
-      if (parsedData.extra?.source?.toLowerCase() === "loot chest") {
-        throw new Error("PvP Loot chest not allowed");
-      }
+      // if (parsedData.extra?.source?.toLowerCase() === "loot chest") {
+      //   throw new Error("PvP Loot chest not allowed");
+      // }
       // const embed = lootEmbed(parsedData);
       // await sendLog(embed);
       // console.log(`Type was loot`);
@@ -76,6 +77,12 @@ export const dinkUpload = async (
       if (verifiedCompletions) {
         for await (const completion of verifiedCompletions) {
           await completeTile(completion, image, mimetype);
+          await sendScreenshot(completion);
+        }
+        if (req.file) {
+          delete req.file;
+          image = null;
+          mimetype = "";
         }
       } else {
         throw new Error(`Data was loot type but not needed`);

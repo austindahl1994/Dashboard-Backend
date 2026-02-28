@@ -76,7 +76,9 @@ export const dinkUpload = async (
 
       if (verifiedCompletions) {
         for await (const completion of verifiedCompletions) {
-          await completeTile(completion, image, mimetype);
+          const awsUrl = await completeTile(completion, image, mimetype);
+          // ensure the completion object passed to sendScreenshot has the final S3 URL
+          completion.url = awsUrl;
           await sendScreenshot(completion);
         }
         if (req.file) {

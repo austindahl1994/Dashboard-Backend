@@ -16,17 +16,17 @@ import battleshipRoutes from "./battleship/mvc/battleshipRoutes.ts";
 dotenv.config();
 
 //15 minutes, 100 requests per window
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 100,
-  message: "Too many requests from this IP, please try again later.",
-});
+// const limiter = rateLimit({
+//   windowMs: 15 * 60 * 1000,
+//   max: 100,
+//   message: "Too many requests from this IP, please try again later.",
+// });
 
 const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(limiter);
+// app.use(limiter);
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
@@ -40,7 +40,7 @@ app.use(
 );
 
 app.use("/bingo", bingoRoutes);
-app.use("/battleship", battleshipRoutes);
+// app.use("/battleship", battleshipRoutes);
 app.use("/check-session", check);
 app.use("/profile", authJwt, authenticateUser, profileRoutes);
 app.use("/expenses", authJwt, authenticateUser, expenseRoutes);

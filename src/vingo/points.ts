@@ -18,7 +18,9 @@ const REQUIRED_COL_COUNT: number[] = Array(GRID_SIZE).fill(0);
 const POINT_VALUES: number[] = [1, 2, 3, 5, 8];
 
 // --------------------- INITIAL ------------------------
-export const createTeamStates = (numberOfTeams: number): void => {
+export const createTeamStates = async (
+  numberOfTeams: number,
+): Promise<void> => {
   try {
     // Fill with three temp teamstates
     teamStates.clear();

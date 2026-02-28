@@ -21,7 +21,7 @@ export const refreshAllData = async (): Promise<void> => {
     await cachePlayers();
     const teamNumber: number = getNumberOfTeams();
     await cacheCompletions();
-    createTeamStates(teamNumber);
+    await createTeamStates(teamNumber);
     console.log("Successfully refreshed data");
     await createCachedShameCounts();
     await getAllDiscordMembers();

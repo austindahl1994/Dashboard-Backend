@@ -47,6 +47,10 @@ export const createTeamStates = async (
       REQUIRED_COL_COUNT[colCalc] += tile.quantity;
     }
 
+    console.log(
+      `Required row counts: ${REQUIRED_ROW_COUNT} and required col counts: ${REQUIRED_COL_COUNT}`,
+    );
+
     // console.log(`Updating team states now`);
     for (const [teamNumber, teamCompletions] of completionsMap) {
       updateTeamStates(
@@ -164,7 +168,7 @@ export const addCompletionToTeamState = (completedTile: Completion) => {
     // completionCount exist [[] []] AFTER the new completion was added, length = 2, if requiredQty = 3, not completed
     // completionCount === requiredQty should only happen once, seeing as we check if already completed at start of function AND we check when dink data is passed in, after verifying item and sources match
     const completionCount = teamMap.get(completedTile.tile_id)?.length || 0;
-    if (completionCount !== requiredQty) {
+    if (completionCount < requiredQty) {
       console.log(
         `Completion count does not equal required quantity, will not update team state`,
       );

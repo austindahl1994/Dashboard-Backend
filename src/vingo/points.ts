@@ -22,6 +22,9 @@ export const createTeamStates = async (
   numberOfTeams: number,
 ): Promise<void> => {
   try {
+    // Reset required counts to avoid accumulation if this runs multiple times
+    REQUIRED_ROW_COUNT.fill(0);
+    REQUIRED_COL_COUNT.fill(0);
     // Fill with three temp teamstates
     teamStates.clear();
     for (let t = 1; t <= numberOfTeams; t++) {

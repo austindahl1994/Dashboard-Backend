@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import rateLimit from "express-rate-limit";
+// import rateLimit from "express-rate-limit";
 
 import { authJwt, authenticateUser } from "./middleware/authMiddleware.js";
 import { check } from "./auth/checkSession.js";
@@ -9,7 +9,6 @@ import profileRoutes from "./widgets/charGen/profileRoutes.js";
 import expenseRoutes from "./widgets/expenseTracker/expenseRoutes.js";
 import settingsRoutes from "./widgets/settings/settingsRoutes.js";
 import authRoutes from "./auth/authRoutes.js";
-import bingoRoutes from "./vingo/mvc/vingoRoutes.js";
 
 import dotenv from "dotenv";
 import battleshipRoutes from "./battleship/mvc/battleshipRoutes.ts";
@@ -39,7 +38,6 @@ app.use(
   }),
 );
 
-app.use("/bingo", bingoRoutes);
 // app.use("/battleship", battleshipRoutes);
 app.use("/check-session", check);
 app.use("/profile", authJwt, authenticateUser, profileRoutes);

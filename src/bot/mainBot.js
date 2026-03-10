@@ -4,7 +4,6 @@ import { fileURLToPath } from "node:url";
 import { Client, GatewayIntentBits, Collection } from "discord.js";
 // import { refreshAllData } from "../vingo/cachedData.ts";
 import dotenv from "dotenv";
-import { refreshAllData } from "../vingo/cachedData.ts";
 
 dotenv.config();
 
@@ -81,5 +80,4 @@ export async function startBot() {
   // Log in the bot
   await client.login(token);
   console.log("✅ Discord bot started.");
-  await refreshAllData();
 }

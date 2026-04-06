@@ -1,36 +1,42 @@
 {
   "compilerOptions": {
     /* === File & Output Structure === */
-    "baseUrl": "./src",
-    "rootDir": "./src", // your TypeScript source
-    "outDir": "./dist", // compiled JS output
+    "rootDir": "./src",
+    "outDir": "./dist",
+
     /* === Language & Module Settings === */
-    "target": "ES2020", // modern JS
-    "module": "NodeNext", // supports ESM (import/export)
-    "moduleResolution": "NodeNext", // resolves .ts/.js properly
-    "esModuleInterop": true, // allows default imports from CommonJS
+    "target": "ES2020",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "allowImportingTsExtensions": true,
+
     /* === Type Support === */
-    "types": ["node"], // adds Node.js types
-    "skipLibCheck": true, // speeds up build
+    "types": ["node"],
+    "skipLibCheck": true,
     "noEmit": true,
+
     /* === Strictness === */
-    "strict": true, // enable all strict checks
+    "strict": true,
     "noImplicitAny": false,
 
     /* === Source Maps === */
-    "sourceMap": true, // helpful for debugging
+    "sourceMap": true,
 
     /* === Other === */
-    "resolveJsonModule": true, // allow importing .json
+    "resolveJsonModule": true,
     "isolatedModules": true,
+
+    /* ✅ Updated path alias (no baseUrl) */
     "paths": {
-      "@/*": ["*"] // "@" points to src/
+      "@/*": ["./src/*"]
     },
+
     "allowJs": true,
     "checkJs": true
   },
-  "include": ["src/**/*"], // files to compile
-  "exclude": ["node_modules", "dist"] // ignore build + deps
+
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

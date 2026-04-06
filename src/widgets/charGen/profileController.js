@@ -13,11 +13,11 @@ const profileHome = async (req, res) => {
 };
 
 const saveProfile = async (req, res) => {
-  const name = req.params.name;
-  const { user_id, properties } = req.body;
   console.log(`Creating profile`);
-  console.log(user_id, name, properties);
   try {
+    const name = req.params.name;
+    const { user_id, properties } = req.body;
+    console.log(user_id, name, properties);
     if (!name || name.length === 0 || Object.keys(properties).length === 0) {
       console.log(`No name, or no properties`);
       throw new Error("Need to have name and properties");
@@ -36,14 +36,14 @@ const saveProfile = async (req, res) => {
 
 const getProfile = async (req, res) => {
   // console.log(`Calling get profile`)
-  const { name } = req.params;
-  const user_id = req.body.user_id;
   try {
+    const { name } = req.params;
+    const user_id = req.body.user_id;
     if (!user_id || !name || name.length === 0) {
       throw new Error("Need to submit a name");
     }
     const data = await profile.getProfile(user_id, name);
-    if (data.length === 0) {
+    if (!data) {
       throw new Error("No profile found");
     }
     console.log(data);
@@ -55,8 +55,8 @@ const getProfile = async (req, res) => {
 
 const getRecentProfiles = async (req, res) => {
   // console.log(`Calling get recent profiles`)
-  const user_id = req.body.user_id;
   try {
+    const user_id = req.body.user_id;
     const data = await profile.getRecentProfiles(user_id);
     // console.log(data)
     return res.status(200).json(data);
@@ -68,13 +68,11 @@ const getRecentProfiles = async (req, res) => {
 };
 
 const deleteProfile = async (req, res) => {
-  const { name } = req.params;
-  const user_id = req.body.user_id;
   try {
+    const { name } = req.params;
+    const user_id = req.body.user_id;
     if (!name || name.length === 0 || !user_id) {
-      throw new Error("Need to submit profile name");
-    } else if (!user_id) {
-      throw new Error("Need to submit user_id to delete");
+      throw new Error("Need to submit profile name and user_id");
     }
     await profile.deleteProfile(user_id, name);
     res.status(200).json({ message: "Successfully deleted profile" });

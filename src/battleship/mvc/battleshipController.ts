@@ -3,7 +3,7 @@ import type { File as MulterFile } from "multer";
 import { Request, Response } from "express";
 import { displayTime } from "@/Utilities.js";
 import { Dink } from "@/types/dink.ts";
-import { getAllBattleShipData, getCachedBoard } from "../cachedBSData.ts";
+import { getAllBattleShipData } from "../cachedBSData.ts";
 
 // NEED API CALLS FOR:
 // Get battleship stats from database, hits, misses, urls, rsns, etc
@@ -70,7 +70,7 @@ export const battleshipDinkData = async (
 export const getBoard = async (req: Request, res: Response) => {
   try {
     // TODO: Logic to get grid data
-    const gridData = await getCachedBoard();
+    // const gridData = await getCachedBoard();
     // res.status(200).json(gridData)
   } catch (error) {
     console.log(`Error getting battleship grid: ${error}`);

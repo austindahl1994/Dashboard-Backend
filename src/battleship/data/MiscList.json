@@ -1,0 +1,37 @@
+[
+  {
+    "id": 57,
+    "name": "Easy Caskets",
+    "items": [""]
+  },
+  {
+    "id": 58,
+    "name": "Medium Caskets",
+    "items": [""]
+  },
+  {
+    "id": 59,
+    "name": "Hard Caskets",
+    "items": [""]
+  },
+  {
+    "id": 60,
+    "name": "Elite Caskets",
+    "items": [""]
+  },
+  {
+    "id": 61,
+    "name": "Master Caskets",
+    "items": [""]
+  },
+  {
+    "id": 62,
+    "name": "Godsword Shards",
+    "items": ["Godsword shard 1", "Godsword shard 2", "Godsword shard 3"]
+  },
+  {
+    "id": 63,
+    "name": "Slayer",
+    "items": []
+  }
+]

@@ -1,0 +1,531 @@
+[
+  {
+    "id": 0,
+    "name": "Abyssal Sire",
+    "items": ["Unsired"]
+  },
+  {
+    "id": 1,
+    "name": "Barrows",
+    "items": [
+      "Ahrim's hood",
+      "Ahrim's robetop",
+      "Ahrim's robeskirt",
+      "Ahrim's staff",
+      "Dharok's helm",
+      "Dharok's platebody",
+      "Dharok's platelegs",
+      "Dharok's greataxe",
+      "Guthan's helm",
+      "Guthan's platebody",
+      "Guthan's chainskirt",
+      "Guthan's warspear",
+      "Karil's coif",
+      "Karil's leathertop",
+      "Karil's leatherskirt",
+      "Karil's crossbow",
+      "Torag's helm",
+      "Torag's platebody",
+      "Torag's platelegs",
+      "Torag's hammers",
+      "Verac's helm",
+      "Verac's brassard",
+      "Verac's plateskirt",
+      "Verac's flail"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Perilous Moons",
+    "items": [
+      "Blood moon helm",
+      "Blood moon chestplate",
+      "Blood moon tassets",
+      "Dual macuahuitl",
+      "Blue moon helm",
+      "Blue moon chestplate",
+      "Blue moon tassets",
+      "Blue moon spear",
+      "Eclipse moon helm",
+      "Eclipse moon chestplate",
+      "Eclipse moon tassets",
+      "Eclipse atlatl",
+      "Atlatl dart"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Bryophyta",
+    "items": ["Bryophyta's essence"]
+  },
+  {
+    "id": 4,
+    "name": "Cerberus",
+    "items": [
+      "Primordial crystal",
+      "Pegasian crystal",
+      "Eternal crystal",
+      "Smouldering stone"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Chaos Elemental",
+    "items": ["Dragon pickaxe", "Dragon 2h sword"]
+  },
+  {
+    "id": 6,
+    "name": "Chaos Fanatic",
+    "items": ["Odium shard 1", "Malediction shard 1"]
+  },
+  {
+    "id": 7,
+    "name": "Scurrius",
+    "items": ["Scurrius' spine"]
+  },
+  {
+    "id": 8,
+    "name": "Deranged Archaeologist",
+    "items": ["Steel ring"]
+  },
+  {
+    "id": 9,
+    "name": "Crazy Archaeologist",
+    "items": ["Odium shard 2", "Malediction shard 2", "Fedora"]
+  },
+  {
+    "id": 10,
+    "name": "Kalphite Queen",
+    "items": [
+      "Kq head",
+      "Dragon chainbody",
+      "Dragon 2h sword",
+      "Dragon pickaxe"
+    ]
+  },
+  {
+    "id": 11,
+    "name": "King Black Dragon",
+    "items": [
+      "Kbd heads",
+      "Dragon pickaxe",
+      "Draconic visage",
+      "Dragon 2h sword"
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Kraken",
+    "items": ["Kraken tentacle", "Trident of the seas (full)"]
+  },
+  {
+    "id": 13,
+    "name": "Kree'Arra",
+    "items": [
+      "Armadyl helmet",
+      "Armadyl chestplate",
+      "Armadyl chainskirt",
+      "Armadyl hilt"
+    ]
+  },
+  {
+    "id": 14,
+    "name": "General Graardor",
+    "items": [
+      "Bandos chestplate",
+      "Bandos tassets",
+      "Bandos boots",
+      "Bandos hilt"
+    ]
+  },
+  {
+    "id": 15,
+    "name": "The Hueycoatl",
+    "items": [
+      "Dragon hunter wand",
+      "Hueycoatl hide",
+      "Tome of earth (empty)",
+      "Soiled page",
+      "Huasca seed"
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Commander Zilyana",
+    "items": [
+      "Armadyl crossbow",
+      "Saradomin hilt",
+      "Saradomin sword",
+      "Saradomin's light"
+    ]
+  },
+  {
+    "id": 17,
+    "name": "K'ril Tsutsaroth",
+    "items": [
+      "Staff of the dead",
+      "Zamorakian spear",
+      "Steam battlestaff",
+      "Zamorak hilt",
+      "Godsword shard 1",
+      "Godsword shard 2",
+      "Godsword shard 3"
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Corporeal Beast",
+    "items": [
+      "Elysian sigil",
+      "Spectral sigil",
+      "Arcane sigil",
+      "Holy elixir",
+      "Spirit shield"
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Nex",
+    "items": [
+      "Ancient hilt",
+      "Nihil horn",
+      "Zaryte vambraces",
+      "Torva full helm (damaged)",
+      "Torva platebody (damaged)",
+      "Torva platelegs (damaged)",
+      "Nihil shard"
+    ]
+  },
+  {
+    "id": 20,
+    "name": "Dagannoth Prime",
+    "items": ["Seers ring", "Mud battlestaff", "Dragon axe"]
+  },
+  {
+    "id": 21,
+    "name": "Dagannoth Supreme",
+    "items": ["Archers ring", "Seercull", "Dragon axe"]
+  },
+  {
+    "id": 22,
+    "name": "Dagannoth Rex",
+    "items": ["Berserker ring", "Warrior ring", "Dragon axe"]
+  },
+  {
+    "id": 23,
+    "name": "Thermonuclear Smoke Devil",
+    "items": ["Occult necklace", "Smoke battlestaff", "Dragon chainbody"]
+  },
+  {
+    "id": 24,
+    "name": "Grotesque Guardians",
+    "items": [
+      "Black tourmaline core",
+      "Granite gloves",
+      "Granite ring",
+      "Granite hammer",
+      "Granite dust"
+    ]
+  },
+  {
+    "id": 25,
+    "name": "Sarachnis",
+    "items": ["Sarachnis cudgel", "Giant egg sac", "Pristine spider silk"]
+  },
+  {
+    "id": 26,
+    "name": "Venenatis/Spindel",
+    "items": [
+      "Treasonous ring",
+      "Dragon pickaxe",
+      "Dragon 2h sword",
+      "Fangs of venenatis",
+      "Voidwaker gem"
+    ]
+  },
+  {
+    "id": 27,
+    "name": "Vet'ion/Calvar'ion",
+    "items": [
+      "Ring of the gods",
+      "Dragon pickaxe",
+      "Dragon 2h sword",
+      "Skull of vet'ion",
+      "Voidwaker blade"
+    ]
+  },
+  {
+    "id": 28,
+    "name": "Callisto/Artio",
+    "items": [
+      "Tyrannical ring",
+      "Dragon pickaxe",
+      "Dragon 2h sword",
+      "Claws of callisto",
+      "Voidwaker hilt"
+    ]
+  },
+  {
+    "id": 29,
+    "name": "Cave Kraken",
+    "items": ["Kraken tentacle", "Trident of the seas (full)"]
+  },
+  {
+    "id": 30,
+    "name": "Scorpia",
+    "items": ["Odium shard 3", "Malediction shard 3", "Dragon 2h sword"]
+  },
+  {
+    "id": 31,
+    "name": "The Nightmare",
+    "items": [
+      "Inquisitor's mace",
+      "Inquisitor's great helm",
+      "Inquisitor's hauberk",
+      "Inquisitor's plateskirt",
+      "Nightmare staff",
+      "Eldritch orb",
+      "Harmonised orb",
+      "Volatile orb"
+    ]
+  },
+  {
+    "id": 32,
+    "name": "Vorkath",
+    "items": ["Vorkath's head", "Skeletal visage", "Dragonbone necklace"]
+  },
+  {
+    "id": 33,
+    "name": "Zalcano",
+    "items": ["Crystal tool seed", "Zalcano shard", "Uncut onyx"]
+  },
+  {
+    "id": 34,
+    "name": "Skotizo",
+    "items": ["Dark claw", "Dark totem", "Ancient shard", "Uncut onyx"]
+  },
+  {
+    "id": 35,
+    "name": "Corrupted Gauntlet",
+    "items": [
+      "Crystal armour seed",
+      "Crystal weapon seed",
+      "Enhanced crystal weapon seed"
+    ]
+  },
+  {
+    "id": 36,
+    "name": "Alchemical Hydra",
+    "items": [
+      "Hydra's claw",
+      "Hydra tail",
+      "Hydra leather",
+      "Hydra's fang",
+      "Hydra's eye",
+      "Hydra's heart",
+      "Alchemical hydra heads"
+    ]
+  },
+  {
+    "id": 37,
+    "name": "Theatre of Blood",
+    "items": [
+      "Scythe of vitur",
+      "Ghrazi rapier",
+      "Sanguinesti staff",
+      "Justiciar faceguard",
+      "Justiciar chestguard",
+      "Justiciar legguards",
+      "Avernic defender hilt"
+    ]
+  },
+  {
+    "id": 38,
+    "name": "Chambers of Xeric",
+    "items": [
+      "Twisted bow",
+      "Kodai insignia",
+      "Dragon hunter crossbow",
+      "Dinh's bulwark",
+      "Ancestral hat",
+      "Ancestral robe top",
+      "Ancestral robe bottom",
+      "Elder maul",
+      "Dexterous prayer scroll",
+      "Arcane prayer scroll",
+      "Twisted buckler",
+      "Dragon claws"
+    ]
+  },
+  {
+    "id": 39,
+    "name": "Tombs of Amascut",
+    "items": [
+      "Tumeken's shadow",
+      "Elidinis' ward",
+      "Masori mask",
+      "Masori body",
+      "Masori chaps",
+      "Osmumten's fang",
+      "Lightbearer",
+      "Elidinis' thread"
+    ]
+  },
+  {
+    "id": 40,
+    "name": "Brutus",
+    "items": ["Mooleta", "Bottomless milk bucket (empty)", "Cow slippers"]
+  },
+  {
+    "id": 41,
+    "name": "Obor",
+    "items": ["Hill giant club"]
+  },
+  {
+    "id": 42,
+    "name": "Amoxliatl",
+    "items": ["Glacial temotli", "Pendant of ates (inert)", "Frozen tear"]
+  },
+  {
+    "id": 43,
+    "name": "Royal Titans",
+    "items": [
+      "Deadeye prayer scroll",
+      "Mystic vigour prayer scroll",
+      "Fire element staff crown",
+      "Ice element staff crown"
+    ]
+  },
+  {
+    "id": 44,
+    "name": "Doom of Mokhaiotl",
+    "items": ["Avernic treads", "Eye of ayak (uncharged)", "Mokhaiotl cloth"]
+  },
+  {
+    "id": 45,
+    "name": "Phantom Muspah",
+    "items": ["Venator shard"]
+  },
+  {
+    "id": 46,
+    "name": "Yama",
+    "items": [
+      "Soulflame horn",
+      "Oathplate helm",
+      "Oathplate chest",
+      "Oathplate legs"
+    ]
+  },
+  {
+    "id": 47,
+    "name": "Duke Sucellus",
+    "items": [
+      "Virtus mask",
+      "Virtus robe top",
+      "Virtus robe bottom",
+      "Chromium ingot",
+      "Magus vestige",
+      "Eye of the duke",
+      "Ice quartz"
+    ]
+  },
+  {
+    "id": 48,
+    "name": "The Leviathan",
+    "items": [
+      "Virtus mask",
+      "Virtus robe top",
+      "Virtus robe bottom",
+      "Chromium ingot",
+      "Venator vestige",
+      "Leviathan's lure",
+      "Smoke quartz"
+    ]
+  },
+  {
+    "id": 49,
+    "name": "The Whisperer",
+    "items": [
+      "Virtus mask",
+      "Virtus robe top",
+      "Virtus robe bottom",
+      "Chromium ingot",
+      "Bellator vestige",
+      "Siren's staff",
+      "Shadow quartz"
+    ]
+  },
+  {
+    "id": 50,
+    "name": "Vardorvis",
+    "items": [
+      "Virtus mask",
+      "Virtus robe top",
+      "Virtus robe bottom",
+      "Chromium ingot",
+      "Ultor vestige",
+      "Executioner's axe head",
+      "Blood quartz"
+    ]
+  },
+  {
+    "id": 51,
+    "name": "Hespori",
+    "items": [
+      "Bottomless compost bucket",
+      "Iasor seed",
+      "Kronos seed",
+      "Attas seed"
+    ]
+  },
+  {
+    "id": 52,
+    "name": "Shellbane Gryphon",
+    "items": ["Belle's folly (tarnished)"]
+  },
+  {
+    "id": 53,
+    "name": "Araxxor",
+    "items": [
+      "Araxyte fang",
+      "Noxious point",
+      "Noxious blade",
+      "Noxious pommel",
+      "Araxyte head"
+    ]
+  },
+  {
+    "id": 54,
+    "name": "Fortis Colosseum",
+    "items": [
+      "Dizana's quiver (uncharged)",
+      "Sunfire fanatic helm",
+      "Sunfire fanatic cuirass",
+      "Sunfire fanatic chausses",
+      "Echo crystal",
+      "Tonalztics of ralos (uncharged)"
+    ]
+  },
+  {
+    "id": 55,
+    "name": "Tempoross",
+    "items": [
+      "Big harpoonfish",
+      "Tome of water (empty)",
+      "Soaked page",
+      "Tackle box",
+      "Fish barrel",
+      "Dragon harpoon"
+    ]
+  },
+  {
+    "id": 56,
+    "name": "Wintertodt",
+    "items": [
+      "Tome of fire (empty)",
+      "Warm gloves",
+      "Bruma torch",
+      "Dragon axe"
+    ]
+  }
+]

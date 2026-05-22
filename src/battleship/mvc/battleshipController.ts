@@ -4,6 +4,7 @@ import { Request, Response } from "express";
 import { displayTime } from "@/Utilities.js";
 import { Dink } from "@/types/dink.ts";
 import { getAllBattleShipData } from "../cachedBSData.ts";
+import { addActiveUser, removeActiveUser, setupSse } from "../activeUsers.ts";
 
 // NEED API CALLS FOR:
 // Get battleship stats from database, hits, misses, urls, rsns, etc
@@ -85,6 +86,37 @@ export const getBattleshipPlayerData = async (req: Request, res: Response) => {
     // TODO: Logic to get battleship data
   } catch (error) {
     console.log(`Error getting player data`);
+  }
+};
+
+export const battleshipEvents = async (req: Request, res: Response) => {
+  try {
+    setupSse(res);
+
+    const userId =
+      typeof req.query.userId === "string" ? req.query.userId : undefined;
+    const playerName =
+      typeof req.query.playerName === "string"
+        ? req.query.playerName
+        : undefined;
+
+    const connectionId = addActiveUser(res, userId, playerName);
+    console.log(
+      `SSE connected: connectionId=${connectionId}, userId=${userId ?? "anonymous"}`,
+    );
+
+    req.on("close", () => {
+      removeActiveUser(connectionId);
+      console.log(`SSE disconnected: connectionId=${connectionId}`);
+    });
+  } catch (error) {
+    console.log(`Error creating battleship SSE stream: ${error}`);
+    if (!res.headersSent) {
+      return res
+        .status(500)
+        .json({ message: `Error creating battleship SSE stream: ${error}` });
+    }
+    res.end();
   }
 };
 

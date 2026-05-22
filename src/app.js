@@ -38,7 +38,7 @@ app.use(
   }),
 );
 
-// app.use("/battleship", battleshipRoutes);
+app.use("/battleship", battleshipRoutes);
 app.use("/check-session", check);
 app.use("/profile", authJwt, authenticateUser, profileRoutes);
 app.use("/expenses", authJwt, authenticateUser, expenseRoutes);

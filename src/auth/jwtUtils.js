@@ -10,11 +10,11 @@ const createToken = (user_id, role) => {
 };
 
 const createRefreshtoken = (user_id) => {
-  return jwt.sign({ user_id }, RTS, { expiresIn: "1d" });
+  return jwt.sign({ user_id }, RTS, { expiresIn: "30d" });
 };
 
-const createPlayerToken = (rsn, team, discord_id) => {
-  return jwt.sign({ rsn, team, discord_id }, TS);
+const createCabbageToken = (discord_id, discord_username, rsn, role) => {
+  return jwt.sign({ discord_id, discord_username, rsn, role }, TS);
 };
 
-export { createToken, createRefreshtoken, createPlayerToken };
+export { createToken, createRefreshtoken, createCabbageToken };

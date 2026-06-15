@@ -9,9 +9,9 @@ import profileRoutes from "./widgets/charGen/profileRoutes.js";
 import expenseRoutes from "./widgets/expenseTracker/expenseRoutes.js";
 import settingsRoutes from "./widgets/settings/settingsRoutes.js";
 import authRoutes from "./auth/authRoutes.js";
+import cabbageRoutes from "./cabbage/cabbage-main/mvc/cabbageRoutes.js";
 
 import dotenv from "dotenv";
-import battleshipRoutes from "./battleship/mvc/battleshipRoutes.ts";
 dotenv.config();
 
 //15 minutes, 100 requests per window
@@ -38,7 +38,7 @@ app.use(
   }),
 );
 
-app.use("/battleship", battleshipRoutes);
+app.use("/cabbage", cabbageRoutes);
 app.use("/check-session", check);
 app.use("/profile", authJwt, authenticateUser, profileRoutes);
 app.use("/expenses", authJwt, authenticateUser, expenseRoutes);

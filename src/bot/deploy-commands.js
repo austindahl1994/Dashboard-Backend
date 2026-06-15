@@ -8,7 +8,11 @@ dotenv.config();
 
 // ✅ Get values from .env
 const token = process.env.DISCORD_BOT_TOKEN;
-const clientId = process.env.DISCORD_CLIENT_ID;
+const clientId =
+  process.env.ENVIRONMENT === "development"
+    ? process.env.DISCORD_CLIENT_ID
+    : process.env.CABBAGE_DISCORD_CLIENT_ID;
+
 const guildId = process.env.DISCORD_GUILD_ID;
 
 // Polyfill __dirname for ES modules
@@ -31,7 +35,7 @@ for (const file of commandFiles) {
     commands.push(command.data.toJSON());
   } else {
     console.warn(
-      `[WARNING] Command at ${filePath} is missing "data" or "execute".`
+      `[WARNING] Command at ${filePath} is missing "data" or "execute".`,
     );
   }
 }
@@ -40,12 +44,12 @@ const rest = new REST({ version: "10" }).setToken(token);
 
 try {
   console.log(
-    `Started refreshing ${commands.length} application (/) commands.`
+    `Started refreshing ${commands.length} application (/) commands.`,
   );
 
   const data = await rest.put(
     Routes.applicationGuildCommands(clientId, guildId),
-    { body: commands }
+    { body: commands },
   );
 
   console.log(`Successfully reloaded ${data.length} application (/) commands.`);

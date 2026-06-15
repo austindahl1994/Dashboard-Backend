@@ -97,11 +97,12 @@ export const broadcastSseEvent = (eventType: string, payload: unknown) => {
 };
 
 const interval = setInterval(() => {
+  return; // Disable test broadcast for now
   if (activeUsers.size === 0) {
-    console.log(`There were no active players`);
+    // console.log(`There were no active players`);
     return;
   }
-  console.log(`Broadcasting message on minute interval...`);
+  // console.log(`Broadcasting message on minute interval...`);
   broadcastSseEvent("message", TEST_PAYLOAD);
 }, TEST_BROADCAST_INTERVAL_MS);
 

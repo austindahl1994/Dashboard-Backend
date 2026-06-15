@@ -3,7 +3,7 @@
 // STORE SHIP LOCATIONS WITH ITEMS HERE OR IN GOOGLE SHEETS? - Probably better to store in google sheets for easier editing, just need to cache it here
 
 import pool from "@/db/mysqlPool.js";
-import { PlayerBSData } from "@/types/battleship.ts";
+import { PlayerBSData } from "@/types/index.ts";
 
 export const getBattleshipDBData = async (): Promise<PlayerBSData[]> => {
   try {

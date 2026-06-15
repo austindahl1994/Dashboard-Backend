@@ -4,10 +4,16 @@ import { createToken, createRefreshtoken } from "./jwtUtils.js";
 import dotenv from "dotenv";
 dotenv.config();
 
-const TS = process.env.TOKEN_SECRET;
+const RTS = process.env.REFRESH_TOKEN_SECRET;
+
+const tokenCookieOptions = {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: "lax",
+};
 
 const login = async (req, res) => {
-  console.log(`Login request made`)
+  console.log(`Login request made`);
   const { email, password } = req.body;
   try {
     if (!email || !password) throw new Error("Need email and password");
@@ -17,15 +23,13 @@ const login = async (req, res) => {
     const refreshToken = createRefreshtoken(user.user_id);
 
     res.cookie("accessToken", accessToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      ...tokenCookieOptions,
       maxAge: 3600000,
     });
 
     res.cookie("refreshToken", refreshToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      maxAge: 86400000,
+      ...tokenCookieOptions,
+      maxAge: 2592000000,
     });
     //UPDATE: need to get both user information as well as user settings, pass both back to frontend
     const userData = {
@@ -46,46 +50,64 @@ const login = async (req, res) => {
   }
 };
 
-const logout = async (req, res) => {
-  //console.log("Cookies received in logout:", req.cookies);
-  const accessToken = req.cookies.accessToken;
-  if (!accessToken) {
-    console.log(`No cookies passed in for logging out`);
-    return res
-      .status(401)
-      .json({ message: "Cannot log out, no token provided" });
+const refresh = async (req, res) => {
+  const refreshToken = req.cookies.refreshToken;
+
+  if (!refreshToken) {
+    return res.status(401).json({ message: "No refresh token provided" });
   }
 
-  jwt.verify(accessToken, TS, async (err, user) => {
+  jwt.verify(refreshToken, RTS, async (err, payload) => {
     if (err) {
-      console.error("Invalid token during logout:", err);
-      return res
-        .status(400)
-        .json({ message: "No valid token for logging out" });
+      return res.status(401).json({ message: "Invalid refresh token" });
     }
 
     try {
-      res.cookie("accessToken", "", {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        expires: new Date(0),
-        path: "/",
-      });
-      res.cookie("refreshToken", "", {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        expires: new Date(0),
-        path: "/",
+      const userRows = await am.getUserById(payload.user_id);
+
+      if (!Array.isArray(userRows) || userRows.length === 0) {
+        return res.status(401).json({ message: "User no longer exists" });
+      }
+
+      const user = userRows[0];
+      if (!user || typeof user !== "object" || !("role" in user)) {
+        return res.status(401).json({ message: "User role unavailable" });
+      }
+
+      const newAccessToken = createToken(payload.user_id, user["role"]);
+
+      res.cookie("accessToken", newAccessToken, {
+        ...tokenCookieOptions,
+        maxAge: 3600000,
       });
 
-      return res.status(200).json({ message: "Successfully logged out." });
+      return res.status(200).json({ message: "Access token refreshed" });
     } catch (error) {
-      console.error(`Error logging out user: ${error}`);
       return res
         .status(500)
-        .json({ message: "Server error, could not logout" });
+        .json({ message: `Error refreshing token: ${error}` });
     }
   });
 };
 
-export { login, logout };
+const logout = async (req, res) => {
+  try {
+    res.cookie("accessToken", "", {
+      ...tokenCookieOptions,
+      expires: new Date(0),
+      path: "/",
+    });
+    res.cookie("refreshToken", "", {
+      ...tokenCookieOptions,
+      expires: new Date(0),
+      path: "/",
+    });
+
+    return res.status(200).json({ message: "Successfully logged out." });
+  } catch (error) {
+    console.error(`Error logging out user: ${error}`);
+    return res.status(500).json({ message: "Server error, could not logout" });
+  }
+};
+
+export { login, refresh, logout };

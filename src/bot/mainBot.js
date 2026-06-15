@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const testEnv = process.env.TEST_ENV ?? false;
+const prod_env = process.env.ENVIRONMENT === "production";
 const token = process.env.DISCORD_BOT_TOKEN;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -23,7 +23,7 @@ client.commands = new Collection();
 client.cooldowns = new Collection();
 
 export async function startBot() {
-  if (!testEnv) {
+  if (prod_env) {
     const startTime = new Intl.DateTimeFormat("en-US", {
       timeZone: "America/Chicago",
       year: "numeric",

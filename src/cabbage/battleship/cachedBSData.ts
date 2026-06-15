@@ -1,7 +1,7 @@
 // THIS IS WHERE WE WILL STORE CACHED GRID DATA FOR BATTLESHIP
 
 import { getBothBoards } from "@/services/google/battleshipGService.ts";
-import { BattleshipCell } from "@/types/battleship.ts";
+import { BattleshipCell } from "@/types/index.ts";
 
 // Need to cache grid obtained from google sheets
 

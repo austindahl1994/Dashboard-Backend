@@ -96,14 +96,16 @@ export const broadcastSseEvent = (eventType: string, payload: unknown) => {
   }
 };
 
-const interval = setInterval(() => {
-  return; // Disable test broadcast for now
-  if (activeUsers.size === 0) {
-    // console.log(`There were no active players`);
-    return;
+// Send keep-alive comments every 30 seconds to prevent proxy/load balancer timeouts
+const keepAliveInterval = setInterval(() => {
+  for (const [connectionId, user] of activeUsers.entries()) {
+    try {
+      user.res.write(": keep-alive\n\n"); // Comment line in SSE format
+    } catch (error) {
+      console.log(`Failed to send keep-alive to ${connectionId}: ${error}`);
+      activeUsers.delete(connectionId);
+    }
   }
-  // console.log(`Broadcasting message on minute interval...`);
-  broadcastSseEvent("message", TEST_PAYLOAD);
-}, TEST_BROADCAST_INTERVAL_MS);
+}, 30_000); // 30 seconds
 
-interval.unref();
+keepAliveInterval.unref();

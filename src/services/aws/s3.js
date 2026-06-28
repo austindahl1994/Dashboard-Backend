@@ -37,17 +37,25 @@ const bucketName = process.env.S3_BUCKET_NAME;
 
 const streamBucket = process.env.S3_BUCKET_NAME;
 
+const sanitizeKey = (key) => {
+  return key
+    .trim()
+    .replace(/\s+/g, "_")
+    .replace(/[^a-zA-Z0-9_\-./]/g, "");
+};
+
 export const streamUpload = async (key, image, mimetype) => {
   if (!image || !image.length) {
     throw new Error("Image is empty or undefined");
   }
+  const sanitizedKey = sanitizeKey(key);
 
   try {
     const upload = new Upload({
       client: s3,
       params: {
         Bucket: streamBucket,
-        Key: key,
+        Key: sanitizedKey,
         Body: image,
         ContentType: mimetype || "image/png",
       },
@@ -56,7 +64,7 @@ export const streamUpload = async (key, image, mimetype) => {
     await upload.done();
     console.log("✅ Upload successful");
 
-    return `https://${bucketName}.s3.${process.env.AWS_REGION}.amazonaws.com/${key}`;
+    return `https://${bucketName}.s3.${process.env.AWS_REGION}.amazonaws.com/${sanitizedKey}`;
   } catch (error) {
     console.error("❌ Upload error:", error);
     throw error;

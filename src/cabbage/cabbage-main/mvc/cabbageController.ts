@@ -80,33 +80,33 @@ export const cabbageController = async (
   res: Response,
 ): Promise<void> => {
   try {
-    console.log(
-      "[Discord OAuth] Cabbage controller received code exchange request",
-    );
+    // console.log(
+    //   "[Discord OAuth] Cabbage controller received code exchange request",
+    // );
     const { code } = req.body as { code?: string };
-    console.log(
-      "[Discord OAuth] Code received (first 10 chars):",
-      code?.substring(0, 10) || "MISSING",
-    );
+    // console.log(
+    //   "[Discord OAuth] Code received (first 10 chars):",
+    //   code?.substring(0, 10) || "MISSING",
+    // );
 
     if (!code || typeof code !== "string" || !code.trim()) {
-      console.log("[Discord OAuth] Missing Discord OAuth code in request body");
+      // console.log("[Discord OAuth] Missing Discord OAuth code in request body");
       res.status(400).json({ error: "Missing Discord OAuth code." });
       return;
     }
 
     // Prevent code reuse (deduplication for duplicate requests within 2 seconds)
     if (recentlyCodes.has(code)) {
-      console.log(
-        "[Discord OAuth] Code reuse detected - duplicate request, rejecting",
-      );
+      // console.log(
+      //   "[Discord OAuth] Code reuse detected - duplicate request, rejecting",
+      // );
       res.status(400).json({ error: "Code already exchanged or in progress." });
       return;
     }
 
     recentlyCodes.add(code);
     setTimeout(() => recentlyCodes.delete(code), CODE_TIMEOUT_MS);
-    console.log("[Discord OAuth] Code accepted for exchange");
+    // console.log("[Discord OAuth] Code accepted for exchange");
 
     if (!process.env.TOKEN_SECRET || !process.env.REFRESH_TOKEN_SECRET) {
       console.error("[Discord OAuth] Missing JWT environment variables");
@@ -114,14 +114,14 @@ export const cabbageController = async (
       return;
     }
 
-    console.log("[Discord OAuth] Exchanging Discord code for user profile");
+    // console.log("[Discord OAuth] Exchanging Discord code for user profile");
     const { discordUser } = await getDiscordUserFromCode(code);
     console.log("[Discord OAuth] Discord user profile received", {
       discord_id: discordUser.id,
       discord_username: discordUser.username,
     });
 
-    console.log("[Discord OAuth] Looking up Cabbage user in database");
+    // console.log("[Discord OAuth] Looking up Cabbage user in database");
     const cabbageUser = await getCabbageUserByDiscordId(discordUser.id);
 
     if (!cabbageUser) {
@@ -145,7 +145,7 @@ export const cabbageController = async (
       auth_type: "cabbage",
     };
 
-    console.log("[Discord OAuth] Creating JWT access token and refresh token");
+    // console.log("[Discord OAuth] Creating JWT access token and refresh token");
 
     const token = jwt.sign(user, process.env.TOKEN_SECRET, {
       expiresIn: "1h",
@@ -164,16 +164,16 @@ export const cabbageController = async (
       maxAge: 3600000,
     });
 
-    console.log("[Discord OAuth] Access token cookie set");
+    // console.log("[Discord OAuth] Access token cookie set");
 
     res.cookie("refreshToken", refreshToken, {
       ...tokenCookieOptions,
       maxAge: 2592000000,
     });
 
-    console.log("[Discord OAuth] Refresh token cookie set");
+    // console.log("[Discord OAuth] Refresh token cookie set");
 
-    console.log("[Discord OAuth] Cabbage OAuth flow completed successfully");
+    // console.log("[Discord OAuth] Cabbage OAuth flow completed successfully");
     res.status(200).json({
       token,
       refreshToken,

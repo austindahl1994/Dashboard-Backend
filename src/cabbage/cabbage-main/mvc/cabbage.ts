@@ -35,7 +35,7 @@ export const getCabbageUserByDiscordId = async (
     "SELECT discord_id, discord_username, rsn, role FROM CabbageUsers WHERE discord_id = ? LIMIT 1";
 
   try {
-    console.log("[Discord OAuth] Querying CabbageUsers table", { discord_id });
+    // console.log("[Discord OAuth] Querying CabbageUsers table", { discord_id });
     const [rows] = await pool.execute(query, [discord_id]);
 
     if (!Array.isArray(rows) || rows.length === 0) {
@@ -50,12 +50,12 @@ export const getCabbageUserByDiscordId = async (
     }
 
     const record = user as CabbageUser;
-    console.log("[Discord OAuth] Cabbage user row loaded", {
-      discord_id: record.discord_id,
-      discord_username: record.discord_username,
-      rsn: record.rsn,
-      role: record.role,
-    });
+    // console.log("[Discord OAuth] Cabbage user row loaded", {
+    //   discord_id: record.discord_id,
+    //   discord_username: record.discord_username,
+    //   rsn: record.rsn,
+    //   role: record.role,
+    // });
     return {
       discord_id: record.discord_id,
       discord_username: record.discord_username,

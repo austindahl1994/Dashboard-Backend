@@ -9,7 +9,7 @@ router.post("/logout", ac.logout);
 
 // Preferred endpoint: frontend posts the OAuth code here as JSON.
 router.post("/discord/exchange", (req, res) => {
-  console.log("[Discord OAuth] /discord/exchange route hit");
+  // console.log("[Discord OAuth] /discord/exchange ");
   return cc.cabbageController(req, res);
 });
 

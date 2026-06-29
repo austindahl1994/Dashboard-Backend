@@ -15,9 +15,15 @@ export default {
   async execute(interaction) {
     try {
       const rsn = interaction.options.getString("rsn");
-      const discord_id = interaction.user.id;
-      const discord_username = interaction.user.username;
-      const discord_avatar = interaction.user.avatarURL() || null;
+      const user = interaction.user;
+      const discord_id = user.id;
+      const discord_username = user.username;
+
+      const avatarUrl = user.avatar
+        ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${user.avatar.startsWith("a_") ? "gif" : "png"}`
+        : `https://cdn.discordapp.com/embed/avatars/${Number(user.discriminator) % 5}.png`;
+
+      const discord_avatar = avatarUrl;
       const role = process.env.MODERATORS?.includes(discord_id)
         ? "moderator"
         : "player";

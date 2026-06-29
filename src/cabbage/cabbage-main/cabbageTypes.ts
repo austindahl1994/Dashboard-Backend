@@ -18,5 +18,6 @@ export type CabbageUser = {
   discord_id: string;
   discord_username?: string;
   rsn: string;
+  discord_avatar?: string | null;
   role: string;
 };

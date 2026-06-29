@@ -9,12 +9,12 @@ export const updateCabbageUser = async (
   role: string,
 ) => {
   try {
-    const query = `INSERT INTO CabbageUsers (discord_id, discord_username, rsn, avatar, role, updated_at) 
+    const query = `INSERT INTO CabbageUsers (discord_id, discord_username, rsn, discord_avatar, role, updated_at) 
       VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
       ON DUPLICATE KEY UPDATE
         discord_username = VALUES(discord_username),
         rsn = VALUES(rsn),
-        avatar = VALUES(avatar),
+        discord_avatar = VALUES(discord_avatar),
         role = VALUES(role),
         updated_at = CURRENT_TIMESTAMP`;
     const rows = await pool.execute(query, [
@@ -35,7 +35,7 @@ export const getCabbageUserByDiscordId = async (
   discord_id: string,
 ): Promise<CabbageUser | null> => {
   const query =
-    "SELECT discord_id, discord_username, rsn, role FROM CabbageUsers WHERE discord_id = ? LIMIT 1";
+    "SELECT discord_id, discord_username, rsn, discord_avatar, role FROM CabbageUsers WHERE discord_id = ? LIMIT 1";
 
   try {
     // console.log("[Discord OAuth] Querying CabbageUsers table", { discord_id });
@@ -63,6 +63,7 @@ export const getCabbageUserByDiscordId = async (
       discord_id: record.discord_id,
       discord_username: record.discord_username,
       rsn: record.rsn,
+      discord_avatar: record.discord_avatar,
       role: record.role,
     };
   } catch (error) {

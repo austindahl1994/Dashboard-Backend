@@ -5,20 +5,23 @@ export const updateCabbageUser = async (
   discord_id: string,
   discord_username: string,
   rsn: string,
+  discord_avatar: string | null,
   role: string,
 ) => {
   try {
-    const query = `INSERT INTO CabbageUsers (discord_id, discord_username, rsn, role, updated_at) 
-      VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP)
+    const query = `INSERT INTO CabbageUsers (discord_id, discord_username, rsn, avatar, role, updated_at) 
+      VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
       ON DUPLICATE KEY UPDATE
         discord_username = VALUES(discord_username),
         rsn = VALUES(rsn),
+        avatar = VALUES(avatar),
         role = VALUES(role),
         updated_at = CURRENT_TIMESTAMP`;
     const rows = await pool.execute(query, [
       discord_id,
       discord_username,
       rsn,
+      discord_avatar,
       role,
     ]);
     return rows;

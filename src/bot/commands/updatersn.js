@@ -17,10 +17,17 @@ export default {
       const rsn = interaction.options.getString("rsn");
       const discord_id = interaction.user.id;
       const discord_username = interaction.user.username;
+      const discord_avatar = interaction.user.avatarURL() || null;
       const role = process.env.MODERATORS?.includes(discord_id)
         ? "moderator"
         : "player";
-      await updateCabbageUser(discord_id, discord_username, rsn, role);
+      await updateCabbageUser(
+        discord_id,
+        discord_username,
+        rsn,
+        discord_avatar,
+        role,
+      );
       await interaction.reply({
         content: `Your RSN has been updated to **${rsn}**!`,
         flags: MessageFlags.Ephemeral,

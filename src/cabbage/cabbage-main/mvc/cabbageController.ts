@@ -119,6 +119,7 @@ export const cabbageController = async (
     console.log("[Discord OAuth] Discord user profile received", {
       discord_id: discordUser.id,
       discord_username: discordUser.username,
+      discord_avatar: discordUser.avatar,
     });
 
     // console.log("[Discord OAuth] Looking up Cabbage user in database");

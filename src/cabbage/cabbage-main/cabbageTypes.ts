@@ -11,6 +11,7 @@ export type DiscordUserResponse = {
   username: string;
   discriminator?: string;
   global_name?: string | null;
+  avatar?: string | null;
 };
 
 export type CabbageUser = {

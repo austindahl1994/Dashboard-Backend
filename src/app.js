@@ -12,7 +12,7 @@ import authRoutes from "./auth/authRoutes.js";
 import cabbageRoutes from "./cabbage/cabbage-main/mvc/cabbageRoutes.js";
 import awcRoutes from "./awc/mvc/awcRoutes.ts";
 import dotenv from "dotenv";
-import createInitialAwcUser from "./awc/mvc/awcUserCreationScript.ts";
+// import createInitialAwcUser from "./awc/mvc/awcUserCreationScript.ts";
 dotenv.config();
 
 //15 minutes, 100 requests per window
@@ -39,10 +39,10 @@ app.use(
   }),
 );
 
-createInitialAwcUser().catch((err) => {
-  console.error("Error creating initial AWC user:", err);
-  process.exit(1);
-});
+// createInitialAwcUser().catch((err) => {
+//   console.error("Error creating initial AWC user:", err);
+//   process.exit(1);
+// });
 
 app.use("/cabbage", cabbageRoutes);
 app.use("/awc", awcRoutes);

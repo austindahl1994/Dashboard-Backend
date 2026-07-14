@@ -74,6 +74,8 @@ export const getDiscordUserFromCode = async (code: string) => {
   }
 
   // console.log("[Discord OAuth] Discord user profile fetched successfully");
+  // console.log(`Data returned from discord: `);
+  // console.log(await discordUserResponse.json());
   return {
     discordUser: (await discordUserResponse.json()) as DiscordUserResponse,
     tokenCookieOptions,

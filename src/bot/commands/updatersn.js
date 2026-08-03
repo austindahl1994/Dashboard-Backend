@@ -1,5 +1,10 @@
 import { SlashCommandBuilder, MessageFlags } from "discord.js";
-import { updateCabbageUser } from "../../cabbage/cabbage-main/mvc/cabbage.ts";
+import {
+  getCabbageUserByDiscordId,
+  updateCabbageUser,
+} from "../../cabbage/cabbage-main/mvc/cabbage.ts";
+import { upsertCabbageUserCache } from "../../cabbage/cabbage-main/globalCabbage.ts";
+import { upsertAdventurerFromCabbageUser } from "../../cabbage/tower/towerGlobalData.ts";
 
 export default {
   cooldown: 5,
@@ -34,6 +39,13 @@ export default {
         discord_avatar,
         role,
       );
+
+      const updatedCabbageUser = await getCabbageUserByDiscordId(discord_id);
+      if (updatedCabbageUser) {
+        upsertCabbageUserCache(updatedCabbageUser);
+        upsertAdventurerFromCabbageUser(updatedCabbageUser);
+      }
+
       await interaction.reply({
         content: `Your RSN has been updated to **${rsn}**!`,
         flags: MessageFlags.Ephemeral,

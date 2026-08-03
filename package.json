@@ -2,6 +2,7 @@
   "type": "module",
   "scripts": {
     "server": "nodemon --watch src --ext ts,tsx,js,json --exec tsx src/server.ts ",
+    "command": "npx tsx ./src/bot/deploy-commands.js",
     "build": "tsc",
     "start": "node dist/server.js"
   },

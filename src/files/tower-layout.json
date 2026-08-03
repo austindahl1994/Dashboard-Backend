@@ -1,0 +1,4293 @@
+{
+  "floors": 100,
+  "quantity": 1,
+  "placements": [
+    {
+      "floor": 0,
+      "slot": 0,
+      "title": "Sulphur Nagua",
+      "items": ["Sulphur blades"],
+      "tile": {
+        "id": "sulphur nagua-slayer",
+        "name": "Sulphur Nagua",
+        "type": "slayer",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 0,
+      "slot": 1,
+      "title": "Frost Nagua",
+      "items": ["Glacial temotli", "Tooth half of key (moon key)"],
+      "tile": {
+        "id": "frost nagua-slayer",
+        "name": "Frost Nagua",
+        "type": "slayer",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 0,
+      "slot": 2,
+      "title": "Earthen Nagua",
+      "items": ["Earthbound tecpatl"],
+      "tile": {
+        "id": "earthen nagua-slayer",
+        "name": "Earthen Nagua",
+        "type": "slayer",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 1,
+      "slot": 0,
+      "title": "Scurrius",
+      "items": ["Scurrius' spine"],
+      "tile": {
+        "id": "scurrius-boss",
+        "name": "Scurrius",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 1,
+      "slot": 1,
+      "title": "Spiritual Mage",
+      "items": ["Dragon boots"],
+      "tile": {
+        "id": "spiritual mage-slayer",
+        "name": "Spiritual Mage",
+        "type": "slayer",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 1,
+      "slot": 2,
+      "title": "Warped Terrorbird",
+      "items": ["Warped sceptre"],
+      "tile": {
+        "id": "warped terrorbird-slayer",
+        "name": "Warped Terrorbird",
+        "type": "slayer",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 2,
+      "slot": 0,
+      "title": "Wintertodt",
+      "items": ["Dragon axe", "Tome of fire (empty)"],
+      "tile": {
+        "id": "wintertodt-boss",
+        "name": "Wintertodt",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 2,
+      "slot": 1,
+      "title": "Amoxliatl",
+      "items": ["Glacial temotli"],
+      "tile": {
+        "id": "amoxliatl-boss",
+        "name": "Amoxliatl",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 2,
+      "slot": 2,
+      "title": "Frost Nagua",
+      "items": ["Glacial temotli", "Tooth half of key (moon key)"],
+      "tile": {
+        "id": "frost nagua-slayer",
+        "name": "Frost Nagua",
+        "type": "slayer",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 3,
+      "slot": 0,
+      "title": "Abyssal Demon",
+      "items": ["Abyssal whip", "Abyssal dagger", "Abyssal head"],
+      "tile": {
+        "id": "abyssal demon-slayer",
+        "name": "Abyssal Demon",
+        "type": "slayer",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 3,
+      "slot": 1,
+      "title": "Gryphon",
+      "items": ["Horn of plenty (empty)"],
+      "tile": {
+        "id": "gryphon-slayer",
+        "name": "Gryphon",
+        "type": "slayer",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 3,
+      "slot": 2,
+      "title": "Deranged archaeologist",
+      "items": ["Steel ring"],
+      "tile": {
+        "id": "deranged archaeologist-boss",
+        "name": "Deranged archaeologist",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 4,
+      "slot": 0,
+      "title": "Brutus",
+      "items": ["Bottomless milk bucket (empty)", "Cow slippers", "Mooleta"],
+      "tile": {
+        "id": "brutus-boss",
+        "name": "Brutus",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 5,
+      "slot": 0,
+      "title": "Elder custodian stalker",
+      "items": ["Alchemist's signet", "Antler guard"],
+      "tile": {
+        "id": "elder custodian stalker-slayer",
+        "name": "Elder custodian stalker",
+        "type": "slayer",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 5,
+      "slot": 1,
+      "title": "Earthen Nagua",
+      "items": ["Earthbound tecpatl"],
+      "tile": {
+        "id": "earthen nagua-slayer",
+        "name": "Earthen Nagua",
+        "type": "slayer",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 5,
+      "slot": 2,
+      "title": "Scurrius",
+      "items": ["Scurrius' spine"],
+      "tile": {
+        "id": "scurrius-boss",
+        "name": "Scurrius",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 6,
+      "slot": 0,
+      "title": "Chaos Fanatic",
+      "items": ["Malediction shard 1", "Odium shard 1"],
+      "tile": {
+        "id": "chaos fanatic-boss",
+        "name": "Chaos Fanatic",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 6,
+      "slot": 1,
+      "title": "Deranged archaeologist",
+      "items": ["Steel ring"],
+      "tile": {
+        "id": "deranged archaeologist-boss",
+        "name": "Deranged archaeologist",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 6,
+      "slot": 2,
+      "title": "Crazy archaeologist",
+      "items": ["Fedora", "Malediction shard 2", "Odium shard 2"],
+      "tile": {
+        "id": "crazy archaeologist-boss",
+        "name": "Crazy archaeologist",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 7,
+      "slot": 0,
+      "title": "Wintertodt",
+      "items": ["Dragon axe", "Tome of fire (empty)"],
+      "tile": {
+        "id": "wintertodt-boss",
+        "name": "Wintertodt",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 7,
+      "slot": 1,
+      "title": "Gryphon",
+      "items": ["Horn of plenty (empty)"],
+      "tile": {
+        "id": "gryphon-slayer",
+        "name": "Gryphon",
+        "type": "slayer",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 7,
+      "slot": 2,
+      "title": "Elder custodian stalker",
+      "items": ["Alchemist's signet", "Antler guard"],
+      "tile": {
+        "id": "elder custodian stalker-slayer",
+        "name": "Elder custodian stalker",
+        "type": "slayer",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 8,
+      "slot": 0,
+      "title": "Amoxliatl",
+      "items": ["Glacial temotli"],
+      "tile": {
+        "id": "amoxliatl-boss",
+        "name": "Amoxliatl",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 8,
+      "slot": 1,
+      "title": "Brutus",
+      "items": ["Bottomless milk bucket (empty)", "Cow slippers", "Mooleta"],
+      "tile": {
+        "id": "brutus-boss",
+        "name": "Brutus",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 8,
+      "slot": 2,
+      "title": "Abyssal Demon",
+      "items": ["Abyssal whip", "Abyssal dagger", "Abyssal head"],
+      "tile": {
+        "id": "abyssal demon-slayer",
+        "name": "Abyssal Demon",
+        "type": "slayer",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 9,
+      "slot": 0,
+      "title": "Barrows",
+      "items": [
+        "Ahrim's hood",
+        "Ahrim's robeskirt",
+        "Ahrim's robetop",
+        "Ahrim's staff",
+        "Dharok's greataxe",
+        "Dharok's helm",
+        "Dharok's platebody",
+        "Dharok's platelegs",
+        "Guthan's chainskirt",
+        "Guthan's helm",
+        "Guthan's platebody",
+        "Guthan's warspear",
+        "Karil's coif",
+        "Karil's crossbow",
+        "Karil's leatherskirt",
+        "Karil's leathertop",
+        "Torag's hammers",
+        "Torag's helm",
+        "Torag's platebody",
+        "Torag's platelegs",
+        "Verac's brassard",
+        "Verac's flail",
+        "Verac's helm",
+        "Verac's plateskirt"
+      ],
+      "tile": {
+        "id": "barrows-boss",
+        "name": "Barrows",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 10,
+      "slot": 0,
+      "title": "Deranged archaeologist",
+      "items": ["Steel ring"],
+      "tile": {
+        "id": "deranged archaeologist-boss",
+        "name": "Deranged archaeologist",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 10,
+      "slot": 1,
+      "title": "Warped Terrorbird",
+      "items": ["Warped sceptre"],
+      "tile": {
+        "id": "warped terrorbird-slayer",
+        "name": "Warped Terrorbird",
+        "type": "slayer",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 10,
+      "slot": 2,
+      "title": "Crazy archaeologist",
+      "items": ["Fedora", "Malediction shard 2", "Odium shard 2"],
+      "tile": {
+        "id": "crazy archaeologist-boss",
+        "name": "Crazy archaeologist",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 11,
+      "slot": 0,
+      "title": "Spiritual Mage",
+      "items": ["Dragon boots"],
+      "tile": {
+        "id": "spiritual mage-slayer",
+        "name": "Spiritual Mage",
+        "type": "slayer",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 11,
+      "slot": 1,
+      "title": "Gryphon",
+      "items": ["Horn of plenty (empty)"],
+      "tile": {
+        "id": "gryphon-slayer",
+        "name": "Gryphon",
+        "type": "slayer",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 11,
+      "slot": 2,
+      "title": "Abyssal Demon",
+      "items": ["Abyssal whip", "Abyssal dagger", "Abyssal head"],
+      "tile": {
+        "id": "abyssal demon-slayer",
+        "name": "Abyssal Demon",
+        "type": "slayer",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 12,
+      "slot": 0,
+      "title": "Scurrius",
+      "items": ["Scurrius' spine"],
+      "tile": {
+        "id": "scurrius-boss",
+        "name": "Scurrius",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 12,
+      "slot": 1,
+      "title": "Brutus",
+      "items": ["Bottomless milk bucket (empty)", "Cow slippers", "Mooleta"],
+      "tile": {
+        "id": "brutus-boss",
+        "name": "Brutus",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 12,
+      "slot": 2,
+      "title": "Elder custodian stalker",
+      "items": ["Alchemist's signet", "Antler guard"],
+      "tile": {
+        "id": "elder custodian stalker-slayer",
+        "name": "Elder custodian stalker",
+        "type": "slayer",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 13,
+      "slot": 0,
+      "title": "Amoxliatl",
+      "items": ["Glacial temotli"],
+      "tile": {
+        "id": "amoxliatl-boss",
+        "name": "Amoxliatl",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 13,
+      "slot": 1,
+      "title": "Barrows",
+      "items": [
+        "Ahrim's hood",
+        "Ahrim's robeskirt",
+        "Ahrim's robetop",
+        "Ahrim's staff",
+        "Dharok's greataxe",
+        "Dharok's helm",
+        "Dharok's platebody",
+        "Dharok's platelegs",
+        "Guthan's chainskirt",
+        "Guthan's helm",
+        "Guthan's platebody",
+        "Guthan's warspear",
+        "Karil's coif",
+        "Karil's crossbow",
+        "Karil's leatherskirt",
+        "Karil's leathertop",
+        "Torag's hammers",
+        "Torag's helm",
+        "Torag's platebody",
+        "Torag's platelegs",
+        "Verac's brassard",
+        "Verac's flail",
+        "Verac's helm",
+        "Verac's plateskirt"
+      ],
+      "tile": {
+        "id": "barrows-boss",
+        "name": "Barrows",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 13,
+      "slot": 2,
+      "title": "Sulphur Nagua",
+      "items": ["Sulphur blades"],
+      "tile": {
+        "id": "sulphur nagua-slayer",
+        "name": "Sulphur Nagua",
+        "type": "slayer",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 14,
+      "slot": 0,
+      "title": "Perilous Moons",
+      "items": [
+        "Blood moon chestplate",
+        "Blood moon helm",
+        "Blood moon tassets",
+        "Blue moon chestplate",
+        "Blue moon helm",
+        "Blue moon spear",
+        "Blue moon tassets",
+        "Dual macuahuitl",
+        "Eclipse atlatl",
+        "Eclipse moon chestplate",
+        "Eclipse moon helm",
+        "Eclipse moon tassets"
+      ],
+      "tile": {
+        "id": "perilous moons-boss",
+        "name": "Perilous Moons",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 15,
+      "slot": 0,
+      "title": "Dagannoth Prime",
+      "items": ["Dragon axe", "Mud battlestaff", "Seers ring"],
+      "tile": {
+        "id": "dagannoth prime-boss",
+        "name": "Dagannoth Prime",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 15,
+      "slot": 1,
+      "title": "Dagannoth Rex",
+      "items": ["Berserker ring", "Dragon axe", "Warrior ring"],
+      "tile": {
+        "id": "dagannoth rex-boss",
+        "name": "Dagannoth Rex",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 15,
+      "slot": 2,
+      "title": "Dagannoth Supreme",
+      "items": ["Archers ring", "Dragon axe", "Seercull"],
+      "tile": {
+        "id": "dagannoth supreme-boss",
+        "name": "Dagannoth Supreme",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 16,
+      "slot": 0,
+      "title": "Drake",
+      "items": ["Drake's tooth", "Drake's claw"],
+      "tile": {
+        "id": "drake-slayer",
+        "name": "Drake",
+        "type": "slayer",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 16,
+      "slot": 1,
+      "title": "Aquanite",
+      "items": ["Aquanite tendon"],
+      "tile": {
+        "id": "aquanite-slayer",
+        "name": "Aquanite",
+        "type": "slayer",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 16,
+      "slot": 2,
+      "title": "Amoxliatl",
+      "items": ["Glacial temotli"],
+      "tile": {
+        "id": "amoxliatl-boss",
+        "name": "Amoxliatl",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 17,
+      "slot": 0,
+      "title": "Eldric the Ice King",
+      "items": ["Deadeye prayer scroll", "Ice element staff crown"],
+      "tile": {
+        "id": "eldric the ice king-boss",
+        "name": "Eldric the Ice King",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 17,
+      "slot": 1,
+      "title": "Hespori",
+      "items": ["Bottomless compost bucket"],
+      "tile": {
+        "id": "hespori-boss",
+        "name": "Hespori",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 17,
+      "slot": 2,
+      "title": "Crazy archaeologist",
+      "items": ["Fedora", "Malediction shard 2", "Odium shard 2"],
+      "tile": {
+        "id": "crazy archaeologist-boss",
+        "name": "Crazy archaeologist",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 18,
+      "slot": 0,
+      "title": "Araxyte",
+      "items": ["Aranea boots", "Araxyte head"],
+      "tile": {
+        "id": "araxyte-slayer",
+        "name": "Araxyte",
+        "type": "slayer",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 18,
+      "slot": 1,
+      "title": "Artio",
+      "items": [
+        "Claws of callisto",
+        "Dragon 2h sword",
+        "Dragon pickaxe",
+        "Tyrannical ring",
+        "Voidwaker hilt"
+      ],
+      "tile": {
+        "id": "artio-boss",
+        "name": "Artio",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 18,
+      "slot": 2,
+      "title": "Brutus",
+      "items": ["Bottomless milk bucket (empty)", "Cow slippers", "Mooleta"],
+      "tile": {
+        "id": "brutus-boss",
+        "name": "Brutus",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 19,
+      "slot": 0,
+      "title": "Sarachnis",
+      "items": ["Giant egg sac", "Pristine spider silk", "Sarachnis cudgel"],
+      "tile": {
+        "id": "sarachnis-boss",
+        "name": "Sarachnis",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 20,
+      "slot": 0,
+      "title": "Dagannoth Prime",
+      "items": ["Dragon axe", "Mud battlestaff", "Seers ring"],
+      "tile": {
+        "id": "dagannoth prime-boss",
+        "name": "Dagannoth Prime",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 20,
+      "slot": 1,
+      "title": "King Black Dragon",
+      "items": [
+        "Draconic visage",
+        "Dragon 2h sword",
+        "Dragon pickaxe",
+        "Kbd heads"
+      ],
+      "tile": {
+        "id": "king black dragon-boss",
+        "name": "King Black Dragon",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 20,
+      "slot": 2,
+      "title": "Barrows",
+      "items": [
+        "Ahrim's hood",
+        "Ahrim's robeskirt",
+        "Ahrim's robetop",
+        "Ahrim's staff",
+        "Dharok's greataxe",
+        "Dharok's helm",
+        "Dharok's platebody",
+        "Dharok's platelegs",
+        "Guthan's chainskirt",
+        "Guthan's helm",
+        "Guthan's platebody",
+        "Guthan's warspear",
+        "Karil's coif",
+        "Karil's crossbow",
+        "Karil's leatherskirt",
+        "Karil's leathertop",
+        "Torag's hammers",
+        "Torag's helm",
+        "Torag's platebody",
+        "Torag's platelegs",
+        "Verac's brassard",
+        "Verac's flail",
+        "Verac's helm",
+        "Verac's plateskirt"
+      ],
+      "tile": {
+        "id": "barrows-boss",
+        "name": "Barrows",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 21,
+      "slot": 0,
+      "title": "Branda the Fire Queen",
+      "items": ["Fire element staff crown", "Mystic vigour prayer scroll"],
+      "tile": {
+        "id": "branda the fire queen-boss",
+        "name": "Branda the Fire Queen",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 21,
+      "slot": 1,
+      "title": "Dagannoth Rex",
+      "items": ["Berserker ring", "Dragon axe", "Warrior ring"],
+      "tile": {
+        "id": "dagannoth rex-boss",
+        "name": "Dagannoth Rex",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 21,
+      "slot": 2,
+      "title": "Sulphur Nagua",
+      "items": ["Sulphur blades"],
+      "tile": {
+        "id": "sulphur nagua-slayer",
+        "name": "Sulphur Nagua",
+        "type": "slayer",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 22,
+      "slot": 0,
+      "title": "Bryophyta",
+      "items": ["Bryophyta's essence"],
+      "tile": {
+        "id": "bryophyta-boss",
+        "name": "Bryophyta",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 22,
+      "slot": 1,
+      "title": "Earthen Nagua",
+      "items": ["Earthbound tecpatl"],
+      "tile": {
+        "id": "earthen nagua-slayer",
+        "name": "Earthen Nagua",
+        "type": "slayer",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 22,
+      "slot": 2,
+      "title": "Dagannoth Supreme",
+      "items": ["Archers ring", "Dragon axe", "Seercull"],
+      "tile": {
+        "id": "dagannoth supreme-boss",
+        "name": "Dagannoth Supreme",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 23,
+      "slot": 0,
+      "title": "Chaos Elemental",
+      "items": ["Dragon 2h sword", "Dragon pickaxe"],
+      "tile": {
+        "id": "chaos elemental-boss",
+        "name": "Chaos Elemental",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 23,
+      "slot": 1,
+      "title": "Calvar'ion",
+      "items": [
+        "Dragon 2h sword",
+        "Dragon pickaxe",
+        "Ring of the gods",
+        "Skull of vet'ion",
+        "Voidwaker blade"
+      ],
+      "tile": {
+        "id": "calvar'ion-boss",
+        "name": "Calvar'ion",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 23,
+      "slot": 2,
+      "title": "Warped Terrorbird",
+      "items": ["Warped sceptre"],
+      "tile": {
+        "id": "warped terrorbird-slayer",
+        "name": "Warped Terrorbird",
+        "type": "slayer",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 24,
+      "slot": 0,
+      "title": "Chambers of Xeric",
+      "items": [
+        "Ancestral hat",
+        "Ancestral robe bottom",
+        "Ancestral robe top",
+        "Arcane prayer scroll",
+        "Dexterous prayer scroll",
+        "Dinh's bulwark",
+        "Dragon claws",
+        "Dragon hunter crossbow",
+        "Elder maul",
+        "Kodai insignia",
+        "Twisted bow",
+        "Twisted buckler"
+      ],
+      "tile": {
+        "id": "chambers of xeric-raid",
+        "name": "Chambers of Xeric",
+        "type": "raid",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 25,
+      "slot": 0,
+      "title": "Shellbane gryphon",
+      "items": ["Belle's folly (tarnished)"],
+      "tile": {
+        "id": "shellbane gryphon-boss",
+        "name": "Shellbane gryphon",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 25,
+      "slot": 1,
+      "title": "Wyrm",
+      "items": [
+        "Dragon sword",
+        "Dragon harpoon",
+        "Dragon knife",
+        "Dragon thrownaxe"
+      ],
+      "tile": {
+        "id": "wyrm-slayer",
+        "name": "Wyrm",
+        "type": "slayer",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 25,
+      "slot": 2,
+      "title": "Barrows",
+      "items": [
+        "Ahrim's hood",
+        "Ahrim's robeskirt",
+        "Ahrim's robetop",
+        "Ahrim's staff",
+        "Dharok's greataxe",
+        "Dharok's helm",
+        "Dharok's platebody",
+        "Dharok's platelegs",
+        "Guthan's chainskirt",
+        "Guthan's helm",
+        "Guthan's platebody",
+        "Guthan's warspear",
+        "Karil's coif",
+        "Karil's crossbow",
+        "Karil's leatherskirt",
+        "Karil's leathertop",
+        "Torag's hammers",
+        "Torag's helm",
+        "Torag's platebody",
+        "Torag's platelegs",
+        "Verac's brassard",
+        "Verac's flail",
+        "Verac's helm",
+        "Verac's plateskirt"
+      ],
+      "tile": {
+        "id": "barrows-boss",
+        "name": "Barrows",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 26,
+      "slot": 0,
+      "title": "Tempoross",
+      "items": [
+        "Big harpoonfish",
+        "Dragon harpoon",
+        "Fish barrel",
+        "Tackle box",
+        "Tome of water (empty)"
+      ],
+      "tile": {
+        "id": "tempoross-boss",
+        "name": "Tempoross",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 26,
+      "slot": 1,
+      "title": "Obor",
+      "items": ["Hill giant club"],
+      "tile": {
+        "id": "obor-boss",
+        "name": "Obor",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 26,
+      "slot": 2,
+      "title": "Sarachnis",
+      "items": ["Giant egg sac", "Pristine spider silk", "Sarachnis cudgel"],
+      "tile": {
+        "id": "sarachnis-boss",
+        "name": "Sarachnis",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 27,
+      "slot": 0,
+      "title": "Wyrm",
+      "items": [
+        "Dragon sword",
+        "Dragon harpoon",
+        "Dragon knife",
+        "Dragon thrownaxe"
+      ],
+      "tile": {
+        "id": "wyrm-slayer",
+        "name": "Wyrm",
+        "type": "slayer",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 27,
+      "slot": 1,
+      "title": "Kraken",
+      "items": ["Kraken tentacle", "Trident of the seas (full)"],
+      "tile": {
+        "id": "kraken-boss",
+        "name": "Kraken",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 27,
+      "slot": 2,
+      "title": "Perilous Moons",
+      "items": [
+        "Blood moon chestplate",
+        "Blood moon helm",
+        "Blood moon tassets",
+        "Blue moon chestplate",
+        "Blue moon helm",
+        "Blue moon spear",
+        "Blue moon tassets",
+        "Dual macuahuitl",
+        "Eclipse atlatl",
+        "Eclipse moon chestplate",
+        "Eclipse moon helm",
+        "Eclipse moon tassets"
+      ],
+      "tile": {
+        "id": "perilous moons-boss",
+        "name": "Perilous Moons",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 28,
+      "slot": 0,
+      "title": "Dark beast",
+      "items": ["Dark bow"],
+      "tile": {
+        "id": "dark beast-slayer",
+        "name": "Dark beast",
+        "type": "slayer",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 28,
+      "slot": 1,
+      "title": "Barrows",
+      "items": [
+        "Ahrim's hood",
+        "Ahrim's robeskirt",
+        "Ahrim's robetop",
+        "Ahrim's staff",
+        "Dharok's greataxe",
+        "Dharok's helm",
+        "Dharok's platebody",
+        "Dharok's platelegs",
+        "Guthan's chainskirt",
+        "Guthan's helm",
+        "Guthan's platebody",
+        "Guthan's warspear",
+        "Karil's coif",
+        "Karil's crossbow",
+        "Karil's leatherskirt",
+        "Karil's leathertop",
+        "Torag's hammers",
+        "Torag's helm",
+        "Torag's platebody",
+        "Torag's platelegs",
+        "Verac's brassard",
+        "Verac's flail",
+        "Verac's helm",
+        "Verac's plateskirt"
+      ],
+      "tile": {
+        "id": "barrows-boss",
+        "name": "Barrows",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 28,
+      "slot": 2,
+      "title": "Drake",
+      "items": ["Drake's tooth", "Drake's claw"],
+      "tile": {
+        "id": "drake-slayer",
+        "name": "Drake",
+        "type": "slayer",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 29,
+      "slot": 0,
+      "title": "Demonic gorilla",
+      "items": [
+        "Zenyte shard",
+        "Ballista limbs",
+        "Ballista spring",
+        "Light frame",
+        "Heavy frame",
+        "Monkey tail"
+      ],
+      "tile": {
+        "id": "demonic gorilla-slayer",
+        "name": "Demonic gorilla",
+        "type": "slayer",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 30,
+      "slot": 0,
+      "title": "Artio",
+      "items": [
+        "Claws of callisto",
+        "Dragon 2h sword",
+        "Dragon pickaxe",
+        "Tyrannical ring",
+        "Voidwaker hilt"
+      ],
+      "tile": {
+        "id": "artio-boss",
+        "name": "Artio",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 30,
+      "slot": 1,
+      "title": "Sarachnis",
+      "items": ["Giant egg sac", "Pristine spider silk", "Sarachnis cudgel"],
+      "tile": {
+        "id": "sarachnis-boss",
+        "name": "Sarachnis",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 30,
+      "slot": 2,
+      "title": "Scorpia",
+      "items": ["Dragon 2h sword", "Malediction shard 3", "Odium shard 3"],
+      "tile": {
+        "id": "scorpia-boss",
+        "name": "Scorpia",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 31,
+      "slot": 0,
+      "title": "King Black Dragon",
+      "items": [
+        "Draconic visage",
+        "Dragon 2h sword",
+        "Dragon pickaxe",
+        "Kbd heads"
+      ],
+      "tile": {
+        "id": "king black dragon-boss",
+        "name": "King Black Dragon",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 31,
+      "slot": 1,
+      "title": "Chaos Fanatic",
+      "items": ["Malediction shard 1", "Odium shard 1"],
+      "tile": {
+        "id": "chaos fanatic-boss",
+        "name": "Chaos Fanatic",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 31,
+      "slot": 2,
+      "title": "Chaos Elemental",
+      "items": ["Dragon 2h sword", "Dragon pickaxe"],
+      "tile": {
+        "id": "chaos elemental-boss",
+        "name": "Chaos Elemental",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 32,
+      "slot": 0,
+      "title": "Aquanite",
+      "items": ["Aquanite tendon"],
+      "tile": {
+        "id": "aquanite-slayer",
+        "name": "Aquanite",
+        "type": "slayer",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 32,
+      "slot": 1,
+      "title": "Araxyte",
+      "items": ["Aranea boots", "Araxyte head"],
+      "tile": {
+        "id": "araxyte-slayer",
+        "name": "Araxyte",
+        "type": "slayer",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 32,
+      "slot": 2,
+      "title": "Frost Nagua",
+      "items": ["Glacial temotli", "Tooth half of key (moon key)"],
+      "tile": {
+        "id": "frost nagua-slayer",
+        "name": "Frost Nagua",
+        "type": "slayer",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 33,
+      "slot": 0,
+      "title": "Barrows",
+      "items": [
+        "Ahrim's hood",
+        "Ahrim's robeskirt",
+        "Ahrim's robetop",
+        "Ahrim's staff",
+        "Dharok's greataxe",
+        "Dharok's helm",
+        "Dharok's platebody",
+        "Dharok's platelegs",
+        "Guthan's chainskirt",
+        "Guthan's helm",
+        "Guthan's platebody",
+        "Guthan's warspear",
+        "Karil's coif",
+        "Karil's crossbow",
+        "Karil's leatherskirt",
+        "Karil's leathertop",
+        "Torag's hammers",
+        "Torag's helm",
+        "Torag's platebody",
+        "Torag's platelegs",
+        "Verac's brassard",
+        "Verac's flail",
+        "Verac's helm",
+        "Verac's plateskirt"
+      ],
+      "tile": {
+        "id": "barrows-boss",
+        "name": "Barrows",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 33,
+      "slot": 1,
+      "title": "Eldric the Ice King",
+      "items": ["Deadeye prayer scroll", "Ice element staff crown"],
+      "tile": {
+        "id": "eldric the ice king-boss",
+        "name": "Eldric the Ice King",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 33,
+      "slot": 2,
+      "title": "Cave kraken",
+      "items": ["Kraken tentacle", "Trident of the seas (full)"],
+      "tile": {
+        "id": "cave kraken-slayer",
+        "name": "Cave kraken",
+        "type": "slayer",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 34,
+      "slot": 0,
+      "title": "Tombs of Amascut",
+      "items": [
+        "Elidinis' ward",
+        "Lightbearer",
+        "Masori body",
+        "Masori chaps",
+        "Masori mask",
+        "Osmumten's fang",
+        "Tumeken's shadow"
+      ],
+      "tile": {
+        "id": "tombs of amascut-raid",
+        "name": "Tombs of Amascut",
+        "type": "raid",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 35,
+      "slot": 0,
+      "title": "K'ril Tsutsaroth",
+      "items": [
+        "Staff of the dead",
+        "Steam battlestaff",
+        "Zamorak hilt",
+        "Zamorakian spear"
+      ],
+      "tile": {
+        "id": "k'ril tsutsaroth-boss",
+        "name": "K'ril Tsutsaroth",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 35,
+      "slot": 1,
+      "title": "Commander Zilyana",
+      "items": [
+        "Armadyl crossbow",
+        "Saradomin hilt",
+        "Saradomin sword",
+        "Saradomin's light"
+      ],
+      "tile": {
+        "id": "commander zilyana-boss",
+        "name": "Commander Zilyana",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 35,
+      "slot": 2,
+      "title": "General Graardor",
+      "items": [
+        "Bandos boots",
+        "Bandos chestplate",
+        "Bandos hilt",
+        "Bandos tassets"
+      ],
+      "tile": {
+        "id": "general graardor-boss",
+        "name": "General Graardor",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 36,
+      "slot": 0,
+      "title": "Basilisk Knight",
+      "items": ["Basilisk jaw", "Basilisk head"],
+      "tile": {
+        "id": "basilisk knight-slayer",
+        "name": "Basilisk Knight",
+        "type": "slayer",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 36,
+      "slot": 1,
+      "title": "Wyrm",
+      "items": [
+        "Dragon sword",
+        "Dragon harpoon",
+        "Dragon knife",
+        "Dragon thrownaxe"
+      ],
+      "tile": {
+        "id": "wyrm-slayer",
+        "name": "Wyrm",
+        "type": "slayer",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 36,
+      "slot": 2,
+      "title": "Scorpia",
+      "items": ["Dragon 2h sword", "Malediction shard 3", "Odium shard 3"],
+      "tile": {
+        "id": "scorpia-boss",
+        "name": "Scorpia",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 37,
+      "slot": 0,
+      "title": "Abyssal Demon",
+      "items": ["Abyssal whip", "Abyssal dagger", "Abyssal head"],
+      "tile": {
+        "id": "abyssal demon-slayer",
+        "name": "Abyssal Demon",
+        "type": "slayer",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 37,
+      "slot": 1,
+      "title": "Spindel",
+      "items": [
+        "Dragon 2h sword",
+        "Dragon pickaxe",
+        "Fangs of venenatis",
+        "Treasonous ring",
+        "Voidwaker gem"
+      ],
+      "tile": {
+        "id": "spindel-boss",
+        "name": "Spindel",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 37,
+      "slot": 2,
+      "title": "Shellbane gryphon",
+      "items": ["Belle's folly (tarnished)"],
+      "tile": {
+        "id": "shellbane gryphon-boss",
+        "name": "Shellbane gryphon",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 38,
+      "slot": 0,
+      "title": "Skotizo",
+      "items": ["Dark claw", "Dark totem", "Uncut onyx"],
+      "tile": {
+        "id": "skotizo-boss",
+        "name": "Skotizo",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 38,
+      "slot": 1,
+      "title": "Kalphite Queen",
+      "items": [
+        "Dragon 2h sword",
+        "Dragon chainbody",
+        "Dragon pickaxe",
+        "Kq head"
+      ],
+      "tile": {
+        "id": "kalphite queen-boss",
+        "name": "Kalphite Queen",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 38,
+      "slot": 2,
+      "title": "Tempoross",
+      "items": [
+        "Big harpoonfish",
+        "Dragon harpoon",
+        "Fish barrel",
+        "Tackle box",
+        "Tome of water (empty)"
+      ],
+      "tile": {
+        "id": "tempoross-boss",
+        "name": "Tempoross",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 39,
+      "slot": 0,
+      "title": "Phantom Muspah",
+      "items": ["Venator shard"],
+      "tile": {
+        "id": "phantom muspah-boss",
+        "name": "Phantom Muspah",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 40,
+      "slot": 0,
+      "title": "The Hueycoatl",
+      "items": [
+        "Dragon hunter wand",
+        "Hueycoatl hide",
+        "Tome of earth (empty)"
+      ],
+      "tile": {
+        "id": "the hueycoatl-boss",
+        "name": "The Hueycoatl",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 40,
+      "slot": 1,
+      "title": "Cerberus",
+      "items": [
+        "Eternal crystal",
+        "Pegasian crystal",
+        "Primordial crystal",
+        "Smouldering stone"
+      ],
+      "tile": {
+        "id": "cerberus-boss",
+        "name": "Cerberus",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 40,
+      "slot": 2,
+      "title": "Obor",
+      "items": ["Hill giant club"],
+      "tile": {
+        "id": "obor-boss",
+        "name": "Obor",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 41,
+      "slot": 0,
+      "title": "K'ril Tsutsaroth",
+      "items": [
+        "Staff of the dead",
+        "Steam battlestaff",
+        "Zamorak hilt",
+        "Zamorakian spear"
+      ],
+      "tile": {
+        "id": "k'ril tsutsaroth-boss",
+        "name": "K'ril Tsutsaroth",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 41,
+      "slot": 1,
+      "title": "Abyssal Sire",
+      "items": ["Unsired"],
+      "tile": {
+        "id": "abyssal sire-boss",
+        "name": "Abyssal Sire",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 41,
+      "slot": 2,
+      "title": "Kraken",
+      "items": ["Kraken tentacle", "Trident of the seas (full)"],
+      "tile": {
+        "id": "kraken-boss",
+        "name": "Kraken",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 42,
+      "slot": 0,
+      "title": "Thermonuclear smoke devil",
+      "items": ["Dragon chainbody", "Occult necklace", "Smoke battlestaff"],
+      "tile": {
+        "id": "thermonuclear smoke devil-boss",
+        "name": "Thermonuclear smoke devil",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 42,
+      "slot": 1,
+      "title": "Grotesque Guardians",
+      "items": [
+        "Black tourmaline core",
+        "Granite gloves",
+        "Granite hammer",
+        "Granite ring"
+      ],
+      "tile": {
+        "id": "grotesque guardians-boss",
+        "name": "Grotesque Guardians",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 42,
+      "slot": 2,
+      "title": "Perilous Moons",
+      "items": [
+        "Blood moon chestplate",
+        "Blood moon helm",
+        "Blood moon tassets",
+        "Blue moon chestplate",
+        "Blue moon helm",
+        "Blue moon spear",
+        "Blue moon tassets",
+        "Dual macuahuitl",
+        "Eclipse atlatl",
+        "Eclipse moon chestplate",
+        "Eclipse moon helm",
+        "Eclipse moon tassets"
+      ],
+      "tile": {
+        "id": "perilous moons-boss",
+        "name": "Perilous Moons",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 43,
+      "slot": 0,
+      "title": "Zalcano",
+      "items": ["Crystal tool seed", "Uncut onyx", "Zalcano shard"],
+      "tile": {
+        "id": "zalcano-boss",
+        "name": "Zalcano",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 43,
+      "slot": 1,
+      "title": "Tempoross",
+      "items": [
+        "Big harpoonfish",
+        "Dragon harpoon",
+        "Fish barrel",
+        "Tackle box",
+        "Tome of water (empty)"
+      ],
+      "tile": {
+        "id": "tempoross-boss",
+        "name": "Tempoross",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 43,
+      "slot": 2,
+      "title": "Wintertodt",
+      "items": ["Dragon axe", "Tome of fire (empty)"],
+      "tile": {
+        "id": "wintertodt-boss",
+        "name": "Wintertodt",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 44,
+      "slot": 0,
+      "title": "Maggot King",
+      "items": ["Elder venator fang", "crimson kisten"],
+      "tile": {
+        "id": "maggot king-boss",
+        "name": "Maggot King",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 45,
+      "slot": 0,
+      "title": "Tormented Demon",
+      "items": ["Tormented synapse", "Burning claw"],
+      "tile": {
+        "id": "tormented demon-slayer",
+        "name": "Tormented Demon",
+        "type": "slayer",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 45,
+      "slot": 1,
+      "title": "Vorkath",
+      "items": ["Dragonbone necklace", "Skeletal visage"],
+      "tile": {
+        "id": "vorkath-boss",
+        "name": "Vorkath",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 45,
+      "slot": 2,
+      "title": "Kalphite Queen",
+      "items": [
+        "Dragon 2h sword",
+        "Dragon chainbody",
+        "Dragon pickaxe",
+        "Kq head"
+      ],
+      "tile": {
+        "id": "kalphite queen-boss",
+        "name": "Kalphite Queen",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 46,
+      "slot": 0,
+      "title": "Calvar'ion",
+      "items": [
+        "Dragon 2h sword",
+        "Dragon pickaxe",
+        "Ring of the gods",
+        "Skull of vet'ion",
+        "Voidwaker blade"
+      ],
+      "tile": {
+        "id": "calvar'ion-boss",
+        "name": "Calvar'ion",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 46,
+      "slot": 1,
+      "title": "Scorpia",
+      "items": ["Dragon 2h sword", "Malediction shard 3", "Odium shard 3"],
+      "tile": {
+        "id": "scorpia-boss",
+        "name": "Scorpia",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 46,
+      "slot": 2,
+      "title": "Spindel",
+      "items": [
+        "Dragon 2h sword",
+        "Dragon pickaxe",
+        "Fangs of venenatis",
+        "Treasonous ring",
+        "Voidwaker gem"
+      ],
+      "tile": {
+        "id": "spindel-boss",
+        "name": "Spindel",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 47,
+      "slot": 0,
+      "title": "Grotesque Guardians",
+      "items": [
+        "Black tourmaline core",
+        "Granite gloves",
+        "Granite hammer",
+        "Granite ring"
+      ],
+      "tile": {
+        "id": "grotesque guardians-boss",
+        "name": "Grotesque Guardians",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 47,
+      "slot": 1,
+      "title": "Abyssal Sire",
+      "items": ["Unsired"],
+      "tile": {
+        "id": "abyssal sire-boss",
+        "name": "Abyssal Sire",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 47,
+      "slot": 2,
+      "title": "Demonic gorilla",
+      "items": [
+        "Zenyte shard",
+        "Ballista limbs",
+        "Ballista spring",
+        "Light frame",
+        "Heavy frame",
+        "Monkey tail"
+      ],
+      "tile": {
+        "id": "demonic gorilla-slayer",
+        "name": "Demonic gorilla",
+        "type": "slayer",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 48,
+      "slot": 0,
+      "title": "Thermonuclear smoke devil",
+      "items": ["Dragon chainbody", "Occult necklace", "Smoke battlestaff"],
+      "tile": {
+        "id": "thermonuclear smoke devil-boss",
+        "name": "Thermonuclear smoke devil",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 48,
+      "slot": 1,
+      "title": "The Hueycoatl",
+      "items": [
+        "Dragon hunter wand",
+        "Hueycoatl hide",
+        "Tome of earth (empty)"
+      ],
+      "tile": {
+        "id": "the hueycoatl-boss",
+        "name": "The Hueycoatl",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 48,
+      "slot": 2,
+      "title": "Phantom Muspah",
+      "items": ["Venator shard"],
+      "tile": {
+        "id": "phantom muspah-boss",
+        "name": "Phantom Muspah",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 49,
+      "slot": 0,
+      "title": "Theatre of Blood",
+      "items": [
+        "Avernic defender hilt",
+        "Ghrazi rapier",
+        "Justiciar chestguard",
+        "Justiciar faceguard",
+        "Justiciar legguards",
+        "Sanguinesti staff",
+        "Scythe of vitur"
+      ],
+      "tile": {
+        "id": "theatre of blood-raid",
+        "name": "Theatre of Blood",
+        "type": "raid",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 50,
+      "slot": 0,
+      "title": "Corrupted Gauntlet",
+      "items": [
+        "Crystal armour seed",
+        "Crystal weapon seed",
+        "Enhanced crystal weapon seed"
+      ],
+      "tile": {
+        "id": "corrupted gauntlet-boss",
+        "name": "Corrupted Gauntlet",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 50,
+      "slot": 1,
+      "title": "The Whisperer",
+      "items": [
+        "Bellator vestige",
+        "Chromium ingot",
+        "Shadow quartz",
+        "Siren's staff",
+        "Virtus mask",
+        "Virtus robe bottom",
+        "Virtus robe top"
+      ],
+      "tile": {
+        "id": "the whisperer-boss",
+        "name": "The Whisperer",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 50,
+      "slot": 2,
+      "title": "Barrows",
+      "items": [
+        "Ahrim's hood",
+        "Ahrim's robeskirt",
+        "Ahrim's robetop",
+        "Ahrim's staff",
+        "Dharok's greataxe",
+        "Dharok's helm",
+        "Dharok's platebody",
+        "Dharok's platelegs",
+        "Guthan's chainskirt",
+        "Guthan's helm",
+        "Guthan's platebody",
+        "Guthan's warspear",
+        "Karil's coif",
+        "Karil's crossbow",
+        "Karil's leatherskirt",
+        "Karil's leathertop",
+        "Torag's hammers",
+        "Torag's helm",
+        "Torag's platebody",
+        "Torag's platelegs",
+        "Verac's brassard",
+        "Verac's flail",
+        "Verac's helm",
+        "Verac's plateskirt"
+      ],
+      "tile": {
+        "id": "barrows-boss",
+        "name": "Barrows",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 51,
+      "slot": 0,
+      "title": "Theatre of Blood",
+      "items": [
+        "Avernic defender hilt",
+        "Ghrazi rapier",
+        "Justiciar chestguard",
+        "Justiciar faceguard",
+        "Justiciar legguards",
+        "Sanguinesti staff",
+        "Scythe of vitur"
+      ],
+      "tile": {
+        "id": "theatre of blood-raid",
+        "name": "Theatre of Blood",
+        "type": "raid",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 51,
+      "slot": 1,
+      "title": "Vardorvis",
+      "items": [
+        "Blood quartz",
+        "Chromium ingot",
+        "Executioner's axe head",
+        "Ultor vestige",
+        "Virtus mask",
+        "Virtus robe bottom",
+        "Virtus robe top"
+      ],
+      "tile": {
+        "id": "vardorvis-boss",
+        "name": "Vardorvis",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 51,
+      "slot": 2,
+      "title": "Yama",
+      "items": [
+        "Oathplate chest",
+        "Oathplate helm",
+        "Oathplate legs",
+        "Soulflame horn"
+      ],
+      "tile": {
+        "id": "yama-boss",
+        "name": "Yama",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 52,
+      "slot": 0,
+      "title": "Tombs of Amascut",
+      "items": [
+        "Elidinis' ward",
+        "Lightbearer",
+        "Masori body",
+        "Masori chaps",
+        "Masori mask",
+        "Osmumten's fang",
+        "Tumeken's shadow"
+      ],
+      "tile": {
+        "id": "tombs of amascut-raid",
+        "name": "Tombs of Amascut",
+        "type": "raid",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 52,
+      "slot": 1,
+      "title": "The Leviathan",
+      "items": [
+        "Chromium ingot",
+        "Leviathan's lure",
+        "Smoke quartz",
+        "Venator vestige",
+        "Virtus mask",
+        "Virtus robe bottom",
+        "Virtus robe top"
+      ],
+      "tile": {
+        "id": "the leviathan-boss",
+        "name": "The Leviathan",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 52,
+      "slot": 2,
+      "title": "The Hueycoatl",
+      "items": [
+        "Dragon hunter wand",
+        "Hueycoatl hide",
+        "Tome of earth (empty)"
+      ],
+      "tile": {
+        "id": "the hueycoatl-boss",
+        "name": "The Hueycoatl",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 53,
+      "slot": 0,
+      "title": "Chambers of Xeric",
+      "items": [
+        "Ancestral hat",
+        "Ancestral robe bottom",
+        "Ancestral robe top",
+        "Arcane prayer scroll",
+        "Dexterous prayer scroll",
+        "Dinh's bulwark",
+        "Dragon claws",
+        "Dragon hunter crossbow",
+        "Elder maul",
+        "Kodai insignia",
+        "Twisted bow",
+        "Twisted buckler"
+      ],
+      "tile": {
+        "id": "chambers of xeric-raid",
+        "name": "Chambers of Xeric",
+        "type": "raid",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 53,
+      "slot": 1,
+      "title": "Duke Sucellus",
+      "items": [
+        "Chromium ingot",
+        "Eye of the duke",
+        "Ice quartz",
+        "Magus vestige",
+        "Virtus mask",
+        "Virtus robe bottom",
+        "Virtus robe top"
+      ],
+      "tile": {
+        "id": "duke sucellus-boss",
+        "name": "Duke Sucellus",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 53,
+      "slot": 2,
+      "title": "Skotizo",
+      "items": ["Dark claw", "Dark totem", "Uncut onyx"],
+      "tile": {
+        "id": "skotizo-boss",
+        "name": "Skotizo",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 54,
+      "slot": 0,
+      "title": "Cerberus",
+      "items": [
+        "Eternal crystal",
+        "Pegasian crystal",
+        "Primordial crystal",
+        "Smouldering stone"
+      ],
+      "tile": {
+        "id": "cerberus-boss",
+        "name": "Cerberus",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 55,
+      "slot": 0,
+      "title": "Doom of Mokhaiotl",
+      "items": ["Avernic treads", "Eye of ayak (uncharged)", "Mokhaiotl cloth"],
+      "tile": {
+        "id": "doom of mokhaiotl-boss",
+        "name": "Doom of Mokhaiotl",
+        "type": "boss",
+        "tier": "master"
+      }
+    },
+    {
+      "floor": 55,
+      "slot": 1,
+      "title": "K'ril Tsutsaroth",
+      "items": [
+        "Staff of the dead",
+        "Steam battlestaff",
+        "Zamorak hilt",
+        "Zamorakian spear"
+      ],
+      "tile": {
+        "id": "k'ril tsutsaroth-boss",
+        "name": "K'ril Tsutsaroth",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 55,
+      "slot": 2,
+      "title": "Perilous Moons",
+      "items": [
+        "Blood moon chestplate",
+        "Blood moon helm",
+        "Blood moon tassets",
+        "Blue moon chestplate",
+        "Blue moon helm",
+        "Blue moon spear",
+        "Blue moon tassets",
+        "Dual macuahuitl",
+        "Eclipse atlatl",
+        "Eclipse moon chestplate",
+        "Eclipse moon helm",
+        "Eclipse moon tassets"
+      ],
+      "tile": {
+        "id": "perilous moons-boss",
+        "name": "Perilous Moons",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 56,
+      "slot": 0,
+      "title": "Basilisk Knight",
+      "items": ["Basilisk jaw", "Basilisk head"],
+      "tile": {
+        "id": "basilisk knight-slayer",
+        "name": "Basilisk Knight",
+        "type": "slayer",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 56,
+      "slot": 1,
+      "title": "General Graardor",
+      "items": [
+        "Bandos boots",
+        "Bandos chestplate",
+        "Bandos hilt",
+        "Bandos tassets"
+      ],
+      "tile": {
+        "id": "general graardor-boss",
+        "name": "General Graardor",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 56,
+      "slot": 2,
+      "title": "The Whisperer",
+      "items": [
+        "Bellator vestige",
+        "Chromium ingot",
+        "Shadow quartz",
+        "Siren's staff",
+        "Virtus mask",
+        "Virtus robe bottom",
+        "Virtus robe top"
+      ],
+      "tile": {
+        "id": "the whisperer-boss",
+        "name": "The Whisperer",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 57,
+      "slot": 0,
+      "title": "Maggot King",
+      "items": ["Elder venator fang", "crimson kisten"],
+      "tile": {
+        "id": "maggot king-boss",
+        "name": "Maggot King",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 57,
+      "slot": 1,
+      "title": "Commander Zilyana",
+      "items": [
+        "Armadyl crossbow",
+        "Saradomin hilt",
+        "Saradomin sword",
+        "Saradomin's light"
+      ],
+      "tile": {
+        "id": "commander zilyana-boss",
+        "name": "Commander Zilyana",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 57,
+      "slot": 2,
+      "title": "Corrupted Gauntlet",
+      "items": [
+        "Crystal armour seed",
+        "Crystal weapon seed",
+        "Enhanced crystal weapon seed"
+      ],
+      "tile": {
+        "id": "corrupted gauntlet-boss",
+        "name": "Corrupted Gauntlet",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 58,
+      "slot": 0,
+      "title": "Yama",
+      "items": [
+        "Oathplate chest",
+        "Oathplate helm",
+        "Oathplate legs",
+        "Soulflame horn"
+      ],
+      "tile": {
+        "id": "yama-boss",
+        "name": "Yama",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 58,
+      "slot": 1,
+      "title": "Kree'Arra",
+      "items": [
+        "Armadyl chainskirt",
+        "Armadyl chestplate",
+        "Armadyl helmet",
+        "Armadyl hilt"
+      ],
+      "tile": {
+        "id": "kree'arra-boss",
+        "name": "Kree'Arra",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 58,
+      "slot": 2,
+      "title": "Abyssal Sire",
+      "items": ["Unsired"],
+      "tile": {
+        "id": "abyssal sire-boss",
+        "name": "Abyssal Sire",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 59,
+      "slot": 0,
+      "title": "Araxxor",
+      "items": [
+        "Araxyte fang",
+        "Araxyte head",
+        "Noxious blade",
+        "Noxious point",
+        "Noxious pommel"
+      ],
+      "tile": {
+        "id": "araxxor-boss",
+        "name": "Araxxor",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 60,
+      "slot": 0,
+      "title": "Fortis Colosseum",
+      "items": [
+        "Echo crystal",
+        "Sunfire fanatic chausses",
+        "Sunfire fanatic cuirass",
+        "Sunfire fanatic helm",
+        "Tonalztics of ralos (uncharged)"
+      ],
+      "tile": {
+        "id": "fortis colosseum-boss",
+        "name": "Fortis Colosseum",
+        "type": "boss",
+        "tier": "master"
+      }
+    },
+    {
+      "floor": 60,
+      "slot": 1,
+      "title": "Alchemical Hydra",
+      "items": [
+        "Alchemical hydra heads",
+        "Hydra leather",
+        "Hydra tail",
+        "Hydra's claw",
+        "Hydra's eye",
+        "Hydra's fang",
+        "Hydra's heart"
+      ],
+      "tile": {
+        "id": "alchemical hydra-boss",
+        "name": "Alchemical Hydra",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 60,
+      "slot": 2,
+      "title": "Spiritual Mage",
+      "items": ["Dragon boots"],
+      "tile": {
+        "id": "spiritual mage-slayer",
+        "name": "Spiritual Mage",
+        "type": "slayer",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 61,
+      "slot": 0,
+      "title": "Wyrm",
+      "items": [
+        "Dragon sword",
+        "Dragon harpoon",
+        "Dragon knife",
+        "Dragon thrownaxe"
+      ],
+      "tile": {
+        "id": "wyrm-slayer",
+        "name": "Wyrm",
+        "type": "slayer",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 61,
+      "slot": 1,
+      "title": "Tormented Demon",
+      "items": ["Tormented synapse", "Burning claw"],
+      "tile": {
+        "id": "tormented demon-slayer",
+        "name": "Tormented Demon",
+        "type": "slayer",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 61,
+      "slot": 2,
+      "title": "Zalcano",
+      "items": ["Crystal tool seed", "Uncut onyx", "Zalcano shard"],
+      "tile": {
+        "id": "zalcano-boss",
+        "name": "Zalcano",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 62,
+      "slot": 0,
+      "title": "Vardorvis",
+      "items": [
+        "Blood quartz",
+        "Chromium ingot",
+        "Executioner's axe head",
+        "Ultor vestige",
+        "Virtus mask",
+        "Virtus robe bottom",
+        "Virtus robe top"
+      ],
+      "tile": {
+        "id": "vardorvis-boss",
+        "name": "Vardorvis",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 62,
+      "slot": 1,
+      "title": "The Whisperer",
+      "items": [
+        "Bellator vestige",
+        "Chromium ingot",
+        "Shadow quartz",
+        "Siren's staff",
+        "Virtus mask",
+        "Virtus robe bottom",
+        "Virtus robe top"
+      ],
+      "tile": {
+        "id": "the whisperer-boss",
+        "name": "The Whisperer",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 62,
+      "slot": 2,
+      "title": "Araxxor",
+      "items": [
+        "Araxyte fang",
+        "Araxyte head",
+        "Noxious blade",
+        "Noxious point",
+        "Noxious pommel"
+      ],
+      "tile": {
+        "id": "araxxor-boss",
+        "name": "Araxxor",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 63,
+      "slot": 0,
+      "title": "Duke Sucellus",
+      "items": [
+        "Chromium ingot",
+        "Eye of the duke",
+        "Ice quartz",
+        "Magus vestige",
+        "Virtus mask",
+        "Virtus robe bottom",
+        "Virtus robe top"
+      ],
+      "tile": {
+        "id": "duke sucellus-boss",
+        "name": "Duke Sucellus",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 63,
+      "slot": 1,
+      "title": "The Leviathan",
+      "items": [
+        "Chromium ingot",
+        "Leviathan's lure",
+        "Smoke quartz",
+        "Venator vestige",
+        "Virtus mask",
+        "Virtus robe bottom",
+        "Virtus robe top"
+      ],
+      "tile": {
+        "id": "the leviathan-boss",
+        "name": "The Leviathan",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 63,
+      "slot": 2,
+      "title": "Corrupted Gauntlet",
+      "items": [
+        "Crystal armour seed",
+        "Crystal weapon seed",
+        "Enhanced crystal weapon seed"
+      ],
+      "tile": {
+        "id": "corrupted gauntlet-boss",
+        "name": "Corrupted Gauntlet",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 64,
+      "slot": 0,
+      "title": "Doom of Mokhaiotl",
+      "items": ["Avernic treads", "Eye of ayak (uncharged)", "Mokhaiotl cloth"],
+      "tile": {
+        "id": "doom of mokhaiotl-boss",
+        "name": "Doom of Mokhaiotl",
+        "type": "boss",
+        "tier": "master"
+      }
+    },
+    {
+      "floor": 65,
+      "slot": 0,
+      "title": "Nex",
+      "items": [
+        "Ancient hilt",
+        "Nihil horn",
+        "Torva full helm (damaged)",
+        "Torva platebody (damaged)",
+        "Torva platelegs (damaged)",
+        "Zaryte vambraces"
+      ],
+      "tile": {
+        "id": "nex-boss",
+        "name": "Nex",
+        "type": "boss",
+        "tier": "master"
+      }
+    },
+    {
+      "floor": 65,
+      "slot": 1,
+      "title": "Chambers of Xeric",
+      "items": [
+        "Ancestral hat",
+        "Ancestral robe bottom",
+        "Ancestral robe top",
+        "Arcane prayer scroll",
+        "Dexterous prayer scroll",
+        "Dinh's bulwark",
+        "Dragon claws",
+        "Dragon hunter crossbow",
+        "Elder maul",
+        "Kodai insignia",
+        "Twisted bow",
+        "Twisted buckler"
+      ],
+      "tile": {
+        "id": "chambers of xeric-raid",
+        "name": "Chambers of Xeric",
+        "type": "raid",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 65,
+      "slot": 2,
+      "title": "Yama",
+      "items": [
+        "Oathplate chest",
+        "Oathplate helm",
+        "Oathplate legs",
+        "Soulflame horn"
+      ],
+      "tile": {
+        "id": "yama-boss",
+        "name": "Yama",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 66,
+      "slot": 0,
+      "title": "Kree'Arra",
+      "items": [
+        "Armadyl chainskirt",
+        "Armadyl chestplate",
+        "Armadyl helmet",
+        "Armadyl hilt"
+      ],
+      "tile": {
+        "id": "kree'arra-boss",
+        "name": "Kree'Arra",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 66,
+      "slot": 1,
+      "title": "Alchemical Hydra",
+      "items": [
+        "Alchemical hydra heads",
+        "Hydra leather",
+        "Hydra tail",
+        "Hydra's claw",
+        "Hydra's eye",
+        "Hydra's fang",
+        "Hydra's heart"
+      ],
+      "tile": {
+        "id": "alchemical hydra-boss",
+        "name": "Alchemical Hydra",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 66,
+      "slot": 2,
+      "title": "Vardorvis",
+      "items": [
+        "Blood quartz",
+        "Chromium ingot",
+        "Executioner's axe head",
+        "Ultor vestige",
+        "Virtus mask",
+        "Virtus robe bottom",
+        "Virtus robe top"
+      ],
+      "tile": {
+        "id": "vardorvis-boss",
+        "name": "Vardorvis",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 67,
+      "slot": 0,
+      "title": "General Graardor",
+      "items": [
+        "Bandos boots",
+        "Bandos chestplate",
+        "Bandos hilt",
+        "Bandos tassets"
+      ],
+      "tile": {
+        "id": "general graardor-boss",
+        "name": "General Graardor",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 67,
+      "slot": 1,
+      "title": "Duke Sucellus",
+      "items": [
+        "Chromium ingot",
+        "Eye of the duke",
+        "Ice quartz",
+        "Magus vestige",
+        "Virtus mask",
+        "Virtus robe bottom",
+        "Virtus robe top"
+      ],
+      "tile": {
+        "id": "duke sucellus-boss",
+        "name": "Duke Sucellus",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 67,
+      "slot": 2,
+      "title": "Corrupted Gauntlet",
+      "items": [
+        "Crystal armour seed",
+        "Crystal weapon seed",
+        "Enhanced crystal weapon seed"
+      ],
+      "tile": {
+        "id": "corrupted gauntlet-boss",
+        "name": "Corrupted Gauntlet",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 68,
+      "slot": 0,
+      "title": "Theatre of Blood",
+      "items": [
+        "Avernic defender hilt",
+        "Ghrazi rapier",
+        "Justiciar chestguard",
+        "Justiciar faceguard",
+        "Justiciar legguards",
+        "Sanguinesti staff",
+        "Scythe of vitur"
+      ],
+      "tile": {
+        "id": "theatre of blood-raid",
+        "name": "Theatre of Blood",
+        "type": "raid",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 68,
+      "slot": 1,
+      "title": "Tombs of Amascut",
+      "items": [
+        "Elidinis' ward",
+        "Lightbearer",
+        "Masori body",
+        "Masori chaps",
+        "Masori mask",
+        "Osmumten's fang",
+        "Tumeken's shadow"
+      ],
+      "tile": {
+        "id": "tombs of amascut-raid",
+        "name": "Tombs of Amascut",
+        "type": "raid",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 68,
+      "slot": 2,
+      "title": "Chambers of Xeric",
+      "items": [
+        "Ancestral hat",
+        "Ancestral robe bottom",
+        "Ancestral robe top",
+        "Arcane prayer scroll",
+        "Dexterous prayer scroll",
+        "Dinh's bulwark",
+        "Dragon claws",
+        "Dragon hunter crossbow",
+        "Elder maul",
+        "Kodai insignia",
+        "Twisted bow",
+        "Twisted buckler"
+      ],
+      "tile": {
+        "id": "chambers of xeric-raid",
+        "name": "Chambers of Xeric",
+        "type": "raid",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 69,
+      "slot": 0,
+      "title": "Fortis Colosseum",
+      "items": [
+        "Echo crystal",
+        "Sunfire fanatic chausses",
+        "Sunfire fanatic cuirass",
+        "Sunfire fanatic helm",
+        "Tonalztics of ralos (uncharged)"
+      ],
+      "tile": {
+        "id": "fortis colosseum-boss",
+        "name": "Fortis Colosseum",
+        "type": "boss",
+        "tier": "master"
+      }
+    },
+    {
+      "floor": 70,
+      "slot": 0,
+      "title": "The Nightmare",
+      "items": [
+        "Eldritch orb",
+        "Harmonised orb",
+        "Inquisitor's great helm",
+        "Inquisitor's hauberk",
+        "Inquisitor's mace",
+        "Inquisitor's plateskirt",
+        "Nightmare staff",
+        "Volatile orb"
+      ],
+      "tile": {
+        "id": "the nightmare-boss",
+        "name": "The Nightmare",
+        "type": "boss",
+        "tier": "master"
+      }
+    },
+    {
+      "floor": 70,
+      "slot": 1,
+      "title": "Vorkath",
+      "items": ["Dragonbone necklace", "Skeletal visage"],
+      "tile": {
+        "id": "vorkath-boss",
+        "name": "Vorkath",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 70,
+      "slot": 2,
+      "title": "Alchemical Hydra",
+      "items": [
+        "Alchemical hydra heads",
+        "Hydra leather",
+        "Hydra tail",
+        "Hydra's claw",
+        "Hydra's eye",
+        "Hydra's fang",
+        "Hydra's heart"
+      ],
+      "tile": {
+        "id": "alchemical hydra-boss",
+        "name": "Alchemical Hydra",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 71,
+      "slot": 0,
+      "title": "Nex",
+      "items": [
+        "Ancient hilt",
+        "Nihil horn",
+        "Torva full helm (damaged)",
+        "Torva platebody (damaged)",
+        "Torva platelegs (damaged)",
+        "Zaryte vambraces"
+      ],
+      "tile": {
+        "id": "nex-boss",
+        "name": "Nex",
+        "type": "boss",
+        "tier": "master"
+      }
+    },
+    {
+      "floor": 71,
+      "slot": 1,
+      "title": "Spindel",
+      "items": [
+        "Dragon 2h sword",
+        "Dragon pickaxe",
+        "Fangs of venenatis",
+        "Treasonous ring",
+        "Voidwaker gem"
+      ],
+      "tile": {
+        "id": "spindel-boss",
+        "name": "Spindel",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 71,
+      "slot": 2,
+      "title": "Commander Zilyana",
+      "items": [
+        "Armadyl crossbow",
+        "Saradomin hilt",
+        "Saradomin sword",
+        "Saradomin's light"
+      ],
+      "tile": {
+        "id": "commander zilyana-boss",
+        "name": "Commander Zilyana",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 72,
+      "slot": 0,
+      "title": "Doom of Mokhaiotl",
+      "items": ["Avernic treads", "Eye of ayak (uncharged)", "Mokhaiotl cloth"],
+      "tile": {
+        "id": "doom of mokhaiotl-boss",
+        "name": "Doom of Mokhaiotl",
+        "type": "boss",
+        "tier": "master"
+      }
+    },
+    {
+      "floor": 72,
+      "slot": 1,
+      "title": "Basilisk Knight",
+      "items": ["Basilisk jaw", "Basilisk head"],
+      "tile": {
+        "id": "basilisk knight-slayer",
+        "name": "Basilisk Knight",
+        "type": "slayer",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 72,
+      "slot": 2,
+      "title": "The Hueycoatl",
+      "items": [
+        "Dragon hunter wand",
+        "Hueycoatl hide",
+        "Tome of earth (empty)"
+      ],
+      "tile": {
+        "id": "the hueycoatl-boss",
+        "name": "The Hueycoatl",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 73,
+      "slot": 0,
+      "title": "Perilous Moons",
+      "items": [
+        "Blood moon chestplate",
+        "Blood moon helm",
+        "Blood moon tassets",
+        "Blue moon chestplate",
+        "Blue moon helm",
+        "Blue moon spear",
+        "Blue moon tassets",
+        "Dual macuahuitl",
+        "Eclipse atlatl",
+        "Eclipse moon chestplate",
+        "Eclipse moon helm",
+        "Eclipse moon tassets"
+      ],
+      "tile": {
+        "id": "perilous moons-boss",
+        "name": "Perilous Moons",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 73,
+      "slot": 1,
+      "title": "Araxxor",
+      "items": [
+        "Araxyte fang",
+        "Araxyte head",
+        "Noxious blade",
+        "Noxious point",
+        "Noxious pommel"
+      ],
+      "tile": {
+        "id": "araxxor-boss",
+        "name": "Araxxor",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 73,
+      "slot": 2,
+      "title": "Corporeal Beast",
+      "items": [
+        "Arcane sigil",
+        "Elysian sigil",
+        "Holy elixir",
+        "Spectral sigil",
+        "Spirit shield"
+      ],
+      "tile": {
+        "id": "corporeal beast-boss",
+        "name": "Corporeal Beast",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 74,
+      "slot": 0,
+      "title": "Tombs of Amascut",
+      "items": [
+        "Elidinis' ward",
+        "Lightbearer",
+        "Masori body",
+        "Masori chaps",
+        "Masori mask",
+        "Osmumten's fang",
+        "Tumeken's shadow"
+      ],
+      "tile": {
+        "id": "tombs of amascut-raid",
+        "name": "Tombs of Amascut",
+        "type": "raid",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 75,
+      "slot": 0,
+      "title": "The Whisperer",
+      "items": [
+        "Bellator vestige",
+        "Chromium ingot",
+        "Shadow quartz",
+        "Siren's staff",
+        "Virtus mask",
+        "Virtus robe bottom",
+        "Virtus robe top"
+      ],
+      "tile": {
+        "id": "the whisperer-boss",
+        "name": "The Whisperer",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 75,
+      "slot": 1,
+      "title": "Demonic gorilla",
+      "items": [
+        "Zenyte shard",
+        "Ballista limbs",
+        "Ballista spring",
+        "Light frame",
+        "Heavy frame",
+        "Monkey tail"
+      ],
+      "tile": {
+        "id": "demonic gorilla-slayer",
+        "name": "Demonic gorilla",
+        "type": "slayer",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 75,
+      "slot": 2,
+      "title": "Chambers of Xeric",
+      "items": [
+        "Ancestral hat",
+        "Ancestral robe bottom",
+        "Ancestral robe top",
+        "Arcane prayer scroll",
+        "Dexterous prayer scroll",
+        "Dinh's bulwark",
+        "Dragon claws",
+        "Dragon hunter crossbow",
+        "Elder maul",
+        "Kodai insignia",
+        "Twisted bow",
+        "Twisted buckler"
+      ],
+      "tile": {
+        "id": "chambers of xeric-raid",
+        "name": "Chambers of Xeric",
+        "type": "raid",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 76,
+      "slot": 0,
+      "title": "Duke Sucellus",
+      "items": [
+        "Chromium ingot",
+        "Eye of the duke",
+        "Ice quartz",
+        "Magus vestige",
+        "Virtus mask",
+        "Virtus robe bottom",
+        "Virtus robe top"
+      ],
+      "tile": {
+        "id": "duke sucellus-boss",
+        "name": "Duke Sucellus",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 76,
+      "slot": 1,
+      "title": "Abyssal Sire",
+      "items": ["Unsired"],
+      "tile": {
+        "id": "abyssal sire-boss",
+        "name": "Abyssal Sire",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 76,
+      "slot": 2,
+      "title": "Theatre of Blood",
+      "items": [
+        "Avernic defender hilt",
+        "Ghrazi rapier",
+        "Justiciar chestguard",
+        "Justiciar faceguard",
+        "Justiciar legguards",
+        "Sanguinesti staff",
+        "Scythe of vitur"
+      ],
+      "tile": {
+        "id": "theatre of blood-raid",
+        "name": "Theatre of Blood",
+        "type": "raid",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 77,
+      "slot": 0,
+      "title": "Vardorvis",
+      "items": [
+        "Blood quartz",
+        "Chromium ingot",
+        "Executioner's axe head",
+        "Ultor vestige",
+        "Virtus mask",
+        "Virtus robe bottom",
+        "Virtus robe top"
+      ],
+      "tile": {
+        "id": "vardorvis-boss",
+        "name": "Vardorvis",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 77,
+      "slot": 1,
+      "title": "Cerberus",
+      "items": [
+        "Eternal crystal",
+        "Pegasian crystal",
+        "Primordial crystal",
+        "Smouldering stone"
+      ],
+      "tile": {
+        "id": "cerberus-boss",
+        "name": "Cerberus",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 77,
+      "slot": 2,
+      "title": "Corrupted Gauntlet",
+      "items": [
+        "Crystal armour seed",
+        "Crystal weapon seed",
+        "Enhanced crystal weapon seed"
+      ],
+      "tile": {
+        "id": "corrupted gauntlet-boss",
+        "name": "Corrupted Gauntlet",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 78,
+      "slot": 0,
+      "title": "The Leviathan",
+      "items": [
+        "Chromium ingot",
+        "Leviathan's lure",
+        "Smoke quartz",
+        "Venator vestige",
+        "Virtus mask",
+        "Virtus robe bottom",
+        "Virtus robe top"
+      ],
+      "tile": {
+        "id": "the leviathan-boss",
+        "name": "The Leviathan",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 78,
+      "slot": 1,
+      "title": "Phantom Muspah",
+      "items": ["Venator shard"],
+      "tile": {
+        "id": "phantom muspah-boss",
+        "name": "Phantom Muspah",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 78,
+      "slot": 2,
+      "title": "Tombs of Amascut",
+      "items": [
+        "Elidinis' ward",
+        "Lightbearer",
+        "Masori body",
+        "Masori chaps",
+        "Masori mask",
+        "Osmumten's fang",
+        "Tumeken's shadow"
+      ],
+      "tile": {
+        "id": "tombs of amascut-raid",
+        "name": "Tombs of Amascut",
+        "type": "raid",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 79,
+      "slot": 0,
+      "title": "Chambers of Xeric",
+      "items": [
+        "Ancestral hat",
+        "Ancestral robe bottom",
+        "Ancestral robe top",
+        "Arcane prayer scroll",
+        "Dexterous prayer scroll",
+        "Dinh's bulwark",
+        "Dragon claws",
+        "Dragon hunter crossbow",
+        "Elder maul",
+        "Kodai insignia",
+        "Twisted bow",
+        "Twisted buckler"
+      ],
+      "tile": {
+        "id": "chambers of xeric-raid",
+        "name": "Chambers of Xeric",
+        "type": "raid",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 80,
+      "slot": 0,
+      "title": "Dark beast",
+      "items": ["Dark bow"],
+      "tile": {
+        "id": "dark beast-slayer",
+        "name": "Dark beast",
+        "type": "slayer",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 80,
+      "slot": 1,
+      "title": "Kalphite Queen",
+      "items": [
+        "Dragon 2h sword",
+        "Dragon chainbody",
+        "Dragon pickaxe",
+        "Kq head"
+      ],
+      "tile": {
+        "id": "kalphite queen-boss",
+        "name": "Kalphite Queen",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 80,
+      "slot": 2,
+      "title": "Barrows",
+      "items": [
+        "Ahrim's hood",
+        "Ahrim's robeskirt",
+        "Ahrim's robetop",
+        "Ahrim's staff",
+        "Dharok's greataxe",
+        "Dharok's helm",
+        "Dharok's platebody",
+        "Dharok's platelegs",
+        "Guthan's chainskirt",
+        "Guthan's helm",
+        "Guthan's platebody",
+        "Guthan's warspear",
+        "Karil's coif",
+        "Karil's crossbow",
+        "Karil's leatherskirt",
+        "Karil's leathertop",
+        "Torag's hammers",
+        "Torag's helm",
+        "Torag's platebody",
+        "Torag's platelegs",
+        "Verac's brassard",
+        "Verac's flail",
+        "Verac's helm",
+        "Verac's plateskirt"
+      ],
+      "tile": {
+        "id": "barrows-boss",
+        "name": "Barrows",
+        "type": "boss",
+        "tier": "easy"
+      }
+    },
+    {
+      "floor": 81,
+      "slot": 0,
+      "title": "The Nightmare",
+      "items": [
+        "Eldritch orb",
+        "Harmonised orb",
+        "Inquisitor's great helm",
+        "Inquisitor's hauberk",
+        "Inquisitor's mace",
+        "Inquisitor's plateskirt",
+        "Nightmare staff",
+        "Volatile orb"
+      ],
+      "tile": {
+        "id": "the nightmare-boss",
+        "name": "The Nightmare",
+        "type": "boss",
+        "tier": "master"
+      }
+    },
+    {
+      "floor": 81,
+      "slot": 1,
+      "title": "Nex",
+      "items": [
+        "Ancient hilt",
+        "Nihil horn",
+        "Torva full helm (damaged)",
+        "Torva platebody (damaged)",
+        "Torva platelegs (damaged)",
+        "Zaryte vambraces"
+      ],
+      "tile": {
+        "id": "nex-boss",
+        "name": "Nex",
+        "type": "boss",
+        "tier": "master"
+      }
+    },
+    {
+      "floor": 81,
+      "slot": 2,
+      "title": "Maggot King",
+      "items": ["Elder venator fang", "crimson kisten"],
+      "tile": {
+        "id": "maggot king-boss",
+        "name": "Maggot King",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 82,
+      "slot": 0,
+      "title": "Fortis Colosseum",
+      "items": [
+        "Echo crystal",
+        "Sunfire fanatic chausses",
+        "Sunfire fanatic cuirass",
+        "Sunfire fanatic helm",
+        "Tonalztics of ralos (uncharged)"
+      ],
+      "tile": {
+        "id": "fortis colosseum-boss",
+        "name": "Fortis Colosseum",
+        "type": "boss",
+        "tier": "master"
+      }
+    },
+    {
+      "floor": 82,
+      "slot": 1,
+      "title": "Doom of Mokhaiotl",
+      "items": ["Avernic treads", "Eye of ayak (uncharged)", "Mokhaiotl cloth"],
+      "tile": {
+        "id": "doom of mokhaiotl-boss",
+        "name": "Doom of Mokhaiotl",
+        "type": "boss",
+        "tier": "master"
+      }
+    },
+    {
+      "floor": 82,
+      "slot": 2,
+      "title": "Yama",
+      "items": [
+        "Oathplate chest",
+        "Oathplate helm",
+        "Oathplate legs",
+        "Soulflame horn"
+      ],
+      "tile": {
+        "id": "yama-boss",
+        "name": "Yama",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 83,
+      "slot": 0,
+      "title": "Corrupted Gauntlet",
+      "items": [
+        "Crystal armour seed",
+        "Crystal weapon seed",
+        "Enhanced crystal weapon seed"
+      ],
+      "tile": {
+        "id": "corrupted gauntlet-boss",
+        "name": "Corrupted Gauntlet",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 83,
+      "slot": 1,
+      "title": "Alchemical Hydra",
+      "items": [
+        "Alchemical hydra heads",
+        "Hydra leather",
+        "Hydra tail",
+        "Hydra's claw",
+        "Hydra's eye",
+        "Hydra's fang",
+        "Hydra's heart"
+      ],
+      "tile": {
+        "id": "alchemical hydra-boss",
+        "name": "Alchemical Hydra",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 83,
+      "slot": 2,
+      "title": "Bryophyta",
+      "items": ["Bryophyta's essence"],
+      "tile": {
+        "id": "bryophyta-boss",
+        "name": "Bryophyta",
+        "type": "boss",
+        "tier": "medium"
+      }
+    },
+    {
+      "floor": 84,
+      "slot": 0,
+      "title": "Theatre of Blood",
+      "items": [
+        "Avernic defender hilt",
+        "Ghrazi rapier",
+        "Justiciar chestguard",
+        "Justiciar faceguard",
+        "Justiciar legguards",
+        "Sanguinesti staff",
+        "Scythe of vitur"
+      ],
+      "tile": {
+        "id": "theatre of blood-raid",
+        "name": "Theatre of Blood",
+        "type": "raid",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 85,
+      "slot": 0,
+      "title": "Corporeal Beast",
+      "items": [
+        "Arcane sigil",
+        "Elysian sigil",
+        "Holy elixir",
+        "Spectral sigil",
+        "Spirit shield"
+      ],
+      "tile": {
+        "id": "corporeal beast-boss",
+        "name": "Corporeal Beast",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 85,
+      "slot": 1,
+      "title": "General Graardor",
+      "items": [
+        "Bandos boots",
+        "Bandos chestplate",
+        "Bandos hilt",
+        "Bandos tassets"
+      ],
+      "tile": {
+        "id": "general graardor-boss",
+        "name": "General Graardor",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 85,
+      "slot": 2,
+      "title": "Commander Zilyana",
+      "items": [
+        "Armadyl crossbow",
+        "Saradomin hilt",
+        "Saradomin sword",
+        "Saradomin's light"
+      ],
+      "tile": {
+        "id": "commander zilyana-boss",
+        "name": "Commander Zilyana",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 86,
+      "slot": 0,
+      "title": "Maggot King",
+      "items": ["Elder venator fang", "crimson kisten"],
+      "tile": {
+        "id": "maggot king-boss",
+        "name": "Maggot King",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 86,
+      "slot": 1,
+      "title": "K'ril Tsutsaroth",
+      "items": [
+        "Staff of the dead",
+        "Steam battlestaff",
+        "Zamorak hilt",
+        "Zamorakian spear"
+      ],
+      "tile": {
+        "id": "k'ril tsutsaroth-boss",
+        "name": "K'ril Tsutsaroth",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 86,
+      "slot": 2,
+      "title": "Kree'Arra",
+      "items": [
+        "Armadyl chainskirt",
+        "Armadyl chestplate",
+        "Armadyl helmet",
+        "Armadyl hilt"
+      ],
+      "tile": {
+        "id": "kree'arra-boss",
+        "name": "Kree'Arra",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 87,
+      "slot": 0,
+      "title": "Alchemical Hydra",
+      "items": [
+        "Alchemical hydra heads",
+        "Hydra leather",
+        "Hydra tail",
+        "Hydra's claw",
+        "Hydra's eye",
+        "Hydra's fang",
+        "Hydra's heart"
+      ],
+      "tile": {
+        "id": "alchemical hydra-boss",
+        "name": "Alchemical Hydra",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 87,
+      "slot": 1,
+      "title": "Yama",
+      "items": [
+        "Oathplate chest",
+        "Oathplate helm",
+        "Oathplate legs",
+        "Soulflame horn"
+      ],
+      "tile": {
+        "id": "yama-boss",
+        "name": "Yama",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 87,
+      "slot": 2,
+      "title": "Nex",
+      "items": [
+        "Ancient hilt",
+        "Nihil horn",
+        "Torva full helm (damaged)",
+        "Torva platebody (damaged)",
+        "Torva platelegs (damaged)",
+        "Zaryte vambraces"
+      ],
+      "tile": {
+        "id": "nex-boss",
+        "name": "Nex",
+        "type": "boss",
+        "tier": "master"
+      }
+    },
+    {
+      "floor": 88,
+      "slot": 0,
+      "title": "Chambers of Xeric",
+      "items": [
+        "Ancestral hat",
+        "Ancestral robe bottom",
+        "Ancestral robe top",
+        "Arcane prayer scroll",
+        "Dexterous prayer scroll",
+        "Dinh's bulwark",
+        "Dragon claws",
+        "Dragon hunter crossbow",
+        "Elder maul",
+        "Kodai insignia",
+        "Twisted bow",
+        "Twisted buckler"
+      ],
+      "tile": {
+        "id": "chambers of xeric-raid",
+        "name": "Chambers of Xeric",
+        "type": "raid",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 88,
+      "slot": 1,
+      "title": "Theatre of Blood",
+      "items": [
+        "Avernic defender hilt",
+        "Ghrazi rapier",
+        "Justiciar chestguard",
+        "Justiciar faceguard",
+        "Justiciar legguards",
+        "Sanguinesti staff",
+        "Scythe of vitur"
+      ],
+      "tile": {
+        "id": "theatre of blood-raid",
+        "name": "Theatre of Blood",
+        "type": "raid",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 88,
+      "slot": 2,
+      "title": "Tombs of Amascut",
+      "items": [
+        "Elidinis' ward",
+        "Lightbearer",
+        "Masori body",
+        "Masori chaps",
+        "Masori mask",
+        "Osmumten's fang",
+        "Tumeken's shadow"
+      ],
+      "tile": {
+        "id": "tombs of amascut-raid",
+        "name": "Tombs of Amascut",
+        "type": "raid",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 89,
+      "slot": 0,
+      "title": "The Nightmare",
+      "items": [
+        "Eldritch orb",
+        "Harmonised orb",
+        "Inquisitor's great helm",
+        "Inquisitor's hauberk",
+        "Inquisitor's mace",
+        "Inquisitor's plateskirt",
+        "Nightmare staff",
+        "Volatile orb"
+      ],
+      "tile": {
+        "id": "the nightmare-boss",
+        "name": "The Nightmare",
+        "type": "boss",
+        "tier": "master"
+      }
+    },
+    {
+      "floor": 90,
+      "slot": 0,
+      "title": "Doom of Mokhaiotl",
+      "items": ["Avernic treads", "Eye of ayak (uncharged)", "Mokhaiotl cloth"],
+      "tile": {
+        "id": "doom of mokhaiotl-boss",
+        "name": "Doom of Mokhaiotl",
+        "type": "boss",
+        "tier": "master"
+      }
+    },
+    {
+      "floor": 90,
+      "slot": 1,
+      "title": "Vorkath",
+      "items": ["Dragonbone necklace", "Skeletal visage"],
+      "tile": {
+        "id": "vorkath-boss",
+        "name": "Vorkath",
+        "type": "boss",
+        "tier": "hard"
+      }
+    },
+    {
+      "floor": 90,
+      "slot": 2,
+      "title": "General Graardor",
+      "items": [
+        "Bandos boots",
+        "Bandos chestplate",
+        "Bandos hilt",
+        "Bandos tassets"
+      ],
+      "tile": {
+        "id": "general graardor-boss",
+        "name": "General Graardor",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 91,
+      "slot": 0,
+      "title": "Fortis Colosseum",
+      "items": [
+        "Echo crystal",
+        "Sunfire fanatic chausses",
+        "Sunfire fanatic cuirass",
+        "Sunfire fanatic helm",
+        "Tonalztics of ralos (uncharged)"
+      ],
+      "tile": {
+        "id": "fortis colosseum-boss",
+        "name": "Fortis Colosseum",
+        "type": "boss",
+        "tier": "master"
+      }
+    },
+    {
+      "floor": 91,
+      "slot": 1,
+      "title": "Alchemical Hydra",
+      "items": [
+        "Alchemical hydra heads",
+        "Hydra leather",
+        "Hydra tail",
+        "Hydra's claw",
+        "Hydra's eye",
+        "Hydra's fang",
+        "Hydra's heart"
+      ],
+      "tile": {
+        "id": "alchemical hydra-boss",
+        "name": "Alchemical Hydra",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 91,
+      "slot": 2,
+      "title": "Corrupted Gauntlet",
+      "items": [
+        "Crystal armour seed",
+        "Crystal weapon seed",
+        "Enhanced crystal weapon seed"
+      ],
+      "tile": {
+        "id": "corrupted gauntlet-boss",
+        "name": "Corrupted Gauntlet",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 92,
+      "slot": 0,
+      "title": "Corporeal Beast",
+      "items": [
+        "Arcane sigil",
+        "Elysian sigil",
+        "Holy elixir",
+        "Spectral sigil",
+        "Spirit shield"
+      ],
+      "tile": {
+        "id": "corporeal beast-boss",
+        "name": "Corporeal Beast",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 92,
+      "slot": 1,
+      "title": "Maggot King",
+      "items": ["Elder venator fang", "crimson kisten"],
+      "tile": {
+        "id": "maggot king-boss",
+        "name": "Maggot King",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 92,
+      "slot": 2,
+      "title": "The Nightmare",
+      "items": [
+        "Eldritch orb",
+        "Harmonised orb",
+        "Inquisitor's great helm",
+        "Inquisitor's hauberk",
+        "Inquisitor's mace",
+        "Inquisitor's plateskirt",
+        "Nightmare staff",
+        "Volatile orb"
+      ],
+      "tile": {
+        "id": "the nightmare-boss",
+        "name": "The Nightmare",
+        "type": "boss",
+        "tier": "master"
+      }
+    },
+    {
+      "floor": 93,
+      "slot": 0,
+      "title": "Theatre of Blood",
+      "items": [
+        "Avernic defender hilt",
+        "Ghrazi rapier",
+        "Justiciar chestguard",
+        "Justiciar faceguard",
+        "Justiciar legguards",
+        "Sanguinesti staff",
+        "Scythe of vitur"
+      ],
+      "tile": {
+        "id": "theatre of blood-raid",
+        "name": "Theatre of Blood",
+        "type": "raid",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 93,
+      "slot": 1,
+      "title": "Tombs of Amascut",
+      "items": [
+        "Elidinis' ward",
+        "Lightbearer",
+        "Masori body",
+        "Masori chaps",
+        "Masori mask",
+        "Osmumten's fang",
+        "Tumeken's shadow"
+      ],
+      "tile": {
+        "id": "tombs of amascut-raid",
+        "name": "Tombs of Amascut",
+        "type": "raid",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 93,
+      "slot": 2,
+      "title": "Chambers of Xeric",
+      "items": [
+        "Ancestral hat",
+        "Ancestral robe bottom",
+        "Ancestral robe top",
+        "Arcane prayer scroll",
+        "Dexterous prayer scroll",
+        "Dinh's bulwark",
+        "Dragon claws",
+        "Dragon hunter crossbow",
+        "Elder maul",
+        "Kodai insignia",
+        "Twisted bow",
+        "Twisted buckler"
+      ],
+      "tile": {
+        "id": "chambers of xeric-raid",
+        "name": "Chambers of Xeric",
+        "type": "raid",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 94,
+      "slot": 0,
+      "title": "Nex",
+      "items": [
+        "Ancient hilt",
+        "Nihil horn",
+        "Torva full helm (damaged)",
+        "Torva platebody (damaged)",
+        "Torva platelegs (damaged)",
+        "Zaryte vambraces"
+      ],
+      "tile": {
+        "id": "nex-boss",
+        "name": "Nex",
+        "type": "boss",
+        "tier": "master"
+      }
+    },
+    {
+      "floor": 95,
+      "slot": 0,
+      "title": "The Whisperer",
+      "items": [
+        "Bellator vestige",
+        "Chromium ingot",
+        "Shadow quartz",
+        "Siren's staff",
+        "Virtus mask",
+        "Virtus robe bottom",
+        "Virtus robe top"
+      ],
+      "tile": {
+        "id": "the whisperer-boss",
+        "name": "The Whisperer",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 95,
+      "slot": 1,
+      "title": "Vardorvis",
+      "items": [
+        "Blood quartz",
+        "Chromium ingot",
+        "Executioner's axe head",
+        "Ultor vestige",
+        "Virtus mask",
+        "Virtus robe bottom",
+        "Virtus robe top"
+      ],
+      "tile": {
+        "id": "vardorvis-boss",
+        "name": "Vardorvis",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 95,
+      "slot": 2,
+      "title": "The Leviathan",
+      "items": [
+        "Chromium ingot",
+        "Leviathan's lure",
+        "Smoke quartz",
+        "Venator vestige",
+        "Virtus mask",
+        "Virtus robe bottom",
+        "Virtus robe top"
+      ],
+      "tile": {
+        "id": "the leviathan-boss",
+        "name": "The Leviathan",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 96,
+      "slot": 0,
+      "title": "Tombs of Amascut",
+      "items": [
+        "Elidinis' ward",
+        "Lightbearer",
+        "Masori body",
+        "Masori chaps",
+        "Masori mask",
+        "Osmumten's fang",
+        "Tumeken's shadow"
+      ],
+      "tile": {
+        "id": "tombs of amascut-raid",
+        "name": "Tombs of Amascut",
+        "type": "raid",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 96,
+      "slot": 1,
+      "title": "Chambers of Xeric",
+      "items": [
+        "Ancestral hat",
+        "Ancestral robe bottom",
+        "Ancestral robe top",
+        "Arcane prayer scroll",
+        "Dexterous prayer scroll",
+        "Dinh's bulwark",
+        "Dragon claws",
+        "Dragon hunter crossbow",
+        "Elder maul",
+        "Kodai insignia",
+        "Twisted bow",
+        "Twisted buckler"
+      ],
+      "tile": {
+        "id": "chambers of xeric-raid",
+        "name": "Chambers of Xeric",
+        "type": "raid",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 96,
+      "slot": 2,
+      "title": "Yama",
+      "items": [
+        "Oathplate chest",
+        "Oathplate helm",
+        "Oathplate legs",
+        "Soulflame horn"
+      ],
+      "tile": {
+        "id": "yama-boss",
+        "name": "Yama",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 97,
+      "slot": 0,
+      "title": "The Nightmare",
+      "items": [
+        "Eldritch orb",
+        "Harmonised orb",
+        "Inquisitor's great helm",
+        "Inquisitor's hauberk",
+        "Inquisitor's mace",
+        "Inquisitor's plateskirt",
+        "Nightmare staff",
+        "Volatile orb"
+      ],
+      "tile": {
+        "id": "the nightmare-boss",
+        "name": "The Nightmare",
+        "type": "boss",
+        "tier": "master"
+      }
+    },
+    {
+      "floor": 97,
+      "slot": 1,
+      "title": "Maggot King",
+      "items": ["Elder venator fang", "crimson kisten"],
+      "tile": {
+        "id": "maggot king-boss",
+        "name": "Maggot King",
+        "type": "boss",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 97,
+      "slot": 2,
+      "title": "Theatre of Blood",
+      "items": [
+        "Avernic defender hilt",
+        "Ghrazi rapier",
+        "Justiciar chestguard",
+        "Justiciar faceguard",
+        "Justiciar legguards",
+        "Sanguinesti staff",
+        "Scythe of vitur"
+      ],
+      "tile": {
+        "id": "theatre of blood-raid",
+        "name": "Theatre of Blood",
+        "type": "raid",
+        "tier": "elite"
+      }
+    },
+    {
+      "floor": 98,
+      "slot": 0,
+      "title": "Doom of Mokhaiotl",
+      "items": ["Avernic treads", "Eye of ayak (uncharged)", "Mokhaiotl cloth"],
+      "tile": {
+        "id": "doom of mokhaiotl-boss",
+        "name": "Doom of Mokhaiotl",
+        "type": "boss",
+        "tier": "master"
+      }
+    },
+    {
+      "floor": 98,
+      "slot": 1,
+      "title": "Fortis Colosseum",
+      "items": [
+        "Echo crystal",
+        "Sunfire fanatic chausses",
+        "Sunfire fanatic cuirass",
+        "Sunfire fanatic helm",
+        "Tonalztics of ralos (uncharged)"
+      ],
+      "tile": {
+        "id": "fortis colosseum-boss",
+        "name": "Fortis Colosseum",
+        "type": "boss",
+        "tier": "master"
+      }
+    },
+    {
+      "floor": 98,
+      "slot": 2,
+      "title": "Nex",
+      "items": [
+        "Ancient hilt",
+        "Nihil horn",
+        "Torva full helm (damaged)",
+        "Torva platebody (damaged)",
+        "Torva platelegs (damaged)",
+        "Zaryte vambraces"
+      ],
+      "tile": {
+        "id": "nex-boss",
+        "name": "Nex",
+        "type": "boss",
+        "tier": "master"
+      }
+    },
+    {
+      "floor": 99,
+      "slot": 0,
+      "title": "Corporeal Beast",
+      "items": [
+        "Arcane sigil",
+        "Elysian sigil",
+        "Holy elixir",
+        "Spectral sigil",
+        "Spirit shield"
+      ],
+      "tile": {
+        "id": "corporeal beast-boss",
+        "name": "Corporeal Beast",
+        "type": "boss",
+        "tier": "elite"
+      }
+    }
+  ],
+  "exportedAt": "2026-07-22T02:13:49.813Z"
+}

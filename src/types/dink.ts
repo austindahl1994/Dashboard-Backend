@@ -3,15 +3,16 @@ export interface DiscordUser {
   name: string;
 }
 
-interface Items {
+export interface Items {
   name: string;
 }
 
-interface Extra {
+export interface Extra {
   items?: Items[];
   source?: string;
   isPvp?: string;
   killerName?: string;
+  party?: string[];
 }
 
 export interface Dink {
@@ -73,4 +74,6 @@ SENT FOR LOOT
   },
   "type": "LOOT"
 }
+
+extra.party is only there for Cox, Toa, and Tob
 */

@@ -15,6 +15,7 @@ export type DiscordUserResponse = {
 };
 
 export type CabbageUser = {
+  id: number;
   discord_id: string;
   discord_username?: string;
   rsn: string;

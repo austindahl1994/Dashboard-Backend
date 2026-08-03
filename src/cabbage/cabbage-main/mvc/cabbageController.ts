@@ -4,21 +4,66 @@ import {
   getDiscordUserFromCode,
   tokenCookieOptions,
 } from "@/services/discord/discord.ts";
-import { getCabbageUserByDiscordId } from "./cabbage.ts";
+import { cabbageLogin, getCabbageUserByDiscordId } from "./cabbage.ts";
 import { addActiveUser, removeActiveUser, setupSse } from "../activeUsers.ts";
-
-type CabbageSessionUser = {
-  discord_id: string;
-  discord_username: string;
-  rsn: string;
-  role: string;
-  auth_type: "cabbage";
-};
+import type { CabbageSessionUser } from "@/middleware/cabbageMiddleware.ts";
+import { displayTime } from "@/Utilities.js";
 
 // Simple in-memory cache to prevent code reuse within a short window
 // In production, use Redis or database for this
 const recentlyCodes = new Set<string>();
 const CODE_TIMEOUT_MS = 2000; // 2 seconds
+
+export const loginCabbage = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
+  try {
+    displayTime();
+    const { discordId, password } = req.body as {
+      discordId?: string;
+      password?: string;
+    };
+    if (!discordId || !password) {
+      console.log(
+        `User with ID ${discordId} attempted to login with missing credentials`,
+      );
+      res.status(400).json({ error: "Missing Discord ID or password." });
+      return;
+    }
+
+    if (!process.env.TOKEN_SECRET || !process.env.REFRESH_TOKEN_SECRET) {
+      console.error("[Cabbage Login] Missing JWT environment variables");
+      res.status(500).json({ error: "Missing JWT environment variables." });
+      return;
+    }
+
+    console.log(`User with ID ${discordId} attempted to login:`);
+
+    const cabbageUser = await cabbageLogin(discordId, password);
+
+    const user: CabbageSessionUser = {
+      discord_id: cabbageUser.discord_id,
+      discord_username: cabbageUser.discord_username ?? discordId,
+      discord_avatar: cabbageUser.discord_avatar ?? null,
+      rsn: cabbageUser.rsn,
+      role: cabbageUser.role,
+      auth_type: "cabbage",
+    };
+
+    const { token, refreshToken } = issueCabbageSessionCookies(res, user);
+
+    res.status(200).json({
+      token,
+      refreshToken,
+      user,
+    });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error("[Cabbage Login] Cabbage login failed", { message, error });
+    res.status(401).json({ error: "Cabbage login failed.", details: message });
+  }
+};
 
 const getSessionUserFromPayload = (
   payload: unknown,
@@ -239,6 +284,31 @@ export const checkSession = async (
   }
 };
 
+export const logoutCabbageSession = async (
+  _req: Request,
+  res: Response,
+): Promise<void> => {
+  try {
+    res.clearCookie("accessToken", {
+      ...tokenCookieOptions,
+      path: "/",
+    });
+    res.clearCookie("refreshToken", {
+      ...tokenCookieOptions,
+      path: "/",
+    });
+
+    res.status(200).json({ message: "Successfully logged out." });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error("[Discord OAuth] Failed to clear cabbage session", {
+      message,
+      error,
+    });
+    res.status(500).json({ error: "Failed to clear session." });
+  }
+};
+
 export const cabbageEvents = async (
   req: Request,
   res: Response,
@@ -246,7 +316,7 @@ export const cabbageEvents = async (
   try {
     setupSse(res);
 
-    let userId: string | undefined;
+    let discordId: string | undefined;
     let playerName: string | undefined;
 
     const accessToken = req.cookies?.accessToken;
@@ -255,7 +325,7 @@ export const cabbageEvents = async (
         const decoded = jwt.verify(accessToken, process.env.TOKEN_SECRET);
         const sessionUser = getSessionUserFromPayload(decoded);
         if (sessionUser) {
-          userId = sessionUser.discord_id;
+          discordId = sessionUser.discord_id;
           playerName = sessionUser.discord_username;
         }
       } catch {
@@ -263,9 +333,10 @@ export const cabbageEvents = async (
       }
     }
 
-    const connectionId = addActiveUser(res, userId, playerName);
+    const connectionId = addActiveUser(res, discordId, playerName);
+    displayTime();
     console.log(
-      `SSE connected: connectionId=${connectionId}, userId=${userId ?? "anonymous"}, playerName=${playerName ?? "anonymous"}`,
+      `SSE connected: connectionId=${connectionId}, discordId=${discordId ?? "anonymous"}, playerName=${playerName ?? "unknown"}`,
     );
 
     req.on("close", () => {

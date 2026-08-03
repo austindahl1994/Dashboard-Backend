@@ -51,8 +51,12 @@ app.use("/profile", authJwt, authenticateUser, profileRoutes);
 app.use("/expenses", authJwt, authenticateUser, expenseRoutes);
 app.use("/widgetSettings", authJwt, authenticateUser, settingsRoutes);
 app.use("/auth", authRoutes);
-app.use("/", (req, res) => {
+app.get("/", (req, res) => {
   res.send("Server up and running!");
+});
+
+app.use((req, res) => {
+  res.status(404).json({ error: "Route not found" });
 });
 
 export default app;

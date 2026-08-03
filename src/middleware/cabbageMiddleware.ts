@@ -1,19 +1,22 @@
 import { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
-type CabbageJwtPayload = {
-  sub?: string;
-  role?: string;
-  [key: string]: unknown;
+export type CabbageSessionUser = {
+  discord_id: string;
+  discord_username: string;
+  rsn: string;
+  role: string;
+  auth_type: "cabbage";
+  discord_avatar?: string | null;
 };
 
 type CabbageRefreshPayload = {
-  principal?: CabbageJwtPayload;
+  principal?: CabbageSessionUser;
   [key: string]: unknown;
 };
 
 export interface CabbageRequest extends Request {
-  cabbage?: CabbageJwtPayload;
+  cabbage?: CabbageSessionUser;
 }
 
 const getBearerToken = (authorizationHeader?: string): string | null => {
@@ -31,7 +34,10 @@ const getCookieToken = (
   return typeof token === "string" && token.length > 0 ? token : null;
 };
 
-const setCabbageContext = (req: CabbageRequest, payload: CabbageJwtPayload) => {
+const setCabbageContext = (
+  req: CabbageRequest,
+  payload: CabbageSessionUser,
+) => {
   req.cabbage = payload;
 };
 
@@ -66,7 +72,7 @@ const cabbageMiddleware = (
 
   try {
     if (token) {
-      const decoded = jwt.verify(token, secret) as CabbageJwtPayload;
+      const decoded = jwt.verify(token, secret) as CabbageSessionUser;
       setCabbageContext(req, decoded);
       return next();
     }

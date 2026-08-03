@@ -96,11 +96,11 @@ export const initializeTowerData = async () => {
 
     await ensureAdventurerRowsExist();
     await initializeAdventurerMaps();
-    const allItems = getAllItems();
-    const itemList = Array.from(allItems)
-      .sort((a, b) => a.localeCompare(b))
-      .join(", ");
-    console.log(`Tower items: ${itemList}`);
+    // const allItems = getAllItems();
+    // const itemList = Array.from(allItems)
+    //   .sort((a, b) => a.localeCompare(b))
+    //   .join(", ");
+    // console.log(`Tower items: ${itemList}`);
   } catch (error) {
     console.error(`There was an error: ${error}`);
     throw error;

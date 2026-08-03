@@ -9,6 +9,12 @@ const router = express.Router();
 // router.post("/webImage", uploadImage.single("file"), webImage);
 // router.get("/highscores", highscores);
 router.post("/towerDink", uploadImage.single("file"), tc.towerDinkData);
+router.post(
+  "/towerData",
+  cabbageMiddleware,
+  uploadImage.single("file"),
+  tc.manualSubmission,
+);
 router.post("/towerData", cabbageMiddleware, tc.getTowerData);
 router.get("/events", cabbageMiddleware, tc.towerEvents);
 

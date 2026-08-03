@@ -135,6 +135,140 @@ const getCompletionItem = (items: Items[] | undefined): string => {
   return completionItem;
 };
 
+type ManualSubmissionPayload = {
+  rsn: string;
+  discordId?: string | null;
+  item?: string | { name: string } | null;
+  floor?: number | null;
+};
+
+const getResolvedPlayerIdFromIdentity = (
+  rsn: string,
+  discordId?: string | null,
+): number => {
+  const cachedPlayerId = comparePlayer(rsn, discordId ?? null);
+
+  if (cachedPlayerId) {
+    return cachedPlayerId;
+  }
+
+  const cabbageUser = checkForCabbageUser(rsn, discordId ?? undefined);
+
+  if (!cabbageUser) {
+    console.log(`Where did this fucker come from: ${rsn}`);
+    throw new Error(`Cabbage user not found for player: ${rsn}`);
+  }
+
+  displayTime();
+  console.log(`Cabbage user found but not in adventurer data: ${rsn}`);
+
+  upsertAdventurerFromCabbageUser(cabbageUser);
+  return cabbageUser.id;
+};
+
+const getManualCompletionItem = (
+  item: ManualSubmissionPayload["item"],
+): string => {
+  if (typeof item === "string") {
+    return item.trim();
+  }
+
+  if (item && typeof item === "object" && typeof item.name === "string") {
+    return item.name.trim();
+  }
+
+  return "";
+};
+
+export const processManualTowerSubmission = async (
+  image: Buffer,
+  mimetype: string,
+  payload: ManualSubmissionPayload,
+) => {
+  try {
+    if (!payload?.rsn) {
+      throw new Error("Missing RSN for manual tower submission.");
+    }
+
+    const completionItem = getManualCompletionItem(payload.item);
+    if (!completionItem) {
+      throw new Error("Missing completion item for manual tower submission.");
+    }
+
+    const playerId = getResolvedPlayerIdFromIdentity(
+      payload.rsn,
+      payload.discordId,
+    );
+    const adventurer = adventurerData.get(playerId);
+
+    if (!adventurer) {
+      throw new Error(`Adventurer cache missing for cabbageId ${playerId}`);
+    }
+
+    const floorNumber =
+      typeof payload.floor === "number"
+        ? payload.floor
+        : adventurer.currentFloor;
+
+    const uploadKey = buildCompletionUploadKey(adventurer.rsn, floorNumber, [
+      { name: completionItem },
+    ]);
+    const playerURL = await streamUpload(uploadKey, image, mimetype);
+
+    if (!playerURL) {
+      throw new Error("Completion URL could not be resolved.");
+    }
+
+    let isFirstFloorCompletion = false;
+
+    try {
+      await addFirstTowerFloorCompletion(playerId, floorNumber, playerURL);
+      isFirstFloorCompletion = true;
+      addFirstCompletionToCache({
+        cabbageId: playerId,
+        floor: floorNumber,
+        rsn: adventurer.rsn,
+        url: playerURL,
+      });
+    } catch (error) {
+      if (isDuplicateEntryError(error)) {
+        console.log(
+          `Floor ${floorNumber} already has a first completion; continuing with player completion history.`,
+        );
+      } else {
+        throw error;
+      }
+    }
+
+    await addTowerCompletion(
+      playerId,
+      floorNumber,
+      playerURL,
+      completionItem,
+      false,
+    );
+
+    const nextCurrentFloor = floorNumber + 1;
+    await upsertAdventurerProgress(playerId, nextCurrentFloor, completionItem);
+    updateAdventurerCacheProgress(playerId, nextCurrentFloor, completionItem);
+
+    await broadcastTowerUpdates(
+      payload.discordId ?? adventurer.discordId,
+      playerId,
+      isFirstFloorCompletion,
+    );
+
+    return {
+      isFirstFloorCompletion,
+      floorNumber,
+      playerURL,
+    };
+  } catch (error) {
+    console.log(`Error processing manual tower submission: ${error}`);
+    throw error;
+  }
+};
+
 const broadcastTowerUpdates = async (
   playerDiscordId: string | null | undefined,
   cabbageId: number,

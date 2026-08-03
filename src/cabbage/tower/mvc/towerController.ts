@@ -7,7 +7,10 @@ import {
   getRequesterCabbageId,
 } from "../towerGlobalData.ts";
 import { getCompletionsById } from "./tower.ts";
-import { checkCompletion } from "../towerProcesses.ts";
+import {
+  checkCompletion,
+  processManualTowerSubmission,
+} from "../towerProcesses.ts";
 import { displayTime } from "@/Utilities.js";
 
 export const towerDinkData = async (req: Request, res: Response) => {
@@ -43,6 +46,76 @@ export const towerDinkData = async (req: Request, res: Response) => {
     res.sendStatus(200);
   } catch (error) {
     console.error(`Error processing tower dink data: ${error}`);
+    res.status(500).json({ error: "Internal server error" });
+  } finally {
+    const requestWithFile = req as Request & { file?: MulterFile };
+
+    if (requestWithFile.file?.buffer) {
+      requestWithFile.file.buffer.fill(0);
+    }
+
+    if (requestWithFile.file) {
+      delete requestWithFile.file;
+    }
+
+    image = undefined;
+    mimetype = "";
+  }
+};
+
+export const manualSubmission = async (req: Request, res: Response) => {
+  let image: Buffer | undefined;
+  let mimetype = "";
+  try {
+    displayTime();
+    const file = (req as Request & { file?: MulterFile }).file;
+
+    if (!file) {
+      return getTowerData(req as CabbageRequest, res);
+    }
+
+    image = file.buffer;
+    mimetype = file.mimetype;
+
+    const payload = req.body?.payload_json ?? req.body;
+    const parsedData =
+      typeof payload === "string" ? JSON.parse(payload) : payload;
+
+    if (!parsedData || typeof parsedData !== "object") {
+      throw new Error("Invalid manual submission payload.");
+    }
+
+    if (!image) {
+      throw new Error("No image buffer submitted.");
+    }
+
+    const rsn = typeof parsedData.rsn === "string" ? parsedData.rsn : "";
+    const discordId =
+      typeof parsedData.discordId === "string"
+        ? parsedData.discordId
+        : typeof parsedData.discord_id === "string"
+          ? parsedData.discord_id
+          : undefined;
+
+    if (!rsn) {
+      throw new Error("Missing RSN in manual submission payload.");
+    }
+
+    await processManualTowerSubmission(image, mimetype, {
+      rsn,
+      discordId,
+      item: parsedData.item,
+      floor:
+        typeof parsedData.floor === "number"
+          ? parsedData.floor
+          : parsedData.floor === "number"
+            ? Number(parsedData.floor)
+            : undefined,
+    });
+
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error);
     res.status(500).json({ error: "Internal server error" });
   } finally {
     const requestWithFile = req as Request & { file?: MulterFile };

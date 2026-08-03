@@ -25,6 +25,7 @@ type TowerCompletionRow = {
   item?: string | null;
   url: string;
   completedAt: Date | null;
+  verified?: boolean | null;
 };
 
 export type TowerCompletion = {
@@ -217,28 +218,59 @@ export const addTowerCompletion = async (
   floor: number,
   url: string,
   item: string,
+  verified: boolean | null = null,
 ): Promise<void> => {
   try {
     const query = `
-      INSERT INTO TowerCompletions (cabbage_id, floor, url, item)
-      VALUES (?, ?, ?, ?)
+      INSERT INTO TowerCompletions (cabbage_id, floor, url, item, verified)
+      VALUES (?, ?, ?, ?, ?)
     `;
 
     let result;
 
     try {
-      [result] = await pool.execute(query, [cabbageId, floor, url, item]);
+      [result] = await pool.execute(query, [
+        cabbageId,
+        floor,
+        url,
+        item,
+        verified,
+      ]);
     } catch (error) {
-      if (!isMissingColumnError(error, "item")) {
+      if (
+        !isMissingColumnError(error, "item") &&
+        !isMissingColumnError(error, "verified")
+      ) {
         throw error;
       }
 
-      const fallbackQuery = `
+      let fallbackQuery = `
         INSERT INTO TowerCompletions (cabbage_id, floor, url)
         VALUES (?, ?, ?)
       `;
+      let fallbackValues: unknown[] = [cabbageId, floor, url];
 
-      [result] = await pool.execute(fallbackQuery, [cabbageId, floor, url]);
+      if (
+        isMissingColumnError(error, "item") &&
+        !isMissingColumnError(error, "verified")
+      ) {
+        fallbackQuery = `
+          INSERT INTO TowerCompletions (cabbage_id, floor, url, verified)
+          VALUES (?, ?, ?, ?)
+        `;
+        fallbackValues = [cabbageId, floor, url, verified];
+      } else if (
+        !isMissingColumnError(error, "item") &&
+        isMissingColumnError(error, "verified")
+      ) {
+        fallbackQuery = `
+          INSERT INTO TowerCompletions (cabbage_id, floor, url, item)
+          VALUES (?, ?, ?, ?)
+        `;
+        fallbackValues = [cabbageId, floor, url, item];
+      }
+
+      [result] = await pool.execute(fallbackQuery, fallbackValues);
     }
 
     console.log(
@@ -378,6 +410,92 @@ export const getCompletionsById = async (
   } catch (error) {
     console.error(
       `There was an error getting tower completions by id: ${error}`,
+    );
+    throw error;
+  }
+};
+
+type TowerCompletionWithVerified = TowerCompletion & {
+  verified: boolean | null;
+};
+
+export const getAllCompletions = async (): Promise<
+  TowerCompletionWithVerified[]
+> => {
+  try {
+    const query = `
+      SELECT
+        TowerCompletions.id AS id,
+        TowerCompletions.cabbage_id AS cabbageId,
+        TowerCompletions.floor AS floor,
+        c.rsn,
+        TowerCompletions.item,
+        TowerCompletions.url AS url,
+        TowerCompletions.completed_at AS completedAt,
+        TowerCompletions.verified AS verified
+      FROM TowerCompletions
+      JOIN CabbageUsers c ON c.id = TowerCompletions.cabbage_id
+      ORDER BY TowerCompletions.completed_at DESC
+    `;
+
+    let rows: unknown;
+
+    try {
+      [rows] = await pool.execute(query);
+    } catch (error) {
+      if (!isMissingColumnError(error, "verified")) {
+        throw error;
+      }
+
+      [rows] = await pool.execute(`
+        SELECT
+          TowerCompletions.id AS id,
+          TowerCompletions.cabbage_id AS cabbageId,
+          TowerCompletions.floor AS floor,
+          c.rsn,
+          TowerCompletions.item,
+          TowerCompletions.url AS url,
+          TowerCompletions.completed_at AS completedAt
+        FROM TowerCompletions
+        JOIN CabbageUsers c ON c.id = TowerCompletions.cabbage_id
+        ORDER BY TowerCompletions.completed_at DESC
+      `);
+    }
+
+    if (!Array.isArray(rows)) {
+      return [];
+    }
+
+    return (rows as TowerCompletionRow[]).map((row) => ({
+      id: Number(row.id),
+      cabbageId: Number(row.cabbageId),
+      floor: Number(row.floor),
+      rsn: row.rsn,
+      item: row.item ?? "",
+      url: row.url,
+      completedAt: row.completedAt,
+      verified: row.verified ?? null,
+    }));
+  } catch (error) {
+    console.error(`There was an error getting all tower completions: ${error}`);
+    throw error;
+  }
+};
+
+export const updateCompletionVerifiedStatus = async (
+  completionId: number,
+  verified: boolean,
+): Promise<void> => {
+  try {
+    const query = `
+      UPDATE TowerCompletions
+      SET verified = ?
+      WHERE id = ?
+    `;
+    await pool.execute(query, [verified, completionId]);
+  } catch (error) {
+    console.error(
+      `There was an error updating completion verified status: ${error}`,
     );
     throw error;
   }

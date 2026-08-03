@@ -89,7 +89,6 @@ export const initializeTowerData = async () => {
                 : [],
             });
           }
-
           return accumulator;
         },
         new Map<number, ReducedPlacements>(),
@@ -97,6 +96,11 @@ export const initializeTowerData = async () => {
 
     await ensureAdventurerRowsExist();
     await initializeAdventurerMaps();
+    const allItems = getAllItems();
+    const itemList = Array.from(allItems)
+      .sort((a, b) => a.localeCompare(b))
+      .join(", ");
+    console.log(`Tower items: ${itemList}`);
   } catch (error) {
     console.error(`There was an error: ${error}`);
     throw error;
@@ -180,5 +184,20 @@ export const upsertAdventurerFromCabbageUser = (user: CabbageUser): void => {
 
   if (user.discord_id) {
     discordIdToIdMap.set(user.discord_id, user.id);
+  }
+};
+
+export const getAllItems = (): Set<string> => {
+  try {
+    const allItems = new Set<string>();
+    for (const reducedPlacement of floorData.values()) {
+      for (const item of reducedPlacement.items) {
+        allItems.add(item);
+      }
+    }
+    return allItems;
+  } catch (error) {
+    console.error(`Error getting all items: ${error}`);
+    return new Set<string>();
   }
 };

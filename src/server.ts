@@ -24,26 +24,26 @@ async function bootstrap() {
     await initializeGlobalCabbageData();
     await initializeTowerData();
 
-    console.log(
-      "[Cache Init] Cabbage users:",
-      CabbageUsers.map((user) => ({
-        id: user.id,
-        rsn: user.rsn,
-        discord_id: user.discord_id,
-        role: user.role,
-      })),
-    );
+    // console.log(
+    //   "[Cache Init] Cabbage users:",
+    //   CabbageUsers.map((user) => ({
+    //     id: user.id,
+    //     rsn: user.rsn,
+    //     discord_id: user.discord_id,
+    //     role: user.role,
+    //   })),
+    // );
 
-    console.log(
-      "[Cache Init] Adventurer users:",
-      Array.from(adventurerData.values()).map((adventurer) => ({
-        adventurerId: adventurer.id,
-        cabbageId: adventurer.id,
-        rsn: adventurer.rsn,
-        currentFloor: adventurer.currentFloor,
-        discordId: adventurer.discordId ?? null,
-      })),
-    );
+    // console.log(
+    //   "[Cache Init] Adventurer users:",
+    //   Array.from(adventurerData.values()).map((adventurer) => ({
+    //     adventurerId: adventurer.id,
+    //     cabbageId: adventurer.id,
+    //     rsn: adventurer.rsn,
+    //     currentFloor: adventurer.currentFloor,
+    //     discordId: adventurer.discordId ?? null,
+    //   })),
+    // );
 
     server = app.listen(PORT, () => {
       console.log(`App listening on port ${PORT}`);

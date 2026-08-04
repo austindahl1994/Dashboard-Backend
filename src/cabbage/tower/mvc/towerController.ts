@@ -6,7 +6,7 @@ import {
   getCachedTowerData,
   getRequesterCabbageId,
 } from "../towerGlobalData.ts";
-import { getCompletionsById } from "./tower.ts";
+import { getAllCompletions, getCompletionsById } from "./tower.ts";
 import {
   checkCompletion,
   processManualTowerSubmission,
@@ -141,6 +141,19 @@ export const towerEvents = async (req: Request, res: Response) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+export const getTowerCompletions = async (
+  req: CabbageRequest,
+  res: Response,
+) => {
+  try {
+    const completions = await getAllCompletions();
+    return res.json(completions);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: "Internal server error" });
   }
 };
 

@@ -71,7 +71,8 @@ export const manualSubmission = async (req: Request, res: Response) => {
     const file = (req as Request & { file?: MulterFile }).file;
 
     if (!file) {
-      return getTowerData(req as CabbageRequest, res);
+      console.log("Manual submission rejected: no file uploaded", req.body);
+      return res.status(400).json({ error: "No file submitted." });
     }
 
     image = file.buffer;
@@ -80,6 +81,8 @@ export const manualSubmission = async (req: Request, res: Response) => {
     const payload = req.body?.payload_json ?? req.body;
     const parsedData =
       typeof payload === "string" ? JSON.parse(payload) : payload;
+
+    console.log("Manual submission payload received:", parsedData);
 
     if (!parsedData || typeof parsedData !== "object") {
       throw new Error("Invalid manual submission payload.");

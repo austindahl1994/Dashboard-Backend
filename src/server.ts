@@ -9,16 +9,39 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const PORT = process.env.PORT || 3000;
+const STARTUP_INIT_DELAY_MS = Number(process.env.STARTUP_INIT_DELAY_MS ?? 2000);
 
 let server: ReturnType<typeof app.listen> | undefined;
+let backgroundInitializationStarted = false;
 
 const initializeBackgroundServices = async () => {
+  if (backgroundInitializationStarted) {
+    return;
+  }
+
+  backgroundInitializationStarted = true;
+
   try {
-    await Promise.allSettled([
+    console.log(
+      `[startup] Deferring background initialization for ${STARTUP_INIT_DELAY_MS}ms`,
+    );
+
+    await new Promise((resolve) => setTimeout(resolve, STARTUP_INIT_DELAY_MS));
+
+    const results = await Promise.allSettled([
       startBot(),
       initializeGlobalCabbageData(),
       initializeTowerData(),
     ]);
+
+    results.forEach((result, index) => {
+      if (result.status === "rejected") {
+        console.error(
+          `Background initialization ${index} failed:`,
+          result.reason,
+        );
+      }
+    });
   } catch (error) {
     console.error("Background initialization failed:", error);
   }

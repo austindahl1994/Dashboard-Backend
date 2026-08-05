@@ -139,6 +139,14 @@ export const manualSubmission = async (req: Request, res: Response) => {
   }
 };
 
+export const towerEvents = async (req: Request, res: Response) => {
+  try {
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
 export const getTowerCompletions = async (
   req: CabbageRequest,
   res: Response,

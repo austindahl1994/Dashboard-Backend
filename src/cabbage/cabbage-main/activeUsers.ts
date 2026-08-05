@@ -63,9 +63,9 @@ const logSsePayload = (
     const item = latestCompletion?.item ?? "";
     const floor = latestCompletion?.floor;
 
-    console.log(
-      `[SSE OUT] ADVENTURER updated destination=${destination} rsn=${rsn} item=${item || "none"} floor=${floor ?? "unknown"}`,
-    );
+    // console.log(
+    //   `[SSE OUT] ADVENTURER updated destination=${destination} rsn=${rsn} item=${item || "none"} floor=${floor ?? "unknown"}`,
+    // );
     return;
   }
 
@@ -81,16 +81,16 @@ const logSsePayload = (
         data.towerFloors?.[data.towerFloors.length - 1] ??
         data.towerFloors?.[0];
 
-      console.log(
-        `[SSE OUT] TOWERFLOOR updated destination=${destination} floor=${latestTowerFloor?.floor ?? "unknown"} rsn=${latestTowerFloor?.rsn ?? "unknown"} item=${latestTowerFloor?.item ?? "none"} trackedFloors=${data.towerFloors?.length ?? 0}`,
-      );
+      // console.log(
+      //   `[SSE OUT] TOWERFLOOR updated destination=${destination} floor=${latestTowerFloor?.floor ?? "unknown"} rsn=${latestTowerFloor?.rsn ?? "unknown"} item=${latestTowerFloor?.item ?? "none"} trackedFloors=${data.towerFloors?.length ?? 0}`,
+      // );
       return;
     }
 
     const firstAdventurer = data.adventurers?.[0];
-    console.log(
-      `[SSE OUT] ADVENTURER snapshot destination=${destination} count=${data.adventurers?.length ?? 0} sampleRsn=${firstAdventurer?.rsn ?? "unknown"} sampleItem=${firstAdventurer?.item ?? "none"}`,
-    );
+    // console.log(
+    //   `[SSE OUT] ADVENTURER snapshot destination=${destination} count=${data.adventurers?.length ?? 0} sampleRsn=${firstAdventurer?.rsn ?? "unknown"} sampleItem=${firstAdventurer?.item ?? "none"}`,
+    // );
   }
 };
 

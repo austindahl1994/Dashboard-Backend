@@ -1,3 +1,4 @@
+import { cabbageUsersByID } from "@/cabbage/cabbage-main/globalCabbage.ts";
 import pool from "@/db/mysqlPool.js";
 import type { Adventurer, TowerFloor } from "@/types/index.ts";
 
@@ -274,7 +275,7 @@ export const addTowerCompletion = async (
     }
 
     console.log(
-      `Tower completion added successfully: ${JSON.stringify(result)}`,
+      `Tower floor ${floor} completion added successfully for player: ${cabbageUsersByID[cabbageId]?.rsn ?? "unknown"}`,
     );
   } catch (error) {
     console.error(`There was an error adding tower completion: ${error}`);
@@ -297,7 +298,7 @@ export const addFirstTowerFloorCompletion = async (
     );
 
     console.log(
-      `Tower first-floor completion added successfully: ${JSON.stringify(result)}`,
+      `Tower first-floor completion added successfully for floor ${floor} for player: ${cabbageUsersByID[cabbageId]?.rsn ?? "unknown"}`,
     );
   } catch (error) {
     console.error(`There was an error adding first floor completion: ${error}`);
@@ -340,9 +341,9 @@ export const upsertAdventurerProgress = async (
       );
     }
 
-    console.log(
-      `Adventurer progress upserted successfully: ${JSON.stringify(result)}`,
-    );
+    // console.log(
+    //   `Adventurer progress upserted successfully: ${JSON.stringify(result)}`,
+    // );
   } catch (error) {
     console.error(`There was an error upserting adventurer progress: ${error}`);
     throw error;

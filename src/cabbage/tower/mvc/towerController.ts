@@ -41,7 +41,9 @@ export const towerDinkData = async (req: Request, res: Response) => {
     }
 
     console.log(`Received data from ${parsedData.playerName}`);
-    console.log(parsedData);
+    const items = new Set(parsedData.extra?.items?.map((i) => i.name) ?? []);
+
+    console.log(items);
 
     await checkCompletion(image, mimetype, parsedData);
     res.sendStatus(200);
@@ -137,14 +139,6 @@ export const manualSubmission = async (req: Request, res: Response) => {
   }
 };
 
-export const towerEvents = async (req: Request, res: Response) => {
-  try {
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-};
-
 export const getTowerCompletions = async (
   req: CabbageRequest,
   res: Response,
@@ -157,6 +151,22 @@ export const getTowerCompletions = async (
     return res.status(500).json({ error: "Internal server error" });
   }
 };
+
+// export const judgeCompletion = async (req: CabbageRequest, res: Response) => {
+//   try {
+//     const { completionId, judge } = req.body;
+
+//     if (!completionId || typeof judge !== "boolean") {
+//       return res.status(400).json({ error: "Invalid request body" });
+//     }
+
+//     const result = await judgeTowerCompletion(completionId, judge);
+//     return res.json(result);
+//   } catch (error) {
+//     console.log(error);
+//     return res.status(500).json({ error: "Internal server error" });
+//   }
+// };
 
 export const getTowerData = async (req: CabbageRequest, res: Response) => {
   try {

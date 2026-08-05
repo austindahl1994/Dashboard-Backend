@@ -60,7 +60,7 @@ export const loginCabbage = async (
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown error";
-    console.error("[Cabbage Login] Cabbage login failed", { message, error });
+    console.log("[Cabbage Login] Cabbage login failed", { message, error });
     res.status(401).json({ error: "Cabbage login failed.", details: message });
   }
 };

@@ -153,7 +153,7 @@ export const cabbageLogin = async (
       role: user.role,
     };
   } catch (error) {
-    console.error(`Error during Cabbage login: ${error}`);
+    // console.log(`Error during Cabbage login: ${error}`);
     throw error;
   }
 };

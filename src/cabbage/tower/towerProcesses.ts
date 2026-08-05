@@ -21,6 +21,8 @@ import {
   singleBroadcastSseEvent,
 } from "../cabbage-main/activeUsers.ts";
 import { streamUpload } from "@/services/aws/s3.js";
+import { completionBroadcast } from "../../bot/broadcasts/completionBroadcast.js";
+import { towerCompletion } from "../../bot/embeds/cabbage/completion.js";
 
 // Compare RSN with globalTowerData, will return either adventurer ID or false
 const comparePlayer = (
@@ -372,7 +374,14 @@ export const processNewFloorCompletion = async (
     const nextCurrentFloor = floorNumber + 1;
     await upsertAdventurerProgress(cabbageId, nextCurrentFloor, item);
     updateAdventurerCacheProgress(cabbageId, nextCurrentFloor, item);
-
+    const embed = towerCompletion(
+      rsn,
+      floorNumber,
+      playerURL,
+      isFirstFloorCompletion,
+      item,
+    );
+    await completionBroadcast(embed);
     await broadcastTowerUpdates(discordId, cabbageId, isFirstFloorCompletion);
     return isFirstFloorCompletion;
   } catch (error) {

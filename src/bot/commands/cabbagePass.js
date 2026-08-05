@@ -39,7 +39,7 @@ export default {
 
       await updateCabbageUserPassword(discord_id, password);
       await interaction.reply({
-        content: `Your Cabbage Hub password has been updated!`,
+        content: `Your Cabbage Hub password has been updated!\nYour discord ID to log in is:\n\`\`\`\n${discord_id}\n\`\`\``,
         flags: MessageFlags.Ephemeral,
       });
     } catch (error) {

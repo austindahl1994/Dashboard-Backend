@@ -41,6 +41,7 @@ export const towerDinkData = async (req: Request, res: Response) => {
     }
 
     console.log(`Received data from ${parsedData.playerName}`);
+    console.log(parsedData);
 
     await checkCompletion(image, mimetype, parsedData);
     res.sendStatus(200);

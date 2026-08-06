@@ -254,6 +254,20 @@ export const processManualTowerSubmission = async (
     await upsertAdventurerProgress(playerId, nextCurrentFloor, completionItem);
     updateAdventurerCacheProgress(playerId, nextCurrentFloor, completionItem);
 
+    const embed = towerCompletion(
+      adventurer.rsn,
+      floorNumber,
+      playerURL,
+      isFirstFloorCompletion,
+      completionItem,
+    );
+
+    try {
+      await completionBroadcast(embed);
+    } catch (error) {
+      console.error(`Tower completion broadcast failed: ${error}`);
+    }
+
     await broadcastTowerUpdates(
       payload.discordId ?? adventurer.discordId,
       playerId,
@@ -454,10 +468,32 @@ export const checkCompletion = async (
 
     //2. Player exists, check against floor items, If floorItems for player's current floor match the passed in data, either:
     const itemsMatch = checkFloorItems(items, floorNumber);
+
     if (!itemsMatch) {
       console.log(
         `Items for ${DinkData.playerName} did not match requirements for floor ${floorNumber}`,
       );
+
+      if (DinkData.extra?.party && firstImplementation) {
+        for (const partyMember of DinkData.extra.party) {
+          if (partyMember.toLowerCase() === DinkData.playerName.toLowerCase()) {
+            continue;
+          }
+
+          await checkCompletion(
+            image,
+            mimetype,
+            {
+              ...DinkData,
+              playerName: partyMember,
+              discordUser: undefined,
+            },
+            undefined,
+            false,
+          );
+        }
+      }
+
       return;
     }
 
@@ -515,10 +551,7 @@ export const checkCompletion = async (
           false,
         );
       }
-
-      return;
     }
-    // 8b. After loop is completed, should also just return, since that means all players in the party have been checked for completion, and the original player who got the drop has already been processed, so no need to continue checking for team drop again
 
     // 8c. If dinkData.extra.party doesn't exist, then don't check for team drop, just return so the image can be deleted
   } catch (error) {

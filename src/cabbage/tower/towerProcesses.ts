@@ -382,7 +382,14 @@ export const processNewFloorCompletion = async (
       isFirstFloorCompletion,
       item,
     );
-    await completionBroadcast(embed);
+
+    // Do not fail a valid completion if Discord broadcasting errors.
+    try {
+      await completionBroadcast(embed);
+    } catch (error) {
+      console.error(`Tower completion broadcast failed: ${error}`);
+    }
+
     await broadcastTowerUpdates(discordId, cabbageId, isFirstFloorCompletion);
     return isFirstFloorCompletion;
   } catch (error) {

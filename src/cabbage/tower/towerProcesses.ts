@@ -328,7 +328,8 @@ const checkFloorItems = (items: Items[] | undefined, floor: number) => {
       throw new Error(`No items found for floor ${floor}`);
     }
     const itemsMatch =
-      items?.every((item) => floorItems.has(item.name.toLowerCase())) ?? false;
+      items?.some((item) => floorItems.has(item.name.trim().toLowerCase())) ??
+      false;
     return itemsMatch;
   } catch (error) {
     console.error(`There was an error checking floor ${floor}: ${error}`);

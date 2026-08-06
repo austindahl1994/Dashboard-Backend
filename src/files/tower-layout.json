@@ -6,7 +6,9 @@
       "floor": 0,
       "slot": 0,
       "title": "Sulphur Nagua",
-      "items": ["Sulphur blades"],
+      "items": [
+        "Sulphur blades"
+      ],
       "tile": {
         "id": "sulphur nagua-slayer",
         "name": "Sulphur Nagua",
@@ -18,7 +20,10 @@
       "floor": 0,
       "slot": 1,
       "title": "Frost Nagua",
-      "items": ["Glacial temotli", "Tooth half of key (moon key)"],
+      "items": [
+        "Glacial temotli",
+        "Tooth half of key (moon key)"
+      ],
       "tile": {
         "id": "frost nagua-slayer",
         "name": "Frost Nagua",
@@ -30,7 +35,9 @@
       "floor": 0,
       "slot": 2,
       "title": "Earthen Nagua",
-      "items": ["Earthbound tecpatl"],
+      "items": [
+        "Earthbound tecpatl"
+      ],
       "tile": {
         "id": "earthen nagua-slayer",
         "name": "Earthen Nagua",
@@ -42,7 +49,9 @@
       "floor": 1,
       "slot": 0,
       "title": "Scurrius",
-      "items": ["Scurrius' spine"],
+      "items": [
+        "Scurrius' spine"
+      ],
       "tile": {
         "id": "scurrius-boss",
         "name": "Scurrius",
@@ -54,7 +63,9 @@
       "floor": 1,
       "slot": 1,
       "title": "Spiritual Mage",
-      "items": ["Dragon boots"],
+      "items": [
+        "Dragon boots"
+      ],
       "tile": {
         "id": "spiritual mage-slayer",
         "name": "Spiritual Mage",
@@ -66,7 +77,9 @@
       "floor": 1,
       "slot": 2,
       "title": "Warped Terrorbird",
-      "items": ["Warped sceptre"],
+      "items": [
+        "Warped sceptre (uncharged)"
+      ],
       "tile": {
         "id": "warped terrorbird-slayer",
         "name": "Warped Terrorbird",
@@ -78,7 +91,10 @@
       "floor": 2,
       "slot": 0,
       "title": "Wintertodt",
-      "items": ["Dragon axe", "Tome of fire (empty)"],
+      "items": [
+        "Dragon axe",
+        "Tome of fire (empty)"
+      ],
       "tile": {
         "id": "wintertodt-boss",
         "name": "Wintertodt",
@@ -90,7 +106,9 @@
       "floor": 2,
       "slot": 1,
       "title": "Amoxliatl",
-      "items": ["Glacial temotli"],
+      "items": [
+        "Glacial temotli"
+      ],
       "tile": {
         "id": "amoxliatl-boss",
         "name": "Amoxliatl",
@@ -102,7 +120,10 @@
       "floor": 2,
       "slot": 2,
       "title": "Frost Nagua",
-      "items": ["Glacial temotli", "Tooth half of key (moon key)"],
+      "items": [
+        "Glacial temotli",
+        "Tooth half of key (moon key)"
+      ],
       "tile": {
         "id": "frost nagua-slayer",
         "name": "Frost Nagua",
@@ -114,7 +135,11 @@
       "floor": 3,
       "slot": 0,
       "title": "Abyssal Demon",
-      "items": ["Abyssal whip", "Abyssal dagger", "Abyssal head"],
+      "items": [
+        "Abyssal whip",
+        "Abyssal dagger",
+        "Abyssal head"
+      ],
       "tile": {
         "id": "abyssal demon-slayer",
         "name": "Abyssal Demon",
@@ -126,7 +151,9 @@
       "floor": 3,
       "slot": 1,
       "title": "Gryphon",
-      "items": ["Horn of plenty (empty)"],
+      "items": [
+        "Horn of plenty (empty)"
+      ],
       "tile": {
         "id": "gryphon-slayer",
         "name": "Gryphon",
@@ -138,7 +165,9 @@
       "floor": 3,
       "slot": 2,
       "title": "Deranged archaeologist",
-      "items": ["Steel ring"],
+      "items": [
+        "Steel ring"
+      ],
       "tile": {
         "id": "deranged archaeologist-boss",
         "name": "Deranged archaeologist",
@@ -150,7 +179,11 @@
       "floor": 4,
       "slot": 0,
       "title": "Brutus",
-      "items": ["Bottomless milk bucket (empty)", "Cow slippers", "Mooleta"],
+      "items": [
+        "Bottomless milk bucket (empty)",
+        "Cow slippers",
+        "Mooleta"
+      ],
       "tile": {
         "id": "brutus-boss",
         "name": "Brutus",
@@ -162,7 +195,10 @@
       "floor": 5,
       "slot": 0,
       "title": "Elder custodian stalker",
-      "items": ["Alchemist's signet", "Antler guard"],
+      "items": [
+        "Alchemist's signet",
+        "Antler guard"
+      ],
       "tile": {
         "id": "elder custodian stalker-slayer",
         "name": "Elder custodian stalker",
@@ -174,7 +210,9 @@
       "floor": 5,
       "slot": 1,
       "title": "Earthen Nagua",
-      "items": ["Earthbound tecpatl"],
+      "items": [
+        "Earthbound tecpatl"
+      ],
       "tile": {
         "id": "earthen nagua-slayer",
         "name": "Earthen Nagua",
@@ -186,7 +224,9 @@
       "floor": 5,
       "slot": 2,
       "title": "Scurrius",
-      "items": ["Scurrius' spine"],
+      "items": [
+        "Scurrius' spine"
+      ],
       "tile": {
         "id": "scurrius-boss",
         "name": "Scurrius",
@@ -198,7 +238,10 @@
       "floor": 6,
       "slot": 0,
       "title": "Chaos Fanatic",
-      "items": ["Malediction shard 1", "Odium shard 1"],
+      "items": [
+        "Malediction shard 1",
+        "Odium shard 1"
+      ],
       "tile": {
         "id": "chaos fanatic-boss",
         "name": "Chaos Fanatic",
@@ -210,7 +253,9 @@
       "floor": 6,
       "slot": 1,
       "title": "Deranged archaeologist",
-      "items": ["Steel ring"],
+      "items": [
+        "Steel ring"
+      ],
       "tile": {
         "id": "deranged archaeologist-boss",
         "name": "Deranged archaeologist",
@@ -222,7 +267,11 @@
       "floor": 6,
       "slot": 2,
       "title": "Crazy archaeologist",
-      "items": ["Fedora", "Malediction shard 2", "Odium shard 2"],
+      "items": [
+        "Fedora",
+        "Malediction shard 2",
+        "Odium shard 2"
+      ],
       "tile": {
         "id": "crazy archaeologist-boss",
         "name": "Crazy archaeologist",
@@ -234,7 +283,10 @@
       "floor": 7,
       "slot": 0,
       "title": "Wintertodt",
-      "items": ["Dragon axe", "Tome of fire (empty)"],
+      "items": [
+        "Dragon axe",
+        "Tome of fire (empty)"
+      ],
       "tile": {
         "id": "wintertodt-boss",
         "name": "Wintertodt",
@@ -246,7 +298,9 @@
       "floor": 7,
       "slot": 1,
       "title": "Gryphon",
-      "items": ["Horn of plenty (empty)"],
+      "items": [
+        "Horn of plenty (empty)"
+      ],
       "tile": {
         "id": "gryphon-slayer",
         "name": "Gryphon",
@@ -258,7 +312,10 @@
       "floor": 7,
       "slot": 2,
       "title": "Elder custodian stalker",
-      "items": ["Alchemist's signet", "Antler guard"],
+      "items": [
+        "Alchemist's signet",
+        "Antler guard"
+      ],
       "tile": {
         "id": "elder custodian stalker-slayer",
         "name": "Elder custodian stalker",
@@ -270,7 +327,9 @@
       "floor": 8,
       "slot": 0,
       "title": "Amoxliatl",
-      "items": ["Glacial temotli"],
+      "items": [
+        "Glacial temotli"
+      ],
       "tile": {
         "id": "amoxliatl-boss",
         "name": "Amoxliatl",
@@ -282,7 +341,11 @@
       "floor": 8,
       "slot": 1,
       "title": "Brutus",
-      "items": ["Bottomless milk bucket (empty)", "Cow slippers", "Mooleta"],
+      "items": [
+        "Bottomless milk bucket (empty)",
+        "Cow slippers",
+        "Mooleta"
+      ],
       "tile": {
         "id": "brutus-boss",
         "name": "Brutus",
@@ -294,7 +357,11 @@
       "floor": 8,
       "slot": 2,
       "title": "Abyssal Demon",
-      "items": ["Abyssal whip", "Abyssal dagger", "Abyssal head"],
+      "items": [
+        "Abyssal whip",
+        "Abyssal dagger",
+        "Abyssal head"
+      ],
       "tile": {
         "id": "abyssal demon-slayer",
         "name": "Abyssal Demon",
@@ -343,7 +410,9 @@
       "floor": 10,
       "slot": 0,
       "title": "Deranged archaeologist",
-      "items": ["Steel ring"],
+      "items": [
+        "Steel ring"
+      ],
       "tile": {
         "id": "deranged archaeologist-boss",
         "name": "Deranged archaeologist",
@@ -355,7 +424,9 @@
       "floor": 10,
       "slot": 1,
       "title": "Warped Terrorbird",
-      "items": ["Warped sceptre"],
+      "items": [
+        "Warped sceptre (uncharged)"
+      ],
       "tile": {
         "id": "warped terrorbird-slayer",
         "name": "Warped Terrorbird",
@@ -367,7 +438,11 @@
       "floor": 10,
       "slot": 2,
       "title": "Crazy archaeologist",
-      "items": ["Fedora", "Malediction shard 2", "Odium shard 2"],
+      "items": [
+        "Fedora",
+        "Malediction shard 2",
+        "Odium shard 2"
+      ],
       "tile": {
         "id": "crazy archaeologist-boss",
         "name": "Crazy archaeologist",
@@ -379,7 +454,9 @@
       "floor": 11,
       "slot": 0,
       "title": "Spiritual Mage",
-      "items": ["Dragon boots"],
+      "items": [
+        "Dragon boots"
+      ],
       "tile": {
         "id": "spiritual mage-slayer",
         "name": "Spiritual Mage",
@@ -391,7 +468,9 @@
       "floor": 11,
       "slot": 1,
       "title": "Gryphon",
-      "items": ["Horn of plenty (empty)"],
+      "items": [
+        "Horn of plenty (empty)"
+      ],
       "tile": {
         "id": "gryphon-slayer",
         "name": "Gryphon",
@@ -403,7 +482,11 @@
       "floor": 11,
       "slot": 2,
       "title": "Abyssal Demon",
-      "items": ["Abyssal whip", "Abyssal dagger", "Abyssal head"],
+      "items": [
+        "Abyssal whip",
+        "Abyssal dagger",
+        "Abyssal head"
+      ],
       "tile": {
         "id": "abyssal demon-slayer",
         "name": "Abyssal Demon",
@@ -415,7 +498,9 @@
       "floor": 12,
       "slot": 0,
       "title": "Scurrius",
-      "items": ["Scurrius' spine"],
+      "items": [
+        "Scurrius' spine"
+      ],
       "tile": {
         "id": "scurrius-boss",
         "name": "Scurrius",
@@ -427,7 +512,11 @@
       "floor": 12,
       "slot": 1,
       "title": "Brutus",
-      "items": ["Bottomless milk bucket (empty)", "Cow slippers", "Mooleta"],
+      "items": [
+        "Bottomless milk bucket (empty)",
+        "Cow slippers",
+        "Mooleta"
+      ],
       "tile": {
         "id": "brutus-boss",
         "name": "Brutus",
@@ -439,7 +528,10 @@
       "floor": 12,
       "slot": 2,
       "title": "Elder custodian stalker",
-      "items": ["Alchemist's signet", "Antler guard"],
+      "items": [
+        "Alchemist's signet",
+        "Antler guard"
+      ],
       "tile": {
         "id": "elder custodian stalker-slayer",
         "name": "Elder custodian stalker",
@@ -451,7 +543,9 @@
       "floor": 13,
       "slot": 0,
       "title": "Amoxliatl",
-      "items": ["Glacial temotli"],
+      "items": [
+        "Glacial temotli"
+      ],
       "tile": {
         "id": "amoxliatl-boss",
         "name": "Amoxliatl",
@@ -500,7 +594,9 @@
       "floor": 13,
       "slot": 2,
       "title": "Sulphur Nagua",
-      "items": ["Sulphur blades"],
+      "items": [
+        "Sulphur blades"
+      ],
       "tile": {
         "id": "sulphur nagua-slayer",
         "name": "Sulphur Nagua",
@@ -537,7 +633,11 @@
       "floor": 15,
       "slot": 0,
       "title": "Dagannoth Prime",
-      "items": ["Dragon axe", "Mud battlestaff", "Seers ring"],
+      "items": [
+        "Dragon axe",
+        "Mud battlestaff",
+        "Seers ring"
+      ],
       "tile": {
         "id": "dagannoth prime-boss",
         "name": "Dagannoth Prime",
@@ -549,7 +649,11 @@
       "floor": 15,
       "slot": 1,
       "title": "Dagannoth Rex",
-      "items": ["Berserker ring", "Dragon axe", "Warrior ring"],
+      "items": [
+        "Berserker ring",
+        "Dragon axe",
+        "Warrior ring"
+      ],
       "tile": {
         "id": "dagannoth rex-boss",
         "name": "Dagannoth Rex",
@@ -561,7 +665,11 @@
       "floor": 15,
       "slot": 2,
       "title": "Dagannoth Supreme",
-      "items": ["Archers ring", "Dragon axe", "Seercull"],
+      "items": [
+        "Archers ring",
+        "Dragon axe",
+        "Seercull"
+      ],
       "tile": {
         "id": "dagannoth supreme-boss",
         "name": "Dagannoth Supreme",
@@ -573,7 +681,10 @@
       "floor": 16,
       "slot": 0,
       "title": "Drake",
-      "items": ["Drake's tooth", "Drake's claw"],
+      "items": [
+        "Drake's tooth",
+        "Drake's claw"
+      ],
       "tile": {
         "id": "drake-slayer",
         "name": "Drake",
@@ -585,7 +696,9 @@
       "floor": 16,
       "slot": 1,
       "title": "Aquanite",
-      "items": ["Aquanite tendon"],
+      "items": [
+        "Aquanite tendon"
+      ],
       "tile": {
         "id": "aquanite-slayer",
         "name": "Aquanite",
@@ -597,7 +710,9 @@
       "floor": 16,
       "slot": 2,
       "title": "Amoxliatl",
-      "items": ["Glacial temotli"],
+      "items": [
+        "Glacial temotli"
+      ],
       "tile": {
         "id": "amoxliatl-boss",
         "name": "Amoxliatl",
@@ -609,7 +724,10 @@
       "floor": 17,
       "slot": 0,
       "title": "Eldric the Ice King",
-      "items": ["Deadeye prayer scroll", "Ice element staff crown"],
+      "items": [
+        "Deadeye prayer scroll",
+        "Ice element staff crown"
+      ],
       "tile": {
         "id": "eldric the ice king-boss",
         "name": "Eldric the Ice King",
@@ -621,7 +739,9 @@
       "floor": 17,
       "slot": 1,
       "title": "Hespori",
-      "items": ["Bottomless compost bucket"],
+      "items": [
+        "Bottomless compost bucket"
+      ],
       "tile": {
         "id": "hespori-boss",
         "name": "Hespori",
@@ -633,7 +753,11 @@
       "floor": 17,
       "slot": 2,
       "title": "Crazy archaeologist",
-      "items": ["Fedora", "Malediction shard 2", "Odium shard 2"],
+      "items": [
+        "Fedora",
+        "Malediction shard 2",
+        "Odium shard 2"
+      ],
       "tile": {
         "id": "crazy archaeologist-boss",
         "name": "Crazy archaeologist",
@@ -645,7 +769,10 @@
       "floor": 18,
       "slot": 0,
       "title": "Araxyte",
-      "items": ["Aranea boots", "Araxyte head"],
+      "items": [
+        "Aranea boots",
+        "Araxyte head"
+      ],
       "tile": {
         "id": "araxyte-slayer",
         "name": "Araxyte",
@@ -675,7 +802,11 @@
       "floor": 18,
       "slot": 2,
       "title": "Brutus",
-      "items": ["Bottomless milk bucket (empty)", "Cow slippers", "Mooleta"],
+      "items": [
+        "Bottomless milk bucket (empty)",
+        "Cow slippers",
+        "Mooleta"
+      ],
       "tile": {
         "id": "brutus-boss",
         "name": "Brutus",
@@ -687,7 +818,11 @@
       "floor": 19,
       "slot": 0,
       "title": "Sarachnis",
-      "items": ["Giant egg sac", "Pristine spider silk", "Sarachnis cudgel"],
+      "items": [
+        "Giant egg sac",
+        "Pristine spider silk",
+        "Sarachnis cudgel"
+      ],
       "tile": {
         "id": "sarachnis-boss",
         "name": "Sarachnis",
@@ -699,7 +834,11 @@
       "floor": 20,
       "slot": 0,
       "title": "Dagannoth Prime",
-      "items": ["Dragon axe", "Mud battlestaff", "Seers ring"],
+      "items": [
+        "Dragon axe",
+        "Mud battlestaff",
+        "Seers ring"
+      ],
       "tile": {
         "id": "dagannoth prime-boss",
         "name": "Dagannoth Prime",
@@ -765,7 +904,10 @@
       "floor": 21,
       "slot": 0,
       "title": "Branda the Fire Queen",
-      "items": ["Fire element staff crown", "Mystic vigour prayer scroll"],
+      "items": [
+        "Fire element staff crown",
+        "Mystic vigour prayer scroll"
+      ],
       "tile": {
         "id": "branda the fire queen-boss",
         "name": "Branda the Fire Queen",
@@ -777,7 +919,11 @@
       "floor": 21,
       "slot": 1,
       "title": "Dagannoth Rex",
-      "items": ["Berserker ring", "Dragon axe", "Warrior ring"],
+      "items": [
+        "Berserker ring",
+        "Dragon axe",
+        "Warrior ring"
+      ],
       "tile": {
         "id": "dagannoth rex-boss",
         "name": "Dagannoth Rex",
@@ -789,7 +935,9 @@
       "floor": 21,
       "slot": 2,
       "title": "Sulphur Nagua",
-      "items": ["Sulphur blades"],
+      "items": [
+        "Sulphur blades"
+      ],
       "tile": {
         "id": "sulphur nagua-slayer",
         "name": "Sulphur Nagua",
@@ -801,7 +949,9 @@
       "floor": 22,
       "slot": 0,
       "title": "Bryophyta",
-      "items": ["Bryophyta's essence"],
+      "items": [
+        "Bryophyta's essence"
+      ],
       "tile": {
         "id": "bryophyta-boss",
         "name": "Bryophyta",
@@ -813,7 +963,9 @@
       "floor": 22,
       "slot": 1,
       "title": "Earthen Nagua",
-      "items": ["Earthbound tecpatl"],
+      "items": [
+        "Earthbound tecpatl"
+      ],
       "tile": {
         "id": "earthen nagua-slayer",
         "name": "Earthen Nagua",
@@ -825,7 +977,11 @@
       "floor": 22,
       "slot": 2,
       "title": "Dagannoth Supreme",
-      "items": ["Archers ring", "Dragon axe", "Seercull"],
+      "items": [
+        "Archers ring",
+        "Dragon axe",
+        "Seercull"
+      ],
       "tile": {
         "id": "dagannoth supreme-boss",
         "name": "Dagannoth Supreme",
@@ -837,7 +993,10 @@
       "floor": 23,
       "slot": 0,
       "title": "Chaos Elemental",
-      "items": ["Dragon 2h sword", "Dragon pickaxe"],
+      "items": [
+        "Dragon 2h sword",
+        "Dragon pickaxe"
+      ],
       "tile": {
         "id": "chaos elemental-boss",
         "name": "Chaos Elemental",
@@ -867,7 +1026,9 @@
       "floor": 23,
       "slot": 2,
       "title": "Warped Terrorbird",
-      "items": ["Warped sceptre"],
+      "items": [
+        "Warped sceptre (uncharged)"
+      ],
       "tile": {
         "id": "warped terrorbird-slayer",
         "name": "Warped Terrorbird",
@@ -904,7 +1065,9 @@
       "floor": 25,
       "slot": 0,
       "title": "Shellbane gryphon",
-      "items": ["Belle's folly (tarnished)"],
+      "items": [
+        "Belle's folly (tarnished)"
+      ],
       "tile": {
         "id": "shellbane gryphon-boss",
         "name": "Shellbane gryphon",
@@ -988,7 +1151,9 @@
       "floor": 26,
       "slot": 1,
       "title": "Obor",
-      "items": ["Hill giant club"],
+      "items": [
+        "Hill giant club"
+      ],
       "tile": {
         "id": "obor-boss",
         "name": "Obor",
@@ -1000,7 +1165,11 @@
       "floor": 26,
       "slot": 2,
       "title": "Sarachnis",
-      "items": ["Giant egg sac", "Pristine spider silk", "Sarachnis cudgel"],
+      "items": [
+        "Giant egg sac",
+        "Pristine spider silk",
+        "Sarachnis cudgel"
+      ],
       "tile": {
         "id": "sarachnis-boss",
         "name": "Sarachnis",
@@ -1029,7 +1198,10 @@
       "floor": 27,
       "slot": 1,
       "title": "Kraken",
-      "items": ["Kraken tentacle", "Trident of the seas (full)"],
+      "items": [
+        "Kraken tentacle",
+        "Trident of the seas (full)"
+      ],
       "tile": {
         "id": "kraken-boss",
         "name": "Kraken",
@@ -1066,7 +1238,9 @@
       "floor": 28,
       "slot": 0,
       "title": "Dark beast",
-      "items": ["Dark bow"],
+      "items": [
+        "Dark bow"
+      ],
       "tile": {
         "id": "dark beast-slayer",
         "name": "Dark beast",
@@ -1115,7 +1289,10 @@
       "floor": 28,
       "slot": 2,
       "title": "Drake",
-      "items": ["Drake's tooth", "Drake's claw"],
+      "items": [
+        "Drake's tooth",
+        "Drake's claw"
+      ],
       "tile": {
         "id": "drake-slayer",
         "name": "Drake",
@@ -1164,7 +1341,11 @@
       "floor": 30,
       "slot": 1,
       "title": "Sarachnis",
-      "items": ["Giant egg sac", "Pristine spider silk", "Sarachnis cudgel"],
+      "items": [
+        "Giant egg sac",
+        "Pristine spider silk",
+        "Sarachnis cudgel"
+      ],
       "tile": {
         "id": "sarachnis-boss",
         "name": "Sarachnis",
@@ -1176,7 +1357,11 @@
       "floor": 30,
       "slot": 2,
       "title": "Scorpia",
-      "items": ["Dragon 2h sword", "Malediction shard 3", "Odium shard 3"],
+      "items": [
+        "Dragon 2h sword",
+        "Malediction shard 3",
+        "Odium shard 3"
+      ],
       "tile": {
         "id": "scorpia-boss",
         "name": "Scorpia",
@@ -1205,7 +1390,10 @@
       "floor": 31,
       "slot": 1,
       "title": "Chaos Fanatic",
-      "items": ["Malediction shard 1", "Odium shard 1"],
+      "items": [
+        "Malediction shard 1",
+        "Odium shard 1"
+      ],
       "tile": {
         "id": "chaos fanatic-boss",
         "name": "Chaos Fanatic",
@@ -1217,7 +1405,10 @@
       "floor": 31,
       "slot": 2,
       "title": "Chaos Elemental",
-      "items": ["Dragon 2h sword", "Dragon pickaxe"],
+      "items": [
+        "Dragon 2h sword",
+        "Dragon pickaxe"
+      ],
       "tile": {
         "id": "chaos elemental-boss",
         "name": "Chaos Elemental",
@@ -1229,7 +1420,9 @@
       "floor": 32,
       "slot": 0,
       "title": "Aquanite",
-      "items": ["Aquanite tendon"],
+      "items": [
+        "Aquanite tendon"
+      ],
       "tile": {
         "id": "aquanite-slayer",
         "name": "Aquanite",
@@ -1241,7 +1434,10 @@
       "floor": 32,
       "slot": 1,
       "title": "Araxyte",
-      "items": ["Aranea boots", "Araxyte head"],
+      "items": [
+        "Aranea boots",
+        "Araxyte head"
+      ],
       "tile": {
         "id": "araxyte-slayer",
         "name": "Araxyte",
@@ -1253,7 +1449,10 @@
       "floor": 32,
       "slot": 2,
       "title": "Frost Nagua",
-      "items": ["Glacial temotli", "Tooth half of key (moon key)"],
+      "items": [
+        "Glacial temotli",
+        "Tooth half of key (moon key)"
+      ],
       "tile": {
         "id": "frost nagua-slayer",
         "name": "Frost Nagua",
@@ -1302,7 +1501,10 @@
       "floor": 33,
       "slot": 1,
       "title": "Eldric the Ice King",
-      "items": ["Deadeye prayer scroll", "Ice element staff crown"],
+      "items": [
+        "Deadeye prayer scroll",
+        "Ice element staff crown"
+      ],
       "tile": {
         "id": "eldric the ice king-boss",
         "name": "Eldric the Ice King",
@@ -1314,7 +1516,10 @@
       "floor": 33,
       "slot": 2,
       "title": "Cave kraken",
-      "items": ["Kraken tentacle", "Trident of the seas (full)"],
+      "items": [
+        "Kraken tentacle",
+        "Trident of the seas (full)"
+      ],
       "tile": {
         "id": "cave kraken-slayer",
         "name": "Cave kraken",
@@ -1333,7 +1538,7 @@
         "Masori chaps",
         "Masori mask",
         "Osmumten's fang",
-        "Tumeken's shadow"
+        "Tumeken's shadow (uncharged)"
       ],
       "tile": {
         "id": "tombs of amascut-raid",
@@ -1397,7 +1602,10 @@
       "floor": 36,
       "slot": 0,
       "title": "Basilisk Knight",
-      "items": ["Basilisk jaw", "Basilisk head"],
+      "items": [
+        "Basilisk jaw",
+        "Basilisk head"
+      ],
       "tile": {
         "id": "basilisk knight-slayer",
         "name": "Basilisk Knight",
@@ -1426,7 +1634,11 @@
       "floor": 36,
       "slot": 2,
       "title": "Scorpia",
-      "items": ["Dragon 2h sword", "Malediction shard 3", "Odium shard 3"],
+      "items": [
+        "Dragon 2h sword",
+        "Malediction shard 3",
+        "Odium shard 3"
+      ],
       "tile": {
         "id": "scorpia-boss",
         "name": "Scorpia",
@@ -1438,7 +1650,11 @@
       "floor": 37,
       "slot": 0,
       "title": "Abyssal Demon",
-      "items": ["Abyssal whip", "Abyssal dagger", "Abyssal head"],
+      "items": [
+        "Abyssal whip",
+        "Abyssal dagger",
+        "Abyssal head"
+      ],
       "tile": {
         "id": "abyssal demon-slayer",
         "name": "Abyssal Demon",
@@ -1468,7 +1684,9 @@
       "floor": 37,
       "slot": 2,
       "title": "Shellbane gryphon",
-      "items": ["Belle's folly (tarnished)"],
+      "items": [
+        "Belle's folly (tarnished)"
+      ],
       "tile": {
         "id": "shellbane gryphon-boss",
         "name": "Shellbane gryphon",
@@ -1480,7 +1698,11 @@
       "floor": 38,
       "slot": 0,
       "title": "Skotizo",
-      "items": ["Dark claw", "Dark totem", "Uncut onyx"],
+      "items": [
+        "Dark claw",
+        "Dark totem",
+        "Uncut onyx"
+      ],
       "tile": {
         "id": "skotizo-boss",
         "name": "Skotizo",
@@ -1527,7 +1749,9 @@
       "floor": 39,
       "slot": 0,
       "title": "Phantom Muspah",
-      "items": ["Venator shard"],
+      "items": [
+        "Venator shard"
+      ],
       "tile": {
         "id": "phantom muspah-boss",
         "name": "Phantom Muspah",
@@ -1572,7 +1796,9 @@
       "floor": 40,
       "slot": 2,
       "title": "Obor",
-      "items": ["Hill giant club"],
+      "items": [
+        "Hill giant club"
+      ],
       "tile": {
         "id": "obor-boss",
         "name": "Obor",
@@ -1601,7 +1827,9 @@
       "floor": 41,
       "slot": 1,
       "title": "Abyssal Sire",
-      "items": ["Unsired"],
+      "items": [
+        "Unsired"
+      ],
       "tile": {
         "id": "abyssal sire-boss",
         "name": "Abyssal Sire",
@@ -1613,7 +1841,10 @@
       "floor": 41,
       "slot": 2,
       "title": "Kraken",
-      "items": ["Kraken tentacle", "Trident of the seas (full)"],
+      "items": [
+        "Kraken tentacle",
+        "Trident of the seas (full)"
+      ],
       "tile": {
         "id": "kraken-boss",
         "name": "Kraken",
@@ -1625,7 +1856,11 @@
       "floor": 42,
       "slot": 0,
       "title": "Thermonuclear smoke devil",
-      "items": ["Dragon chainbody", "Occult necklace", "Smoke battlestaff"],
+      "items": [
+        "Dragon chainbody",
+        "Occult necklace",
+        "Smoke battlestaff"
+      ],
       "tile": {
         "id": "thermonuclear smoke devil-boss",
         "name": "Thermonuclear smoke devil",
@@ -1679,7 +1914,11 @@
       "floor": 43,
       "slot": 0,
       "title": "Zalcano",
-      "items": ["Crystal tool seed", "Uncut onyx", "Zalcano shard"],
+      "items": [
+        "Crystal tool seed",
+        "Uncut onyx",
+        "Zalcano shard"
+      ],
       "tile": {
         "id": "zalcano-boss",
         "name": "Zalcano",
@@ -1709,7 +1948,10 @@
       "floor": 43,
       "slot": 2,
       "title": "Wintertodt",
-      "items": ["Dragon axe", "Tome of fire (empty)"],
+      "items": [
+        "Dragon axe",
+        "Tome of fire (empty)"
+      ],
       "tile": {
         "id": "wintertodt-boss",
         "name": "Wintertodt",
@@ -1721,7 +1963,10 @@
       "floor": 44,
       "slot": 0,
       "title": "Maggot King",
-      "items": ["Elder venator fang", "crimson kisten"],
+      "items": [
+        "Elder venator fang",
+        "crimson kisten"
+      ],
       "tile": {
         "id": "maggot king-boss",
         "name": "Maggot King",
@@ -1733,7 +1978,10 @@
       "floor": 45,
       "slot": 0,
       "title": "Tormented Demon",
-      "items": ["Tormented synapse", "Burning claw"],
+      "items": [
+        "Tormented synapse",
+        "Burning claw"
+      ],
       "tile": {
         "id": "tormented demon-slayer",
         "name": "Tormented Demon",
@@ -1745,7 +1993,10 @@
       "floor": 45,
       "slot": 1,
       "title": "Vorkath",
-      "items": ["Dragonbone necklace", "Skeletal visage"],
+      "items": [
+        "Dragonbone necklace",
+        "Skeletal visage"
+      ],
       "tile": {
         "id": "vorkath-boss",
         "name": "Vorkath",
@@ -1792,7 +2043,11 @@
       "floor": 46,
       "slot": 1,
       "title": "Scorpia",
-      "items": ["Dragon 2h sword", "Malediction shard 3", "Odium shard 3"],
+      "items": [
+        "Dragon 2h sword",
+        "Malediction shard 3",
+        "Odium shard 3"
+      ],
       "tile": {
         "id": "scorpia-boss",
         "name": "Scorpia",
@@ -1839,7 +2094,9 @@
       "floor": 47,
       "slot": 1,
       "title": "Abyssal Sire",
-      "items": ["Unsired"],
+      "items": [
+        "Unsired"
+      ],
       "tile": {
         "id": "abyssal sire-boss",
         "name": "Abyssal Sire",
@@ -1870,7 +2127,11 @@
       "floor": 48,
       "slot": 0,
       "title": "Thermonuclear smoke devil",
-      "items": ["Dragon chainbody", "Occult necklace", "Smoke battlestaff"],
+      "items": [
+        "Dragon chainbody",
+        "Occult necklace",
+        "Smoke battlestaff"
+      ],
       "tile": {
         "id": "thermonuclear smoke devil-boss",
         "name": "Thermonuclear smoke devil",
@@ -1898,7 +2159,9 @@
       "floor": 48,
       "slot": 2,
       "title": "Phantom Muspah",
-      "items": ["Venator shard"],
+      "items": [
+        "Venator shard"
+      ],
       "tile": {
         "id": "phantom muspah-boss",
         "name": "Phantom Muspah",
@@ -1916,8 +2179,8 @@
         "Justiciar chestguard",
         "Justiciar faceguard",
         "Justiciar legguards",
-        "Sanguinesti staff",
-        "Scythe of vitur"
+        "Sanguinesti staff (uncharged)",
+        "Scythe of vitur (uncharged)"
       ],
       "tile": {
         "id": "theatre of blood-raid",
@@ -2009,8 +2272,8 @@
         "Justiciar chestguard",
         "Justiciar faceguard",
         "Justiciar legguards",
-        "Sanguinesti staff",
-        "Scythe of vitur"
+        "Sanguinesti staff (uncharged)",
+        "Scythe of vitur (uncharged)"
       ],
       "tile": {
         "id": "theatre of blood-raid",
@@ -2067,7 +2330,7 @@
         "Masori chaps",
         "Masori mask",
         "Osmumten's fang",
-        "Tumeken's shadow"
+        "Tumeken's shadow (uncharged)"
       ],
       "tile": {
         "id": "tombs of amascut-raid",
@@ -2161,7 +2424,11 @@
       "floor": 53,
       "slot": 2,
       "title": "Skotizo",
-      "items": ["Dark claw", "Dark totem", "Uncut onyx"],
+      "items": [
+        "Dark claw",
+        "Dark totem",
+        "Uncut onyx"
+      ],
       "tile": {
         "id": "skotizo-boss",
         "name": "Skotizo",
@@ -2190,7 +2457,11 @@
       "floor": 55,
       "slot": 0,
       "title": "Doom of Mokhaiotl",
-      "items": ["Avernic treads", "Eye of ayak (uncharged)", "Mokhaiotl cloth"],
+      "items": [
+        "Avernic treads",
+        "Eye of ayak (uncharged)",
+        "Mokhaiotl cloth"
+      ],
       "tile": {
         "id": "doom of mokhaiotl-boss",
         "name": "Doom of Mokhaiotl",
@@ -2244,7 +2515,10 @@
       "floor": 56,
       "slot": 0,
       "title": "Basilisk Knight",
-      "items": ["Basilisk jaw", "Basilisk head"],
+      "items": [
+        "Basilisk jaw",
+        "Basilisk head"
+      ],
       "tile": {
         "id": "basilisk knight-slayer",
         "name": "Basilisk Knight",
@@ -2293,7 +2567,10 @@
       "floor": 57,
       "slot": 0,
       "title": "Maggot King",
-      "items": ["Elder venator fang", "crimson kisten"],
+      "items": [
+        "Elder venator fang",
+        "crimson kisten"
+      ],
       "tile": {
         "id": "maggot king-boss",
         "name": "Maggot King",
@@ -2372,7 +2649,9 @@
       "floor": 58,
       "slot": 2,
       "title": "Abyssal Sire",
-      "items": ["Unsired"],
+      "items": [
+        "Unsired"
+      ],
       "tile": {
         "id": "abyssal sire-boss",
         "name": "Abyssal Sire",
@@ -2440,7 +2719,9 @@
       "floor": 60,
       "slot": 2,
       "title": "Spiritual Mage",
-      "items": ["Dragon boots"],
+      "items": [
+        "Dragon boots"
+      ],
       "tile": {
         "id": "spiritual mage-slayer",
         "name": "Spiritual Mage",
@@ -2469,7 +2750,10 @@
       "floor": 61,
       "slot": 1,
       "title": "Tormented Demon",
-      "items": ["Tormented synapse", "Burning claw"],
+      "items": [
+        "Tormented synapse",
+        "Burning claw"
+      ],
       "tile": {
         "id": "tormented demon-slayer",
         "name": "Tormented Demon",
@@ -2481,7 +2765,11 @@
       "floor": 61,
       "slot": 2,
       "title": "Zalcano",
-      "items": ["Crystal tool seed", "Uncut onyx", "Zalcano shard"],
+      "items": [
+        "Crystal tool seed",
+        "Uncut onyx",
+        "Zalcano shard"
+      ],
       "tile": {
         "id": "zalcano-boss",
         "name": "Zalcano",
@@ -2607,7 +2895,11 @@
       "floor": 64,
       "slot": 0,
       "title": "Doom of Mokhaiotl",
-      "items": ["Avernic treads", "Eye of ayak (uncharged)", "Mokhaiotl cloth"],
+      "items": [
+        "Avernic treads",
+        "Eye of ayak (uncharged)",
+        "Mokhaiotl cloth"
+      ],
       "tile": {
         "id": "doom of mokhaiotl-boss",
         "name": "Doom of Mokhaiotl",
@@ -2796,8 +3088,8 @@
         "Justiciar chestguard",
         "Justiciar faceguard",
         "Justiciar legguards",
-        "Sanguinesti staff",
-        "Scythe of vitur"
+        "Sanguinesti staff (uncharged)",
+        "Scythe of vitur (uncharged)"
       ],
       "tile": {
         "id": "theatre of blood-raid",
@@ -2817,7 +3109,7 @@
         "Masori chaps",
         "Masori mask",
         "Osmumten's fang",
-        "Tumeken's shadow"
+        "Tumeken's shadow (uncharged)"
       ],
       "tile": {
         "id": "tombs of amascut-raid",
@@ -2894,7 +3186,10 @@
       "floor": 70,
       "slot": 1,
       "title": "Vorkath",
-      "items": ["Dragonbone necklace", "Skeletal visage"],
+      "items": [
+        "Dragonbone necklace",
+        "Skeletal visage"
+      ],
       "tile": {
         "id": "vorkath-boss",
         "name": "Vorkath",
@@ -2980,7 +3275,11 @@
       "floor": 72,
       "slot": 0,
       "title": "Doom of Mokhaiotl",
-      "items": ["Avernic treads", "Eye of ayak (uncharged)", "Mokhaiotl cloth"],
+      "items": [
+        "Avernic treads",
+        "Eye of ayak (uncharged)",
+        "Mokhaiotl cloth"
+      ],
       "tile": {
         "id": "doom of mokhaiotl-boss",
         "name": "Doom of Mokhaiotl",
@@ -2992,7 +3291,10 @@
       "floor": 72,
       "slot": 1,
       "title": "Basilisk Knight",
-      "items": ["Basilisk jaw", "Basilisk head"],
+      "items": [
+        "Basilisk jaw",
+        "Basilisk head"
+      ],
       "tile": {
         "id": "basilisk knight-slayer",
         "name": "Basilisk Knight",
@@ -3088,7 +3390,7 @@
         "Masori chaps",
         "Masori mask",
         "Osmumten's fang",
-        "Tumeken's shadow"
+        "Tumeken's shadow (uncharged)"
       ],
       "tile": {
         "id": "tombs of amascut-raid",
@@ -3185,7 +3487,9 @@
       "floor": 76,
       "slot": 1,
       "title": "Abyssal Sire",
-      "items": ["Unsired"],
+      "items": [
+        "Unsired"
+      ],
       "tile": {
         "id": "abyssal sire-boss",
         "name": "Abyssal Sire",
@@ -3203,8 +3507,8 @@
         "Justiciar chestguard",
         "Justiciar faceguard",
         "Justiciar legguards",
-        "Sanguinesti staff",
-        "Scythe of vitur"
+        "Sanguinesti staff (uncharged)",
+        "Scythe of vitur (uncharged)"
       ],
       "tile": {
         "id": "theatre of blood-raid",
@@ -3290,7 +3594,9 @@
       "floor": 78,
       "slot": 1,
       "title": "Phantom Muspah",
-      "items": ["Venator shard"],
+      "items": [
+        "Venator shard"
+      ],
       "tile": {
         "id": "phantom muspah-boss",
         "name": "Phantom Muspah",
@@ -3309,7 +3615,7 @@
         "Masori chaps",
         "Masori mask",
         "Osmumten's fang",
-        "Tumeken's shadow"
+        "Tumeken's shadow (uncharged)"
       ],
       "tile": {
         "id": "tombs of amascut-raid",
@@ -3347,7 +3653,9 @@
       "floor": 80,
       "slot": 0,
       "title": "Dark beast",
-      "items": ["Dark bow"],
+      "items": [
+        "Dark bow"
+      ],
       "tile": {
         "id": "dark beast-slayer",
         "name": "Dark beast",
@@ -3453,7 +3761,10 @@
       "floor": 81,
       "slot": 2,
       "title": "Maggot King",
-      "items": ["Elder venator fang", "crimson kisten"],
+      "items": [
+        "Elder venator fang",
+        "crimson kisten"
+      ],
       "tile": {
         "id": "maggot king-boss",
         "name": "Maggot King",
@@ -3483,7 +3794,11 @@
       "floor": 82,
       "slot": 1,
       "title": "Doom of Mokhaiotl",
-      "items": ["Avernic treads", "Eye of ayak (uncharged)", "Mokhaiotl cloth"],
+      "items": [
+        "Avernic treads",
+        "Eye of ayak (uncharged)",
+        "Mokhaiotl cloth"
+      ],
       "tile": {
         "id": "doom of mokhaiotl-boss",
         "name": "Doom of Mokhaiotl",
@@ -3548,7 +3863,9 @@
       "floor": 83,
       "slot": 2,
       "title": "Bryophyta",
-      "items": ["Bryophyta's essence"],
+      "items": [
+        "Bryophyta's essence"
+      ],
       "tile": {
         "id": "bryophyta-boss",
         "name": "Bryophyta",
@@ -3566,8 +3883,8 @@
         "Justiciar chestguard",
         "Justiciar faceguard",
         "Justiciar legguards",
-        "Sanguinesti staff",
-        "Scythe of vitur"
+        "Sanguinesti staff (uncharged)",
+        "Scythe of vitur (uncharged)"
       ],
       "tile": {
         "id": "theatre of blood-raid",
@@ -3632,7 +3949,10 @@
       "floor": 86,
       "slot": 0,
       "title": "Maggot King",
-      "items": ["Elder venator fang", "crimson kisten"],
+      "items": [
+        "Elder venator fang",
+        "crimson kisten"
+      ],
       "tile": {
         "id": "maggot king-boss",
         "name": "Maggot King",
@@ -3765,8 +4085,8 @@
         "Justiciar chestguard",
         "Justiciar faceguard",
         "Justiciar legguards",
-        "Sanguinesti staff",
-        "Scythe of vitur"
+        "Sanguinesti staff (uncharged)",
+        "Scythe of vitur (uncharged)"
       ],
       "tile": {
         "id": "theatre of blood-raid",
@@ -3786,7 +4106,7 @@
         "Masori chaps",
         "Masori mask",
         "Osmumten's fang",
-        "Tumeken's shadow"
+        "Tumeken's shadow (uncharged)"
       ],
       "tile": {
         "id": "tombs of amascut-raid",
@@ -3820,7 +4140,11 @@
       "floor": 90,
       "slot": 0,
       "title": "Doom of Mokhaiotl",
-      "items": ["Avernic treads", "Eye of ayak (uncharged)", "Mokhaiotl cloth"],
+      "items": [
+        "Avernic treads",
+        "Eye of ayak (uncharged)",
+        "Mokhaiotl cloth"
+      ],
       "tile": {
         "id": "doom of mokhaiotl-boss",
         "name": "Doom of Mokhaiotl",
@@ -3832,7 +4156,10 @@
       "floor": 90,
       "slot": 1,
       "title": "Vorkath",
-      "items": ["Dragonbone necklace", "Skeletal visage"],
+      "items": [
+        "Dragonbone necklace",
+        "Skeletal visage"
+      ],
       "tile": {
         "id": "vorkath-boss",
         "name": "Vorkath",
@@ -3933,7 +4260,10 @@
       "floor": 92,
       "slot": 1,
       "title": "Maggot King",
-      "items": ["Elder venator fang", "crimson kisten"],
+      "items": [
+        "Elder venator fang",
+        "crimson kisten"
+      ],
       "tile": {
         "id": "maggot king-boss",
         "name": "Maggot King",
@@ -3972,8 +4302,8 @@
         "Justiciar chestguard",
         "Justiciar faceguard",
         "Justiciar legguards",
-        "Sanguinesti staff",
-        "Scythe of vitur"
+        "Sanguinesti staff (uncharged)",
+        "Scythe of vitur (uncharged)"
       ],
       "tile": {
         "id": "theatre of blood-raid",
@@ -3993,7 +4323,7 @@
         "Masori chaps",
         "Masori mask",
         "Osmumten's fang",
-        "Tumeken's shadow"
+        "Tumeken's shadow (uncharged)"
       ],
       "tile": {
         "id": "tombs of amascut-raid",
@@ -4117,7 +4447,7 @@
         "Masori chaps",
         "Masori mask",
         "Osmumten's fang",
-        "Tumeken's shadow"
+        "Tumeken's shadow (uncharged)"
       ],
       "tile": {
         "id": "tombs of amascut-raid",
@@ -4193,7 +4523,10 @@
       "floor": 97,
       "slot": 1,
       "title": "Maggot King",
-      "items": ["Elder venator fang", "crimson kisten"],
+      "items": [
+        "Elder venator fang",
+        "crimson kisten"
+      ],
       "tile": {
         "id": "maggot king-boss",
         "name": "Maggot King",
@@ -4211,8 +4544,8 @@
         "Justiciar chestguard",
         "Justiciar faceguard",
         "Justiciar legguards",
-        "Sanguinesti staff",
-        "Scythe of vitur"
+        "Sanguinesti staff (uncharged)",
+        "Scythe of vitur (uncharged)"
       ],
       "tile": {
         "id": "theatre of blood-raid",
@@ -4225,7 +4558,11 @@
       "floor": 98,
       "slot": 0,
       "title": "Doom of Mokhaiotl",
-      "items": ["Avernic treads", "Eye of ayak (uncharged)", "Mokhaiotl cloth"],
+      "items": [
+        "Avernic treads",
+        "Eye of ayak (uncharged)",
+        "Mokhaiotl cloth"
+      ],
       "tile": {
         "id": "doom of mokhaiotl-boss",
         "name": "Doom of Mokhaiotl",

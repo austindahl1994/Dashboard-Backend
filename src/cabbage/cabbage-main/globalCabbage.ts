@@ -6,6 +6,14 @@ export let cabbageUsersByID = new Map<number, CabbageUser>();
 export let cabbageUsersByDiscordID = new Map<string, CabbageUser>();
 export let cabbageUsersByRSN = new Map<string, CabbageUser>();
 
+export const CABBAGE_DATASET_VERSIONS: Record<string, number> = {
+  "Boss.v1.json": 1,
+  "Clue.v1.json": 1,
+  "Monster.v1.json": 1,
+  "Npc.v1.json": 1,
+  "PackData.json": 1,
+};
+
 // Gets all players and information from CabbageUsers table
 const initializeCabbageUsers = async () => {
   try {

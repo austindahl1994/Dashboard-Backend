@@ -20,6 +20,12 @@ import {
   broadcastSseEventPerUser,
   singleBroadcastSseEvent,
 } from "../cabbage-main/activeUsers.ts";
+import {
+  getPackReward,
+  getCompletionCoins,
+  getCompletionPackNames,
+} from "../cards/cardProcesses.ts";
+import { generatePacksAtomic, getCardInventory } from "../cards/mvc/cards.ts";
 import { streamUpload } from "@/services/aws/s3.js";
 import { completionBroadcast } from "../../bot/broadcasts/completionBroadcast.js";
 import { towerCompletion } from "../../bot/embeds/cabbage/completion.js";
@@ -127,21 +133,105 @@ const updateAdventurerCacheProgress = (
   adventurerData.set(cabbageId, adventurer);
 };
 
-const getCompletionItem = (items: Items[] | undefined): string => {
-  const completionItem =
-    items
-      ?.map((item) => item.name.trim())
-      .filter(Boolean)
-      .join(", ") ?? "";
-
-  return completionItem;
-};
-
 type ManualSubmissionPayload = {
   rsn: string;
   discordId?: string | null;
   item?: string | { name: string } | null;
   floor?: number | null;
+};
+
+type RewardTarget = {
+  rsn: string;
+  discordId?: string;
+};
+
+const buildRewardTargets = (dinkData: Dink): RewardTarget[] => {
+  const targets = new Map<string, RewardTarget>();
+  const primaryRsn = dinkData.playerName?.trim();
+
+  if (primaryRsn) {
+    targets.set(primaryRsn.toLowerCase(), {
+      rsn: primaryRsn,
+      discordId: dinkData.discordUser?.id,
+    });
+  }
+
+  for (const partyMember of dinkData.extra?.party ?? []) {
+    const rsn = partyMember.trim();
+    if (!rsn) {
+      continue;
+    }
+
+    const key = rsn.toLowerCase();
+    if (!targets.has(key)) {
+      targets.set(key, { rsn });
+    }
+  }
+
+  return Array.from(targets.values());
+};
+
+export const grantSourceRewardsForTowerEvent = async (
+  dinkData: Dink,
+): Promise<void> => {
+  if (dinkData.type?.toLowerCase() !== "loot") {
+    return;
+  }
+
+  const source = dinkData.extra?.source?.trim();
+  if (!source) {
+    return;
+  }
+
+  const normalizedSource = source.toLowerCase();
+  const reward = getPackReward(normalizedSource);
+
+  if (!reward) {
+    return;
+  }
+
+  const packNames = getCompletionPackNames(normalizedSource);
+  const coins = getCompletionCoins(normalizedSource);
+
+  if (packNames.length === 0) {
+    return;
+  }
+
+  const targets = buildRewardTargets(dinkData);
+
+  for (const target of targets) {
+    const cabbageUser = checkForCabbageUser(target.rsn, target.discordId);
+
+    if (!cabbageUser) {
+      console.log(
+        `Skipping tower source rewards for unknown user: ${target.rsn}`,
+      );
+      continue;
+    }
+
+    await generatePacksAtomic(cabbageUser.id, packNames, 1, coins);
+
+    const packSummary = packNames
+      .map((packName) => `${packName} x1`)
+      .join(", ");
+    console.log(
+      `[tower-reward] rsn=${cabbageUser.rsn} packs=${packSummary} coins=+${coins}`,
+    );
+
+    const inventory = await getCardInventory(cabbageUser.id);
+
+    if (cabbageUser.discord_id) {
+      singleBroadcastSseEvent(cabbageUser.discord_id, "tower-reward", {
+        rsn: cabbageUser.rsn,
+        source: normalizedSource,
+        rewards: {
+          packs: packNames,
+          coins,
+        },
+        inventory,
+      });
+    }
+  }
 };
 
 const getResolvedPlayerIdFromIdentity = (

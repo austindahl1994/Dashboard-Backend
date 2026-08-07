@@ -1,6 +1,7 @@
 import app from "./app.js";
 import { startBot } from "./bot/mainBot.js";
 import { initializeGlobalCabbageData } from "./cabbage/cabbage-main/globalCabbage.ts";
+import { initializeGlobalCards } from "./cabbage/cards/globalCards.ts";
 // TEMP: SSE test broadcaster disabled
 // import { startTowerSseTestBroadcast } from "./cabbage/cabbage-main/activeUsers.ts";
 import { initializeTowerData } from "./cabbage/tower/towerGlobalData.ts";
@@ -32,6 +33,7 @@ const initializeBackgroundServices = async () => {
       startBot(),
       initializeGlobalCabbageData(),
       initializeTowerData(),
+      initializeGlobalCards(),
     ]);
 
     results.forEach((result, index) => {

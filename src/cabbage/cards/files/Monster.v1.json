@@ -152,6 +152,245 @@
     "description": "The greater eyes of evil.",
     "rarity": 4
   },
+  "Cave kraken": {
+    "region": "Kandarin",
+    "url": "https://oldschool.runescape.wiki/w/Cave_kraken",
+    "description": "Something's lurking beneath the water.",
+    "items": [
+      {
+        "name": "Adamant spear",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Adamant_spear",
+        "description": "An adamantite tipped spear."
+      },
+      {
+        "name": "Antidote++(4)",
+        "rarity": 3,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Antidote%2B%2B(4)",
+        "description": "Antidote++(4) item."
+      },
+      {
+        "name": "Battlestaff",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Battlestaff",
+        "description": "It's a slightly magical stick."
+      },
+      {
+        "name": "Blood rune",
+        "rarity": 3,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Blood_rune",
+        "description": "Used for high level missile spells."
+      },
+      {
+        "name": "Brimstone key",
+        "rarity": 2,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Brimstone_key",
+        "description": "Unlocks Konar's chest found atop Mount Karuulm."
+      },
+      {
+        "name": "Bucket",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Bucket",
+        "description": "It's a wooden bucket."
+      },
+      {
+        "name": "Chaos rune",
+        "rarity": 1,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Chaos_rune",
+        "description": "Used for low level missile spells."
+      },
+      {
+        "name": "Clue scroll (elite)",
+        "rarity": 4,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Clue_scroll_(elite)",
+        "description": "A clue!"
+      },
+      {
+        "name": "Clue scroll (hard)",
+        "rarity": 3,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Clue_scroll_(hard)",
+        "description": "'''Emote:'''"
+      },
+      {
+        "name": "Coins",
+        "rarity": 5,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Coins",
+        "description": "Lovely money!"
+      },
+      {
+        "name": "Death rune",
+        "rarity": 1,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Death_rune",
+        "description": "Used for medium level missile spells."
+      },
+      {
+        "name": "Fire rune",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Fire_rune",
+        "description": "One of the 4 basic elemental Runes."
+      },
+      {
+        "name": "Kraken tentacle",
+        "rarity": 1,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Kraken_tentacle",
+        "description": "Ewwww... it's still sucky."
+      },
+      {
+        "name": "Mystic water staff",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Mystic_water_staff",
+        "description": "It's a slightly magical stick."
+      },
+      {
+        "name": "Nothing",
+        "rarity": 6,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Nothing",
+        "description": "Nothing item."
+      },
+      {
+        "name": "Old boot",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Old_boot",
+        "description": "Phew!"
+      },
+      {
+        "name": "Oyster",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Oyster",
+        "description": "Maybe there are pearls inside?"
+      },
+      {
+        "name": "Raw lobster",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Raw_lobster",
+        "description": "I should try cooking this."
+      },
+      {
+        "name": "Rune med helm",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Rune_med_helm",
+        "description": "A medium sized helmet."
+      },
+      {
+        "name": "Rune warhammer",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Rune_warhammer",
+        "description": "I don't think it's intended for joinery."
+      },
+      {
+        "name": "Seaweed",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Seaweed",
+        "description": "Slightly damp seaweed."
+      },
+      {
+        "name": "Shark",
+        "rarity": 2,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Shark",
+        "description": "I'd better be careful eating this."
+      },
+      {
+        "name": "Staff of water",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Staff_of_water",
+        "description": "A Magical staff."
+      },
+      {
+        "name": "Steam rune",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Steam_rune",
+        "description": "A combined Water and Fire Rune."
+      },
+      {
+        "name": "Swamp tar",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Swamp_tar",
+        "description": "A foul smelling thick tar-like substance."
+      },
+      {
+        "name": "Swordfish",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Swordfish",
+        "description": "I'd better be careful eating this!"
+      },
+      {
+        "name": "Trident of the seas (full)",
+        "rarity": 2,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Trident_of_the_seas_(full)",
+        "description": "Trident of the seas (full) item."
+      },
+      {
+        "name": "Uncharged trident",
+        "rarity": 1,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Uncharged_trident",
+        "description": "Uncharged trident item."
+      },
+      {
+        "name": "Vial of water",
+        "rarity": 5,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Vial_of_water",
+        "description": "A glass vial containing water."
+      },
+      {
+        "name": "Water battlestaff",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Water_battlestaff",
+        "description": "It's a slightly magical stick."
+      },
+      {
+        "name": "Water orb",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Water_orb",
+        "description": "A magic glowing orb."
+      },
+      {
+        "name": "Water rune",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Water_rune",
+        "description": "One of the 4 basic elemental Runes."
+      },
+      {
+        "name": "Water talisman",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Water_talisman",
+        "description": "A mysterious power emanates from the talisman..."
+      }
+    ],
+    "rarity": 1
+  },
   "Spiritual Mage": {
     "region": "",
     "url": "https://oldschool.runescape.wiki/w/Spiritual_Mage",

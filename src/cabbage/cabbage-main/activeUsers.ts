@@ -160,6 +160,20 @@ export const singleBroadcastSseEvent = (
   payload: unknown,
 ) => {
   const eventId = randomUUID();
+  let deliveredCount = 0;
+
+  const isCardsGenerateRewardEvent =
+    eventType === "tower-reward" &&
+    typeof payload === "object" &&
+    payload !== null &&
+    (payload as { reason?: string }).reason === "cards-generate";
+
+  if (isCardsGenerateRewardEvent) {
+    console.log(
+      `[SSE][cards-generate] dispatch start discordId=${discordId} activeConnections=${activeUsers.size}`,
+    );
+  }
+
   logSsePayload(eventType, payload, `broadcast:discordId=${discordId}`);
 
   for (const [connectionId, user] of activeUsers.entries()) {
@@ -170,11 +184,33 @@ export const singleBroadcastSseEvent = (
     try {
       user.lastSeenAt = Date.now();
       writeSseEvent(user.res, eventType, payload, eventId);
+      deliveredCount += 1;
+
+      if (isCardsGenerateRewardEvent) {
+        console.log(
+          `[SSE][cards-generate] sent connectionId=${connectionId} discordId=${discordId}`,
+        );
+      }
     } catch (error) {
       console.log(`Failed to broadcast to ${connectionId}: ${error}`);
+
+      if (isCardsGenerateRewardEvent) {
+        console.log(
+          `[SSE][cards-generate] failed connectionId=${connectionId} discordId=${discordId} error=${error}`,
+        );
+      }
+
       activeUsers.delete(connectionId);
     }
   }
+
+  if (isCardsGenerateRewardEvent) {
+    console.log(
+      `[SSE][cards-generate] dispatch complete discordId=${discordId} delivered=${deliveredCount}`,
+    );
+  }
+
+  return deliveredCount;
 };
 
 export const broadcastSseEventPerUser = (

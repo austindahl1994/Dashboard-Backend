@@ -5,6 +5,7 @@ import {
   tokenCookieOptions,
 } from "@/services/discord/discord.ts";
 import { cabbageLogin, getCabbageUserByDiscordId } from "./cabbage.ts";
+import { CABBAGE_DATASET_VERSIONS } from "../globalCabbage.ts";
 import { addActiveUser, removeActiveUser, setupSse } from "../activeUsers.ts";
 import type { CabbageSessionUser } from "@/middleware/cabbageMiddleware.ts";
 import { displayTime } from "@/Utilities.js";
@@ -281,6 +282,25 @@ export const checkSession = async (
       error,
     });
     res.status(401).json({ error: "Session expired." });
+  }
+};
+
+export const getCabbageDatasetVersions = async (
+  _req: Request,
+  res: Response,
+): Promise<void> => {
+  try {
+    res.status(200).json(CABBAGE_DATASET_VERSIONS);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    console.error("[Datasets] Failed to fetch dataset versions", {
+      message,
+      error,
+    });
+    res.status(500).json({
+      error: "Failed to fetch dataset versions.",
+      message: "Failed to fetch dataset versions.",
+    });
   }
 };
 

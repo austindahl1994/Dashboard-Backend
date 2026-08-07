@@ -9,6 +9,7 @@ import {
 import { getAllCompletions, getCompletionsById } from "./tower.ts";
 import {
   checkCompletion,
+  grantSourceRewardsForTowerEvent,
   processManualTowerSubmission,
 } from "../towerProcesses.ts";
 import { displayTime } from "@/Utilities.js";
@@ -44,6 +45,14 @@ export const towerDinkData = async (req: Request, res: Response) => {
     const items = new Set(parsedData.extra?.items?.map((i) => i.name) ?? []);
 
     console.log(items);
+
+    try {
+      await grantSourceRewardsForTowerEvent(parsedData);
+    } catch (error) {
+      console.error(
+        `Tower source reward grant failed; continuing completion checks: ${error}`,
+      );
+    }
 
     await checkCompletion(image, mimetype, parsedData);
     res.sendStatus(200);

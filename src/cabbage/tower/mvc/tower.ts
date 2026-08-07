@@ -275,7 +275,7 @@ export const addTowerCompletion = async (
     }
 
     console.log(
-      `Tower floor ${floor} completion added successfully for player: ${cabbageUsersByID[cabbageId]?.rsn ?? "unknown"}`,
+      `Tower floor ${floor} completion added successfully for player: ${cabbageUsersByID.get(cabbageId)?.rsn ?? "unknown"}`,
     );
   } catch (error) {
     console.error(`There was an error adding tower completion: ${error}`);

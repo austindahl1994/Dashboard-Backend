@@ -298,7 +298,7 @@ export const addFirstTowerFloorCompletion = async (
     );
 
     console.log(
-      `Tower first-floor completion added successfully for floor ${floor} for player: ${cabbageUsersByID[cabbageId]?.rsn ?? "unknown"}`,
+      `Tower first-floor completion added successfully for floor ${floor} for player: ${cabbageUsersByID.get(cabbageId)?.rsn ?? "unknown"}`,
     );
   } catch (error) {
     console.error(`There was an error adding first floor completion: ${error}`);

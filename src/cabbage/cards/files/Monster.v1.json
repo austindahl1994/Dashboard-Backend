@@ -1,0 +1,371 @@
+{
+  "Abyssal Demon": {
+    "region": "",
+    "url": "https://oldschool.runescape.wiki/w/Abyssal_Demon",
+    "superior": "Greater Abyssal Demon",
+    "items": [
+      {
+        "name": "Abyssal whip",
+        "rarity": 4,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Abyssal_whip",
+        "description": "A weapon from the Abyss."
+      },
+      {
+        "name": "Abyssal dagger",
+        "rarity": 4,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Abyssal_dagger",
+        "description": "Something sharp from the body of a defeated Abyssal Sire."
+      },
+      {
+        "name": "Abyssal head",
+        "rarity": 2,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Abyssal_head",
+        "description": "I should get it stuffed!"
+      }
+    ],
+    "description": "A denizen of the Abyss!",
+    "rarity": 4
+  },
+  "Dark beast": {
+    "region": "",
+    "url": "https://oldschool.runescape.wiki/w/Dark_beast",
+    "superior": "Night Beast",
+    "items": [
+      {
+        "name": "Dark bow",
+        "rarity": 4,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Dark_bow",
+        "description": "A bow from a darker dimension."
+      }
+    ],
+    "description": "From a darker dimension.",
+    "rarity": 2
+  },
+  "Drake": {
+    "region": "",
+    "url": "https://oldschool.runescape.wiki/w/Drake",
+    "superior": "Guardian Drake",
+    "items": [
+      {
+        "name": "Drake's tooth",
+        "rarity": 2,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Drake's_tooth",
+        "description": "The tooth of a ferocious drake. They could be combined with holy sandals."
+      },
+      {
+        "name": "Drake's claw",
+        "rarity": 2,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Drake's_claw",
+        "description": "The claw of a ferocious drake. They could be combined with the boots of stone."
+      }
+    ],
+    "description": "A dragon-like creature with no wings.",
+    "rarity": 3
+  },
+  "Tormented Demon": {
+    "region": "",
+    "url": "https://oldschool.runescape.wiki/w/Tormented_Demon",
+    "items": [
+      {
+        "name": "Tormented synapse",
+        "rarity": 5,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Tormented_synapse",
+        "description": "Glowing hot and writhing in pain."
+      },
+      {
+        "name": "Burning claw",
+        "rarity": 3,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Burning_claw",
+        "description": "An intact, lightly smouldering claw."
+      }
+    ],
+    "description": "Lucien must be incredibly powerful if he can bind such demons to his will.",
+    "rarity": 3
+  },
+  "Araxyte": {
+    "region": "",
+    "url": "https://oldschool.runescape.wiki/w/Araxyte",
+    "superior": "Dreadborn Araxyte",
+    "items": [
+      {
+        "name": "Aranea boots",
+        "rarity": 4,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Aranea_boots",
+        "description": "Boots that are surrounded with spider folicles. Great web resistance!"
+      },
+      {
+        "name": "Araxyte head",
+        "rarity": 2,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Araxyte_head",
+        "description": "Do spiders even have heads?"
+      }
+    ],
+    "description": "A large odd-looking spider.",
+    "rarity": 3
+  },
+  "Aquanite": {
+    "region": "",
+    "url": "https://oldschool.runescape.wiki/w/Aquanite",
+    "superior": "Elder Aquanite",
+    "items": [
+      {
+        "name": "Aquanite tendon",
+        "rarity": 0,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Aquanite_tendon",
+        "description": "A tendon. How nice."
+      }
+    ],
+    "description": "It has a light on its forehead. What a pretty light... So shiny!",
+    "rarity": 2
+  },
+  "Basilisk Knight": {
+    "region": "",
+    "url": "https://oldschool.runescape.wiki/w/Basilisk_Knight",
+    "superior": "Basilisk Sentinel",
+    "items": [
+      {
+        "name": "Basilisk jaw",
+        "rarity": 5,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Basilisk_jaw",
+        "description": "The jaw of a Basilisk Knight."
+      },
+      {
+        "name": "Basilisk head",
+        "rarity": 1,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Basilisk_head",
+        "description": "I should get it stuffed!"
+      }
+    ],
+    "description": "The greater eyes of evil.",
+    "rarity": 4
+  },
+  "Spiritual Mage": {
+    "region": "",
+    "url": "https://oldschool.runescape.wiki/w/Spiritual_Mage",
+    "items": [
+      {
+        "name": "Dragon boots",
+        "rarity": 4,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Dragon_boots",
+        "description": "These will protect my feet."
+      }
+    ],
+    "description": "A deadly servant of Zamorak.",
+    "rarity": 1
+  },
+  "Elder custodian stalker": {
+    "region": "",
+    "url": "https://oldschool.runescape.wiki/w/Elder_custodian_stalker",
+    "superior": "Ancient Custodian",
+    "items": [
+      {
+        "name": "Alchemist's signet",
+        "rarity": 5,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Alchemist's_signet",
+        "description": "A ring that presumably belonged to an alchemist."
+      },
+      {
+        "name": "Antler guard",
+        "rarity": 3,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Antler_guard",
+        "description": "Surprisingly flexible."
+      }
+    ],
+    "description": "Overgrown.",
+    "rarity": 1
+  },
+  "Wyrm": {
+    "region": "",
+    "url": "https://oldschool.runescape.wiki/w/Wyrm",
+    "superior": "Shadow Wyrm",
+    "items": [
+      {
+        "name": "Dragon sword",
+        "rarity": 2,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Dragon_sword",
+        "description": "A razor sharp sword."
+      },
+      {
+        "name": "Dragon harpoon",
+        "rarity": 3,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Dragon_harpoon",
+        "description": "A very powerful harpoon."
+      },
+      {
+        "name": "Dragon knife",
+        "rarity": 3,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Dragon_knife",
+        "description": "A finely balanced and powerful throwing knife."
+      },
+      {
+        "name": "Dragon thrownaxe",
+        "rarity": 2,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Dragon_thrownaxe",
+        "description": "A razor sharp throwing axe."
+      }
+    ],
+    "description": "Don't let it wyrm its way in.",
+    "rarity": 2
+  },
+  "Warped Terrorbird": {
+    "region": "",
+    "url": "https://oldschool.runescape.wiki/w/Warped_Terrorbird",
+    "superior": "Mutated Terrorbird",
+    "items": [
+      {
+        "name": "Warped sceptre (uncharged)",
+        "rarity": 4,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Warped_sceptre",
+        "description": "A magical warped weapon."
+      }
+    ],
+    "description": "What a horrible looking thing.",
+    "rarity": 1
+  },
+  "Gryphon": {
+    "region": "",
+    "url": "https://oldschool.runescape.wiki/w/Gryphon",
+    "superior": "Dire Gryphon",
+    "items": [
+      {
+        "name": "Horn of plenty (empty)",
+        "rarity": 1,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Horn_of_plenty_(empty)",
+        "description": "Horn of plenty (empty) item."
+      }
+    ],
+    "description": "A vicious predatory bird-like monster.",
+    "rarity": 2
+  },
+  "Sulphur Nagua": {
+    "region": "",
+    "url": "https://oldschool.runescape.wiki/w/Sulphur_Nagua",
+    "items": [
+      {
+        "name": "Sulphur blades",
+        "rarity": 2,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Sulphur_blades",
+        "description": "Are these explosive?"
+      }
+    ],
+    "description": "Brittle, rocky skin hiding pockets of volatile explosive sulphur.",
+    "rarity": 2
+  },
+  "Frost Nagua": {
+    "region": "",
+    "url": "https://oldschool.runescape.wiki/w/Frost_Nagua",
+    "items": [
+      {
+        "name": "Glacial temotli",
+        "rarity": 1,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Glacial_temotli",
+        "description": "It's clobbering time."
+      },
+      {
+        "name": "Pendant of ates (inert)",
+        "rarity": 0,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Pendant_of_ates_(inert)",
+        "description": "Pendant of ates (inert) item."
+      },
+      {
+        "name": "Tooth half of key (moon key)",
+        "rarity": 0,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Tooth_half_of_key_(moon_key)",
+        "description": "The tooth end of the mysterious Moon Key."
+      }
+    ],
+    "description": "Brittle, cold and shimmering with frost magic.",
+    "rarity": 0
+  },
+  "Earthen Nagua": {
+    "region": "",
+    "url": "https://oldschool.runescape.wiki/w/Earthen_Nagua",
+    "items": [
+      {
+        "name": "Earthbound tecpatl",
+        "rarity": 1,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Earthbound_tecpatl",
+        "description": "Shaped from rock that was sharpened by time."
+      }
+    ],
+    "description": "Strong, sharp and dangerous.",
+    "rarity": 1
+  },
+  "Demonic gorilla": {
+    "region": "",
+    "url": "https://oldschool.runescape.wiki/w/Demonic_gorilla",
+    "items": [
+      {
+        "name": "Zenyte shard",
+        "rarity": 5,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Zenyte_shard",
+        "description": "A shard of unstable zenyte."
+      },
+      {
+        "name": "Ballista limbs",
+        "rarity": 3,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Ballista_limbs",
+        "description": "Sturdy struts."
+      },
+      {
+        "name": "Ballista spring",
+        "rarity": 3,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Ballista_spring",
+        "description": "A spring-loaded mechanism."
+      },
+      {
+        "name": "Light frame",
+        "rarity": 0,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Light_frame",
+        "description": "A light wooden frame."
+      },
+      {
+        "name": "Heavy frame",
+        "rarity": 2,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Heavy_frame",
+        "description": "A heavy wooden frame."
+      },
+      {
+        "name": "Monkey tail",
+        "rarity": 2,
+        "type": "unique",
+        "url": "https://oldschool.runescape.wiki/w/Monkey_tail",
+        "description": "Smells like the south end of a northbound monkey, because it is."
+      }
+    ],
+    "description": "One of Glough's demonic creations.",
+    "rarity": 2
+  }
+}

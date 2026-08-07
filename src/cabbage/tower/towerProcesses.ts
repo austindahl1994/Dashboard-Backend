@@ -334,17 +334,20 @@ export const persistTowerCompletion = async (
   return isFirstFloorCompletion;
 };
 
-// If player exists, check floor for what items are needed
-const checkFloorItems = (items: Items[] | undefined, floor: number) => {
+// If player exists, check floor for what items are needed and return the matching item.
+const getMatchingFloorItem = (
+  items: Items[] | undefined,
+  floor: number,
+): string | null => {
   try {
     const floorItems = floorData.get(floor)?.items;
     if (!floorItems) {
       throw new Error(`No items found for floor ${floor}`);
     }
-    const itemsMatch =
-      items?.some((item) => floorItems.has(item.name.trim().toLowerCase())) ??
-      false;
-    return itemsMatch;
+    const matchingItem = items?.find((item) =>
+      floorItems.has(item.name.trim().toLowerCase()),
+    );
+    return matchingItem?.name.trim() ?? null;
   } catch (error) {
     console.error(`There was an error checking floor ${floor}: ${error}`);
     throw error;
@@ -467,9 +470,9 @@ export const checkCompletion = async (
     const floorNumber = adventurer.currentFloor;
 
     //2. Player exists, check against floor items, If floorItems for player's current floor match the passed in data, either:
-    const itemsMatch = checkFloorItems(items, floorNumber);
+    const matchingItem = getMatchingFloorItem(items, floorNumber);
 
-    if (!itemsMatch) {
+    if (!matchingItem) {
       console.log(
         `Items for ${DinkData.playerName} did not match requirements for floor ${floorNumber}`,
       );
@@ -503,11 +506,9 @@ export const checkCompletion = async (
     }
     // 2b. should create an AWS S3 url for the image for bucketPath/TowerOfTrials/Completions/PlayerName/FloorNumber/ItemName_DateTimeStamp.png
     else {
-      const uploadKey = buildCompletionUploadKey(
-        adventurer.rsn,
-        floorNumber,
-        items,
-      );
+      const uploadKey = buildCompletionUploadKey(adventurer.rsn, floorNumber, [
+        { name: matchingItem },
+      ]);
       playerURL = await streamUpload(uploadKey, image, mimetype);
     }
 
@@ -515,7 +516,7 @@ export const checkCompletion = async (
       throw new Error("Completion URL could not be resolved.");
     }
 
-    const completionItem = getCompletionItem(items);
+    const completionItem = matchingItem;
 
     // 3, 4, 5. Persist completion history, attempt first-floor completion, and update cache/db progress.
     await processNewFloorCompletion(

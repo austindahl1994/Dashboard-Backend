@@ -1,0 +1,411 @@
+{
+  "defaultCost": 100,
+  "packs": {
+    "Abyssal Sire": {
+      "groups": ["all-boss-packs", "slayer"],
+      "cost": 300,
+      "color": "red"
+    },
+    "Alchemical Hydra": {
+      "groups": ["all-boss-packs", "slayer"],
+      "cost": 500,
+      "color": "gold"
+    },
+    "Amoxliatl": {
+      "groups": ["all-boss-packs"],
+      "cost": 50,
+      "color": "light blue"
+    },
+    "Araxxor": {
+      "groups": ["all-boss-packs", "slayer"],
+      "cost": 400,
+      "color": "green"
+    },
+    "Artio": {
+      "groups": ["all-boss-packs", "wilderness"],
+      "cost": 200,
+      "color": ""
+    },
+    "Barrows": {
+      "groups": ["all-boss-packs", "chests"],
+      "cost": 100,
+      "color": "brown"
+    },
+    "Branda the Fire Queen": {
+      "groups": ["all-boss-packs", "kings-and-queens"],
+      "cost": 50,
+      "color": "red"
+    },
+    "Brutus": {
+      "groups": ["all-boss-packs", "cow-cum"],
+      "cost": 50,
+      "color": "white"
+    },
+    "Bryophyta": {
+      "groups": ["all-boss-packs", "giants"],
+      "cost": 50,
+      "color": "green"
+    },
+    "Callisto": {
+      "groups": ["all-boss-packs", "wilderness"],
+      "cost": 200,
+      "color": ""
+    },
+    "Calvar\u0027ion": {
+      "groups": ["all-boss-packs", "wilderness"],
+      "cost": 200,
+      "color": ""
+    },
+    "Cerberus": {
+      "groups": ["all-boss-packs", "slayer"],
+      "cost": 300,
+      "color": "red"
+    },
+    "Chambers of Xeric": {
+      "groups": ["all-boss-packs", "raid-packs"],
+      "cost": 1000,
+      "color": "green"
+    },
+    "Chaos Elemental": {
+      "groups": ["all-boss-packs", "wilderness"],
+      "cost": 200,
+      "color": "purple"
+    },
+    "Chaos Fanatic": {
+      "groups": ["all-boss-packs", "wilderness"],
+      "cost": 50,
+      "color": ""
+    },
+    "Commander Zilyana": {
+      "groups": ["all-boss-packs", "gwd-packs"],
+      "cost": 200,
+      "color": "blue"
+    },
+    "Corporeal Beast": {
+      "groups": ["all-boss-packs", "shit-boss"],
+      "cost": 500,
+      "color": "black"
+    },
+    "Corrupted Gauntlet": {
+      "groups": ["all-boss-packs", "chests"],
+      "cost": 300,
+      "color": "red"
+    },
+    "Crazy archaeologist": {
+      "groups": ["all-boss-packs", "wilderness"],
+      "cost": 50,
+      "color": ""
+    },
+    "Dagannoth Prime": {
+      "groups": ["all-boss-packs", "kings-and-queens"],
+      "cost": 100,
+      "color": "light green"
+    },
+    "Dagannoth Rex": {
+      "groups": ["all-boss-packs", "kings-and-queens"],
+      "cost": 100,
+      "color": "light green"
+    },
+    "Dagannoth Supreme": {
+      "groups": ["all-boss-packs", "kings-and-queens"],
+      "cost": 100,
+      "color": "light green"
+    },
+    "Deranged archaeologist": {
+      "groups": ["all-boss-packs"],
+      "cost": 50,
+      "color": ""
+    },
+    "Doom of Mokhaiotl": {
+      "groups": ["all-boss-packs"],
+      "cost": 400,
+      "color": "red"
+    },
+    "Duke Sucellus": {
+      "groups": ["all-boss-packs", "dt2-packs"],
+      "cost": 400,
+      "color": ""
+    },
+    "Eldric the Ice King": {
+      "groups": ["all-boss-packs", "kings-and-queens"],
+      "cost": 50,
+      "color": "light blue"
+    },
+    "Fortis Colosseum": {
+      "groups": ["all-boss-packs"],
+      "cost": 700,
+      "color": "orange"
+    },
+    "General Graardor": {
+      "groups": ["all-boss-packs", "gwd-packs"],
+      "cost": 200,
+      "color": "gold"
+    },
+    "Grotesque Guardians": {
+      "groups": ["all-boss-packs", "slayer"],
+      "cost": 200,
+      "color": "grey"
+    },
+    "Hespori": {
+      "groups": ["all-boss-packs", "dailyscape"],
+      "cost": 300,
+      "color": "green"
+    },
+    "K\u0027ril Tsutsaroth": {
+      "groups": ["all-boss-packs", "gwd-packs"],
+      "cost": 200,
+      "color": "red"
+    },
+    "Kalphite Queen": {
+      "groups": ["all-boss-packs"],
+      "cost": 200,
+      "color": "orange"
+    },
+    "King Black Dragon": {
+      "groups": ["all-boss-packs", "kings-and-queens"],
+      "cost": 200,
+      "color": "black"
+    },
+    "Kraken": {
+      "groups": ["all-boss-packs", "slayer"],
+      "cost": 200,
+      "color": "gold"
+    },
+    "Kree\u0027Arra": {
+      "groups": ["all-boss-packs", "gwd-packs"],
+      "cost": 200,
+      "color": "white"
+    },
+    "Maggot King": {
+      "groups": ["all-boss-packs", "kings-and-queens"],
+      "cost": 400,
+      "color": "red"
+    },
+    "Nex": {
+      "groups": ["all-boss-packs", "gwd-packs"],
+      "cost": 500,
+      "color": ""
+    },
+    "Obor": {
+      "groups": ["all-boss-packs", "giants"],
+      "cost": 50,
+      "color": "brown"
+    },
+    "Perilous Moons": {
+      "groups": ["all-boss-packs", "chests"],
+      "cost": 100,
+      "color": "orange"
+    },
+    "Phantom Muspah": {
+      "groups": ["all-boss-packs"],
+      "cost": 200,
+      "color": "light blue"
+    },
+    "Sarachnis": {
+      "groups": ["all-boss-packs"],
+      "cost": 100,
+      "color": "brown"
+    },
+    "Scorpia": {
+      "groups": ["all-boss-packs", "wilderness"],
+      "cost": 100,
+      "color": "brown"
+    },
+    "Scurrius": {
+      "groups": ["all-boss-packs"],
+      "cost": 50,
+      "color": "brown"
+    },
+    "Shellbane gryphon": {
+      "groups": ["all-boss-packs"],
+      "cost": 100,
+      "color": "brown"
+    },
+    "Skotizo": {
+      "groups": ["all-boss-packs"],
+      "cost": 200,
+      "color": "purple"
+    },
+    "Spindel": {
+      "groups": ["all-boss-packs"],
+      "cost": 100,
+      "color": ""
+    },
+    "Tempoross": {
+      "groups": ["all-boss-packs", "skilling"],
+      "cost": 100,
+      "color": "light blue"
+    },
+    "The Hueycoatl": {
+      "groups": ["all-boss-packs"],
+      "cost": 200,
+      "color": "light blue"
+    },
+    "The Leviathan": {
+      "groups": ["all-boss-packs", "dt2-packs"],
+      "cost": 400,
+      "color": ""
+    },
+    "The Nightmare": {
+      "groups": ["all-boss-packs", "shit-boss"],
+      "cost": 500,
+      "color": "black"
+    },
+    "The Whisperer": {
+      "groups": ["all-boss-packs", "dt2-packs"],
+      "cost": 400,
+      "color": "purple"
+    },
+    "Theatre of Blood": {
+      "groups": ["all-boss-packs", "raid-packs"],
+      "cost": 1000,
+      "color": "red"
+    },
+    "Thermonuclear smoke devil": {
+      "groups": ["all-boss-packs", "slayer"],
+      "cost": 300,
+      "color": "orange"
+    },
+    "Tombs of Amascut": {
+      "groups": ["all-boss-packs", "raid-packs"],
+      "cost": 1000,
+      "color": "gold"
+    },
+    "Vardorvis": {
+      "groups": ["all-boss-packs", "dt2-packs"],
+      "cost": 400,
+      "color": "red"
+    },
+    "Venenatis": {
+      "groups": ["all-boss-packs", "wilderness"],
+      "cost": 200,
+      "color": "brown"
+    },
+    "Vet\u0027ion": {
+      "groups": ["all-boss-packs", "wilderness"],
+      "cost": 200,
+      "color": ""
+    },
+    "Vorkath": {
+      "groups": ["all-boss-packs"],
+      "cost": 200,
+      "color": "light blue"
+    },
+    "Wintertodt": {
+      "groups": ["all-boss-packs", "skilling"],
+      "cost": 100,
+      "color": "light blue"
+    },
+    "Yama": {
+      "groups": ["all-boss-packs"],
+      "cost": 300,
+      "color": "red"
+    },
+    "Zalcano": {
+      "groups": ["all-boss-packs", "skilling"],
+      "cost": 100,
+      "color": "black"
+    },
+    "Zulrah": {
+      "groups": ["all-boss-packs"],
+      "cost": 100,
+      "color": "green"
+    },
+    "Beginner Clue": {
+      "groups": ["clue-packs"],
+      "imageUrl": "https://oldschool.runescape.wiki/images/Clue_scroll_%28beginner%29_detail.png?87067",
+      "cost": 50,
+      "color": ""
+    },
+    "Easy Clue": {
+      "groups": ["clue-packs"],
+      "imageUrl": "https://oldschool.runescape.wiki/images/Clue_scroll_%28easy%29_detail.png?87067",
+      "cost": 100,
+      "color": "green"
+    },
+    "Medium Clue": {
+      "groups": ["clue-packs"],
+      "imageUrl": "https://oldschool.runescape.wiki/images/Clue_scroll_%28medium%29_detail.png?87067",
+      "cost": 150,
+      "color": "light blue"
+    },
+    "Hard Clue": {
+      "groups": ["clue-packs"],
+      "imageUrl": "https://oldschool.runescape.wiki/images/Clue_scroll_%28hard%29_detail.png?87067",
+      "cost": 200,
+      "color": "purple"
+    },
+    "Elite Clue": {
+      "groups": ["clue-packs"],
+      "imageUrl": "https://oldschool.runescape.wiki/images/Clue_scroll_%28elite%29_detail.png?87067",
+      "cost": 300,
+      "color": "gold"
+    },
+    "Master Clue": {
+      "groups": ["clue-packs"],
+      "imageUrl": "https://oldschool.runescape.wiki/images/Clue_scroll_%28master%29_detail.png?87067",
+      "cost": 500,
+      "color": "red"
+    },
+    "Asgarnia": {
+      "groups": ["region-packs"],
+      "imageUrl": "https://oldschool.runescape.wiki/images/Asgarnia_Area_Badge.png",
+      "cost": 250,
+      "color": "blue"
+    },
+    "Desert": {
+      "groups": ["region-packs"],
+      "imageUrl": "https://oldschool.runescape.wiki/images/Desert_Area_Badge.png",
+      "cost": 250,
+      "color": "orange"
+    },
+    "Fremennik": {
+      "groups": ["region-packs"],
+      "imageUrl": "https://oldschool.runescape.wiki/images/Fremennik_Area_Badge.png",
+      "cost": 250,
+      "color": "brown"
+    },
+    "Kandarin": {
+      "groups": ["region-packs"],
+      "imageUrl": "https://oldschool.runescape.wiki/images/Kandarin_Area_Badge.png",
+      "cost": 250,
+      "color": "red"
+    },
+    "Kourend": {
+      "groups": ["region-packs"],
+      "imageUrl": "https://oldschool.runescape.wiki/images/Kourend_Area_Badge.png",
+      "cost": 250,
+      "color": "green"
+    },
+    "Misthalin": {
+      "groups": ["region-packs"],
+      "imageUrl": "https://oldschool.runescape.wiki/images/Misthalin_Area_Badge.png",
+      "cost": 250,
+      "color": "light blue"
+    },
+    "Morytania": {
+      "groups": ["region-packs"],
+      "imageUrl": "https://oldschool.runescape.wiki/images/Morytania_Area_Badge.png?2a1e3",
+      "cost": 250,
+      "color": "black"
+    },
+    "Tirannwn": {
+      "groups": ["region-packs"],
+      "imageUrl": "https://oldschool.runescape.wiki/images/Tirannwn_Area_Badge.png",
+      "cost": 250,
+      "color": "green"
+    },
+    "Varlamore": {
+      "groups": ["region-packs"],
+      "imageUrl": "https://oldschool.runescape.wiki/images/Varlamore_Area_Badge.png",
+      "cost": 250,
+      "color": "orange"
+    },
+    "Wilderness": {
+      "groups": ["region-packs"],
+      "imageUrl": "https://oldschool.runescape.wiki/images/Wilderness_Area_Badge.png",
+      "cost": 250,
+      "color": "black"
+    }
+  }
+}

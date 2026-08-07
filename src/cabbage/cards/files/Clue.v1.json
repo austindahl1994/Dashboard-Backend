@@ -1,0 +1,4200 @@
+{
+  "Beginner": [
+    {
+      "name": "Amulet of defence (t)",
+      "url": "https://oldschool.runescape.wiki/w/Amulet_of_defence_(t)",
+      "description": "An enchanted emerald amulet of protection that looks good.",
+      "rarity": 5,
+      "type": "clue"
+    },
+    {
+      "name": "Bear feet",
+      "url": "https://oldschool.runescape.wiki/w/Bear_feet",
+      "description": "Vicious bear slippers.",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Black pickaxe",
+      "url": "https://oldschool.runescape.wiki/w/Black_pickaxe",
+      "description": "Used for mining.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Demon feet",
+      "url": "https://oldschool.runescape.wiki/w/Demon_feet",
+      "description": "Vicious demon slippers.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Frog slippers",
+      "url": "https://oldschool.runescape.wiki/w/Frog_slippers",
+      "description": "Cute frog slippers.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Jester cape",
+      "url": "https://oldschool.runescape.wiki/w/Jester_cape",
+      "description": "A jester cape.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Mole slippers",
+      "url": "https://oldschool.runescape.wiki/w/Mole_slippers",
+      "description": "Cute mole slippers.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "Monk's robe (t)",
+      "url": "https://oldschool.runescape.wiki/w/Monk's_robe_(t)",
+      "description": "I feel the gods don't enjoy my materialistic obsessions.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Monk's robe top (t)",
+      "url": "https://oldschool.runescape.wiki/w/Monk's_robe_top_(t)",
+      "description": "I feel the gods don't enjoy my materialistic obsessions.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Rune scimitar ornament kit (guthix)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_scimitar_ornament_kit_(guthix)",
+      "description": "Use on a rune scimitar to make it look fancier!",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Rune scimitar ornament kit (saradomin)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_scimitar_ornament_kit_(saradomin)",
+      "description": "Use on a rune scimitar to make it look fancier!",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Rune scimitar ornament kit (zamorak)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_scimitar_ornament_kit_(zamorak)",
+      "description": "Use on a rune scimitar to make it look fancier!",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Sandwich lady bottom",
+      "url": "https://oldschool.runescape.wiki/w/Sandwich_lady_bottom",
+      "description": "Bottoms worn by a sandwich lady.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Sandwich lady hat",
+      "url": "https://oldschool.runescape.wiki/w/Sandwich_lady_hat",
+      "description": "A hat worn by a sandwich lady.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Sandwich lady top",
+      "url": "https://oldschool.runescape.wiki/w/Sandwich_lady_top",
+      "description": "A top worn by a sandwich lady.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Shoulder parrot",
+      "url": "https://oldschool.runescape.wiki/w/Shoulder_parrot",
+      "description": "Polly want a cracker?",
+      "rarity": 6,
+      "type": "clue"
+    }
+  ],
+  "Easy": [
+    {
+      "name": "A powdered wig",
+      "url": "https://oldschool.runescape.wiki/w/A_powdered_wig",
+      "description": "A big do about nothing.",
+      "rarity": 5,
+      "type": "clue"
+    },
+    {
+      "name": "Amulet of magic (t)",
+      "url": "https://oldschool.runescape.wiki/w/Amulet_of_magic_(t)",
+      "description": "An enchanted sapphire amulet of magic.",
+      "rarity": 5,
+      "type": "clue"
+    },
+    {
+      "name": "Amulet of power (t)",
+      "url": "https://oldschool.runescape.wiki/w/Amulet_of_power_(t)",
+      "description": "An enchanted diamond amulet that looks good.",
+      "rarity": 4,
+      "type": "clue"
+    },
+    {
+      "name": "Ancient robe legs",
+      "url": "https://oldschool.runescape.wiki/w/Ancient_robe_legs",
+      "description": "Leggings from the Ancient Vestments.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Ancient robe top",
+      "url": "https://oldschool.runescape.wiki/w/Ancient_robe_top",
+      "description": "Ancient Vestments.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Armadyl robe legs",
+      "url": "https://oldschool.runescape.wiki/w/Armadyl_robe_legs",
+      "description": "Leggings from the Armadyl Vestments.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Armadyl robe top",
+      "url": "https://oldschool.runescape.wiki/w/Armadyl_robe_top",
+      "description": "Armadyl Vestments.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Bandos robe legs",
+      "url": "https://oldschool.runescape.wiki/w/Bandos_robe_legs",
+      "description": "Leggings from the Bandos Vestments.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Bandos robe top",
+      "url": "https://oldschool.runescape.wiki/w/Bandos_robe_top",
+      "description": "Bandos Vestments.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Beanie",
+      "url": "https://oldschool.runescape.wiki/w/Beanie",
+      "description": "Weeeeeee!",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "Beret mask",
+      "url": "https://oldschool.runescape.wiki/w/Beret_mask",
+      "description": "Essential mime wear.",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Black beret",
+      "url": "https://oldschool.runescape.wiki/w/Black_beret",
+      "description": "Parlez-vous francais?",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Black cane",
+      "url": "https://oldschool.runescape.wiki/w/Black_cane",
+      "description": "A ruby topped cane.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Black full helm (g)",
+      "url": "https://oldschool.runescape.wiki/w/Black_full_helm_(g)",
+      "description": "Black full helmet with gold trim.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Black full helm (t)",
+      "url": "https://oldschool.runescape.wiki/w/Black_full_helm_(t)",
+      "description": "Black full helmet with trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Black helm (h1)",
+      "url": "https://oldschool.runescape.wiki/w/Black_helm_(h1)",
+      "description": "A black helmet with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Black helm (h2)",
+      "url": "https://oldschool.runescape.wiki/w/Black_helm_(h2)",
+      "description": "A black helmet with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Black helm (h3)",
+      "url": "https://oldschool.runescape.wiki/w/Black_helm_(h3)",
+      "description": "A black helmet with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Black helm (h4)",
+      "url": "https://oldschool.runescape.wiki/w/Black_helm_(h4)",
+      "description": "A black helmet with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Black helm (h5)",
+      "url": "https://oldschool.runescape.wiki/w/Black_helm_(h5)",
+      "description": "A black helmet with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Black kiteshield (g)",
+      "url": "https://oldschool.runescape.wiki/w/Black_kiteshield_(g)",
+      "description": "Black kiteshield with gold trim.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Black kiteshield (t)",
+      "url": "https://oldschool.runescape.wiki/w/Black_kiteshield_(t)",
+      "description": "Black kiteshield with trim.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Black pickaxe",
+      "url": "https://oldschool.runescape.wiki/w/Black_pickaxe",
+      "description": "Used for mining.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Black platebody (g)",
+      "url": "https://oldschool.runescape.wiki/w/Black_platebody_(g)",
+      "description": "Black platebody with gold trim.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Black platebody (h1)",
+      "url": "https://oldschool.runescape.wiki/w/Black_platebody_(h1)",
+      "description": "Black plate body with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Black platebody (h2)",
+      "url": "https://oldschool.runescape.wiki/w/Black_platebody_(h2)",
+      "description": "Black plate body with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Black platebody (h3)",
+      "url": "https://oldschool.runescape.wiki/w/Black_platebody_(h3)",
+      "description": "Black plate body with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Black platebody (h4)",
+      "url": "https://oldschool.runescape.wiki/w/Black_platebody_(h4)",
+      "description": "Black plate body with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Black platebody (h5)",
+      "url": "https://oldschool.runescape.wiki/w/Black_platebody_(h5)",
+      "description": "Black plate body with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Black platebody (t)",
+      "url": "https://oldschool.runescape.wiki/w/Black_platebody_(t)",
+      "description": "Black platebody with trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Black platelegs (g)",
+      "url": "https://oldschool.runescape.wiki/w/Black_platelegs_(g)",
+      "description": "Black platelegs with gold trim.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Black platelegs (t)",
+      "url": "https://oldschool.runescape.wiki/w/Black_platelegs_(t)",
+      "description": "Black platelegs with trim.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Black plateskirt (g)",
+      "url": "https://oldschool.runescape.wiki/w/Black_plateskirt_(g)",
+      "description": "Black plateskirt with gold trim.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Black plateskirt (t)",
+      "url": "https://oldschool.runescape.wiki/w/Black_plateskirt_(t)",
+      "description": "Black plateskirt with trim.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Black shield (h1)",
+      "url": "https://oldschool.runescape.wiki/w/Black_shield_(h1)",
+      "description": "A shield with a heraldic design",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Black shield (h2)",
+      "url": "https://oldschool.runescape.wiki/w/Black_shield_(h2)",
+      "description": "A shield with a heraldic design",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Black shield (h3)",
+      "url": "https://oldschool.runescape.wiki/w/Black_shield_(h3)",
+      "description": "A shield with a heraldic design",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Black shield (h4)",
+      "url": "https://oldschool.runescape.wiki/w/Black_shield_(h4)",
+      "description": "A shield with a heraldic design",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Black shield (h5)",
+      "url": "https://oldschool.runescape.wiki/w/Black_shield_(h5)",
+      "description": "A shield with a heraldic design",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Black skirt (g)",
+      "url": "https://oldschool.runescape.wiki/w/Black_skirt_(g)",
+      "description": "Leg covering favoured by women and wizards. With a colourful trim!",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Black skirt (t)",
+      "url": "https://oldschool.runescape.wiki/w/Black_skirt_(t)",
+      "description": "Leg covering favoured by women and wizards. With a colourful trim!",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Black wizard hat (g)",
+      "url": "https://oldschool.runescape.wiki/w/Black_wizard_hat_(g)",
+      "description": "A silly pointed hat, with colourful trim.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Black wizard hat (t)",
+      "url": "https://oldschool.runescape.wiki/w/Black_wizard_hat_(t)",
+      "description": "A silly pointed hat, with colourful trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Black wizard robe (g)",
+      "url": "https://oldschool.runescape.wiki/w/Black_wizard_robe_(g)",
+      "description": "I can do magic better in this.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Black wizard robe (t)",
+      "url": "https://oldschool.runescape.wiki/w/Black_wizard_robe_(t)",
+      "description": "I can do magic better in this.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Blue beret",
+      "url": "https://oldschool.runescape.wiki/w/Blue_beret",
+      "description": "Parlez-vous francais?",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Blue elegant blouse",
+      "url": "https://oldschool.runescape.wiki/w/Blue_elegant_blouse",
+      "description": "A well made elegant ladies' blue blouse.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Blue elegant legs",
+      "url": "https://oldschool.runescape.wiki/w/Blue_elegant_legs",
+      "description": "A rather elegant pair of men's blue pantaloons.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Blue elegant shirt",
+      "url": "https://oldschool.runescape.wiki/w/Blue_elegant_shirt",
+      "description": "A well made elegant men's blue shirt.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Blue elegant skirt",
+      "url": "https://oldschool.runescape.wiki/w/Blue_elegant_skirt",
+      "description": "A rather elegant blue skirt.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Blue skirt (g)",
+      "url": "https://oldschool.runescape.wiki/w/Blue_skirt_(g)",
+      "description": "Leg covering favoured by women and wizards. With a colourful trim!",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Blue skirt (t)",
+      "url": "https://oldschool.runescape.wiki/w/Blue_skirt_(t)",
+      "description": "Leg covering favoured by women and wizards. With a colourful trim!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Blue wizard hat (g)",
+      "url": "https://oldschool.runescape.wiki/w/Blue_wizard_hat_(g)",
+      "description": "A silly pointed hat, with colourful trim.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Blue wizard hat (t)",
+      "url": "https://oldschool.runescape.wiki/w/Blue_wizard_hat_(t)",
+      "description": "A silly pointed hat, with colourful trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Blue wizard robe (g)",
+      "url": "https://oldschool.runescape.wiki/w/Blue_wizard_robe_(g)",
+      "description": "I can do magic better in this.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Blue wizard robe (t)",
+      "url": "https://oldschool.runescape.wiki/w/Blue_wizard_robe_(t)",
+      "description": "I can do magic better in this.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Bob's black shirt",
+      "url": "https://oldschool.runescape.wiki/w/Bob's_black_shirt",
+      "description": "'Bob says: A bank pin will keep your items secure.'",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "Bob's blue shirt",
+      "url": "https://oldschool.runescape.wiki/w/Bob's_blue_shirt",
+      "description": "'Bob says: Always check the second trade screen.'",
+      "rarity": 5,
+      "type": "clue"
+    },
+    {
+      "name": "Bob's green shirt",
+      "url": "https://oldschool.runescape.wiki/w/Bob's_green_shirt",
+      "description": "'Bob says: Never trade in the wilderness!'",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Bob's purple shirt",
+      "url": "https://oldschool.runescape.wiki/w/Bob's_purple_shirt",
+      "description": "'Bob says: Keep your computer keylogger free and virus scanned.'",
+      "rarity": 4,
+      "type": "clue"
+    },
+    {
+      "name": "Bob's red shirt",
+      "url": "https://oldschool.runescape.wiki/w/Bob's_red_shirt",
+      "description": "'Bob says: Never give your password out to anyone.'",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Bronze full helm (g)",
+      "url": "https://oldschool.runescape.wiki/w/Bronze_full_helm_(g)",
+      "description": "Bronze full helm with gold trim.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Bronze full helm (t)",
+      "url": "https://oldschool.runescape.wiki/w/Bronze_full_helm_(t)",
+      "description": "Bronze full helm with trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Bronze kiteshield (g)",
+      "url": "https://oldschool.runescape.wiki/w/Bronze_kiteshield_(g)",
+      "description": "Bronze kiteshield with gold trim.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Bronze kiteshield (t)",
+      "url": "https://oldschool.runescape.wiki/w/Bronze_kiteshield_(t)",
+      "description": "Bronze kiteshield with trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Bronze platebody (g)",
+      "url": "https://oldschool.runescape.wiki/w/Bronze_platebody_(g)",
+      "description": "Bronze platebody with gold trim.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Bronze platebody (t)",
+      "url": "https://oldschool.runescape.wiki/w/Bronze_platebody_(t)",
+      "description": "Bronze platebody with trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Bronze platelegs (g)",
+      "url": "https://oldschool.runescape.wiki/w/Bronze_platelegs_(g)",
+      "description": "Bronze platelegs with gold trim.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Bronze platelegs (t)",
+      "url": "https://oldschool.runescape.wiki/w/Bronze_platelegs_(t)",
+      "description": "Bronze platelegs with trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Bronze plateskirt (g)",
+      "url": "https://oldschool.runescape.wiki/w/Bronze_plateskirt_(g)",
+      "description": "Bronze plateskirt with gold trim.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Bronze plateskirt (t)",
+      "url": "https://oldschool.runescape.wiki/w/Bronze_plateskirt_(t)",
+      "description": "Bronze plateskirt with trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Cape of skulls",
+      "url": "https://oldschool.runescape.wiki/w/Cape_of_skulls",
+      "description": "Lets the person behind you know that you mean business.",
+      "rarity": 4,
+      "type": "clue"
+    },
+    {
+      "name": "Flared trousers",
+      "url": "https://oldschool.runescape.wiki/w/Flared_trousers",
+      "description": "These'll help me stay alive.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Goblin mask",
+      "url": "https://oldschool.runescape.wiki/w/Goblin_mask",
+      "description": "Let's start a flash mob!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Golden apron",
+      "url": "https://oldschool.runescape.wiki/w/Golden_apron",
+      "description": "An astonishingly gold apron.",
+      "rarity": 4,
+      "type": "clue"
+    },
+    {
+      "name": "Golden chef's hat",
+      "url": "https://oldschool.runescape.wiki/w/Golden_chef's_hat",
+      "description": "What a perfectly reasonable hat.",
+      "rarity": 5,
+      "type": "clue"
+    },
+    {
+      "name": "Green elegant blouse",
+      "url": "https://oldschool.runescape.wiki/w/Green_elegant_blouse",
+      "description": "A well made elegant ladies' green blouse.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Green elegant legs",
+      "url": "https://oldschool.runescape.wiki/w/Green_elegant_legs",
+      "description": "A rather elegant pair of men's green pantaloons.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Green elegant shirt",
+      "url": "https://oldschool.runescape.wiki/w/Green_elegant_shirt",
+      "description": "A well made elegant men's green shirt.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Green elegant skirt",
+      "url": "https://oldschool.runescape.wiki/w/Green_elegant_skirt",
+      "description": "A rather elegant green skirt.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Guthix robe legs",
+      "url": "https://oldschool.runescape.wiki/w/Guthix_robe_legs",
+      "description": "Leggings from the Guthix Vestments.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Guthix robe top",
+      "url": "https://oldschool.runescape.wiki/w/Guthix_robe_top",
+      "description": "Guthix Vestments.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Ham joint",
+      "url": "https://oldschool.runescape.wiki/w/Ham_joint",
+      "description": "A delicious joint of ham.",
+      "rarity": 5,
+      "type": "clue"
+    },
+    {
+      "name": "Highwayman mask",
+      "url": "https://oldschool.runescape.wiki/w/Highwayman_mask",
+      "description": "Your money or your life!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Imp mask",
+      "url": "https://oldschool.runescape.wiki/w/Imp_mask",
+      "description": "What mischief can I get up to with this?",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Iron full helm (g)",
+      "url": "https://oldschool.runescape.wiki/w/Iron_full_helm_(g)",
+      "description": "Iron full helm with gold trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Iron full helm (t)",
+      "url": "https://oldschool.runescape.wiki/w/Iron_full_helm_(t)",
+      "description": "Iron full helm with trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Iron kiteshield (g)",
+      "url": "https://oldschool.runescape.wiki/w/Iron_kiteshield_(g)",
+      "description": "Iron kiteshield with gold trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Iron kiteshield (t)",
+      "url": "https://oldschool.runescape.wiki/w/Iron_kiteshield_(t)",
+      "description": "Iron kiteshield with trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Iron platebody (g)",
+      "url": "https://oldschool.runescape.wiki/w/Iron_platebody_(g)",
+      "description": "Iron platebody with gold trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Iron platebody (t)",
+      "url": "https://oldschool.runescape.wiki/w/Iron_platebody_(t)",
+      "description": "Iron platebody with trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Iron platelegs (g)",
+      "url": "https://oldschool.runescape.wiki/w/Iron_platelegs_(g)",
+      "description": "Iron platelegs with gold trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Iron platelegs (t)",
+      "url": "https://oldschool.runescape.wiki/w/Iron_platelegs_(t)",
+      "description": "Iron platelegs with trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Iron plateskirt (g)",
+      "url": "https://oldschool.runescape.wiki/w/Iron_plateskirt_(g)",
+      "description": "Iron plateskirt with gold trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Iron plateskirt (t)",
+      "url": "https://oldschool.runescape.wiki/w/Iron_plateskirt_(t)",
+      "description": "Iron plateskirt with trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Large spade",
+      "url": "https://oldschool.runescape.wiki/w/Large_spade",
+      "description": "Can you dig it?",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Leather body (g)",
+      "url": "https://oldschool.runescape.wiki/w/Leather_body_(g)",
+      "description": "Better than no armour! Nice trim too!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Leather chaps (g)",
+      "url": "https://oldschool.runescape.wiki/w/Leather_chaps_(g)",
+      "description": "Better than no armour! Nice trim too!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Monk's robe (g)",
+      "url": "https://oldschool.runescape.wiki/w/Monk's_robe_(g)",
+      "description": "Keeps a monk's knees nice, warm and stylish.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Monk's robe top (g)",
+      "url": "https://oldschool.runescape.wiki/w/Monk's_robe_top_(g)",
+      "description": "I feel the gods don't enjoy my materialistic obsessions.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Pantaloons",
+      "url": "https://oldschool.runescape.wiki/w/Pantaloons",
+      "description": "Alas, someone has slashed my pantaloons.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Rain bow",
+      "url": "https://oldschool.runescape.wiki/w/Rain_bow",
+      "description": "Short but effective and very colourful.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Red beret",
+      "url": "https://oldschool.runescape.wiki/w/Red_beret",
+      "description": "Parlez-vous francais?",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Red elegant blouse",
+      "url": "https://oldschool.runescape.wiki/w/Red_elegant_blouse",
+      "description": "A well made elegant ladies' red blouse.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Red elegant legs",
+      "url": "https://oldschool.runescape.wiki/w/Red_elegant_legs",
+      "description": "A rather elegant pair of men's red pantaloons.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Red elegant shirt",
+      "url": "https://oldschool.runescape.wiki/w/Red_elegant_shirt",
+      "description": "A well made elegant men's red shirt.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Red elegant skirt",
+      "url": "https://oldschool.runescape.wiki/w/Red_elegant_skirt",
+      "description": "A rather elegant red skirt.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Saradomin robe legs",
+      "url": "https://oldschool.runescape.wiki/w/Saradomin_robe_legs",
+      "description": "Leggings from the Saradomin Vestments.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Saradomin robe top",
+      "url": "https://oldschool.runescape.wiki/w/Saradomin_robe_top",
+      "description": "Saradomin Vestments.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Sleeping cap",
+      "url": "https://oldschool.runescape.wiki/w/Sleeping_cap",
+      "description": "A cap for wearing whilzzzzzzzzzz.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Staff of bob the cat",
+      "url": "https://oldschool.runescape.wiki/w/Staff_of_bob_the_cat",
+      "description": "A staff styled after the elusive cat.",
+      "rarity": 5,
+      "type": "clue"
+    },
+    {
+      "name": "Steel full helm (g)",
+      "url": "https://oldschool.runescape.wiki/w/Steel_full_helm_(g)",
+      "description": "A steel full helmet with gold trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Steel full helm (t)",
+      "url": "https://oldschool.runescape.wiki/w/Steel_full_helm_(t)",
+      "description": "A steel full helmet with trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Steel kiteshield (g)",
+      "url": "https://oldschool.runescape.wiki/w/Steel_kiteshield_(g)",
+      "description": "Steel kiteshield with gold trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Steel kiteshield (t)",
+      "url": "https://oldschool.runescape.wiki/w/Steel_kiteshield_(t)",
+      "description": "Steel kiteshield with trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Steel platebody (g)",
+      "url": "https://oldschool.runescape.wiki/w/Steel_platebody_(g)",
+      "description": "Steel platebody with a gold trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Steel platebody (t)",
+      "url": "https://oldschool.runescape.wiki/w/Steel_platebody_(t)",
+      "description": "Steel platebody with a trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Steel platelegs (g)",
+      "url": "https://oldschool.runescape.wiki/w/Steel_platelegs_(g)",
+      "description": "Steel platelegs with a gold trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Steel platelegs (t)",
+      "url": "https://oldschool.runescape.wiki/w/Steel_platelegs_(t)",
+      "description": "Steel platelegs with a trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Steel plateskirt (g)",
+      "url": "https://oldschool.runescape.wiki/w/Steel_plateskirt_(g)",
+      "description": "Steel plateskirt with gold trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Steel plateskirt (t)",
+      "url": "https://oldschool.runescape.wiki/w/Steel_plateskirt_(t)",
+      "description": "Steel plateskirt with trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Studded body (g)",
+      "url": "https://oldschool.runescape.wiki/w/Studded_body_(g)",
+      "description": "Those studs should provide a bit more protection. Nice trim too!",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Studded body (t)",
+      "url": "https://oldschool.runescape.wiki/w/Studded_body_(t)",
+      "description": "Those studs should provide a bit more protection. Nice trim too!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Studded chaps (g)",
+      "url": "https://oldschool.runescape.wiki/w/Studded_chaps_(g)",
+      "description": "Those studs should provide a bit more protection. Nice trim too!",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Studded chaps (t)",
+      "url": "https://oldschool.runescape.wiki/w/Studded_chaps_(t)",
+      "description": "Those studs should provide a bit more protection. Nice trim too!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Team cape i",
+      "url": "https://oldschool.runescape.wiki/w/Team_cape_i",
+      "description": "Ooohhh look at the dirty colours...",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Team cape x",
+      "url": "https://oldschool.runescape.wiki/w/Team_cape_x",
+      "description": "Ooohhh look at the dirty colours...",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Team cape zero",
+      "url": "https://oldschool.runescape.wiki/w/Team_cape_zero",
+      "description": "Ooohhh look at the dirty colours...",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "White beret",
+      "url": "https://oldschool.runescape.wiki/w/White_beret",
+      "description": "Parlez-vous francais?",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Willow comp bow",
+      "url": "https://oldschool.runescape.wiki/w/Willow_comp_bow",
+      "description": "A powerful bow made from willow wood.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Wooden shield (g)",
+      "url": "https://oldschool.runescape.wiki/w/Wooden_shield_(g)",
+      "description": "An epic wooden shield with a golden trim.",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Zamorak robe legs",
+      "url": "https://oldschool.runescape.wiki/w/Zamorak_robe_legs",
+      "description": "Leggings from the Zamorak Vestments.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Zamorak robe top",
+      "url": "https://oldschool.runescape.wiki/w/Zamorak_robe_top",
+      "description": "Zamorak Vestments.",
+      "rarity": 0,
+      "type": "clue"
+    }
+  ],
+  "Medium": [
+    {
+      "name": "Adamant cane",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_cane",
+      "description": "A diamond topped cane.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Adamant full helm (g)",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_full_helm_(g)",
+      "description": "Adamant full helmet with gold trim.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Adamant full helm (t)",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_full_helm_(t)",
+      "description": "Adamant full helmet with trim.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Adamant helm (h1)",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_helm_(h1)",
+      "description": "An adamant helmet with a heraldic design.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Adamant helm (h2)",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_helm_(h2)",
+      "description": "An adamant helmet with a heraldic design.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Adamant helm (h3)",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_helm_(h3)",
+      "description": "An adamant helmet with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Adamant helm (h4)",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_helm_(h4)",
+      "description": "An adamant helmet with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Adamant helm (h5)",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_helm_(h5)",
+      "description": "An adamant helmet with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Adamant kiteshield (g)",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_kiteshield_(g)",
+      "description": "Adamant kiteshield with gold trim.",
+      "rarity": 5,
+      "type": "clue"
+    },
+    {
+      "name": "Adamant kiteshield (t)",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_kiteshield_(t)",
+      "description": "Adamant kiteshield with trim.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Adamant platebody (g)",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_platebody_(g)",
+      "description": "Adamant platebody with gold trim.",
+      "rarity": 4,
+      "type": "clue"
+    },
+    {
+      "name": "Adamant platebody (h1)",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_platebody_(h1)",
+      "description": "Adamant platebody with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Adamant platebody (h2)",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_platebody_(h2)",
+      "description": "Adamant platebody with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Adamant platebody (h3)",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_platebody_(h3)",
+      "description": "Adamant platebody with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Adamant platebody (h4)",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_platebody_(h4)",
+      "description": "Adamant platebody with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Adamant platebody (h5)",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_platebody_(h5)",
+      "description": "Adamant platebody with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Adamant platebody (t)",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_platebody_(t)",
+      "description": "Adamant platebody with trim.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Adamant platelegs (g)",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_platelegs_(g)",
+      "description": "Adamant platelegs with gold trim.",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Adamant platelegs (t)",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_platelegs_(t)",
+      "description": "Adamant platelegs with trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Adamant plateskirt (g)",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_plateskirt_(g)",
+      "description": "Adamant plateskirt with gold trim.",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Adamant plateskirt (t)",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_plateskirt_(t)",
+      "description": "Adamant plateskirt with trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Adamant shield (h1)",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_shield_(h1)",
+      "description": "A shield with a heraldic design",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Adamant shield (h2)",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_shield_(h2)",
+      "description": "A shield with a heraldic design",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Adamant shield (h3)",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_shield_(h3)",
+      "description": "A shield with a heraldic design",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Adamant shield (h4)",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_shield_(h4)",
+      "description": "A shield with a heraldic design",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Adamant shield (h5)",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_shield_(h5)",
+      "description": "A shield with a heraldic design",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Ancient cloak",
+      "url": "https://oldschool.runescape.wiki/w/Ancient_cloak",
+      "description": "An Ancient cloak.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Ancient crozier",
+      "url": "https://oldschool.runescape.wiki/w/Ancient_crozier",
+      "description": "An Ancient crozier.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Ancient mitre",
+      "url": "https://oldschool.runescape.wiki/w/Ancient_mitre",
+      "description": "An Ancient mitre.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Ancient stole",
+      "url": "https://oldschool.runescape.wiki/w/Ancient_stole",
+      "description": "An Ancient stole.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Arceuus banner",
+      "url": "https://oldschool.runescape.wiki/w/Arceuus_banner",
+      "description": "An ancient banner bearing the mark of the Arceuus Elders.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Armadyl cloak",
+      "url": "https://oldschool.runescape.wiki/w/Armadyl_cloak",
+      "description": "An Armadyl cloak.",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Armadyl crozier",
+      "url": "https://oldschool.runescape.wiki/w/Armadyl_crozier",
+      "description": "An Armadyl crozier.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Armadyl mitre",
+      "url": "https://oldschool.runescape.wiki/w/Armadyl_mitre",
+      "description": "An Armadyl mitre.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Armadyl stole",
+      "url": "https://oldschool.runescape.wiki/w/Armadyl_stole",
+      "description": "An Armadyl stole.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Bandos cloak",
+      "url": "https://oldschool.runescape.wiki/w/Bandos_cloak",
+      "description": "A Bandos cloak.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Bandos crozier",
+      "url": "https://oldschool.runescape.wiki/w/Bandos_crozier",
+      "description": "A Bandos crozier.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Bandos mitre",
+      "url": "https://oldschool.runescape.wiki/w/Bandos_mitre",
+      "description": "A Bandos mitre.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Bandos stole",
+      "url": "https://oldschool.runescape.wiki/w/Bandos_stole",
+      "description": "A Bandos stole.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Black boater",
+      "url": "https://oldschool.runescape.wiki/w/Black_boater",
+      "description": "Stylish!",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Black elegant legs",
+      "url": "https://oldschool.runescape.wiki/w/Black_elegant_legs",
+      "description": "A rather elegant pair of men's black pantaloons.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Black elegant shirt",
+      "url": "https://oldschool.runescape.wiki/w/Black_elegant_shirt",
+      "description": "A well made elegant men's black shirt.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Black headband",
+      "url": "https://oldschool.runescape.wiki/w/Black_headband",
+      "description": "A minimalist's hat.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Black leprechaun hat",
+      "url": "https://oldschool.runescape.wiki/w/Black_leprechaun_hat",
+      "description": "Try as they will, and try as they might, who steals me gold won't live through the night.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Black unicorn mask",
+      "url": "https://oldschool.runescape.wiki/w/Black_unicorn_mask",
+      "description": "Pointy shadows.",
+      "rarity": 5,
+      "type": "clue"
+    },
+    {
+      "name": "Blue boater",
+      "url": "https://oldschool.runescape.wiki/w/Blue_boater",
+      "description": "Stylish!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Blue headband",
+      "url": "https://oldschool.runescape.wiki/w/Blue_headband",
+      "description": "A minimalist's hat.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Brown headband",
+      "url": "https://oldschool.runescape.wiki/w/Brown_headband",
+      "description": "A minimalist's hat.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Cabbage round shield",
+      "url": "https://oldschool.runescape.wiki/w/Cabbage_round_shield",
+      "description": "An adamant shield shaped like a cabbage.",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Cat mask",
+      "url": "https://oldschool.runescape.wiki/w/Cat_mask",
+      "description": "Miaow!",
+      "rarity": 4,
+      "type": "clue"
+    },
+    {
+      "name": "Climbing boots (g)",
+      "url": "https://oldschool.runescape.wiki/w/Climbing_boots_(g)",
+      "description": "Boots made for climbing. Nice trim!",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Clueless scroll",
+      "url": "https://oldschool.runescape.wiki/w/Clueless_scroll",
+      "description": "The instructions are complete nonsense!",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "Crier bell",
+      "url": "https://oldschool.runescape.wiki/w/Crier_bell",
+      "description": "For whom?",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Crier coat",
+      "url": "https://oldschool.runescape.wiki/w/Crier_coat",
+      "description": "Don't shoot the messenger!",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Crier hat",
+      "url": "https://oldschool.runescape.wiki/w/Crier_hat",
+      "description": "Hear ye! Hear ye!",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Gnomish firelighter",
+      "url": "https://oldschool.runescape.wiki/w/Gnomish_firelighter",
+      "description": "Fill it with firelighters to make pretty fire.",
+      "rarity": 5,
+      "type": "clue"
+    },
+    {
+      "name": "Gold elegant blouse",
+      "url": "https://oldschool.runescape.wiki/w/Gold_elegant_blouse",
+      "description": "A well made elegant ladies' gold blouse.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Gold elegant legs",
+      "url": "https://oldschool.runescape.wiki/w/Gold_elegant_legs",
+      "description": "A rather elegant pair of men's gold pantaloons.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Gold elegant shirt",
+      "url": "https://oldschool.runescape.wiki/w/Gold_elegant_shirt",
+      "description": "A well made elegant men's gold shirt.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Gold elegant skirt",
+      "url": "https://oldschool.runescape.wiki/w/Gold_elegant_skirt",
+      "description": "A rather elegant gold skirt.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Gold headband",
+      "url": "https://oldschool.runescape.wiki/w/Gold_headband",
+      "description": "A minimalist's hat.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Green boater",
+      "url": "https://oldschool.runescape.wiki/w/Green_boater",
+      "description": "Stylish!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Green d'hide body (g)",
+      "url": "https://oldschool.runescape.wiki/w/Green_d'hide_body_(g)",
+      "description": "Made from 100% real dragonhide. With colourful trim!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Green d'hide body (t)",
+      "url": "https://oldschool.runescape.wiki/w/Green_d'hide_body_(t)",
+      "description": "Made from 100% real dragonhide. With colourful trim!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Green d'hide chaps (g)",
+      "url": "https://oldschool.runescape.wiki/w/Green_d'hide_chaps_(g)",
+      "description": "Made from 100% real dragonhide. With colourful trim!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Green d'hide chaps (t)",
+      "url": "https://oldschool.runescape.wiki/w/Green_d'hide_chaps_(t)",
+      "description": "Made from 100% real dragonhide. With colourful trim!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Green headband",
+      "url": "https://oldschool.runescape.wiki/w/Green_headband",
+      "description": "A minimalist's hat.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Guthix cloak",
+      "url": "https://oldschool.runescape.wiki/w/Guthix_cloak",
+      "description": "A Guthix cloak.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Guthix mitre",
+      "url": "https://oldschool.runescape.wiki/w/Guthix_mitre",
+      "description": "A Guthix mitre.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Holy sandals",
+      "url": "https://oldschool.runescape.wiki/w/Holy_sandals",
+      "description": "Holy footwear!",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Hosidius banner",
+      "url": "https://oldschool.runescape.wiki/w/Hosidius_banner",
+      "description": "A banner made of redwood bearing the Hosidius sigil.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Leprechaun hat",
+      "url": "https://oldschool.runescape.wiki/w/Leprechaun_hat",
+      "description": "Top o' the morning!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Lovakengj banner",
+      "url": "https://oldschool.runescape.wiki/w/Lovakengj_banner",
+      "description": "A lovakite banner bearing the Lovakengj sigil.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Mithril full helm (g)",
+      "url": "https://oldschool.runescape.wiki/w/Mithril_full_helm_(g)",
+      "description": "Mithril full helm with gold trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Mithril full helm (t)",
+      "url": "https://oldschool.runescape.wiki/w/Mithril_full_helm_(t)",
+      "description": "Mithril full helm with trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Mithril kiteshield (g)",
+      "url": "https://oldschool.runescape.wiki/w/Mithril_kiteshield_(g)",
+      "description": "Mithril kiteshield with gold trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Mithril kiteshield (t)",
+      "url": "https://oldschool.runescape.wiki/w/Mithril_kiteshield_(t)",
+      "description": "Mithril kiteshield with trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Mithril platebody (g)",
+      "url": "https://oldschool.runescape.wiki/w/Mithril_platebody_(g)",
+      "description": "Mithril platebody with gold trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Mithril platebody (t)",
+      "url": "https://oldschool.runescape.wiki/w/Mithril_platebody_(t)",
+      "description": "Mithril platebody with trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Mithril platelegs (g)",
+      "url": "https://oldschool.runescape.wiki/w/Mithril_platelegs_(g)",
+      "description": "Mithril platelegs with gold trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Mithril platelegs (t)",
+      "url": "https://oldschool.runescape.wiki/w/Mithril_platelegs_(t)",
+      "description": "Mithril platelegs with trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Mithril plateskirt (g)",
+      "url": "https://oldschool.runescape.wiki/w/Mithril_plateskirt_(g)",
+      "description": "Mithril plateskirt with gold trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Mithril plateskirt (t)",
+      "url": "https://oldschool.runescape.wiki/w/Mithril_plateskirt_(t)",
+      "description": "Mithril plateskirt with trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Orange boater",
+      "url": "https://oldschool.runescape.wiki/w/Orange_boater",
+      "description": "Stylish!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Penguin mask",
+      "url": "https://oldschool.runescape.wiki/w/Penguin_mask",
+      "description": "Thankfully this doesn't reset every week.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Pink boater",
+      "url": "https://oldschool.runescape.wiki/w/Pink_boater",
+      "description": "Stylish!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Pink elegant blouse",
+      "url": "https://oldschool.runescape.wiki/w/Pink_elegant_blouse",
+      "description": "A well made elegant ladies' pink blouse.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Pink elegant legs",
+      "url": "https://oldschool.runescape.wiki/w/Pink_elegant_legs",
+      "description": "A rather elegant pair of men's pink pantaloons.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Pink elegant shirt",
+      "url": "https://oldschool.runescape.wiki/w/Pink_elegant_shirt",
+      "description": "A well made elegant men's pink shirt.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Pink elegant skirt",
+      "url": "https://oldschool.runescape.wiki/w/Pink_elegant_skirt",
+      "description": "A rather elegant pink skirt.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Pink headband",
+      "url": "https://oldschool.runescape.wiki/w/Pink_headband",
+      "description": "A minimalist's hat.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Piscarilius banner",
+      "url": "https://oldschool.runescape.wiki/w/Piscarilius_banner",
+      "description": "A stained glass banner displaying the Piscarilius sigil.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Purple boater",
+      "url": "https://oldschool.runescape.wiki/w/Purple_boater",
+      "description": "Stylish!",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Purple elegant blouse",
+      "url": "https://oldschool.runescape.wiki/w/Purple_elegant_blouse",
+      "description": "A well made elegant ladies' purple blouse.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Purple elegant legs",
+      "url": "https://oldschool.runescape.wiki/w/Purple_elegant_legs",
+      "description": "A rather elegant pair of men's purple pantaloons.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Purple elegant shirt",
+      "url": "https://oldschool.runescape.wiki/w/Purple_elegant_shirt",
+      "description": "A well made elegant men's purple shirt.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Purple elegant skirt",
+      "url": "https://oldschool.runescape.wiki/w/Purple_elegant_skirt",
+      "description": "A rather elegant purple skirt.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Ranger boots",
+      "url": "https://oldschool.runescape.wiki/w/Ranger_boots",
+      "description": "Lightweight boots ideal for rangers.",
+      "rarity": 4,
+      "type": "clue"
+    },
+    {
+      "name": "Red boater",
+      "url": "https://oldschool.runescape.wiki/w/Red_boater",
+      "description": "Stylish!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Red headband",
+      "url": "https://oldschool.runescape.wiki/w/Red_headband",
+      "description": "A minimalist's hat.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Saradomin cloak",
+      "url": "https://oldschool.runescape.wiki/w/Saradomin_cloak",
+      "description": "A Saradomin cloak.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Saradomin mitre",
+      "url": "https://oldschool.runescape.wiki/w/Saradomin_mitre",
+      "description": "A Saradomin mitre.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Shayzien banner",
+      "url": "https://oldschool.runescape.wiki/w/Shayzien_banner",
+      "description": "A war torn banner bearing the Shayzien sigil.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Spiked manacles",
+      "url": "https://oldschool.runescape.wiki/w/Spiked_manacles",
+      "description": "Some very spikey metal bands, better make sure I don't cut myself while walking.",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Strength amulet (t)",
+      "url": "https://oldschool.runescape.wiki/w/Strength_amulet_(t)",
+      "description": "An enchanted ruby amulet.",
+      "rarity": 5,
+      "type": "clue"
+    },
+    {
+      "name": "White boater",
+      "url": "https://oldschool.runescape.wiki/w/White_boater",
+      "description": "Stylish!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "White elegant blouse",
+      "url": "https://oldschool.runescape.wiki/w/White_elegant_blouse",
+      "description": "A well made elegant ladies' white blouse.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "White elegant skirt",
+      "url": "https://oldschool.runescape.wiki/w/White_elegant_skirt",
+      "description": "A rather elegant white skirt.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "White headband",
+      "url": "https://oldschool.runescape.wiki/w/White_headband",
+      "description": "A minimalist's hat.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "White unicorn mask",
+      "url": "https://oldschool.runescape.wiki/w/White_unicorn_mask",
+      "description": "Pointy rainbows.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Wizard boots",
+      "url": "https://oldschool.runescape.wiki/w/Wizard_boots",
+      "description": "Slightly magical boots.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Wolf cloak",
+      "url": "https://oldschool.runescape.wiki/w/Wolf_cloak",
+      "description": "A very warm wolf cloak.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Wolf mask",
+      "url": "https://oldschool.runescape.wiki/w/Wolf_mask",
+      "description": "Howwwallll!",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Yew comp bow",
+      "url": "https://oldschool.runescape.wiki/w/Yew_comp_bow",
+      "description": "A powerful bow made from yew wood.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Zamorak cloak",
+      "url": "https://oldschool.runescape.wiki/w/Zamorak_cloak",
+      "description": "A Zamorak cloak.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Zamorak mitre",
+      "url": "https://oldschool.runescape.wiki/w/Zamorak_mitre",
+      "description": "A Zamorak mitre.",
+      "rarity": 0,
+      "type": "clue"
+    }
+  ],
+  "Hard": [
+    {
+      "name": "3rd age amulet",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_amulet",
+      "description": "Fabulously ancient mage protection enchanted in the 3rd Age.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age full helmet",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_full_helmet",
+      "description": "Fabulously ancient armour beaten from magical silver.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age kiteshield",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_kiteshield",
+      "description": "Fabulously ancient armour beaten from magical silver.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age mage hat",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_mage_hat",
+      "description": "Fabulously ancient mage protection enchanted in the 3rd Age.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age platebody",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_platebody",
+      "description": "Fabulously ancient armour beaten from magical silver.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age platelegs",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_platelegs",
+      "description": "Fabulously ancient armour beaten from magical silver.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age plateskirt",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_plateskirt",
+      "description": "Fabulously ancient armour beaten from magical silver.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age range coif",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_range_coif",
+      "description": "Fabulously ancient range protection crafted from white dragonhide.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age range legs",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_range_legs",
+      "description": "Fabulously ancient range protection crafted from white dragonhide.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age range top",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_range_top",
+      "description": "Fabulously ancient range protection crafted from white dragonhide.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age robe",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_robe",
+      "description": "Fabulously ancient mage protection enchanted in the 3rd Age.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age robe top",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_robe_top",
+      "description": "Fabulously ancient mage protection enchanted in the 3rd Age.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age vambraces",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_vambraces",
+      "description": "Fabulously ancient range protection crafted from white dragonhide.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "Amulet of glory (t)",
+      "url": "https://oldschool.runescape.wiki/w/Amulet_of_glory_(t)",
+      "description": "A very powerful dragonstone amulet.",
+      "rarity": 5,
+      "type": "clue"
+    },
+    {
+      "name": "Ancient armour",
+      "url": "https://oldschool.runescape.wiki/w/Ancient_armour",
+      "description": "Ancient armour item.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Ancient bracers",
+      "url": "https://oldschool.runescape.wiki/w/Ancient_bracers",
+      "description": "Ancient blessed dragonhide vambraces.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Ancient chaps",
+      "url": "https://oldschool.runescape.wiki/w/Ancient_chaps",
+      "description": "Ancient blessed dragonhide chaps.",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Ancient coif",
+      "url": "https://oldschool.runescape.wiki/w/Ancient_coif",
+      "description": "Ancient blessed dragonhide coif.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Ancient d'hide body",
+      "url": "https://oldschool.runescape.wiki/w/Ancient_d'hide_body",
+      "description": "Ancient blessed dragonhide body armour.",
+      "rarity": 4,
+      "type": "clue"
+    },
+    {
+      "name": "Ancient d'hide boots",
+      "url": "https://oldschool.runescape.wiki/w/Ancient_d'hide_boots",
+      "description": "Ancient blessed dragonhide boots.",
+      "rarity": 4,
+      "type": "clue"
+    },
+    {
+      "name": "Ancient d'hide shield",
+      "url": "https://oldschool.runescape.wiki/w/Ancient_d'hide_shield",
+      "description": "Ancient blessed wooden shield covered in dragon leather.",
+      "rarity": 4,
+      "type": "clue"
+    },
+    {
+      "name": "Ancient full helm",
+      "url": "https://oldschool.runescape.wiki/w/Ancient_full_helm",
+      "description": "Rune full helmet in the colours of a long-forgotten god.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Ancient kiteshield",
+      "url": "https://oldschool.runescape.wiki/w/Ancient_kiteshield",
+      "description": "Rune kiteshield in the colours of a long-forgotten god.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Ancient platebody",
+      "url": "https://oldschool.runescape.wiki/w/Ancient_platebody",
+      "description": "Rune platebody in the colours of a long-forgotten god.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Ancient platelegs",
+      "url": "https://oldschool.runescape.wiki/w/Ancient_platelegs",
+      "description": "Rune platelegs in the colours of a long-forgotten god.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Ancient plateskirt",
+      "url": "https://oldschool.runescape.wiki/w/Ancient_plateskirt",
+      "description": "Rune plateskirt in the colours of a long-forgotten god.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Armadyl bracers",
+      "url": "https://oldschool.runescape.wiki/w/Armadyl_bracers",
+      "description": "Armadyl blessed dragonhide vambraces.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Armadyl chaps",
+      "url": "https://oldschool.runescape.wiki/w/Armadyl_chaps",
+      "description": "Armadyl blessed dragonhide chaps.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Armadyl coif",
+      "url": "https://oldschool.runescape.wiki/w/Armadyl_coif",
+      "description": "Armadyl blessed dragonhide coif.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Armadyl d'hide body",
+      "url": "https://oldschool.runescape.wiki/w/Armadyl_d'hide_body",
+      "description": "Armadyl blessed dragonhide body armour.",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Armadyl d'hide boots",
+      "url": "https://oldschool.runescape.wiki/w/Armadyl_d'hide_boots",
+      "description": "Armadyl blessed dragonhide boots.",
+      "rarity": 4,
+      "type": "clue"
+    },
+    {
+      "name": "Armadyl d'hide shield",
+      "url": "https://oldschool.runescape.wiki/w/Armadyl_d'hide_shield",
+      "description": "Armadyl blessed wooden shield covered in dragon leather.",
+      "rarity": 4,
+      "type": "clue"
+    },
+    {
+      "name": "Armadyl full helm",
+      "url": "https://oldschool.runescape.wiki/w/Armadyl_full_helm",
+      "description": "Rune full helmet in the colours of Armadyl.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Armadyl kiteshield",
+      "url": "https://oldschool.runescape.wiki/w/Armadyl_kiteshield",
+      "description": "Rune kiteshield in the colours of Armadyl.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Armadyl platebody",
+      "url": "https://oldschool.runescape.wiki/w/Armadyl_platebody",
+      "description": "Rune platebody in the colours of Armadyl.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Armadyl platelegs",
+      "url": "https://oldschool.runescape.wiki/w/Armadyl_platelegs",
+      "description": "Rune platelegs in the colours of Armadyl.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Armadyl plateskirt",
+      "url": "https://oldschool.runescape.wiki/w/Armadyl_plateskirt",
+      "description": "Rune plateskirt in the colours of Armadyl.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Bandos bracers",
+      "url": "https://oldschool.runescape.wiki/w/Bandos_bracers",
+      "description": "Bandos blessed dragonhide vambraces.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Bandos chaps",
+      "url": "https://oldschool.runescape.wiki/w/Bandos_chaps",
+      "description": "Bandos blessed dragonhide chaps.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Bandos coif",
+      "url": "https://oldschool.runescape.wiki/w/Bandos_coif",
+      "description": "Bandos blessed dragonhide coif.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Bandos d'hide body",
+      "url": "https://oldschool.runescape.wiki/w/Bandos_d'hide_body",
+      "description": "Bandos blessed dragonhide body armour.",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Bandos d'hide boots",
+      "url": "https://oldschool.runescape.wiki/w/Bandos_d'hide_boots",
+      "description": "Bandos blessed dragonhide boots.",
+      "rarity": 4,
+      "type": "clue"
+    },
+    {
+      "name": "Bandos d'hide shield",
+      "url": "https://oldschool.runescape.wiki/w/Bandos_d'hide_shield",
+      "description": "Bandos blessed wooden shield covered in dragon leather.",
+      "rarity": 4,
+      "type": "clue"
+    },
+    {
+      "name": "Bandos full helm",
+      "url": "https://oldschool.runescape.wiki/w/Bandos_full_helm",
+      "description": "Rune full helmet in the colours of Bandos.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Bandos kiteshield",
+      "url": "https://oldschool.runescape.wiki/w/Bandos_kiteshield",
+      "description": "Rune kiteshield in the colours of Bandos.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Bandos platebody",
+      "url": "https://oldschool.runescape.wiki/w/Bandos_platebody",
+      "description": "Rune platebody in the colours of Bandos.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Bandos platelegs",
+      "url": "https://oldschool.runescape.wiki/w/Bandos_platelegs",
+      "description": "Rune platelegs in the colours of Bandos.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Bandos plateskirt",
+      "url": "https://oldschool.runescape.wiki/w/Bandos_plateskirt",
+      "description": "Rune plateskirt in the colours of Bandos.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Berserker necklace ornament kit",
+      "url": "https://oldschool.runescape.wiki/w/Berserker_necklace_ornament_kit",
+      "description": "Use on the Berserker necklace to make it look fancier!",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Black cavalier",
+      "url": "https://oldschool.runescape.wiki/w/Black_cavalier",
+      "description": "All for one and one for all!",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Black dragon mask",
+      "url": "https://oldschool.runescape.wiki/w/Black_dragon_mask",
+      "description": "Do I look scary?",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Blue d'hide body (g)",
+      "url": "https://oldschool.runescape.wiki/w/Blue_d'hide_body_(g)",
+      "description": "Made from 100% real dragonhide. With colourful trim!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Blue d'hide body (t)",
+      "url": "https://oldschool.runescape.wiki/w/Blue_d'hide_body_(t)",
+      "description": "Made from 100% real dragonhide. With colourful trim!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Blue d'hide chaps (g)",
+      "url": "https://oldschool.runescape.wiki/w/Blue_d'hide_chaps_(g)",
+      "description": "Made from 100% real dragonhide. With colourful trim!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Blue d'hide chaps (t)",
+      "url": "https://oldschool.runescape.wiki/w/Blue_d'hide_chaps_(t)",
+      "description": "Made from 100% real dragonhide. With colourful trim!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Blue dragon mask",
+      "url": "https://oldschool.runescape.wiki/w/Blue_dragon_mask",
+      "description": "Do I look scary?",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Cyclops head",
+      "url": "https://oldschool.runescape.wiki/w/Cyclops_head",
+      "description": "You'd expect this to interfere with your 3D vision.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Dark cavalier",
+      "url": "https://oldschool.runescape.wiki/w/Dark_cavalier",
+      "description": "All for one and one for all!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Dragon boots ornament kit",
+      "url": "https://oldschool.runescape.wiki/w/Dragon_boots_ornament_kit",
+      "description": "Use on some dragon boots to make them look fancier!",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Dual sai",
+      "url": "https://oldschool.runescape.wiki/w/Dual_sai",
+      "description": "A pair of aggressive Sai.{{sic",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Enchanted hat",
+      "url": "https://oldschool.runescape.wiki/w/Enchanted_hat",
+      "description": "A three pointed hat of magic.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Enchanted robe",
+      "url": "https://oldschool.runescape.wiki/w/Enchanted_robe",
+      "description": "Enchanted Wizards robes.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Enchanted top",
+      "url": "https://oldschool.runescape.wiki/w/Enchanted_top",
+      "description": "Enchanted Wizards robes.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Explorer backpack",
+      "url": "https://oldschool.runescape.wiki/w/Explorer_backpack",
+      "description": "I'm the Backpack loaded up with things and knick knacks too.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded 2h sword",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_2h_sword",
+      "description": "A two handed sword with gold plate.",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded chainbody",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_chainbody",
+      "description": "A series of connected metal rings plated in gold.",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded full helm",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_full_helm",
+      "description": "Rune full helmet with gold plate.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded hasta",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_hasta",
+      "description": "A rune-tipped, one-handed hasta, with gold plate.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded kiteshield",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_kiteshield",
+      "description": "Rune kiteshield with gold plate.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded med helm",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_med_helm",
+      "description": "A medium sized helmet with gold plate.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded platebody",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_platebody",
+      "description": "Rune platebody with gold plate.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded platelegs",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_platelegs",
+      "description": "Rune platelegs with gold plate.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded plateskirt",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_plateskirt",
+      "description": "Rune plateskirt with gold plate.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded spear",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_spear",
+      "description": "A rune tipped spear with gold plate.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded sq shield",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_sq_shield",
+      "description": "A medium square shield in gold plate.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Green dragon mask",
+      "url": "https://oldschool.runescape.wiki/w/Green_dragon_mask",
+      "description": "Do I look scary?",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Guthix bracers",
+      "url": "https://oldschool.runescape.wiki/w/Guthix_bracers",
+      "description": "Guthix blessed dragonhide vambraces.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Guthix chaps",
+      "url": "https://oldschool.runescape.wiki/w/Guthix_chaps",
+      "description": "Guthix blessed dragonhide chaps.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Guthix coif",
+      "url": "https://oldschool.runescape.wiki/w/Guthix_coif",
+      "description": "Guthix blessed dragonhide coif.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Guthix crozier",
+      "url": "https://oldschool.runescape.wiki/w/Guthix_crozier",
+      "description": "A Guthix crozier.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Guthix d'hide body",
+      "url": "https://oldschool.runescape.wiki/w/Guthix_d'hide_body",
+      "description": "Guthix blessed dragonhide body armour.",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Guthix d'hide boots",
+      "url": "https://oldschool.runescape.wiki/w/Guthix_d'hide_boots",
+      "description": "Guthix blessed dragonhide boots.",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Guthix d'hide shield",
+      "url": "https://oldschool.runescape.wiki/w/Guthix_d'hide_shield",
+      "description": "Guthix blessed wooden shield covered in dragon leather.",
+      "rarity": 4,
+      "type": "clue"
+    },
+    {
+      "name": "Guthix full helm",
+      "url": "https://oldschool.runescape.wiki/w/Guthix_full_helm",
+      "description": "A rune full face helmet in the colours of Guthix.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Guthix kiteshield",
+      "url": "https://oldschool.runescape.wiki/w/Guthix_kiteshield",
+      "description": "Rune kiteshield in the colours of Guthix.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Guthix platebody",
+      "url": "https://oldschool.runescape.wiki/w/Guthix_platebody",
+      "description": "Rune platebody in the colours of Guthix.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Guthix platelegs",
+      "url": "https://oldschool.runescape.wiki/w/Guthix_platelegs",
+      "description": "Rune plate legs in the colours of Guthix.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Guthix plateskirt",
+      "url": "https://oldschool.runescape.wiki/w/Guthix_plateskirt",
+      "description": "Rune plateskirt in the colours of Guthix.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Guthix stole",
+      "url": "https://oldschool.runescape.wiki/w/Guthix_stole",
+      "description": "A Guthix stole.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Magic comp bow",
+      "url": "https://oldschool.runescape.wiki/w/Magic_comp_bow",
+      "description": "A powerful bow made from magic wood.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Navy cavalier",
+      "url": "https://oldschool.runescape.wiki/w/Navy_cavalier",
+      "description": "All for one and one for all!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Nunchaku",
+      "url": "https://oldschool.runescape.wiki/w/Nunchaku",
+      "description": "A pair of Nunchaku, smells of pizza.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Pirate's hat",
+      "url": "https://oldschool.runescape.wiki/w/Pirate's_hat",
+      "description": "Shiver me timbers!",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Pith helmet",
+      "url": "https://oldschool.runescape.wiki/w/Pith_helmet",
+      "description": "Official explorer headgear!",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Red cavalier",
+      "url": "https://oldschool.runescape.wiki/w/Red_cavalier",
+      "description": "All for one and one for all!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Red d'hide body (g)",
+      "url": "https://oldschool.runescape.wiki/w/Red_d'hide_body_(g)",
+      "description": "Made from 100% real dragonhide. With colourful trim!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Red d'hide body (t)",
+      "url": "https://oldschool.runescape.wiki/w/Red_d'hide_body_(t)",
+      "description": "Made from 100% real dragonhide. With colourful trim!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Red d'hide chaps (g)",
+      "url": "https://oldschool.runescape.wiki/w/Red_d'hide_chaps_(g)",
+      "description": "Made from 100% real dragonhide. With colourful trim!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Red d'hide chaps (t)",
+      "url": "https://oldschool.runescape.wiki/w/Red_d'hide_chaps_(t)",
+      "description": "Made from 100% real dragonhide. With colourful trim!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Red dragon mask",
+      "url": "https://oldschool.runescape.wiki/w/Red_dragon_mask",
+      "description": "Do I look scary?",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Robin hood hat",
+      "url": "https://oldschool.runescape.wiki/w/Robin_hood_hat",
+      "description": "Endorsed by Robin Hood.",
+      "rarity": 4,
+      "type": "clue"
+    },
+    {
+      "name": "Rune cane",
+      "url": "https://oldschool.runescape.wiki/w/Rune_cane",
+      "description": "A dragonstone topped cane.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Rune defender ornament kit",
+      "url": "https://oldschool.runescape.wiki/w/Rune_defender_ornament_kit",
+      "description": "Use on the rune defender to trim it with gold.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Rune full helm (g)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_full_helm_(g)",
+      "description": "Rune full helmet with gold trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Rune full helm (t)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_full_helm_(t)",
+      "description": "Rune full helmet with trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Rune helm (h1)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_helm_(h1)",
+      "description": "A rune helmet with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Rune helm (h2)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_helm_(h2)",
+      "description": "A rune helmet with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Rune helm (h3)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_helm_(h3)",
+      "description": "A rune helmet with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Rune helm (h4)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_helm_(h4)",
+      "description": "A rune helmet with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Rune helm (h5)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_helm_(h5)",
+      "description": "A rune helmet with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Rune kiteshield (g)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_kiteshield_(g)",
+      "description": "Rune kiteshield with gold trim.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Rune kiteshield (t)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_kiteshield_(t)",
+      "description": "Rune kiteshield with trim.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Rune platebody (g)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_platebody_(g)",
+      "description": "Rune platebody with gold trim.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Rune platebody (h1)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_platebody_(h1)",
+      "description": "Provides excellent protection with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Rune platebody (h2)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_platebody_(h2)",
+      "description": "Provides excellent protection with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Rune platebody (h3)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_platebody_(h3)",
+      "description": "Provides excellent protection with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Rune platebody (h4)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_platebody_(h4)",
+      "description": "Provides excellent protection with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Rune platebody (h5)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_platebody_(h5)",
+      "description": "Provides excellent protection with a heraldic design.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Rune platebody (t)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_platebody_(t)",
+      "description": "Rune platebody with trim.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Rune platelegs (g)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_platelegs_(g)",
+      "description": "Rune platelegs with gold trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Rune platelegs (t)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_platelegs_(t)",
+      "description": "Rune platelegs with trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Rune plateskirt (g)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_plateskirt_(g)",
+      "description": "Rune plateskirt with gold trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Rune plateskirt (t)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_plateskirt_(t)",
+      "description": "Rune plateskirt with trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Rune shield (h1)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_shield_(h1)",
+      "description": "A shield with a heraldic design",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Rune shield (h2)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_shield_(h2)",
+      "description": "A shield with a heraldic design",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Rune shield (h3)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_shield_(h3)",
+      "description": "A shield with a heraldic design",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Rune shield (h4)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_shield_(h4)",
+      "description": "A shield with a heraldic design",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Rune shield (h5)",
+      "url": "https://oldschool.runescape.wiki/w/Rune_shield_(h5)",
+      "description": "A shield with a heraldic design",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Saradomin bracers",
+      "url": "https://oldschool.runescape.wiki/w/Saradomin_bracers",
+      "description": "Saradomin blessed dragonhide vambraces.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Saradomin chaps",
+      "url": "https://oldschool.runescape.wiki/w/Saradomin_chaps",
+      "description": "Saradomin blessed dragonhide chaps.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Saradomin coif",
+      "url": "https://oldschool.runescape.wiki/w/Saradomin_coif",
+      "description": "Saradomin blessed dragonhide coif.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Saradomin crozier",
+      "url": "https://oldschool.runescape.wiki/w/Saradomin_crozier",
+      "description": "A Saradomin crozier.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Saradomin d'hide body",
+      "url": "https://oldschool.runescape.wiki/w/Saradomin_d'hide_body",
+      "description": "Saradomin blessed dragonhide body armour.",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Saradomin d'hide boots",
+      "url": "https://oldschool.runescape.wiki/w/Saradomin_d'hide_boots",
+      "description": "Saradomin blessed dragonhide boots.",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Saradomin d'hide shield",
+      "url": "https://oldschool.runescape.wiki/w/Saradomin_d'hide_shield",
+      "description": "Saradomin blessed wooden shield covered in dragon leather.",
+      "rarity": 4,
+      "type": "clue"
+    },
+    {
+      "name": "Saradomin full helm",
+      "url": "https://oldschool.runescape.wiki/w/Saradomin_full_helm",
+      "description": "Rune full helmet in the colours of Saradomin.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Saradomin kiteshield",
+      "url": "https://oldschool.runescape.wiki/w/Saradomin_kiteshield",
+      "description": "Rune kiteshield in the colours of Saradomin.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Saradomin platebody",
+      "url": "https://oldschool.runescape.wiki/w/Saradomin_platebody",
+      "description": "Rune platebody in the colours of Saradomin.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Saradomin platelegs",
+      "url": "https://oldschool.runescape.wiki/w/Saradomin_platelegs",
+      "description": "Rune platelegs in the colours of Saradomin.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Saradomin plateskirt",
+      "url": "https://oldschool.runescape.wiki/w/Saradomin_plateskirt",
+      "description": "Rune plateskirt in the colours of Saradomin.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Saradomin stole",
+      "url": "https://oldschool.runescape.wiki/w/Saradomin_stole",
+      "description": "A Saradomin stole.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Tan cavalier",
+      "url": "https://oldschool.runescape.wiki/w/Tan_cavalier",
+      "description": "All for one and one for all!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Thieving bag",
+      "url": "https://oldschool.runescape.wiki/w/Thieving_bag",
+      "description": "A good place to store your stolen goods.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Tzhaar-ket-om ornament kit",
+      "url": "https://oldschool.runescape.wiki/w/Tzhaar-ket-om_ornament_kit",
+      "description": "Use on the TzHaar-ket-om to trim and spike it.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "White cavalier",
+      "url": "https://oldschool.runescape.wiki/w/White_cavalier",
+      "description": "All for one and one for all!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Zamorak bracers",
+      "url": "https://oldschool.runescape.wiki/w/Zamorak_bracers",
+      "description": "Zamorak blessed dragonhide vambraces.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Zamorak chaps",
+      "url": "https://oldschool.runescape.wiki/w/Zamorak_chaps",
+      "description": "Zamorak blessed dragonhide chaps.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Zamorak coif",
+      "url": "https://oldschool.runescape.wiki/w/Zamorak_coif",
+      "description": "Zamorak blessed dragonhide coif.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Zamorak crozier",
+      "url": "https://oldschool.runescape.wiki/w/Zamorak_crozier",
+      "description": "A Zamorak crozier.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Zamorak d'hide body",
+      "url": "https://oldschool.runescape.wiki/w/Zamorak_d'hide_body",
+      "description": "Zamorak blessed dragonhide body armour.",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Zamorak d'hide boots",
+      "url": "https://oldschool.runescape.wiki/w/Zamorak_d'hide_boots",
+      "description": "Zamorak blessed dragonhide boots.",
+      "rarity": 4,
+      "type": "clue"
+    },
+    {
+      "name": "Zamorak d'hide shield",
+      "url": "https://oldschool.runescape.wiki/w/Zamorak_d'hide_shield",
+      "description": "Zamorak blessed wooden shield covered in dragon leather.",
+      "rarity": 4,
+      "type": "clue"
+    },
+    {
+      "name": "Zamorak full helm",
+      "url": "https://oldschool.runescape.wiki/w/Zamorak_full_helm",
+      "description": "Rune full helmet in the colours of Zamorak.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Zamorak kiteshield",
+      "url": "https://oldschool.runescape.wiki/w/Zamorak_kiteshield",
+      "description": "Rune kiteshield in the colours of Zamorak.",
+      "rarity": 4,
+      "type": "clue"
+    },
+    {
+      "name": "Zamorak platebody",
+      "url": "https://oldschool.runescape.wiki/w/Zamorak_platebody",
+      "description": "Rune platebody in the colours of Zamorak.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Zamorak platelegs",
+      "url": "https://oldschool.runescape.wiki/w/Zamorak_platelegs",
+      "description": "Rune platelegs in the colours of Zamorak.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Zamorak plateskirt",
+      "url": "https://oldschool.runescape.wiki/w/Zamorak_plateskirt",
+      "description": "Rune plateskirt in the colours of Zamorak.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Zamorak stole",
+      "url": "https://oldschool.runescape.wiki/w/Zamorak_stole",
+      "description": "A Zamorak stole.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Zombie head (Treasure Trails)",
+      "url": "https://oldschool.runescape.wiki/w/Zombie_head_(Treasure_Trails)",
+      "description": "Get a head in life.",
+      "rarity": 1,
+      "type": "clue"
+    }
+  ],
+  "Elite": [
+    {
+      "name": "3rd age amulet",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_amulet",
+      "description": "Fabulously ancient mage protection enchanted in the 3rd Age.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age bow",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_bow",
+      "description": "A beautifully crafted bow carved by ancient archers.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age cloak",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_cloak",
+      "description": "A beautiful cloak woven by ancient tailors.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age full helmet",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_full_helmet",
+      "description": "Fabulously ancient armour beaten from magical silver.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age kiteshield",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_kiteshield",
+      "description": "Fabulously ancient armour beaten from magical silver.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age longsword",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_longsword",
+      "description": "A beautifully crafted sword forged by ancient blacksmiths.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age mage hat",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_mage_hat",
+      "description": "Fabulously ancient mage protection enchanted in the 3rd Age.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age platebody",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_platebody",
+      "description": "Fabulously ancient armour beaten from magical silver.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age platelegs",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_platelegs",
+      "description": "Fabulously ancient armour beaten from magical silver.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age plateskirt",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_plateskirt",
+      "description": "Fabulously ancient armour beaten from magical silver.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age range coif",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_range_coif",
+      "description": "Fabulously ancient range protection crafted from white dragonhide.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age range legs",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_range_legs",
+      "description": "Fabulously ancient range protection crafted from white dragonhide.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age range top",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_range_top",
+      "description": "Fabulously ancient range protection crafted from white dragonhide.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age robe",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_robe",
+      "description": "Fabulously ancient mage protection enchanted in the 3rd Age.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age robe top",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_robe_top",
+      "description": "Fabulously ancient mage protection enchanted in the 3rd Age.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age vambraces",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_vambraces",
+      "description": "Fabulously ancient range protection crafted from white dragonhide.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age wand",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_wand",
+      "description": "A beautifully crafted wand infused by ancient wizards.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "Adamant dragon mask",
+      "url": "https://oldschool.runescape.wiki/w/Adamant_dragon_mask",
+      "description": "Do I look scary?",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Afro",
+      "url": "https://oldschool.runescape.wiki/w/Afro",
+      "description": "Wild!",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "Arceuus scarf",
+      "url": "https://oldschool.runescape.wiki/w/Arceuus_scarf",
+      "description": "A blue scarf adorned with a dark crystal.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Big pirate hat",
+      "url": "https://oldschool.runescape.wiki/w/Big_pirate_hat",
+      "description": "Yarrr!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Black d'hide body (g)",
+      "url": "https://oldschool.runescape.wiki/w/Black_d'hide_body_(g)",
+      "description": "Made from 100% real dragonhide. With colourful trim!",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Black d'hide body (t)",
+      "url": "https://oldschool.runescape.wiki/w/Black_d'hide_body_(t)",
+      "description": "Made from 100% real dragonhide. With colourful trim!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Black d'hide chaps (g)",
+      "url": "https://oldschool.runescape.wiki/w/Black_d'hide_chaps_(g)",
+      "description": "Made from 100% real dragonhide. With colourful trim!",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Black d'hide chaps (t)",
+      "url": "https://oldschool.runescape.wiki/w/Black_d'hide_chaps_(t)",
+      "description": "Made from 100% real dragonhide. With colourful trim!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Blacksmith's helm",
+      "url": "https://oldschool.runescape.wiki/w/Blacksmith's_helm",
+      "description": "A helm worn by blacksmiths.",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Briefcase",
+      "url": "https://oldschool.runescape.wiki/w/Briefcase",
+      "description": "For your first day in the big city.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Bronze dragon mask",
+      "url": "https://oldschool.runescape.wiki/w/Bronze_dragon_mask",
+      "description": "Do I look scary?",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Bucket helm",
+      "url": "https://oldschool.runescape.wiki/w/Bucket_helm",
+      "description": "A helm made from a bucket.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Dark bow tie",
+      "url": "https://oldschool.runescape.wiki/w/Dark_bow_tie",
+      "description": "Bow ties are cool.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Dark infinity colour kit",
+      "url": "https://oldschool.runescape.wiki/w/Dark_infinity_colour_kit",
+      "description": "Use on infinity pieces to recolour them!",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Dark trousers",
+      "url": "https://oldschool.runescape.wiki/w/Dark_trousers",
+      "description": "Dark tuxedo trousers with white stockings.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Dark tuxedo cuffs",
+      "url": "https://oldschool.runescape.wiki/w/Dark_tuxedo_cuffs",
+      "description": "Linked tuxedo cuffs with a dark trim.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Dark tuxedo jacket",
+      "url": "https://oldschool.runescape.wiki/w/Dark_tuxedo_jacket",
+      "description": "A dark tuxedo jacket with a white shirt.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Dark tuxedo shoes",
+      "url": "https://oldschool.runescape.wiki/w/Dark_tuxedo_shoes",
+      "description": "Dark shoes to match your dark tuxedo.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Deerstalker",
+      "url": "https://oldschool.runescape.wiki/w/Deerstalker",
+      "description": "Elementary!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Dragon cane",
+      "url": "https://oldschool.runescape.wiki/w/Dragon_cane",
+      "description": "An onyx topped cane.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Dragon chainbody ornament kit",
+      "url": "https://oldschool.runescape.wiki/w/Dragon_chainbody_ornament_kit",
+      "description": "Use on a dragon chainbody to make it look fancier!",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Dragon full helm ornament kit",
+      "url": "https://oldschool.runescape.wiki/w/Dragon_full_helm_ornament_kit",
+      "description": "Use on a dragon full helm to make it look fancier!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Dragon legs/skirt ornament kit",
+      "url": "https://oldschool.runescape.wiki/w/Dragon_legs%2Fskirt_ornament_kit",
+      "description": "Use on dragon platelegs or plateskirt to make them look fancier!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Dragon scimitar ornament kit",
+      "url": "https://oldschool.runescape.wiki/w/Dragon_scimitar_ornament_kit",
+      "description": "Use on the dragon scimitar to trim it with gold.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Dragon sq shield ornament kit",
+      "url": "https://oldschool.runescape.wiki/w/Dragon_sq_shield_ornament_kit",
+      "description": "Use on a dragon square shield to make it look fancier!",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Fremennik kilt",
+      "url": "https://oldschool.runescape.wiki/w/Fremennik_kilt",
+      "description": "A kilt worn by the mightiest of Fremennik warriors.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Fury ornament kit",
+      "url": "https://oldschool.runescape.wiki/w/Fury_ornament_kit",
+      "description": "Use on an amulet of fury to make it look fancier!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Giant boot",
+      "url": "https://oldschool.runescape.wiki/w/Giant_boot",
+      "description": "Worn on head. Warning: Smelly.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded axe",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_axe",
+      "description": "A powerful axe.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded boots",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_boots",
+      "description": "Rune boots with gold plate.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded coif",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_coif",
+      "description": "Made with 100% golden dragonhide.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded d'hide body",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_d'hide_body",
+      "description": "Made with 100% golden dragonhide.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded d'hide chaps",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_d'hide_chaps",
+      "description": "Made with 100% golden dragonhide.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded d'hide vambraces",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_d'hide_vambraces",
+      "description": "Made with 100% golden dragonhide.",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded full helm",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_full_helm",
+      "description": "Rune full helmet with gold plate.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded kiteshield",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_kiteshield",
+      "description": "Rune kiteshield with gold plate.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded pickaxe",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_pickaxe",
+      "description": "Used for mining and very stylish.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded platebody",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_platebody",
+      "description": "Rune platebody with gold plate.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded platelegs",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_platelegs",
+      "description": "Rune platelegs with gold plate.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded plateskirt",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_plateskirt",
+      "description": "Rune plateskirt with gold plate.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded scimitar",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_scimitar",
+      "description": "Rune scimitar with gold plate.",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded spade",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_spade",
+      "description": "Oh, I'm a gold digger?",
+      "rarity": 4,
+      "type": "clue"
+    },
+    {
+      "name": "Heavy casket",
+      "url": "https://oldschool.runescape.wiki/w/Heavy_casket",
+      "description": "Full to the brim with loot... Where's that key gone?",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Holy wraps",
+      "url": "https://oldschool.runescape.wiki/w/Holy_wraps",
+      "description": "Holy handwear!",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Hosidius scarf",
+      "url": "https://oldschool.runescape.wiki/w/Hosidius_scarf",
+      "description": "A green scarf adorned with an ornamental leaf.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Iron dragon mask",
+      "url": "https://oldschool.runescape.wiki/w/Iron_dragon_mask",
+      "description": "Do I look scary?",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Katana",
+      "url": "https://oldschool.runescape.wiki/w/Katana",
+      "description": "Created by Hattori Hanzo in the Eastern Lands.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Lava dragon mask",
+      "url": "https://oldschool.runescape.wiki/w/Lava_dragon_mask",
+      "description": "Do I look scary?",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Light bow tie",
+      "url": "https://oldschool.runescape.wiki/w/Light_bow_tie",
+      "description": "Bow ties are cool.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Light infinity colour kit",
+      "url": "https://oldschool.runescape.wiki/w/Light_infinity_colour_kit",
+      "description": "Use on infinity pieces to recolour them!",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Light trousers",
+      "url": "https://oldschool.runescape.wiki/w/Light_trousers",
+      "description": "Light tuxedo trousers with matching stockings.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Light tuxedo cuffs",
+      "url": "https://oldschool.runescape.wiki/w/Light_tuxedo_cuffs",
+      "description": "Linked tuxedo cuffs with a gold trim.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Light tuxedo jacket",
+      "url": "https://oldschool.runescape.wiki/w/Light_tuxedo_jacket",
+      "description": "A light tuxedo jacket with a matching shirt.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Light tuxedo shoes",
+      "url": "https://oldschool.runescape.wiki/w/Light_tuxedo_shoes",
+      "description": "Light shoes to match your light tuxedo.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Lovakengj scarf",
+      "url": "https://oldschool.runescape.wiki/w/Lovakengj_scarf",
+      "description": "A yellow scarf adorned with an ornamental anvil.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Mithril dragon mask",
+      "url": "https://oldschool.runescape.wiki/w/Mithril_dragon_mask",
+      "description": "Do I look scary?",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Monocle",
+      "url": "https://oldschool.runescape.wiki/w/Monocle",
+      "description": "Hmm, shallow and pedantic.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Musketeer hat",
+      "url": "https://oldschool.runescape.wiki/w/Musketeer_hat",
+      "description": "Engarde!",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Musketeer pants",
+      "url": "https://oldschool.runescape.wiki/w/Musketeer_pants",
+      "description": "One for all!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Musketeer tabard",
+      "url": "https://oldschool.runescape.wiki/w/Musketeer_tabard",
+      "description": "All for one!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Piscarilius scarf",
+      "url": "https://oldschool.runescape.wiki/w/Piscarilius_scarf",
+      "description": "A blue scarf adorned with a sea shell.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Ranger gloves",
+      "url": "https://oldschool.runescape.wiki/w/Ranger_gloves",
+      "description": "Lightweight gloves ideal for rangers.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Rangers' tights",
+      "url": "https://oldschool.runescape.wiki/w/Rangers'_tights",
+      "description": "Lightweight legwear ideal for rangers.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Rangers' tunic",
+      "url": "https://oldschool.runescape.wiki/w/Rangers'_tunic",
+      "description": "Lightweight body armour ideal for rangers.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Ring of nature",
+      "url": "https://oldschool.runescape.wiki/w/Ring_of_nature",
+      "description": "A ring shaped like the nature rune symbol.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Royal crown",
+      "url": "https://oldschool.runescape.wiki/w/Royal_crown",
+      "description": "Who said I'd never be royal?",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Royal gown bottom",
+      "url": "https://oldschool.runescape.wiki/w/Royal_gown_bottom",
+      "description": "Feeling distinctly ornate.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Royal gown top",
+      "url": "https://oldschool.runescape.wiki/w/Royal_gown_top",
+      "description": "Feeling distinctly ornate.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Royal sceptre",
+      "url": "https://oldschool.runescape.wiki/w/Royal_sceptre",
+      "description": "I dub thee...",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Rune dragon mask",
+      "url": "https://oldschool.runescape.wiki/w/Rune_dragon_mask",
+      "description": "Do I look scary?",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Sagacious spectacles",
+      "url": "https://oldschool.runescape.wiki/w/Sagacious_spectacles",
+      "description": "Do they make me look... old?",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Shayzien scarf",
+      "url": "https://oldschool.runescape.wiki/w/Shayzien_scarf",
+      "description": "A red scarf adorned with a skull.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Steel dragon mask",
+      "url": "https://oldschool.runescape.wiki/w/Steel_dragon_mask",
+      "description": "Do I look scary?",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Top hat",
+      "url": "https://oldschool.runescape.wiki/w/Top_hat",
+      "description": "Aint no rabbits in this hat.{{sic",
+      "rarity": 5,
+      "type": "clue"
+    },
+    {
+      "name": "Uri's hat",
+      "url": "https://oldschool.runescape.wiki/w/Uri's_hat",
+      "description": "This is top secret comrade...",
+      "rarity": 0,
+      "type": "clue"
+    }
+  ],
+  "Master": [
+    {
+      "name": "3rd age amulet",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_amulet",
+      "description": "Fabulously ancient mage protection enchanted in the 3rd Age.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age axe",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_axe",
+      "description": "A beautifully crafted axe, shaped by ancient smiths.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age bow",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_bow",
+      "description": "A beautifully crafted bow carved by ancient archers.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age cloak",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_cloak",
+      "description": "A beautiful cloak woven by ancient tailors.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age druidic cloak",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_druidic_cloak",
+      "description": "A fabulously ancient vine cloak as worn by the druids of old.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age druidic robe bottoms",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_druidic_robe_bottoms",
+      "description": "A fabulously ancient woven robe as worn by the druids of old.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age druidic robe top",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_druidic_robe_top",
+      "description": "A fabulously ancient woven robe top as worn by the druids of old.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age druidic staff",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_druidic_staff",
+      "description": "A fabulously ancient gnarled staff as used by the druids of old.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age full helmet",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_full_helmet",
+      "description": "Fabulously ancient armour beaten from magical silver.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age kiteshield",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_kiteshield",
+      "description": "Fabulously ancient armour beaten from magical silver.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age longsword",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_longsword",
+      "description": "A beautifully crafted sword forged by ancient blacksmiths.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age mage hat",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_mage_hat",
+      "description": "Fabulously ancient mage protection enchanted in the 3rd Age.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age pickaxe",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_pickaxe",
+      "description": "A beautifully crafted pickaxe, shaped by ancient smiths.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age platebody",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_platebody",
+      "description": "Fabulously ancient armour beaten from magical silver.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age platelegs",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_platelegs",
+      "description": "Fabulously ancient armour beaten from magical silver.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age plateskirt",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_plateskirt",
+      "description": "Fabulously ancient armour beaten from magical silver.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age range coif",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_range_coif",
+      "description": "Fabulously ancient range protection crafted from white dragonhide.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age range legs",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_range_legs",
+      "description": "Fabulously ancient range protection crafted from white dragonhide.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age range top",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_range_top",
+      "description": "Fabulously ancient range protection crafted from white dragonhide.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age robe",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_robe",
+      "description": "Fabulously ancient mage protection enchanted in the 3rd Age.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age robe top",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_robe_top",
+      "description": "Fabulously ancient mage protection enchanted in the 3rd Age.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age vambraces",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_vambraces",
+      "description": "Fabulously ancient range protection crafted from white dragonhide.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "3rd age wand",
+      "url": "https://oldschool.runescape.wiki/w/3rd_age_wand",
+      "description": "A beautifully crafted wand infused by ancient wizards.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "Ale of the gods",
+      "url": "https://oldschool.runescape.wiki/w/Ale_of_the_gods",
+      "description": "Ale of the gods.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "Anguish ornament kit",
+      "url": "https://oldschool.runescape.wiki/w/Anguish_ornament_kit",
+      "description": "Use on a necklace of anguish to make it look fancier!",
+      "rarity": 4,
+      "type": "clue"
+    },
+    {
+      "name": "Ankou gloves",
+      "url": "https://oldschool.runescape.wiki/w/Ankou_gloves",
+      "description": "These gloves will make your flesh transparent.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Ankou mask",
+      "url": "https://oldschool.runescape.wiki/w/Ankou_mask",
+      "description": "This mask will make your flesh transparent.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Ankou socks",
+      "url": "https://oldschool.runescape.wiki/w/Ankou_socks",
+      "description": "These socks will make your flesh transparent.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Ankou top",
+      "url": "https://oldschool.runescape.wiki/w/Ankou_top",
+      "description": "This top will make your flesh transparent.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Ankou's leggings",
+      "url": "https://oldschool.runescape.wiki/w/Ankou's_leggings",
+      "description": "These leggings will make your flesh transparent.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Arceuus hood",
+      "url": "https://oldschool.runescape.wiki/w/Arceuus_hood",
+      "description": "A rare hood from Arceuus.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Armadyl godsword ornament kit",
+      "url": "https://oldschool.runescape.wiki/w/Armadyl_godsword_ornament_kit",
+      "description": "Use on an Armadyl godsword to make it look fancier!",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Bandos godsword ornament kit",
+      "url": "https://oldschool.runescape.wiki/w/Bandos_godsword_ornament_kit",
+      "description": "Use on a Bandos godsword to make it look fancier!",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Black demon mask",
+      "url": "https://oldschool.runescape.wiki/w/Black_demon_mask",
+      "description": "Evil.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Bloodhound",
+      "url": "https://oldschool.runescape.wiki/w/Bloodhound",
+      "description": "Tracking down clues with logic and a pipe.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "Boots of darkness",
+      "url": "https://oldschool.runescape.wiki/w/Boots_of_darkness",
+      "description": "A dark power is woven into these boots.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Bowl wig",
+      "url": "https://oldschool.runescape.wiki/w/Bowl_wig",
+      "description": "The bowl wig.",
+      "rarity": 6,
+      "type": "clue"
+    },
+    {
+      "name": "Bucket helm (g)",
+      "url": "https://oldschool.runescape.wiki/w/Bucket_helm_(g)",
+      "description": "A helm made from a golden bucket.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Dragon defender ornament kit",
+      "url": "https://oldschool.runescape.wiki/w/Dragon_defender_ornament_kit",
+      "description": "Use on the dragon defender to trim it with gold.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Dragon kiteshield ornament kit",
+      "url": "https://oldschool.runescape.wiki/w/Dragon_kiteshield_ornament_kit",
+      "description": "Use on a dragon kiteshield to make it look fancier!",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Dragon platebody ornament kit",
+      "url": "https://oldschool.runescape.wiki/w/Dragon_platebody_ornament_kit",
+      "description": "Use on a dragon platebody to make it look fancier!",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Fancy tiara",
+      "url": "https://oldschool.runescape.wiki/w/Fancy_tiara",
+      "description": "Call me princess.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded boots",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_boots",
+      "description": "Rune boots with gold plate.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded full helm",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_full_helm",
+      "description": "Rune full helmet with gold plate.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded kiteshield",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_kiteshield",
+      "description": "Rune kiteshield with gold plate.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded platebody",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_platebody",
+      "description": "Rune platebody with gold plate.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded platelegs",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_platelegs",
+      "description": "Rune platelegs with gold plate.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded plateskirt",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_plateskirt",
+      "description": "Rune plateskirt with gold plate.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded scimitar",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_scimitar",
+      "description": "Rune scimitar with gold plate.",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Gilded spade",
+      "url": "https://oldschool.runescape.wiki/w/Gilded_spade",
+      "description": "Oh, I'm a gold digger?",
+      "rarity": 4,
+      "type": "clue"
+    },
+    {
+      "name": "Gloves of darkness",
+      "url": "https://oldschool.runescape.wiki/w/Gloves_of_darkness",
+      "description": "A dark power is woven into these gloves.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Greater demon mask",
+      "url": "https://oldschool.runescape.wiki/w/Greater_demon_mask",
+      "description": "Evil.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Half moon spectacles",
+      "url": "https://oldschool.runescape.wiki/w/Half_moon_spectacles",
+      "description": "The two halfs would surely make a full moon?",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Hood of darkness",
+      "url": "https://oldschool.runescape.wiki/w/Hood_of_darkness",
+      "description": "A dark power is woven into this hood.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Hosidius hood",
+      "url": "https://oldschool.runescape.wiki/w/Hosidius_hood",
+      "description": "A rare hood from Hosidius.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Jungle demon mask",
+      "url": "https://oldschool.runescape.wiki/w/Jungle_demon_mask",
+      "description": "A mask resembling a visage of a Greater Jungle demon.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Left eye patch",
+      "url": "https://oldschool.runescape.wiki/w/Left_eye_patch",
+      "description": "A black piece of cloth on a string.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Lesser demon mask",
+      "url": "https://oldschool.runescape.wiki/w/Lesser_demon_mask",
+      "description": "Evil.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Lovakengj hood",
+      "url": "https://oldschool.runescape.wiki/w/Lovakengj_hood",
+      "description": "A rare hood from Lovakengj.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Mummy's body",
+      "url": "https://oldschool.runescape.wiki/w/Mummy's_body",
+      "description": "A mummy's body.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Mummy's feet",
+      "url": "https://oldschool.runescape.wiki/w/Mummy's_feet",
+      "description": "A mummy's feet.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Mummy's hands",
+      "url": "https://oldschool.runescape.wiki/w/Mummy's_hands",
+      "description": "A mummy's hands.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Mummy's head",
+      "url": "https://oldschool.runescape.wiki/w/Mummy's_head",
+      "description": "A mummy's head.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Mummy's legs",
+      "url": "https://oldschool.runescape.wiki/w/Mummy's_legs",
+      "description": "A mummy's legs.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Obsidian cape (r)",
+      "url": "https://oldschool.runescape.wiki/w/Obsidian_cape_(r)",
+      "description": "A cape of woven obsidian plates.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Occult ornament kit",
+      "url": "https://oldschool.runescape.wiki/w/Occult_ornament_kit",
+      "description": "Use on an occult necklace to make it look fancier!",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Old demon mask",
+      "url": "https://oldschool.runescape.wiki/w/Old_demon_mask",
+      "description": "Lost in time.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Piscarilius hood",
+      "url": "https://oldschool.runescape.wiki/w/Piscarilius_hood",
+      "description": "A rare hood from Port Piscarilius.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Ring of coins",
+      "url": "https://oldschool.runescape.wiki/w/Ring_of_coins",
+      "description": "A valuable ring.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Robe bottom of darkness",
+      "url": "https://oldschool.runescape.wiki/w/Robe_bottom_of_darkness",
+      "description": "A dark power is woven into this robe bottom.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Robe top of darkness",
+      "url": "https://oldschool.runescape.wiki/w/Robe_top_of_darkness",
+      "description": "A dark power is woven into this robe top.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Samurai boots",
+      "url": "https://oldschool.runescape.wiki/w/Samurai_boots",
+      "description": "Armoured socks of the Samurai.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Samurai gloves",
+      "url": "https://oldschool.runescape.wiki/w/Samurai_gloves",
+      "description": "Armoured gloves of the Samurai.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Samurai greaves",
+      "url": "https://oldschool.runescape.wiki/w/Samurai_greaves",
+      "description": "Armoured greaves of the Samurai.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Samurai kasa",
+      "url": "https://oldschool.runescape.wiki/w/Samurai_kasa",
+      "description": "A conical hat.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Samurai shirt",
+      "url": "https://oldschool.runescape.wiki/w/Samurai_shirt",
+      "description": "A type of shirt worn by the Samurai.",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Saradomin godsword ornament kit",
+      "url": "https://oldschool.runescape.wiki/w/Saradomin_godsword_ornament_kit",
+      "description": "Use on a Saradomin godsword to make it look fancier!",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Scroll sack",
+      "url": "https://oldschool.runescape.wiki/w/Scroll_sack",
+      "description": "Gosh, you really seem to love clue scrolls.",
+      "rarity": 1,
+      "type": "clue"
+    },
+    {
+      "name": "Shayzien hood",
+      "url": "https://oldschool.runescape.wiki/w/Shayzien_hood",
+      "description": "A rare hood from Shayzien.",
+      "rarity": 0,
+      "type": "clue"
+    },
+    {
+      "name": "Tormented ornament kit",
+      "url": "https://oldschool.runescape.wiki/w/Tormented_ornament_kit",
+      "description": "Use on a tormented bracelet to make it look fancier!",
+      "rarity": 3,
+      "type": "clue"
+    },
+    {
+      "name": "Torture ornament kit",
+      "url": "https://oldschool.runescape.wiki/w/Torture_ornament_kit",
+      "description": "Use on an amulet of torture to make it look fancier!",
+      "rarity": 2,
+      "type": "clue"
+    },
+    {
+      "name": "Zamorak godsword ornament kit",
+      "url": "https://oldschool.runescape.wiki/w/Zamorak_godsword_ornament_kit",
+      "description": "Use on a Zamorak godsword to make it look fancier!",
+      "rarity": 1,
+      "type": "clue"
+    }
+  ]
+}

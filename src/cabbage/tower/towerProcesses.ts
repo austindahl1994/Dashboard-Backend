@@ -25,10 +25,11 @@ import {
   getCompletionCoins,
   getCompletionPackNames,
 } from "../cards/cardProcesses.ts";
-import { generatePacksAtomic, getCardInventory } from "../cards/mvc/cards.ts";
+import { generatePacksAtomic, getInventory } from "../cards/mvc/cards.ts";
 import { streamUpload } from "@/services/aws/s3.js";
 import { completionBroadcast } from "../../bot/broadcasts/completionBroadcast.js";
 import { towerCompletion } from "../../bot/embeds/cabbage/completion.js";
+import { processFloor24RewardNotification } from "../notifications/notificationProcess.ts";
 
 // Compare RSN with globalTowerData, will return either adventurer ID or false
 const comparePlayer = (
@@ -218,7 +219,7 @@ export const grantSourceRewardsForTowerEvent = async (
       `[tower-reward] rsn=${cabbageUser.rsn} packs=${packSummary} coins=+${coins}`,
     );
 
-    const inventory = await getCardInventory(cabbageUser.id);
+    const inventory = await getInventory(cabbageUser.id);
 
     if (cabbageUser.discord_id) {
       singleBroadcastSseEvent(cabbageUser.discord_id, "tower-reward", {
@@ -343,6 +344,13 @@ export const processManualTowerSubmission = async (
     const nextCurrentFloor = floorNumber + 1;
     await upsertAdventurerProgress(playerId, nextCurrentFloor, completionItem);
     updateAdventurerCacheProgress(playerId, nextCurrentFloor, completionItem);
+
+    await processFloor24RewardNotification({
+      cabbageId: playerId,
+      rsn: adventurer.rsn,
+      floorNumber,
+      discordId: payload.discordId ?? adventurer.discordId,
+    });
 
     const embed = towerCompletion(
       adventurer.rsn,
@@ -482,6 +490,14 @@ export const processNewFloorCompletion = async (
     const nextCurrentFloor = floorNumber + 1;
     await upsertAdventurerProgress(cabbageId, nextCurrentFloor, item);
     updateAdventurerCacheProgress(cabbageId, nextCurrentFloor, item);
+
+    await processFloor24RewardNotification({
+      cabbageId,
+      rsn,
+      floorNumber,
+      discordId,
+    });
+
     const embed = towerCompletion(
       rsn,
       floorNumber,

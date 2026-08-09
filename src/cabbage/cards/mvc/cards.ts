@@ -1,7 +1,7 @@
 import pool from "@/db/mysqlPool.js";
 import type {
   CardFinish,
-  CardInventory,
+  Inventory,
   CollectedCard,
   OpenedCard,
 } from "../cardTypes.js";
@@ -12,13 +12,35 @@ import {
   mapOpenedCardsForPersistence,
 } from "../cardProcesses.ts";
 
-export const ensureCardInventoryExists = async (
+type GiftRewardInput = {
+  coins?: number;
+  raffleTickets?: number;
+  packName?: string;
+  packQuantity?: number;
+};
+
+export type InventoryUpdatedSnapshot = {
+  cabbageId: number;
+  coins: number;
+  packCount: number;
+  raffleTickets: number;
+};
+
+const isMissingColumnError = (error: unknown, columnName: string): boolean => {
+  const mysqlError = error as { code?: string; sqlMessage?: string };
+  return (
+    mysqlError?.code === "ER_BAD_FIELD_ERROR" &&
+    (mysqlError?.sqlMessage ?? "").includes(columnName)
+  );
+};
+
+export const ensureInventoryExists = async (
   cabbageId: number,
 ): Promise<void> => {
   try {
     await pool.execute(
       `
-				INSERT INTO CardInventory (cabbage_id)
+				INSERT INTO Inventory (cabbage_id)
 				VALUES (?)
 				ON DUPLICATE KEY UPDATE cabbage_id = VALUES(cabbage_id)
 			`,
@@ -32,31 +54,55 @@ export const ensureCardInventoryExists = async (
   }
 };
 
-export const getCardInventory = async (
-  cabbageId: number,
-): Promise<CardInventory> => {
+export const getInventory = async (cabbageId: number): Promise<Inventory> => {
   try {
-    await ensureCardInventoryExists(cabbageId);
+    await ensureInventoryExists(cabbageId);
 
-    const [rows] = await pool.execute(
-      `
+    let rows: unknown;
+
+    try {
+      [rows] = await pool.execute(
+        `
 				SELECT
 					ci.cabbage_id AS cabbageId,
 					ci.coins AS coins,
+          ci.raffle_tickets AS raffleTickets,
 					cip.pack_name AS packName,
 					cip.quantity AS quantity
-				FROM CardInventory ci
-				LEFT JOIN CardInventoryPacks cip ON cip.cabbage_id = ci.cabbage_id
+				FROM Inventory ci
+        LEFT JOIN CardInventoryPacks cip ON cip.cabbage_id = ci.cabbage_id
 				WHERE ci.cabbage_id = ?
 				ORDER BY cip.pack_name ASC
 			`,
-      [cabbageId],
-    );
+        [cabbageId],
+      );
+    } catch (error) {
+      if (!isMissingColumnError(error, "raffle_tickets")) {
+        throw error;
+      }
+
+      [rows] = await pool.execute(
+        `
+				SELECT
+					ci.cabbage_id AS cabbageId,
+					ci.coins AS coins,
+					0 AS raffleTickets,
+					cip.pack_name AS packName,
+					cip.quantity AS quantity
+				FROM Inventory ci
+        LEFT JOIN CardInventoryPacks cip ON cip.cabbage_id = ci.cabbage_id
+				WHERE ci.cabbage_id = ?
+				ORDER BY cip.pack_name ASC
+			`,
+        [cabbageId],
+      );
+    }
 
     if (!Array.isArray(rows) || rows.length === 0) {
       return {
         cabbageId,
         coins: 0,
+        raffleTickets: 0,
         packs: [],
       };
     }
@@ -75,7 +121,7 @@ export const setInventoryCoins = async (
   try {
     await pool.execute(
       `
-				INSERT INTO CardInventory (cabbage_id, coins)
+				INSERT INTO Inventory (cabbage_id, coins)
 				VALUES (?, ?)
 				ON DUPLICATE KEY UPDATE coins = VALUES(coins)
 			`,
@@ -92,10 +138,10 @@ export const incrementInventoryCoins = async (
   coinDelta: number,
 ): Promise<void> => {
   try {
-    await ensureCardInventoryExists(cabbageId);
+    await ensureInventoryExists(cabbageId);
     await pool.execute(
       `
-				UPDATE CardInventory
+				UPDATE Inventory
 				SET coins = GREATEST(0, coins + ?)
 				WHERE cabbage_id = ?
 			`,
@@ -114,10 +160,10 @@ export const setPackQuantity = async (
 ): Promise<void> => {
   try {
     const canonicalPackName = resolvePackName(packName);
-    await ensureCardInventoryExists(cabbageId);
+    await ensureInventoryExists(cabbageId);
     await pool.execute(
       `
-				INSERT INTO CardInventoryPacks (cabbage_id, pack_name, quantity)
+        INSERT INTO CardInventoryPacks (cabbage_id, pack_name, quantity)
 				VALUES (?, ?, ?)
 				ON DUPLICATE KEY UPDATE quantity = VALUES(quantity)
 			`,
@@ -136,10 +182,10 @@ export const incrementPackQuantity = async (
 ): Promise<void> => {
   try {
     const canonicalPackName = resolvePackName(packName);
-    await ensureCardInventoryExists(cabbageId);
+    await ensureInventoryExists(cabbageId);
     await pool.execute(
       `
-				INSERT INTO CardInventoryPacks (cabbage_id, pack_name, quantity)
+        INSERT INTO CardInventoryPacks (cabbage_id, pack_name, quantity)
 				VALUES (?, ?, ?)
 				ON DUPLICATE KEY UPDATE quantity = GREATEST(0, quantity + VALUES(quantity))
 			`,
@@ -158,10 +204,10 @@ export const consumePack = async (
 ): Promise<void> => {
   try {
     const canonicalPackName = resolvePackName(packName);
-    await ensureCardInventoryExists(cabbageId);
+    await ensureInventoryExists(cabbageId);
     await pool.execute(
       `
-				UPDATE CardInventoryPacks
+        UPDATE CardInventoryPacks
 				SET quantity = GREATEST(0, quantity - ?)
 				WHERE cabbage_id = ? AND pack_name = ?
 			`,
@@ -169,6 +215,170 @@ export const consumePack = async (
     );
   } catch (error) {
     console.error(`There was an error consuming a pack: ${error}`);
+    throw error;
+  }
+};
+
+export const addGiftRewardsAtomic = async (
+  cabbageId: number,
+  rewards: GiftRewardInput,
+): Promise<void> => {
+  const connection = await pool.getConnection();
+
+  try {
+    const coinsToAdd = Math.max(0, Math.floor(rewards.coins ?? 0));
+    const raffleTicketsToAdd = Math.max(
+      0,
+      Math.floor(rewards.raffleTickets ?? 0),
+    );
+    const packQuantityToAdd = Math.max(
+      0,
+      Math.floor(rewards.packQuantity ?? 0),
+    );
+    const canonicalPackName = rewards.packName
+      ? resolvePackName(rewards.packName)
+      : null;
+
+    await connection.beginTransaction();
+
+    await connection.execute(
+      `
+        INSERT INTO Inventory (cabbage_id)
+        VALUES (?)
+        ON DUPLICATE KEY UPDATE cabbage_id = VALUES(cabbage_id)
+      `,
+      [cabbageId],
+    );
+
+    if (coinsToAdd > 0) {
+      await connection.execute(
+        `
+          UPDATE Inventory
+          SET coins = GREATEST(0, coins + ?)
+          WHERE cabbage_id = ?
+        `,
+        [coinsToAdd, cabbageId],
+      );
+    }
+
+    if (raffleTicketsToAdd > 0) {
+      try {
+        await connection.execute(
+          `
+            UPDATE Inventory
+            SET raffle_tickets = GREATEST(0, raffle_tickets + ?)
+            WHERE cabbage_id = ?
+          `,
+          [raffleTicketsToAdd, cabbageId],
+        );
+      } catch (error) {
+        if (!isMissingColumnError(error, "raffle_tickets")) {
+          throw error;
+        }
+      }
+    }
+
+    if (canonicalPackName && packQuantityToAdd > 0) {
+      await connection.execute(
+        `
+          INSERT INTO CardInventoryPacks (cabbage_id, pack_name, quantity)
+          VALUES (?, ?, ?)
+          ON DUPLICATE KEY UPDATE quantity = GREATEST(0, quantity + VALUES(quantity))
+        `,
+        [cabbageId, canonicalPackName, packQuantityToAdd],
+      );
+    }
+
+    await connection.commit();
+  } catch (error) {
+    await connection.rollback();
+    console.error(
+      `There was an error adding gift rewards atomically: ${error}`,
+    );
+    throw error;
+  } finally {
+    connection.release();
+  }
+};
+
+export const getInventoryUpdatedSnapshot = async (
+  cabbageId: number,
+): Promise<InventoryUpdatedSnapshot> => {
+  try {
+    await ensureInventoryExists(cabbageId);
+
+    let coins = 0;
+    let raffleTickets = 0;
+
+    try {
+      const [resourceRows] = await pool.execute(
+        `
+          SELECT
+            coins,
+            raffle_tickets AS raffleTickets
+          FROM Inventory
+          WHERE cabbage_id = ?
+          LIMIT 1
+        `,
+        [cabbageId],
+      );
+
+      if (Array.isArray(resourceRows) && resourceRows.length > 0) {
+        const row = resourceRows[0] as {
+          coins?: number;
+          raffleTickets?: number;
+        };
+        coins = Number(row.coins ?? 0);
+        raffleTickets = Number(row.raffleTickets ?? 0);
+      }
+    } catch (error) {
+      if (!isMissingColumnError(error, "raffle_tickets")) {
+        throw error;
+      }
+
+      const [resourceRowsFallback] = await pool.execute(
+        `
+          SELECT coins
+          FROM Inventory
+          WHERE cabbage_id = ?
+          LIMIT 1
+        `,
+        [cabbageId],
+      );
+
+      if (
+        Array.isArray(resourceRowsFallback) &&
+        resourceRowsFallback.length > 0
+      ) {
+        const row = resourceRowsFallback[0] as { coins?: number };
+        coins = Number(row.coins ?? 0);
+      }
+    }
+
+    const [packRows] = await pool.execute(
+      `
+        SELECT COALESCE(SUM(quantity), 0) AS packCount
+        FROM CardInventoryPacks
+        WHERE cabbage_id = ?
+      `,
+      [cabbageId],
+    );
+
+    const packCount =
+      Array.isArray(packRows) && packRows.length > 0
+        ? Number((packRows[0] as { packCount?: number }).packCount ?? 0)
+        : 0;
+
+    return {
+      cabbageId,
+      coins,
+      packCount,
+      raffleTickets,
+    };
+  } catch (error) {
+    console.error(
+      `There was an error getting inventory.updated snapshot: ${error}`,
+    );
     throw error;
   }
 };
@@ -320,7 +530,7 @@ export const buyPacksAtomic = async (
 
     await connection.execute(
       `
-				INSERT INTO CardInventory (cabbage_id)
+				INSERT INTO Inventory (cabbage_id)
 				VALUES (?)
 				ON DUPLICATE KEY UPDATE cabbage_id = VALUES(cabbage_id)
 			`,
@@ -330,7 +540,7 @@ export const buyPacksAtomic = async (
     const [coinRows] = await connection.execute(
       `
 				SELECT coins
-				FROM CardInventory
+				FROM Inventory
 				WHERE cabbage_id = ?
 				FOR UPDATE
 			`,
@@ -349,7 +559,7 @@ export const buyPacksAtomic = async (
 
     await connection.execute(
       `
-				UPDATE CardInventory
+				UPDATE Inventory
 				SET coins = coins - ?
 				WHERE cabbage_id = ?
 			`,
@@ -358,7 +568,7 @@ export const buyPacksAtomic = async (
 
     await connection.execute(
       `
-				INSERT INTO CardInventoryPacks (cabbage_id, pack_name, quantity)
+        INSERT INTO CardInventoryPacks (cabbage_id, pack_name, quantity)
 				VALUES (?, ?, ?)
 				ON DUPLICATE KEY UPDATE quantity = GREATEST(0, quantity + VALUES(quantity))
 			`,
@@ -393,7 +603,7 @@ export const openPacksAtomic = async (
 
     await connection.execute(
       `
-				INSERT INTO CardInventory (cabbage_id)
+				INSERT INTO Inventory (cabbage_id)
 				VALUES (?)
 				ON DUPLICATE KEY UPDATE cabbage_id = VALUES(cabbage_id)
 			`,
@@ -402,7 +612,7 @@ export const openPacksAtomic = async (
 
     await connection.execute(
       `
-				INSERT INTO CardInventoryPacks (cabbage_id, pack_name, quantity)
+        INSERT INTO CardInventoryPacks (cabbage_id, pack_name, quantity)
 				VALUES (?, ?, 0)
 				ON DUPLICATE KEY UPDATE pack_name = VALUES(pack_name)
 			`,
@@ -412,7 +622,7 @@ export const openPacksAtomic = async (
     const [packRows] = await connection.execute(
       `
 				SELECT quantity
-				FROM CardInventoryPacks
+        FROM CardInventoryPacks
 				WHERE cabbage_id = ? AND pack_name = ?
 				FOR UPDATE
 			`,
@@ -431,7 +641,7 @@ export const openPacksAtomic = async (
 
     await connection.execute(
       `
-				UPDATE CardInventoryPacks
+        UPDATE CardInventoryPacks
 				SET quantity = GREATEST(0, quantity - ?)
 				WHERE cabbage_id = ? AND pack_name = ?
 			`,
@@ -499,7 +709,7 @@ export const generatePacksAtomic = async (
 
     await connection.execute(
       `
-				INSERT INTO CardInventory (cabbage_id)
+				INSERT INTO Inventory (cabbage_id)
 				VALUES (?)
 				ON DUPLICATE KEY UPDATE cabbage_id = VALUES(cabbage_id)
 			`,
@@ -509,7 +719,7 @@ export const generatePacksAtomic = async (
     if (normalizedCoinsToAdd > 0) {
       await connection.execute(
         `
-				UPDATE CardInventory
+				UPDATE Inventory
 				SET coins = GREATEST(0, coins + ?)
 				WHERE cabbage_id = ?
 			`,
@@ -537,7 +747,7 @@ export const generatePacksAtomic = async (
 
       await connection.execute(
         `
-				INSERT INTO CardInventoryPacks (cabbage_id, pack_name, quantity)
+        INSERT INTO CardInventoryPacks (cabbage_id, pack_name, quantity)
 				VALUES ${placeholders}
 				ON DUPLICATE KEY UPDATE quantity = GREATEST(0, quantity + VALUES(quantity))
 			`,
@@ -557,7 +767,7 @@ export const generatePacksAtomic = async (
 };
 
 /**
- * CREATE TABLE CardInventory (cabbage_id INT PRIMARY KEY, coins INT NOT NULL DEFAULT 0, FOREIGN KEY (cabbage_id) REFERENCES CabbageUsers(id) ON DELETE CASCADE);
+ * CREATE TABLE Inventory (cabbage_id INT PRIMARY KEY, coins INT NOT NULL DEFAULT 0, FOREIGN KEY (cabbage_id) REFERENCES CabbageUsers(id) ON DELETE CASCADE);
  * CREATE TABLE CardInventoryPacks (id INT AUTO_INCREMENT PRIMARY KEY, cabbage_id INT NOT NULL, pack_name VARCHAR(255) NOT NULL, quantity INT NOT NULL DEFAULT 0, UNIQUE KEY uq_card_inventory_pack (cabbage_id, pack_name), FOREIGN KEY (cabbage_id) REFERENCES CabbageUsers(id) ON DELETE CASCADE);
  * CREATE TABLE CardCollection (id INT AUTO_INCREMENT PRIMARY KEY, cabbage_id INT NOT NULL, card_name VARCHAR(255) NOT NULL, quantity INT NOT NULL DEFAULT 0, shiny_quantity INT NOT NULL DEFAULT 0, negative_quantity INT NOT NULL DEFAULT 0, last_obtained_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP, UNIQUE KEY uq_card_collection_card (cabbage_id, card_name), FOREIGN KEY (cabbage_id) REFERENCES CabbageUsers(id) ON DELETE CASCADE);
  */

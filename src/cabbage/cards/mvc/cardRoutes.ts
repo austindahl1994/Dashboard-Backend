@@ -6,7 +6,7 @@ import * as cc from "./cardController.ts";
 const router = express.Router();
 
 // route for getting data for player for inventory, packs quantity for player, and pack cost
-router.get("/inventory", cabbageMiddleware, cc.getCardInventoryData);
+router.get("/inventory", cabbageMiddleware, cc.getInventoryData);
 
 // route for getting the entire collection for that player
 router.get("/collection", cabbageMiddleware, cc.getPlayerCollection);

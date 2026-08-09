@@ -60,7 +60,7 @@ type PackDataFile = {
 
 import type {
   CardFinish,
-  CardInventory,
+  Inventory,
   CollectedCard,
   OpenedCard,
   PackCard,
@@ -68,9 +68,10 @@ import type {
   Packs,
 } from "./cardTypes.js";
 
-type CardInventoryRow = {
+type InventoryRow = {
   cabbageId: number;
   coins: number;
+  raffleTickets?: number | null;
   packName: string | null;
   quantity: number | null;
 };
@@ -275,12 +276,13 @@ export const getRemainingCoinsAfterPurchase = (
   return Math.max(0, currentCoins - getPackPurchaseCost(packName, quantity));
 };
 
-export const mapInventoryRows = (rows: CardInventoryRow[]): CardInventory => {
+export const mapInventoryRows = (rows: InventoryRow[]): Inventory => {
   const baseRow = rows[0];
 
   return {
     cabbageId: Number(baseRow?.cabbageId ?? 0),
     coins: Number(baseRow?.coins ?? 0),
+    raffleTickets: Number(baseRow?.raffleTickets ?? 0),
     packs: rows
       .filter((row) => row.packName)
       .map((row) => ({

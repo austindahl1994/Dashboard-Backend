@@ -11,21 +11,12 @@ import {
 import {
   buyPacksAtomic,
   getCardCollection,
-  getCardInventory,
+  getInventory,
   openPacksAtomic,
 } from "./cards.ts";
+import { getCabbageIdFromRequest, sendError } from "@/cabbageUtilities.ts";
 
 const PACK_QUANTITIES = new Set([1, 5, 10]);
-
-const getCabbageIdFromRequest = (req: CabbageRequest): number | null => {
-  const discordId = req.cabbage?.discord_id;
-
-  if (!discordId) {
-    return null;
-  }
-
-  return cabbageUsersByDiscordID.get(discordId)?.id ?? null;
-};
 
 const parseQuantity = (rawValue: unknown, fallback = 1): number => {
   if (typeof rawValue === "number") {
@@ -43,31 +34,15 @@ const validatePackQuantity = (quantity: number): boolean => {
   return PACK_QUANTITIES.has(quantity);
 };
 
-const sendError = (
-  res: Response,
-  status: number,
-  message: string,
-  details?: unknown,
-) => {
-  return res.status(status).json({
-    message,
-    error: message,
-    ...(details ? { details } : {}),
-  });
-};
-
 // Controller for getting data for player for inventory, packs quantity, and pack costs, this is all pulled from CardWrapper on frontend
-export const getCardInventoryData = async (
-  req: CabbageRequest,
-  res: Response,
-) => {
+export const getInventoryData = async (req: CabbageRequest, res: Response) => {
   try {
     const cabbageId = getCabbageIdFromRequest(req);
     if (!cabbageId) {
       return sendError(res, 401, "Unauthorized");
     }
 
-    const inventory = await getCardInventory(cabbageId);
+    const inventory = await getInventory(cabbageId);
     const packCosts = getAllPackCosts();
 
     return res.json({ inventory, packCosts });
@@ -136,7 +111,7 @@ export const buyPacks = async (req: CabbageRequest, res: Response) => {
       `[cards-buy] rsn=${buyUser?.rsn ?? "unknown"} bought ${quantity}x ${packName}`,
     );
 
-    const updatedInventory = await getCardInventory(cabbageId);
+    const updatedInventory = await getInventory(cabbageId);
     return res.json({
       purchased: {
         packName,
@@ -208,7 +183,7 @@ export const openPacks = async (req: CabbageRequest, res: Response) => {
       `[cards-open] rsn=${openUser?.rsn ?? "unknown"} opened ${quantity}x ${packName} cards=${firstPackCardSummary}${extraCardsCount > 0 ? ` | extraCards=${extraCardsCount}` : ""}`,
     );
 
-    const updatedInventory = await getCardInventory(cabbageId);
+    const updatedInventory = await getInventory(cabbageId);
 
     return res.json({
       packName,

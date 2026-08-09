@@ -27,9 +27,10 @@ export interface PackInventoryQuantity {
   quantity: number;
 }
 
-export interface CardInventory {
+export interface Inventory {
   cabbageId: number;
   coins: number;
+  raffleTickets: number;
   packs: PackInventoryQuantity[];
 }
 

@@ -7,7 +7,7 @@ export let cabbageUsersByDiscordID = new Map<string, CabbageUser>();
 export let cabbageUsersByRSN = new Map<string, CabbageUser>();
 
 export const CABBAGE_DATASET_VERSIONS: Record<string, number> = {
-  "Boss.v1.json": 1,
+  "Boss.v1.json": 2,
   "Clue.v1.json": 1,
   "Monster.v1.json": 1,
   "Npc.v1.json": 1,

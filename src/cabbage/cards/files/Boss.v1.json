@@ -15439,6 +15439,203 @@
     ],
     "rarity": 2
   },
+  "Mad Angel": {
+    "region": "Misthalin",
+    "url": "https://oldschool.runescape.wiki/w/Mad_Angel",
+    "description": "O Lord, she approaches!",
+    "items": [
+      {
+        "name": "Granite dust",
+        "rarity": 1,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Granite_dust",
+        "description": "Granite, in fine form."
+      },
+      {
+        "name": "Ardeaglais teleport",
+        "rarity": 4,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/images/Ardeaglais_teleport_detail.png?efa55",
+        "description": "When she says her parents aren't home."
+      },
+      {
+        "name": "Hallowfell",
+        "rarity": 6,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/images/Hallowfell_detail.png?7f58d",
+        "description": "This really fells my hallow."
+      },
+      {
+        "name": "Jar of Light",
+        "rarity": 5,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/images/Jar_of_Light_detail.png?efa55",
+        "description": "A bottle filled with Piss."
+      },
+      {
+        "name": "Rune kiteshield",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Rune_kiteshield",
+        "description": "A large metal shield."
+      },
+      {
+        "name": "Rune full helm",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Rune_full_helm",
+        "description": "A full face helmet."
+      },
+      {
+        "name": "Adamant longsword",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Adamant_longsword",
+        "description": "A razor sharp longsword."
+      },
+      {
+        "name": "Dragon med helm",
+        "rarity": 1,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Dragon_med_helm",
+        "description": "Makes the wearer pretty intimidating."
+      },
+      {
+        "name": "Dragon battleaxe",
+        "rarity": 2,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Dragon_battleaxe",
+        "description": "A vicious looking axe."
+      },
+      {
+        "name": "Steel cannonball",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Steel_cannonball",
+        "description": "Ammo suited for a boat's cannon or for a dwarf multicannon."
+      },
+      {
+        "name": "Law rune",
+        "rarity": 1,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Law_rune",
+        "description": "Used for teleport spells."
+      },
+      {
+        "name": "Nature rune",
+        "rarity": 1,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Nature_rune",
+        "description": "Used for alchemy spells."
+      },
+      {
+        "name": "Death rune",
+        "rarity": 1,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Death_rune",
+        "description": "Used for medium level missile spells."
+      },
+      {
+        "name": "Air rune",
+        "rarity": 1,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Air_rune",
+        "description": "One of the 4 basic elemental Runes."
+      },
+      {
+        "name": "Prayer potion(2)",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Prayer_potion(2)",
+        "description": "Prayer potion(2) item."
+      },
+      {
+        "name": "Super combat potion(1)",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Super_combat_potion(1)",
+        "description": "Super combat potion(1) item."
+      },
+      {
+        "name": "Shark",
+        "rarity": 2,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Shark",
+        "description": "I'd better be careful eating this."
+      },
+      {
+        "name": "Yellowfin",
+        "rarity": 4,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/images/Yellowfin_detail.png?81071",
+        "description": "Aggy pissed on this fish."
+      },
+      {
+        "name": "Prayer potion(4)",
+        "rarity": 4,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Prayer_potion(4)",
+        "description": "Prayer potion(4) item."
+      },
+      {
+        "name": "Super combat potion(3)",
+        "rarity": 3,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/images/Super_combat_potion%283%29_detail.png?8ee49",
+        "description": "3 doses of super combat potion."
+      },
+      {
+        "name": "Coins",
+        "rarity": 5,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Coins",
+        "description": "Lovely money!"
+      },
+      {
+        "name": "Raw monkfish",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Raw_monkfish",
+        "description": "I should try cooking this."
+      },
+      {
+        "name": "Emerald",
+        "rarity": 1,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Emerald",
+        "description": "This looks valuable."
+      },
+      {
+        "name": "Sapphire",
+        "rarity": 1,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/w/Sapphire",
+        "description": "This looks valuable."
+      },
+      {
+        "name": "Cupronickel bar",
+        "rarity": 2,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/images/Cupronickel_bar_detail.png?ff6cc",
+        "description": "It's a bar of cupronickel dumbass."
+      },
+      {
+        "name": "Papyrus",
+        "rarity": 0,
+        "type": "drops",
+        "url": "https://oldschool.runescape.wiki/images/Papyrus_detail.png?18b75",
+        "description": "Used for making notes."
+      },
+      {
+        "name": "Aggy",
+        "rarity": 6,
+        "type": "pet",
+        "url": "https://oldschool.runescape.wiki/images/Aggy_%28follower%29.png?4e394",
+        "description": "A cute angel."
+      }
+    ],
+    "rarity": 5
+  },
   "Zulrah": {
     "region": "Tirannwn",
     "url": "https://oldschool.runescape.wiki/w/Zulrah",

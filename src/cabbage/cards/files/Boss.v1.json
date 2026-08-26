@@ -5968,7 +5968,7 @@
       {
         "name": "Giant egg sac",
         "rarity": 2,
-        "type": "unique",
+        "type": "drops",
         "url": "https://oldschool.runescape.wiki/w/Giant_egg_sac",
         "description": "A giant sac of red spider eggs, hopefully none of them hatch."
       },
@@ -11567,7 +11567,7 @@
       {
         "name": "Frozen tear",
         "rarity": 1,
-        "type": "unique",
+        "type": "drops",
         "url": "https://oldschool.runescape.wiki/w/Frozen_tear",
         "description": "A strange glowing tear."
       },
@@ -11609,7 +11609,7 @@
       {
         "name": "Pendant of ates (inert)",
         "rarity": 0,
-        "type": "unique",
+        "type": "drops",
         "url": "https://oldschool.runescape.wiki/w/Pendant_of_ates_(inert)",
         "description": "Pendant of ates (inert) item."
       },

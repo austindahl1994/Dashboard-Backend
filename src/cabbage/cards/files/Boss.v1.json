@@ -15461,14 +15461,14 @@
       {
         "name": "Hallowfell",
         "rarity": 6,
-        "type": "drops",
+        "type": "unique",
         "url": "https://oldschool.runescape.wiki/images/Hallowfell_detail.png?7f58d",
         "description": "This really fells my hallow."
       },
       {
         "name": "Jar of Light",
         "rarity": 5,
-        "type": "drops",
+        "type": "unique",
         "url": "https://oldschool.runescape.wiki/images/Jar_of_Light_detail.png?efa55",
         "description": "A bottle filled with Piss."
       },

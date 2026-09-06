@@ -54,7 +54,7 @@ export const towerDinkData = async (req: Request, res: Response) => {
       );
     }
 
-    await checkCompletion(image, mimetype, parsedData);
+    // await checkCompletion(image, mimetype, parsedData);
     res.sendStatus(200);
   } catch (error) {
     console.error(`Error processing tower dink data: ${error}`);
@@ -116,17 +116,17 @@ export const manualSubmission = async (req: Request, res: Response) => {
       throw new Error("Missing RSN in manual submission payload.");
     }
 
-    await processManualTowerSubmission(image, mimetype, {
-      rsn,
-      discordId,
-      item: parsedData.item,
-      floor:
-        typeof parsedData.floor === "number"
-          ? parsedData.floor
-          : parsedData.floor === "number"
-            ? Number(parsedData.floor)
-            : undefined,
-    });
+    // await processManualTowerSubmission(image, mimetype, {
+    //   rsn,
+    //   discordId,
+    //   item: parsedData.item,
+    //   floor:
+    //     typeof parsedData.floor === "number"
+    //       ? parsedData.floor
+    //       : parsedData.floor === "number"
+    //         ? Number(parsedData.floor)
+    //         : undefined,
+    // });
 
     res.sendStatus(200);
   } catch (error) {

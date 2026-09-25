@@ -2,6 +2,7 @@
 import { uploadImage } from "@/middleware/multerMiddleware.js";
 import express from "express";
 import battleshipRoutes from "../../battleship/mvc/battleshipRoutes.ts";
+import bingoRoutes from "../../bingo/mvc/bingoRoutes.ts";
 import cardRoutes from "../../cards/mvc/cardRoutes.ts";
 import towerRoutes from "../../tower/mvc/towerRoutes.ts";
 import notificationRoutes from "../../notifications/mvc/notificationsRoutes.ts";
@@ -12,6 +13,7 @@ const router = express.Router();
 router.use("/notifications", notificationRoutes);
 router.use("/tower", towerRoutes);
 router.use("/battleship", battleshipRoutes);
+router.use("/bingo", bingoRoutes);
 router.use("/cards", cardRoutes);
 router.get("/check-session", cc.checkSession);
 router.get("/datasets/versions", cc.getCabbageDatasetVersions);

@@ -4,6 +4,8 @@ import { client } from "../../bot/mainBot.js";
 export const postToDiscordChannel = async (
   channelId: string,
   embed: DiscordEmbed,
+  content?: string,
+  mentionUserIds?: string[],
 ): Promise<void> => {
   try {
     const channel = await client.channels.fetch(channelId);
@@ -12,7 +14,11 @@ export const postToDiscordChannel = async (
         `Channel with ID ${channelId} is not a sendable text channel`,
       );
     }
-    await channel.send({ embeds: [embed] });
+    await channel.send({
+      embeds: [embed],
+      ...(content ? { content } : {}),
+      allowedMentions: { users: mentionUserIds ?? [] },
+    });
   } catch (error) {
     console.error(
       `Failed to post message to Discord channel ${channelId}:`,

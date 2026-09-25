@@ -4,6 +4,7 @@ import { getCabbageIdFromRequest, sendError } from "@/cabbageUtilities.ts";
 import {
   BINGO_SIGNUP_STATUSES,
   createBingoSignup,
+  deleteBingoSignup,
   getAllBingoSignups,
   getBingoParticipants,
   getBingoSignupByCabbageId,
@@ -14,6 +15,7 @@ import {
 } from "./bingo.ts";
 import { fetchOsrsHiscores, normalizeRsn } from "@/services/osrs/hiscores.ts";
 import { notifyBingoSignup } from "./bingoNotifications.ts";
+import { displayTime } from "@/Utilities.js";
 
 const MAX_RSN_LENGTH = 12;
 const MAX_COVERED_PLAYERS = 50;
@@ -128,6 +130,11 @@ const validateSignupBody = (body: unknown): SignupValidation => {
 const isDuplicateEntryError = (error: unknown): boolean =>
   (error as { code?: string })?.code === "ER_DUP_ENTRY";
 
+// The Discord username rides along on the cabbage JWT; the cabbage id is only a fallback.
+const describeModerator = (req: CabbageRequest): string =>
+  req.cabbage?.discord_username ??
+  `cabbage id ${getCabbageIdFromRequest(req) ?? "unknown"}`;
+
 export const submitBingoSignup = async (req: CabbageRequest, res: Response) => {
   try {
     const cabbageId = getCabbageIdFromRequest(req);
@@ -235,11 +242,63 @@ export const setBingoSignupStatus = async (
       return sendError(res, 404, "Bingo signup not found");
     }
 
+    displayTime();
+    console.log(
+      `Bingo: ${describeModerator(req)} changed status for "${result.signup.rsn}" (signup ${result.signup.id}): ${result.previousStatus} -> ${result.signup.status}`,
+    );
+
+    if (result.cascaded.length > 0) {
+      console.log(
+        `Bingo: cascaded status "${result.signup.status}" to ${result.cascaded.length} covered player(s): ${result.cascaded
+          .map((entry) => entry.rsn)
+          .join(", ")}`,
+      );
+    }
+
     return res
       .status(200)
       .json({ signup: result.signup, cascaded: result.cascaded });
   } catch (error) {
     console.error(`Error updating bingo signup status: ${error}`);
+    return sendError(res, 500, "Internal server error");
+  }
+};
+
+export const removeBingoSignup = async (req: CabbageRequest, res: Response) => {
+  try {
+    const signupId = Number(req.params.id);
+
+    if (!Number.isSafeInteger(signupId) || signupId <= 0) {
+      return sendError(res, 400, "Invalid signup id");
+    }
+
+    const result = await deleteBingoSignup(signupId);
+
+    if (!result) {
+      return sendError(res, 404, "Bingo signup not found");
+    }
+
+    displayTime();
+    console.log(
+      `Bingo: ${describeModerator(req)} deleted signup ${result.deleted.id} for "${result.deleted.rsn}" (status at deletion: ${result.deleted.status})`,
+    );
+
+    if (result.affected.length > 0) {
+      console.log(
+        `Bingo: coverage changed for ${result.affected.length} signup(s) after deletion: ${result.affected
+          .map(
+            (entry) =>
+              `${entry.rsn} -> ${entry.coveredBy ? `covered by ${entry.coveredBy.rsn}` : "no longer covered"}`,
+          )
+          .join(", ")}`,
+      );
+    }
+
+    return res
+      .status(200)
+      .json({ deletedId: result.deleted.id, affected: result.affected });
+  } catch (error) {
+    console.error(`Error deleting bingo signup: ${error}`);
     return sendError(res, 500, "Internal server error");
   }
 };

@@ -30,6 +30,12 @@ router.patch(
   requireModerator,
   bc.setBingoSignupStatus,
 );
+router.delete(
+  "/signups/:id",
+  cabbageMiddleware,
+  requireModerator,
+  bc.removeBingoSignup,
+);
 router.get("/players", cabbageMiddleware, requireModerator, bc.getBingoPlayers);
 router.get(
   "/hiscores",

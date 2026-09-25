@@ -24,6 +24,9 @@
 
 import pool from "@/db/mysqlPool.js";
 import type { ResultSetHeader, RowDataPacket } from "mysql2";
+import type { Pool, PoolConnection } from "mysql2/promise";
+
+type SqlExecutor = Pool | PoolConnection;
 
 export const BINGO_SIGNUP_STATUSES = ["unpaid", "paid", "zeroed"] as const;
 
@@ -53,7 +56,13 @@ export type BingoSignup = {
 
 export type BingoStatusUpdateResult = {
   signup: BingoSignup;
+  previousStatus: BingoSignupStatus;
   cascaded: BingoSignup[];
+};
+
+export type BingoDeleteResult = {
+  deleted: BingoSignup;
+  affected: BingoSignup[];
 };
 
 export type BingoSignupInput = {
@@ -150,8 +159,10 @@ type CoverageRow = RowDataPacket & {
  * Rows are read oldest-first so the earliest claim wins when two signups list
  * the same RSN; later claims are logged and ignored rather than throwing.
  */
-const buildCoverageIndex = async (): Promise<Map<string, BingoCoveredBy>> => {
-  const [rows] = await pool.execute<CoverageRow[]>(
+const buildCoverageIndex = async (
+  executor: SqlExecutor = pool,
+): Promise<Map<string, BingoCoveredBy>> => {
+  const [rows] = await executor.execute<CoverageRow[]>(
     `SELECT id, rsn, covered_players FROM BingoUsers ORDER BY created_at ASC, id ASC`,
   );
 
@@ -315,6 +326,7 @@ export const updateBingoSignupStatus = async (
   const connection = await pool.getConnection();
 
   let cascadedIds: number[] = [];
+  let previousStatus: BingoSignupStatus = status;
 
   try {
     await connection.beginTransaction();
@@ -330,6 +342,7 @@ export const updateBingoSignupStatus = async (
     }
 
     const target = mapRow(targetRows[0]);
+    previousStatus = target.status;
 
     await connection.execute(`${STATUS_UPDATE_SQL} = ?`, [
       status,
@@ -388,8 +401,64 @@ export const updateBingoSignupStatus = async (
 
   return {
     signup,
+    previousStatus,
     cascaded: all.filter((entry) => cascadedIds.includes(entry.id)),
   };
+};
+
+/**
+ * Removes a signup outright. Deleting a payer strips coverage from everyone
+ * they were paying for, so the coverage index is rebuilt inside the same
+ * transaction and every signup whose derived coveredBy moved is returned.
+ */
+export const deleteBingoSignup = async (
+  id: number,
+): Promise<BingoDeleteResult | null> => {
+  const connection = await pool.getConnection();
+
+  try {
+    await connection.beginTransaction();
+
+    const [targetRows] = await connection.execute<BingoSignupRow[]>(
+      `SELECT ${SELECT_COLUMNS} FROM BingoUsers WHERE id = ? FOR UPDATE`,
+      [id],
+    );
+
+    if (!Array.isArray(targetRows) || targetRows.length === 0) {
+      await connection.rollback();
+      return null;
+    }
+
+    const beforeIndex = await buildCoverageIndex(connection);
+    const deleted = attachCoveredBy(mapRow(targetRows[0]), beforeIndex);
+
+    await connection.execute(`DELETE FROM BingoUsers WHERE id = ?`, [id]);
+
+    const afterIndex = await buildCoverageIndex(connection);
+
+    const [remainingRows] = await connection.execute<BingoSignupRow[]>(
+      `SELECT ${SELECT_COLUMNS} FROM BingoUsers ORDER BY created_at ASC, id ASC`,
+    );
+
+    const affected = (Array.isArray(remainingRows) ? remainingRows : [])
+      .map(mapRow)
+      .filter((signup) => {
+        const before = attachCoveredBy(signup, beforeIndex).coveredBy;
+        const after = attachCoveredBy(signup, afterIndex).coveredBy;
+        return (before?.id ?? null) !== (after?.id ?? null);
+      })
+      .map((signup) => attachCoveredBy(signup, afterIndex));
+
+    await connection.commit();
+
+    return { deleted, affected };
+  } catch (error) {
+    await connection.rollback();
+    console.error(`Error deleting bingo signup: ${error}`);
+    throw error;
+  } finally {
+    connection.release();
+  }
 };
 
 export const getBingoParticipants = async (): Promise<BingoSignup[]> => {

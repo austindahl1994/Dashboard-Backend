@@ -10,46 +10,8 @@ const BUY_IN_PER_PERSON = 11_000_000;
 // Matches the bot's convention in src/bot/mainBot.js
 const isProduction = () => process.env.ENVIRONMENT === "production";
 
-// MODERATORS may be a JSON array or a comma separated list of ids.
-const parseModeratorIds = (raw: string | undefined): string[] => {
-  if (!raw) return [];
-
-  const trimmed = raw.trim();
-
-  if (trimmed.startsWith("[")) {
-    try {
-      const parsed: unknown = JSON.parse(trimmed);
-      if (Array.isArray(parsed)) {
-        return parsed
-          .map((entry) => String(entry).trim())
-          .filter((entry) => /^\d+$/.test(entry));
-      }
-    } catch {
-      // fall through to delimiter parsing
-    }
-  }
-
-  return trimmed
-    .split(/[,\s]+/)
-    .map((entry) => entry.replace(/["'[\]]/g, "").trim())
-    .filter((entry) => /^\d+$/.test(entry));
-};
-
-const getNotificationTargets = () => {
-  if (isProduction()) {
-    return {
-      channelId: LIVE_BUY_INS_CHANNEL_ID,
-      userIds: parseModeratorIds(process.env.MODERATORS),
-    };
-  }
-
-  const dubzId = process.env.DUBZ_DISCORD_ID?.trim();
-
-  return {
-    channelId: TEST_BUY_INS_CHANNEL_ID,
-    userIds: dubzId && /^\d+$/.test(dubzId) ? [dubzId] : [],
-  };
-};
+const getBuyInsChannelId = (): string =>
+  isProduction() ? LIVE_BUY_INS_CHANNEL_ID : TEST_BUY_INS_CHANNEL_ID;
 
 const formatGp = (amount: number): string => {
   if (!Number.isFinite(amount) || amount <= 0) return "0";
@@ -119,17 +81,12 @@ const buildSignupEmbed = (signup: BingoSignup, totalOwed: number) => {
 };
 
 export const notifyBingoSignup = async (signup: BingoSignup): Promise<void> => {
-  const { channelId, userIds } = getNotificationTargets();
   const coveredPlayers = signup.coveredPlayers ?? [];
   const totalOwed =
     (1 + coveredPlayers.length) * BUY_IN_PER_PERSON + (signup.donation ?? 0);
 
-  const content = userIds.map((id) => `<@${id}>`).join(" ");
-
   await postToDiscordChannel(
-    channelId,
+    getBuyInsChannelId(),
     buildSignupEmbed(signup, totalOwed),
-    content || undefined,
-    userIds,
   );
 };
